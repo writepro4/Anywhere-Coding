@@ -9,44 +9,44 @@ body {
 }
 
 /* Header/logo Title */
-.header {
-    padding: 80px;
-    text-align: center;
-    background: #1abc9c;
-    color: white;
-}
+/*.header {*/
+/*    padding: 80px;*/
+/*    text-align: center;*/
+/*    background: #1abc9c;*/
+/*    color: white;*/
+/*}*/
 
 /* Increase the font size of the heading */
-.header h1 {
-    font-size: 40px;
-}
+/*.header h1 {*/
+/*    font-size: 40px;*/
+/*}*/
 
 /* Style the top navigation bar */
-.navbar {
-    overflow: hidden;
-    background-color: #333;
-}
+/*.navbar {*/
+/*    overflow: hidden;*/
+/*    background-color: #333;*/
+/*}*/
 
-/* Style the navigation bar links */
-.navbar a {
-    float: left;
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
-}
+/*!* Style the navigation bar links *!*/
+/*.navbar a {*/
+/*    float: left;*/
+/*    display: block;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    padding: 14px 20px;*/
+/*    text-decoration: none;*/
+/*}*/
 
-/* Right-aligned link */
-.navbar a.right {
-    float: right;
-}
+/*!* Right-aligned link *!*/
+/*.navbar a.right {*/
+/*    float: right;*/
+/*}*/
 
-/* Change color on hover */
-.navbar a:hover {
-    background-color: #ddd;
-    color: black;
-}
+/*!* Change color on hover *!*/
+/*.navbar a:hover {*/
+/*    background-color: #ddd;*/
+/*    color: black;*/
+/*}*/
 
 /* Column container */
 .row {
@@ -58,12 +58,12 @@ body {
 
 /* Create two unequal columns that sits next to each other */
 /* Sidebar/left column */
-.side {
-    -ms-flex: 30%; /* IE10 */
-    flex: 30%;
-    background-color: #f1f1f1;
-    padding: 20px;
-}
+/*.side {*/
+/*    -ms-flex: 30%; !* IE10 *!*/
+/*    flex: 30%;*/
+/*    background-color: #f1f1f1;*/
+/*    padding: 20px;*/
+/*}*/
 
 /* Main column */
 .main {
