@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8"/>
+    <!-- 사용언어 -->
+    <meta http-equiv="content-language" content="ko"/>
+    <!-- 구글등록 meta 데이터 -->
+    <meta name="google-site-verification" content="7NjzVfIHs6FjMoomXWvMEDUHpGpehMYoH52y1wb-LO4"/>
+    <!-- 사이트 아이콘 -->
+    <link rel="icon" type="image/x-icon" href="images/CodingTip-logo.png"/>
+    <!-- 사이트 타이틀 -->
+    <title>코딩에 관한 모든 팁, 코딩꿀팁</title>
+    <!-- 사이트 설명문 -->
+    <meta name="description" content="코딩에 관한 팁들을 얻어보세요!">
+    <!-- 모바일 뷰 포트 -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <!-- 페이스북 open graph protocol  -->
+
+    <!-- 모바일에 보여지는 템플릿 모양 -->
+    <meta property="og:url" content="https://honeytip.kro.kr/"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="코딩꿀팁"/>
+    <meta property="og:description" content="코딩에 관한 모든 꿀팁"/>
+    <meta property="og:image" content="images/CodingTip-logo.png"/>
+
+    <!--    리셋 css-->
+    <link rel="astylesheet" type="text/css" href="css/reset.css">
+
+    <link rel="stylesheet" type="text/css" href="semantic/semantic.css">
+
+    <link rel="stylesheet" type="text/css" href="semantic/container.css">
+    <link rel="stylesheet" type="text/css" href="semantic/grid.css">
+    <link rel="stylesheet" type="text/css" href="semantic/header.css">
+    <link rel="stylesheet" type="text/css" href="semantic/image.css">
+    <link rel="stylesheet" type="text/css" href="semantic/menu.css">
+
+    <link rel="stylesheet" type="text/css" href="semantic/divider.css">
+    <link rel="stylesheet" type="text/css" href="semantic/list.css">
+    <link rel="stylesheet" type="text/css" href="semantic/segment.css">
+    <link rel="stylesheet" type="text/css" href="semantic/dropdown.css">
+    <link rel="stylesheet" type="text/css" href="semantic/icon.css">
+    <link rel="stylesheet" type="text/css" href="semantic/transition.css">
+
+    <!--    구글 폰트-->
+    <link href="https://fonts.googleapis.com/css2? family = Nanum + Myeongjo : wght @ 800 & display = swap"
+          rel="stylesheet">
+    <!--    시멘틱 ui-->
+    <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script src="semantic/semantic.min.js"></script>
+
+    <!--    메뉴바 js-->
+    <script>
+        $(document)
+            .ready(function () {
+
+                // fix main menu to page on passing
+                $('.main.menu').visibility({
+                    type: 'fixed'
+                });
+                $('.overlay').visibility({
+                    type: 'fixed',
+                    offset: 80
+                });
+
+                // lazy load images
+                $('.image').visibility({
+                    type: 'image',
+                    transition: 'vertical flip in',
+                    duration: 500
+                });
+
+                // show dropdown on hover
+                $('.main.menu  .ui.dropdown').dropdown({
+                    on: 'hover'
+                });
+            })
+        ;
+
+        $('.ui.sticky')
+            .sticky({
+                context: '#example3'
+            })
+        ;
+    </script>
+
+
+</head>
+<body>
+
+<div vocab="http://schema.org/" typeof="Movie">
+
+    <div class="ui main text container">
+        <h1 class="ui header" style="text-align: center">생산성</h1>
+        <p style="text-align: center">(도구) (아이템) </p>
+    </div>
+
+
+    <div class="ui borderless main menu">
+        <!--    <div class="ui text container">-->
+        <div class="header item">
+            <img class="logo" src="images/CodingTip-logo.png" alt="코딩">
+            CodingTip
+        </div>
+        <a href="#" class="item">Blog</a>
+        <a href="#" class="item">Articles</a>
+        <a href="#" class="ui right floated dropdown item">
+            Dropdown <i class="dropdown icon"></i>
+            <div class="menu">
+                <div class="item">Link Item</div>
+                <div class="item">Link Item</div>
+                <div class="divider"></div>
+                <div class="header">Header Item</div>
+                <div class="item">
+                    <i class="dropdown icon"></i>
+                    Sub Menu
+                    <div class="menu">
+                        <div class="item">Link Item</div>
+                        <div class="item">Link Item</div>
+                    </div>
+                </div>
+                <div class="item">Link Item</div>
+            </div>
+        </a>
+
+    </div>
+
+
+    <div class="ui vertical stripe segment" style="padding-bottom: 100px; padding-top: 100px;">
+        <div class="ui text container">
+            
+            <div class="ui divided items">
+                <div class="item">
+                    <div class="image">
+                        <img src="/images/plant.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">Header</a>
+                        <div class="meta">
+                            <span>Description</span>
+                        </div>
+                        <div class="description">
+                            <p></p>
+                        </div>
+                        <div class="extra">
+                            Additional Details
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <img src="/images/plant.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">Header</a>
+                        <div class="meta">
+                            <span>Description</span>
+                        </div>
+                        <div class="description">
+                            <p></p>
+                        </div>
+                        <div class="extra">
+                            Additional Details
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <img src="/images/plant.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">Header</a>
+                        <div class="meta">
+                            <span>Description</span>
+                        </div>
+                        <div class="description">
+                            <p></p>
+                        </div>
+                        <div class="extra">
+                            Additional Details
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <img src="/images/plant.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">Header</a>
+                        <div class="meta">
+                            <span>Description</span>
+                        </div>
+                        <div class="description">
+                            <p></p>
+                        </div>
+                        <div class="extra">
+                            Additional Details
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <img src="/images/plant.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">Header</a>
+                        <div class="meta">
+                            <span>Description</span>
+                        </div>
+                        <div class="description">
+                            <p></p>
+                        </div>
+                        <div class="extra">
+                            Additional Details
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="image">
+                        <img src="/images/plant.jpg">
+                    </div>
+                    <div class="content">
+                        <a class="header">Header</a>
+                        <div class="meta">
+                            <span>Description</span>
+                        </div>
+                        <div class="description">
+                            <p></p>
+                        </div>
+                        <div class="extra">
+                            Additional Details
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <!--    footer 영역-->
+    <div class="ui inverted vertical footer segment">
+        <div class="ui center aligned container">
+            <div class="ui stackable inverted divided grid">
+                <div class="three wide column">
+                    <h4 class="ui inverted header">Group 1</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">Link One</a>
+                        <a href="#" class="item">Link Two</a>
+                        <a href="#" class="item">Link Three</a>
+                        <a href="#" class="item">Link Four</a>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">Group 2</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">Link One</a>
+                        <a href="#" class="item">Link Two</a>
+                        <a href="#" class="item">Link Three</a>
+                        <a href="#" class="item">Link Four</a>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header">Group 3</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">Link One</a>
+                        <a href="#" class="item">Link Two</a>
+                        <a href="#" class="item">Link Three</a>
+                        <a href="#" class="item">Link Four</a>
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header">Footer Header</h4>
+                    <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+                </div>
+            </div>
+            <div class="ui inverted section divider"></div>
+            <img src="images/logo.png" class="ui centered mini image">
+            <div class="ui horizontal inverted small divided link list">
+                <a class="item" href="#">Site Map</a>
+                <a class="item" href="#">Contact Us</a>
+                <a class="item" href="#">Terms and Conditions</a>
+                <a class="item" href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+
+    <!--    JS파일 불러오기-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/transition.js"></script>
+    <script src="js/dropdown.js"></script>
+    <script src="js/visibility.js"></script>
+
+
+</body>
+
+</html>
