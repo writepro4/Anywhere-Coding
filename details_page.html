@@ -58,90 +58,14 @@
         $(document)
             .ready(function () {
 
-                // fix main menu to page on passing
-                $('.main.menu').visibility({
-                    type: 'fixed'
-                });
-                $('.overlay').visibility({
-                    type: 'fixed',
-                    offset: 80
-                });
+                $("#header").load("header.html");
+                $("#footer").load("footer.html");
 
-                // lazy load images
-                $('.image').visibility({
-                    type: 'image',
-                    transition: 'vertical flip in',
-                    duration: 500
-                });
-
-                // show dropdown on hover
-                $('.main.menu  .ui.dropdown').dropdown({
-                    on: 'hover'
-                });
             })
         ;
 
-        $('.ui.sticky')
-            .sticky({
-                context: '#example3'
-            })
-        ;
+
     </script>
-
-    <!--    진행률 js-->
-    <script>
-        // When the user scrolls the page, execute myFunction
-        window.onscroll = function () {
-            myFunction()
-        };
-
-        function myFunction() {
-            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var scrolled = (winScroll / height) * 100;
-            document.getElementById("myBar").style.width = scrolled + "%";
-        }
-    </script>
-
-    <!--    진행률-->
-    <style>
-        /*body {*/
-        /*    margin: 0;*/
-        /*    font-size: 28px;*/
-        /*    font-family: Arial, Helvetica, sans-serif;*/
-        /*}*/
-
-        /*.header {*/
-        /*    position: fixed;*/
-        /*    top: 0;*/
-        /*    z-index: 1;*/
-        /*    width: 100%;*/
-        /*    background-color: #f1f1f1;*/
-        /*}*/
-
-        /*.header h2 {*/
-        /*    text-align: center;*/
-        /*}*/
-
-        .progress-container {
-            width: 100%;
-            height: 8px;
-            background: #ccc;
-        }
-
-        .progress-bar {
-            height: 8px;
-            background: #4caf50;
-            width: 0%;
-        }
-
-        /*.content {*/
-        /*    padding: 100px 0;*/
-        /*    margin: 50px auto 0 auto;*/
-        /*    width: 80%;*/
-        /*}*/
-    </style>
-
 
 </head>
 <body>
@@ -153,36 +77,7 @@
         <p style="text-align: center">(도구) (아이템) </p>
     </div>
 
-    <div class="ui borderless main menu">
-        <!--    <div class="ui text container">-->
-        <div class="header item">
-            <img class="logo" src="images/CodingTip-logo.png" alt="코딩">
-            CodingTip
-        </div>
-        <a href="#" class="item">Blog</a>
-        <a href="#" class="item">Articles</a>
-        <a href="#" class="ui right floated dropdown item">
-            Dropdown <i class="dropdown icon"></i>
-            <div class="menu">
-                <div class="item">Link Item</div>
-                <div class="item">Link Item</div>
-                <div class="divider"></div>
-                <div class="header">Header Item</div>
-                <div class="item">
-                    <i class="dropdown icon"></i>
-                    Sub Menu
-                    <div class="menu">
-                        <div class="item">Link Item</div>
-                        <div class="item">Link Item</div>
-                    </div>
-                </div>
-                <div class="item">Link Item</div>
-            </div>
-        </a>
-    </div>
-    <div class="progress-container">
-        <div class="progress-bar" id="myBar"></div>
-    </div>
+    <header id="header"></header>
 
 
     <div class="ui text container">
@@ -313,51 +208,7 @@
 
 
     <!--    footer 영역-->
-    <div class="ui inverted vertical footer segment">
-        <div class="ui center aligned container">
-            <div class="ui stackable inverted divided grid">
-                <div class="three wide column">
-                    <h4 class="ui inverted header">Group 1</h4>
-                    <div class="ui inverted link list">
-                        <a href="#" class="item">Link One</a>
-                        <a href="#" class="item">Link Two</a>
-                        <a href="#" class="item">Link Three</a>
-                        <a href="#" class="item">Link Four</a>
-                    </div>
-                </div>
-                <div class="three wide column">
-                    <h4 class="ui inverted header">Group 2</h4>
-                    <div class="ui inverted link list">
-                        <a href="#" class="item">Link One</a>
-                        <a href="#" class="item">Link Two</a>
-                        <a href="#" class="item">Link Three</a>
-                        <a href="#" class="item">Link Four</a>
-                    </div>
-                </div>
-                <div class="three wide column">
-                    <h4 class="ui inverted header">Group 3</h4>
-                    <div class="ui inverted link list">
-                        <a href="#" class="item">Link One</a>
-                        <a href="#" class="item">Link Two</a>
-                        <a href="#" class="item">Link Three</a>
-                        <a href="#" class="item">Link Four</a>
-                    </div>
-                </div>
-                <div class="seven wide column">
-                    <h4 class="ui inverted header">Footer Header</h4>
-                    <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-                </div>
-            </div>
-            <div class="ui inverted section divider"></div>
-            <img src="images/logo.png" class="ui centered mini image">
-            <div class="ui horizontal inverted small divided link list">
-                <a class="item" href="#">Site Map</a>
-                <a class="item" href="#">Contact Us</a>
-                <a class="item" href="#">Terms and Conditions</a>
-                <a class="item" href="#">Privacy Policy</a>
-            </div>
-        </div>
-    </div>
+    <footer id="footer"></footer>
 
     <!--    JS파일 불러오기-->
     <script src="js/jquery.min.js"></script>
