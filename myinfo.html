@@ -26,7 +26,6 @@
 
     <!--    리셋 css-->
     <link rel="astylesheet" type="text/css" href="css/reset.css">
-
     <link rel="stylesheet" type="text/css" href="semantic/semantic.css">
 
     <link rel="stylesheet" type="text/css" href="semantic/container.css">
@@ -53,51 +52,11 @@
             crossorigin="anonymous"></script>
     <script src="semantic/semantic.min.js"></script>
 
-    <!--    메뉴바 js-->
-    <script>
-        $(document)
-            .ready(function () {
-
-                // fix main menu to page on passing
-                $('.main.menu').visibility({
-                    type: 'fixed'
-                });
-                $('.overlay').visibility({
-                    type: 'fixed',
-                    offset: 80
-                });
-
-                // lazy load images
-                $('.image').visibility({
-                    type: 'image',
-                    transition: 'vertical flip in',
-                    duration: 500
-                });
-
-                // show dropdown on hover
-                $('.main.menu  .ui.dropdown').dropdown({
-                    on: 'hover'
-                });
-            })
-        ;
-
-        $('.ui.sticky')
-            .sticky({
-                context: '#example3'
-            })
-        ;
-    </script>
-
 
 </head>
 <body>
 
 <div vocab="http://schema.org/" typeof="Movie">
-
-    <div class="ui main text container">
-        <h1 class="ui header" style="text-align: center">생산성</h1>
-        <p style="text-align: center">(도구) (아이템) </p>
-    </div>
 
 
     <div class="ui borderless main menu">
@@ -129,121 +88,95 @@
 
     </div>
 
+    <!-- Page Contents -->
+    <div class="pusher">
 
-    <div class="ui vertical stripe segment" style="padding-bottom: 100px; padding-top: 100px;">
-        <div class="ui text container">
+        <div class="ui vertical stripe segment" style="padding-bottom: 100px;">
+            <h2 class="ui center aligned icon header">
+                <i class="circular users icon"></i>
+                내 정보
+            </h2>
+            <div class="ui middle aligned stackable grid container">
 
-            <div class="ui divided items">
-                <div class="item">
+
+                <div class="ui card">
                     <div class="image">
-                        <img src="/images/plant.jpg">
+                        <img src="/images/plant.jpg" alt="image">
                     </div>
                     <div class="content">
-                        <a class="header">Header</a>
+                        <a class="header">Kristy</a>
                         <div class="meta">
-                            <span>Description</span>
+                            <span class="date">Joined in 2013</span>
                         </div>
                         <div class="description">
-                            <p></p>
+                            Kristy is an art director living in New York.
                         </div>
-                        <div class="extra">
-                            Additional Details
-                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a>
+                            <i class="user icon"></i>
+                            22 Friends
+                        </a>
                     </div>
                 </div>
-                <div class="item">
-                    <div class="image">
-                        <img src="/images/plant.jpg">
+
+                <!--                <div class="ui vertical stripe segment" style="padding-bottom: 100px; padding-top: 100px;">-->
+                <div class="ui text container">
+
+                    <div class="ui horizontal section divider" style="font-size: 23px;">얻은 뱃지</div>
+                    <div class="ui celled grid">
+                        <div class="row">
+                            <div class="four wide column"><img src="images/plant.jpg" alt="image"/>
+                                <div class="floating ui black label">New</div>
+                            </div>
+                            <div class="four wide column"><img src="images/plant.jpg" alt="image"/>
+                                <div class="floating ui black label">New</div>
+                            </div>
+                            <div class="four wide column"><img src="images/plant.jpg" alt="image"/>
+                                <div class="floating ui black label">New</div>
+                            </div>
+                            <div class="four wide column"><img src="images/plant.jpg" alt="image"/>
+                                <div class="floating ui black label">New</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="four wide column"><img src="images/plant.jpg"/>
+                                <div class="floating ui black label">New</div>
+                            </div>
+                            <div class="four wide column"><img src="images/plant.jpg"/>
+                                <div class="floating ui black label">New</div>
+                            </div>
+                            <div class="four wide column"><img src="images/plant.jpg"/>
+                                <div class="floating ui black label">New</div>
+                            </div>
+                            <div class="four wide column"><img src="images/plant.jpg"/>
+                                <div class="floating ui black label">New</div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="four wide column"><img src="images/plant.jpg"/>
+                                <div class="floating ui black label">New</div>
+                            </div>
+                            <div class="four wide column"><img src="images/plant.jpg"/>
+                                <div class="floating ui black label">New</div>
+                            </div>
+                            <div class="four wide column"><img src="images/plant.jpg"/>
+                                <div class="floating ui black label">New</div>
+                            </div>
+                            <div class="four wide column"><img src="images/plant.jpg"/>
+                                <div class="floating ui black label">New</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="content">
-                        <a class="header">Header</a>
-                        <div class="meta">
-                            <span>Description</span>
-                        </div>
-                        <div class="description">
-                            <p></p>
-                        </div>
-                        <div class="extra">
-                            Additional Details
-                        </div>
-                    </div>
+                    <!--                    </div>-->
                 </div>
-                <div class="item">
-                    <div class="image">
-                        <img src="/images/plant.jpg">
-                    </div>
-                    <div class="content">
-                        <a class="header">Header</a>
-                        <div class="meta">
-                            <span>Description</span>
-                        </div>
-                        <div class="description">
-                            <p></p>
-                        </div>
-                        <div class="extra">
-                            Additional Details
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="image">
-                        <img src="/images/plant.jpg">
-                    </div>
-                    <div class="content">
-                        <a class="header">Header</a>
-                        <div class="meta">
-                            <span>Description</span>
-                        </div>
-                        <div class="description">
-                            <p></p>
-                        </div>
-                        <div class="extra">
-                            Additional Details
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="image">
-                        <img src="/images/plant.jpg">
-                    </div>
-                    <div class="content">
-                        <a class="header">Header</a>
-                        <div class="meta">
-                            <span>Description</span>
-                        </div>
-                        <div class="description">
-                            <p></p>
-                        </div>
-                        <div class="extra">
-                            Additional Details
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="image">
-                        <img src="/images/plant.jpg">
-                    </div>
-                    <div class="content">
-                        <a class="header">Header</a>
-                        <div class="meta">
-                            <span>Description</span>
-                        </div>
-                        <div class="description">
-                            <p></p>
-                        </div>
-                        <div class="extra">
-                            Additional Details
-                        </div>
-                    </div>
-                </div>
+
+
             </div>
-
-
         </div>
     </div>
 
 
-    <!--    footer 영역-->
     <div class="ui inverted vertical footer segment">
         <div class="ui center aligned container">
             <div class="ui stackable inverted divided grid">
@@ -296,7 +229,7 @@
     <script src="js/dropdown.js"></script>
     <script src="js/visibility.js"></script>
 
-
+</div>
 </body>
 
 </html>
