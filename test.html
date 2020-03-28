@@ -42,12 +42,12 @@
     }
 
     // 데이터 전송 함수
-    function test_ajax1(csrf_token) {
+    function test_ajax1(token) {
         console.log("데이터 전송 함수 실행");
-        console.log("넘겨줄 토큰값: " + csrf_token);
+        console.log("넘겨줄 토큰값: " + token);
         //데이터 전송 예제
         let login_data = {
-            '_token': csrf_token, //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
+            '_token': token, //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
             'id': "tip12",
             'pw': "honey"
         };
@@ -57,7 +57,7 @@
         // console.log(myJSON);
         $.ajax({
             type: 'post'
-            , url: 'https://honeytip.p-e.kr/login/auth'
+            , url: 'https://honeytip.p-e.kr/login'
             , data: login_data
             , xhrFields: {
                 withCredentials: false
@@ -71,9 +71,9 @@
                 console.log("전송 성공");
                 let check = parse_data.key;
                 console.log(check);
-                if(check === true){
+                if (check === true) {
                     window.location.replace("./administrator_page.html");
-                }else{
+                } else {
                     alert("다시 시도해주세요.");
                 }
             }
@@ -111,8 +111,8 @@
 
     // (토큰,요청함수 묶은 메소드)
     function get_token() {
-        get_csrf(function (csrf_token) {
-            test_ajax1(csrf_token)
+        get_csrf(function (token) {
+            test_ajax1(token)
         })
     }
 
