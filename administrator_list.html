@@ -81,8 +81,8 @@
         <img class="logo" src="images/CodingTip-logo.png" alt="코딩">
         CodingTip
     </div>
-    <a href="#" class="item">글 작성</a>
-    <a href="#" class="item">글 목록 리스트</a>
+    <a href="./administrator_page.html" class="item">글 작성</a>
+    <a href="./administrator_list.html" class="item">글 목록 리스트</a>
     <a href="#" class="ui right floated dropdown item">
         <i class="universal access icon"></i>관리자님 환영합니다.
     </a>
@@ -97,7 +97,7 @@
         <div class="ui text container">
 
 
-            <div class="ui horizontal section divider" style="font-size: 23px;">관리자 글 작성하기</div>
+            <div class="ui horizontal section divider" style="font-size: 23px;">관리자 글 목록</div>
             <br>
 
             <i class="book icon"></i>카테고리를 선택하세요.
@@ -114,53 +114,102 @@
             </div>
             <br>
             <br>
+            <button class="fluid ui secondary button">
+                글 불러오기
+            </button>
+            <!--            <button class="fluid ui button" >Fits container</button>-->
 
-            <i class="book icon"></i>제목을 입력해주세요.
-            <br>
-            <div class="ui fluid icon input">
 
-                <input type="text" placeholder="제목을 입력해주세요..">
+            <div class="ui vertical stripe segment" style="padding-bottom: 100px; padding-top: 100px;">
+                <div class="ui text container">
 
-            </div>
-            <br>
-            <br>
+                    <div class="ui divided items">
+                        <div class="item">
+                            <div class="image">
+                                <img src="/images/plant.jpg" alt="image">
+                            </div>
+                            <div class="content">
+                                <a class="header">세상 개꿀팁</a>
+                                <div class="meta">
+                                    <span>문서화</span>
+                                </div>
+                                <div class="description">
+                                    <p></p>
+                                </div>
+                                <div class="extra">
+                                    Additional Details
+                                </div>
+                                <div class="extra">
+                                    <div class="ui blue right floated button">
+                                        수정
+                                    </div>
+                                    <div class="ui red right floated button">
+                                        삭제
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="image">
+                                <img src="/images/plant.jpg" alt="image">
+                            </div>
+                            <div class="content">
+                                <a class="header">이런거 다 알랴줘도 되나 모르겠다...</a>
+                                <div class="meta">
+                                    <span>생산성</span>
+                                </div>
+                                <div class="description">
+                                    <p></p>
+                                </div>
+                                <div class="extra">
+                                    Additional Details
+                                </div>
+                                <div class="extra">
+                                    <div class="ui blue right floated button">
+                                        수정
+                                    </div>
+                                    <div class="ui red right floated button">
+                                        삭제
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="image">
+                                <img src="/images/plant.jpg" alt="image">
+                            </div>
+                            <div class="content">
+                                <a class="header">꿀팁 쇼핑</a>
+                                <div class="meta">
+                                    <span>생활</span>
+                                </div>
+                                <div class="description">
+                                    <p></p>
+                                </div>
+                                <div class="extra">
+                                    Additional Details
+                                </div>
+                                <div class="extra">
+                                    <div class="ui blue right floated button">
+                                        수정
+                                    </div>
+                                    <div class="ui red right floated button">
+                                        삭제
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-            <i class="pencil alternate icon"></i>글을 작성해주세요.
-            <form method="post">
-                <textare id="summernote" name="editordata"></textare>
-            </form>
 
-            <!--            등록 버튼-->
-            <br>
-            <div class="ui labeled button" tabindex="0">
-                <div class="ui black button">
-                    <i class="heart icon"></i><span style="vertical-align: inherit;"><span
-                        style="vertical-align: inherit;"> 등록
-                </span></span></div>
-                <a class="ui basic black left pointing label"><span style="vertical-align: inherit;"><span
-                        style="vertical-align: inherit;">
-                    1,048
-                </span></span></a>
+                    </div>
+
+
+                </div>
             </div>
 
         </div>
 
 
-        <!--    </div>-->
-        <!--</div>-->
-        <script>
-            $(document).ready(function () {
-                $('#summernote').summernote({
-                    height: 1000,                 // 에디터 높이
-                    minHeight: null,             // 최소 높이
-                    maxHeight: null,             // 최대 높이
-                    focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-                    lang: "ko-KR",					// 한글 설정
-                    placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
-
-                });
-            });
-        </script>
     </div>
 </div>
 
