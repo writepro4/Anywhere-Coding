@@ -1,4 +1,10 @@
-// 토큰 가져오는 함수
+// <--- 함수 리스트 --->
+// 1. 토근 가져오는 함수
+// 2. 관리자로그인 데이터 전송 함수
+// 3. 관리자로그인 요청 함수
+
+
+// 1. 토근 가져오는 함수
 function getToken(callback) {
     console.log("실행");
 
@@ -25,7 +31,7 @@ function getToken(callback) {
     });
 }
 
-// 데이터 전송 함수
+// 2. 관리자로그인 데이터 전송 함수
 function adminLogin(token) {
 
     let adminId = $('#email').val();
@@ -92,7 +98,7 @@ function adminLogin(token) {
     });
 }
 
-// (토큰,요청함수 묶은 메소드)
+// 3. 관리자로그인 요청 함수
 function get_token() {
     getToken(function (token) {
         adminLogin(token)
