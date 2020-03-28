@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="en">
 <head>
-    <!-- Standard Meta -->
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
-    <!-- Site Properties -->
-    <title>Login Example - Semantic</title>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="semantic/site.css">
 
@@ -26,9 +25,7 @@
     <link rel="stylesheet" type="text/css" href="semantic/message.css">
     <link rel="stylesheet" type="text/css" href="semantic/icon.css">
 
-    <script src="js/jquery.min.js"></script>
     <script src="semantic/form.js"></script>
-    <script src="js/transition.js"></script>
 
     <!--    시멘틱 ui-->
     <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
@@ -37,6 +34,9 @@
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
             crossorigin="anonymous"></script>
     <script src="semantic/semantic.min.js"></script>
+
+    <!--    요청 js-->
+    <script src="js/ajax.js"></script>
 
 
     <style type="text/css">
@@ -60,186 +60,11 @@
             max-width: 450px;
         }
     </style>
-    <script>
-        // $(document)
-        //     .ready(function () {
-        //         $('.ui.form')
-        //             .form({
-        //                 fields: {
-        //                     email: {
-        //                         identifier: 'email',
-        //                         rules: [
-        //                             {
-        //                                 type: 'empty',
-        //                                 prompt: 'Please enter your e-mail'
-        //                             },
-        //                             {
-        //                                 type: 'email',
-        //                                 prompt: 'Please enter a valid e-mail'
-        //                             }
-        //                         ]
-        //                     },
-        //                     password: {
-        //                         identifier: 'password',
-        //                         rules: [
-        //                             {
-        //                                 type: 'empty',
-        //                                 prompt: 'Please enter your password'
-        //                             },
-        //                             {
-        //                                 type: 'length[6]',
-        //                                 prompt: 'Your password must be at least 6 characters'
-        //                             }
-        //                         ]
-        //                     }
-        //                 }
-        //             })
-        //         ;
-        //     })
-        // ;
-
-        // $(".MembershipButton").click(function () {
-        //
-        //     let managerID = $("#email").val();
-        //     let password = $("#password").val();
-        //
-        //     let obj = {
-        //         id: "tip12",
-        //         pw: "honey"
-        //     };
-        //
-        //     let myJSON = JSON.stringify(obj);
-        //
-        //     $.ajax({
-        //
-        //         type: "POST",
-        //         dataType: "json",
-        //         url: "https://honeytip.p-e.kr/login/auth"
-        //         ,
-        //         data: {
-        //
-        //             json: myJSON
-        //
-        //         },
-        //
-        //         xhrFields: {
-        //             withCredentials: false
-        //         }
-        //         , success: function (msg) {
-        //             window.location.replace("./administrator_page.html");
-        //         }
-        //         , error: function (xhr, option, error) {
-        //             console.log(xhr, option, error);
-        //             console.log("에러발생함")
-        //         }
-        //     });
-        // });
-
-        // $(document).ready(function () {
-        //
-        //     $(".MembershipButton").click(function () {
-        //
-        //         let managerID = $("#email").val();
-        //         let password = $("#password").val();
-        //
-        //
-        //         let obj = {
-        //             id: managerID,
-        //             pw: password
-        //         };
-        //
-        //
-        //         let myJSON = JSON.stringify(obj);
-        //         alert("안녕");
-        //
-        //         $.post("https://honeytip.p-e.kr/login/auth",
-        //             myJSON, // 서버가 필요한 정보를 같이 보냄.
-        //             function (data, status) {
-        //                 // $("#text").html(data + "<br>" + status+ myJSON);	// 전송받은 데이터와 전송 성공 여부를 보여줌.
-        //                 let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
-        //                 console.log(data);
-        //                 console.log(status);
-        //                 window.location.replace("./administrator_page.html");
-        //
-        //             }
-        //         );
-        //
-        //
-        //     });
-        // });
-
-        // $(document).ready(function () {
 
 
-            // function get_csrf(callback) {
-            //     $.ajax({
-            //         type: 'get'
-            //         , url: 'https://honeytip.p-e.kr/csrf_token'
-            //         , data: ''
-            //         , xhrFields: {
-            //             withCredentials: true
-            //         }
-            //         , success: function (data) {
-            //             console.log(data);
-            //             console.log("토큰 발행 성공");
-            //             callback(data) // 받아온 csrf_token을 반환해주는 부분
-            //         }
-            //         , error: function (xhr, status, msg) {
-            //             console.log(xhr);
-            //             console.log("토큰 발급 실패");
-            //         }
-            //     });
-            // }
-            //
-            //
-            // function test_ajax1(csrf_token) {
-            //     let tmp1 = {
-            //         tmp_val1: 'test_ajax1',
-            //         '_token': csrf_token //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
-            //     };
-            //
-            //     $.ajax({
-            //         type: 'post'
-            //         , url: 'https://honeytip.p-e.kr/login/auth'
-            //         , data: tmp1
-            //         , xhrFields: {
-            //             withCredentials: true
-            //         }
-            //         , success: function (data) {
-            //             data = JSON.parse(data);
-            //             console.log(data);
-            //             console.log("요청성공");
-            //         }
-            //         , error: function (xhr, status, msg) {
-            //             console.log(xhr);
-            //             console.log("요청 실패");
-            //         }
-            //     });
-            // }
-            //
-            //
-            // $("#MembershipButton").click(function () {
-            //     console.log("클릭버튼 작동");
-            //     get_csrf(function (csrf_token) {
-            //         test_ajax1(csrf_token)
-            //     })
-            // });
-
-            // $("#MembershipButton").onclick(function () {
-                $("#MembershipButton").on("click", function () {
-                    // GET 방식으로 서버에 HTTP 요청을 보냄.
-                    $.get("https://honeytip.p-e.kr/csrf_token", function (data, status) {
-                        $("#text").html(data + status);	// 전송받은 데이터와 전송 성공 여부를 보여줌.
-                        console.log(data+status);
-                    });
-                });
-            // });
-        // });
-
-
-    </script>
 </head>
 <body>
+
 
 <div class="ui middle aligned center aligned grid">
     <div class="column">
@@ -265,19 +90,11 @@
                                                              id="password">
                     </div>
                 </div>
-                <div class="ui fluid large teal submit button">
-                    <button id="MembershipButton">Login</button>
+                <div class="ui fluid large teal submit button" onclick="get_token()">
+                    로그인
                 </div>
             </div>
-            <div id="text"></div>
-
-            <div class="ui error message"></div>
-
         </form>
-
-        <!--        <div class="ui message">-->
-        <!--            New to us? <a href="#">Sign Up</a>-->
-        <!--        </div>-->
     </div>
 </div>
 
