@@ -7,6 +7,58 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="semantic/site.css">
+
+    <link rel="stylesheet" type="text/css" href="semantic/container.css">
+    <link rel="stylesheet" type="text/css" href="semantic/grid.css">
+    <link rel="stylesheet" type="text/css" href="semantic/header.css">
+    <link rel="stylesheet" type="text/css" href="semantic/image.css">
+    <link rel="stylesheet" type="text/css" href="semantic/menu.css">
+
+    <link rel="stylesheet" type="text/css" href="semantic/divider.css">
+    <link rel="stylesheet" type="text/css" href="semantic/segment.css">
+    <link rel="stylesheet" type="text/css" href="semantic/form.css">
+    <link rel="stylesheet" type="text/css" href="semantic/input.css">
+    <link rel="stylesheet" type="text/css" href="semantic/button.css">
+    <link rel="stylesheet" type="text/css" href="semantic/list.css">
+    <link rel="stylesheet" type="text/css" href="semantic/message.css">
+    <link rel="stylesheet" type="text/css" href="semantic/icon.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+    <script src="semantic/form.js"></script>
+
+    <!--    시멘틱 ui-->
+    <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script src="semantic/semantic.min.js"></script>
+
+
+    <style type="text/css">
+        body {
+            /*background-color: #DADADA;*/
+            background: #7F7FD5; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        }
+
+        body > .grid {
+            height: 100%;
+        }
+
+        .image {
+            margin-top: -100px;
+        }
+
+        .column {
+            max-width: 450px;
+        }
+    </style>
+
 
 </head>
 <body>
@@ -119,10 +171,44 @@
 </script>
 
 
-<button id="MembershipButton" onclick=get_token();>버튼</button>
-<div id="text">안녕하세요.</div>
-<div id="text2">안녕하세요.</div>
+<button onclick=get_token();>버튼</button>
+
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <h2 class="ui teal image header">
+            <img src="images/logo.png" class="image" alt="image">
+            <div class="content">
+                안녕하세요, 관리자님.
+            </div>
+        </h2>
+        <form class="ui large form">
+            <div class="ui stacked segment">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" name="email" placeholder="E-mail address"
+                               id="email">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="Password"
+                               id="password">
+                    </div>
+                </div>
+                <div class="ui fluid large teal submit button" onclick="get_token();">로그인
+<!--                    <button id="MembershipButton" onclick=get_token();>버튼</button>-->
+                </div>
+
+                <div id="text">안녕하세요.</div>
+                <div id="text2">안녕하세요.</div>
+            </div>
 
 
+        </form>
+
+    </div>
+</div>
 </body>
 </html>
