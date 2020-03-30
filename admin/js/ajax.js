@@ -5,6 +5,8 @@
 // 2. 관리자로그인 데이터 전송 함수
 // 3. 관리자로그인 요청 함수 (1,2번 함수를 같이 실행한다.)
 // 4. 이미지 업로드 함수
+// 5. 쿠키 생성 함수
+// 6. 쿠키 가져오기 함수
 
 
 // 1. 토근 가져오는 함수
@@ -39,6 +41,8 @@ function adminLogin(token) {
 
     let adminId = $('#email').val();
     let adminPw = $('#password').val();
+
+    setCookie("adminId",adminId,5);
     //데이터 전송 예제
     let login_data = {
         '_token': token, //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
@@ -169,5 +173,28 @@ function imageUpload() {
     }
 }
 
+// 5. 쿠키 생성 함수
+function setCookie(cName, cValue, cDay) {
+    let expire = new Date();
+    expire.setDate(expire.getDate() + cDay);
+    cookies = cName + '=' + escape(cValue) + '; path=/ '; // 한글 깨짐을 막기위해 escape(cValue)를 합니다.
+    if (typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
+    document.cookie = cookies;
+}
+
+// 6. 쿠키 가져오기 함수
+function getCookie(cName) {
+    cName = cName + '=';
+    let cookieData = document.cookie;
+    let start = cookieData.indexOf(cName);
+    let cValue = '';
+    if (start != -1) {
+        start += cName.length;
+        let end = cookieData.indexOf(';', start);
+        if (end == -1) end = cookieData.length;
+        cValue = cookieData.substring(start, end);
+    }
+    return unescape(cValue);
+}
 
 
