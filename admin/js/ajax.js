@@ -140,7 +140,7 @@ function imageUpload() {
                 let title = $('#title').val();
                 let category = $('#category').val();
                 let contents = $('#summernote').val();
-                let adminId = $('#dfafefdf').val();
+                let adminId = getCookie("adminId");
                 let subTitle = $('#subTitle').val();
 
 
@@ -177,7 +177,7 @@ function imageUpload() {
 function setCookie(cName, cValue, cDay) {
     let expire = new Date();
     expire.setDate(expire.getDate() + cDay);
-    cookies = cName + '=' + escape(cValue) + '; path=/ '; // 한글 깨짐을 막기위해 escape(cValue)를 합니다.
+    let cookies = cName + '=' + escape(cValue) + '; path=/ '; // 한글 깨짐을 막기위해 escape(cValue)를 합니다.
     if (typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
     document.cookie = cookies;
 }
@@ -188,10 +188,10 @@ function getCookie(cName) {
     let cookieData = document.cookie;
     let start = cookieData.indexOf(cName);
     let cValue = '';
-    if (start != -1) {
+    if (start !== -1) {
         start += cName.length;
         let end = cookieData.indexOf(';', start);
-        if (end == -1) end = cookieData.length;
+        if (end === -1) end = cookieData.length;
         cValue = cookieData.substring(start, end);
     }
     return unescape(cValue);
