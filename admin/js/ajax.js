@@ -1,7 +1,10 @@
+// 변수명은 메소드명은 낙타로 통일하기
+
 // <--- 함수 리스트 --->
 // 1. 토근 가져오는 함수
 // 2. 관리자로그인 데이터 전송 함수
-// 3. 관리자로그인 요청 함수
+// 3. 관리자로그인 요청 함수 (1,2번 함수를 같이 실행한다.)
+// 4. 이미지 업로드 함수
 
 
 // 1. 토근 가져오는 함수
@@ -99,9 +102,55 @@ function adminLogin(token) {
 }
 
 // 3. 관리자로그인 요청 함수
-function get_token() {
+function login() {
     getToken(function (token) {
         adminLogin(token)
     })
+}
+
+// 4. 이미지 업로드 함수
+function imageUpload() {
+    let imageForm = document.getElementById('image-form');
+    let formData = new FormData(imageForm);
+
+    let file = $('input[type="file"]').val().trim(); // consider giving this an id too
+
+    if (!file) {
+        console.log("이미지를 선택해주세요.");
+    } else {
+        $.ajax({
+            url: "https://goldpigback.p-e.kr/quest/imageUpload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                //받은 데이터 successCheck 변수에 담는다.
+                let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
+
+                let img = successCheck.questImage;
+
+                //JSON 더미데이터로 필요한 정보 넣어줌
+                let obj = {
+                    questImage: img
+                };
+
+                //이미지 파일이 업로드되면 다시 필요한 정보들을 보내줌
+                $.post("https://goldpigback.p-e.kr/quest/add",
+                    obj, // 서버가 필요한 정보를 같이 보냄.
+                    function (data, status) {
+                        // let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
+                        console.log("이미지 요청 상태 : " + status);
+
+
+                    }
+                );
+
+
+            }
+        });
+    }
+
 }
 
