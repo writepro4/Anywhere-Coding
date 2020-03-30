@@ -113,44 +113,61 @@ function imageUpload() {
     let imageForm = document.getElementById('image-form');
     let formData = new FormData(imageForm);
 
-    let file = $('input[type="file"]').val().trim(); // consider giving this an id too
+    let file = $('input[type="file"]').val().trim();
 
     if (!file) {
         console.log("이미지를 선택해주세요.");
     } else {
         $.ajax({
-            url: "https://goldpigback.p-e.kr/quest/imageUpload",
+            url: "https://honeytip.p-e.kr/posts/image",
             type: "post",
             data: formData,
             contentType: false,
             cache: false,
             processData: false,
             success: function (data) {
-                //받은 데이터 successCheck 변수에 담는다.
-                let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
+                // let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
+                // 이미지업로드가 성공하면 보내줘야할 데이터들을 담는작업 실행.
 
-                let img = successCheck.questImage;
+                // 클라이언트 : 글 제목  title , 카테고리  category ,  글 내용  contents ,
+                //     관리자 아이디  adminId , 대표이미지 image , 부 제목 subTitle
+                // 백엔드 :  true/false
+
+                let title = $('#title').val();
+                let category = $('#category').val();
+                let contents = $('#summernote').val();
+                let adminId = $('#dfafefdf').val();
+                let subTitle = $('#subTitle').val();
+
 
                 //JSON 더미데이터로 필요한 정보 넣어줌
-                let obj = {
-                    questImage: img
+                let postsData = {
+                    'image': data,
+                    'title': title,
+                    'category': category,
+                    'contents': contents,
+                    'adminId': adminId,
+                    'subTitle': subTitle
                 };
 
                 //이미지 파일이 업로드되면 다시 필요한 정보들을 보내줌
-                $.post("https://goldpigback.p-e.kr/quest/add",
-                    obj, // 서버가 필요한 정보를 같이 보냄.
+                $.post("https://honeytip.p-e.kr/posts",
+                    postsData, // 서버가 필요한 정보를 같이 보냄.
                     function (data, status) {
-                        // let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
+                        let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
+                        if(successCheck === true){
+                            alert("성공!");
+                        }else{
+                            alert("실패!");
+                        }
                         console.log("이미지 요청 상태 : " + status);
-
 
                     }
                 );
-
-
             }
         });
     }
-
 }
+
+
 
