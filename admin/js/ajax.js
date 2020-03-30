@@ -130,6 +130,7 @@ function imageUpload() {
             cache: false,
             processData: false,
             success: function (data) {
+                alert(data);
                 // let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
                 // 이미지업로드가 성공하면 보내줘야할 데이터들을 담는작업 실행.
 
@@ -139,9 +140,19 @@ function imageUpload() {
 
                 let title = $('#title').val();
                 let category = $('#category').val();
-                let contents = $('#summernote').val();
+                // let contents = $('editordata').val();
+                let contents = "sasdfdf";
                 let adminId = getCookie("adminId");
                 let subTitle = $('#subTitle').val();
+
+                console.log("제목"+title);
+                console.log("카테고리"+category);
+                console.log("내용"+contents);
+                console.log("관리자아이디"+adminId);
+                console.log("부제목"+subTitle);
+
+                alert(data);
+
 
 
                 //JSON 더미데이터로 필요한 정보 넣어줌
@@ -159,7 +170,9 @@ function imageUpload() {
                     postsData, // 서버가 필요한 정보를 같이 보냄.
                     function (data, status) {
                         let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
-                        if(successCheck === true){
+                        let keycheck = successCheck.key;
+                        alert(keycheck);
+                        if(keycheck === true){
                             alert("성공!");
                         }else{
                             alert("실패!");
