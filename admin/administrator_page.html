@@ -143,15 +143,18 @@
             <br>
 
             <br>
+            <i class="book icon"></i>이미지를 선택해주세요.
             <!-- <input type="file" id="ex_file"> -->
             <!-- <div class="button" onclick="onclick=document.all.file.click()">사진추가</div> -->
-            <div style="border: 2px solid #eeeeee; height: 350px;" >
+            <div style="border: 2px solid #eeeeee; height: 350px;">
+                <form id='image-form' enctype='multipart/form-data'>
 
-                <input type='file' name='fileToUpload' id="questImage" onchange="previewImage(this,'View_area')"
-                       accept="image/gif,image/jpeg,image/png">
+                    <input type='file' name='fileToUpload' id="questImage" onchange="previewImage(this,'View_area')"
+                           accept="image/gif,image/jpeg,image/png">
 
-                <div id='View_area'
-                     style='position:relative; width: 200px; height: 200px; color: black; border: 0px solid black; dispaly: inline; '></div>
+                    <div id='View_area'
+                         style='position:relative; width: 200px; height: 200px; color: black; border: 0px solid black; dispaly: inline; '></div>
+                </form>
             </div>
             <br>
             <br>
@@ -160,23 +163,20 @@
             <br>
 
             <i class="pencil alternate icon"></i>글을 작성해주세요.
-            <form method="post">
+            <form method="post" id="contents">
                 <textare id="summernote" name="editordata"></textare>
             </form>
 
 
-            <!--            등록 버튼-->
             <br>
-            <div class="ui labeled button" tabindex="0">
+            <div class="ui labeled button" tabindex="0" onclick="imageUpload()">
                 <div class="ui black button">
                     <i class="heart icon"></i><span style="vertical-align: inherit;"><span
                         style="vertical-align: inherit;"> 등록
                 </span></span></div>
-                <a class="ui basic black left pointing label"><span style="vertical-align: inherit;"><span
-                        style="vertical-align: inherit;">
-                    1,048
-                </span></span></a>
+
             </div>
+            <button type="submit" onclick="imageUpload()">버튼</button>
 
         </div>
 
@@ -187,6 +187,7 @@
 
 
 <footer id="footer"></footer>
+
 </body>
 
 </html>
