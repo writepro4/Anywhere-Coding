@@ -36,6 +36,11 @@
     <script src="../summernote/summernote-lite.js"></script>
     <script src="../summernote/lang/summernote-ko-KR.js"></script>
 
+    <!--    이미지 미리보기 js파일-->
+    <script src="js/image_view.js"></script>
+    <!--    요청 js-->
+    <script src="js/ajax.js"></script>
+
     <link rel="stylesheet" href="../summernote/summernote-lite.css">
 
     <script type="text/javascript">
@@ -68,6 +73,11 @@
         .ui.footer.segment {
             margin: 5em 0 0;
             padding: 5em 0;
+        }
+
+        img #prev_View_area .obj {
+            height: 200px;
+            width: 300px;
         }
     </style>
 
@@ -134,10 +144,25 @@
             <br>
             <br>
 
+            <br>
+            <!-- <input type="file" id="ex_file"> -->
+            <!-- <div class="button" onclick="onclick=document.all.file.click()">사진추가</div> -->
+            <input type='file' name='fileToUpload' id="questImage" onchange="previewImage(this,'View_area')"
+                   accept="image/gif,image/jpeg,image/png">
+
+            <div id='View_area'
+                 style='position:relative; width: 200px; height: 200px; color: black; border: 0px solid black; dispaly: inline; '></div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
             <i class="pencil alternate icon"></i>글을 작성해주세요.
             <form method="post">
                 <textare id="summernote" name="editordata"></textare>
             </form>
+
 
             <!--            등록 버튼-->
             <br>
