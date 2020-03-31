@@ -1,13 +1,14 @@
 // 변수명은 메소드명은 낙타로 통일하기
 
 // <--- 함수 리스트 --->
-// 1. 토근 가져오는 함수
-// 2. 관리자로그인 데이터 전송 함수
-// 3. 관리자로그인 요청 함수 (1,2번 함수를 같이 실행한다.)
-// 4. 이미지 업로드 함수
-// 5. 쿠키 생성 함수
-// 6. 쿠키 가져오기 함수
-// 7. 썸머노트 내용 가져오는 함수
+// 1. getToken 토근 가져오는 함수
+// 2. adminLogin 관리자로그인 데이터 전송 함수
+// 3. login 관리자로그인 요청 함수 (1,2번 함수를 같이 실행한다.)
+// 4. imageUpload 이미지 업로드 함수
+// 5. setCookie 쿠키 생성 함수
+// 6. getCookie 쿠키 가져오기 함수
+// 7. postForm 썸머노트 내용 가져오는 함수
+// 8. writinglist 글 상세 내용 불러오는 함수
 
 
 // 1. 토근 가져오는 함수
@@ -141,7 +142,7 @@ function imageUpload() {
                 let title = $('#title').val();
                 let category = $('#category').val();
                 //함수를 이용해 contents변수안에 내용을 담는다.
-                let contents = postForm();
+                // let contents = postForm();
                 let adminId = getCookie("adminId");
                 let subTitle = $('#subTitle').val();
 
@@ -151,8 +152,6 @@ function imageUpload() {
                 console.log("내용" + "내용입니다.");
                 console.log("관리자아이디" + adminId);
                 console.log("부제목" + subTitle);
-
-
 
 
                 //JSON 더미데이터로 필요한 정보 넣어줌
@@ -215,6 +214,67 @@ function postForm() {
     $('textarea[name="content"]').val($('#summernote').summernote('code'));
 }
 
+
+// 8. 글 상세 내용 불러오는 함수
+function writinglist() {
+
+    $.ajax({
+        type: 'get'
+        , url: 'https://honeytip.p-e.kr/posts/0/4'
+        , xhrFields: {
+            withCredentials: false
+        }
+        , success: function (data) {
+            //json 파싱하기
+            let parseData = JSON.parse(data);
+            let keyCheck = parseData.key;
+
+            let postInfo = parseData.postInfo;
+
+            let title = postInfo.title;
+            let content = postInfo.contents;
+            let date = postInfo.date;
+            let viewCounts = postInfo.viewCounts;
+
+            console.log("key" + keyCheck);
+            console.log("제목" + title);
+            console.log("내용" + content);
+            console.log("날짜" + date);
+            console.log("본 횃수" + viewCounts);
+
+
+        }
+        //에러 종류 조건문으로 걸러내기
+        , error: function (jqXHR, exception) {
+
+            if (jqXHR.status === 0) {
+                alert('Not connect.\n Verify Network.');
+            } else if (jqXHR.status === 400) {
+                alert('Server understood the request, but request content was invalid. [400]');
+            } else if (jqXHR.status === 401) {
+                alert('Unauthorized access. [401]');
+            } else if (jqXHR.status === 403) {
+                alert('Forbidden resource can not be accessed. [403]');
+            } else if (jqXHR.status === 404) {
+                alert('Requested page not found. [404]');
+            } else if (jqXHR.status === 500) {
+                alert('Internal server error. [500]');
+            } else if (jqXHR.status === 503) {
+                alert('Service unavailable. [503]');
+            } else if (exception === 'parsererror') {
+                alert('Requested JSON parse failed. [Failed]');
+            } else if (exception === 'timeout') {
+                alert('Time out error. [Timeout]');
+            } else if (exception === 'abort') {
+                alert('Ajax request aborted. [Aborted]');
+            } else {
+                alert('Uncaught Error.n');
+            }
+            console.log("상태: " + status);
+            console.log("실패");
+        }
+    });
+}
 
 
 
