@@ -163,20 +163,19 @@
             <br>
 
             <i class="pencil alternate icon"></i>글을 작성해주세요.
-            <form method="post" id="contents">
+            <form method="post" id="contents" onsubmit="return writef();">
                 <textare id="summernote" name="editordata"></textare>
             </form>
 
 
             <br>
-            <div class="ui labeled button" tabindex="0" onclick="imageUpload()">
-                <div class="ui black button">
-                    <i class="heart icon"></i><span style="vertical-align: inherit;"><span
-                        style="vertical-align: inherit;"> 등록
-                </span></span></div>
 
-            </div>
-            <button type="submit" onclick="imageUpload()">버튼</button>
+            <div class="ui black button" onclick="imageUpload()">
+                        <span
+                                style="vertical-align: inherit;"> 등록
+                </span></div>
+
+            <!--            <button type="submit" onclick="imageUpload()">버튼</button>-->
 
         </div>
 
