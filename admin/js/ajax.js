@@ -7,6 +7,7 @@
 // 4. 이미지 업로드 함수
 // 5. 쿠키 생성 함수
 // 6. 쿠키 가져오기 함수
+// 7. 썸머노트 내용 가져오는 함수
 
 
 // 1. 토근 가져오는 함수
@@ -139,9 +140,11 @@ function imageUpload() {
 
                 let title = $('#title').val();
                 let category = $('#category').val();
-                // let contents = $('textarea[name="editordata"]').html($('#summernote').code());
+                //함수를 이용해 contents변수안에 내용을 담는다.
+                let contents = postForm();
                 let adminId = getCookie("adminId");
                 let subTitle = $('#subTitle').val();
+
 
                 console.log("제목" + title);
                 console.log("카테고리" + category);
@@ -205,6 +208,14 @@ function getCookie(cName) {
     }
     return unescape(cValue);
 }
+
+
+// 7. 썸머노트 내용 가져오는 함수
+function postForm() {
+    $('textarea[name="content"]').val($('#summernote').summernote('code'));
+}
+
+
 
 
 
