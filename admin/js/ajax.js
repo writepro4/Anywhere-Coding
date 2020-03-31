@@ -10,6 +10,8 @@
 // 7. postForm 썸머노트 내용 가져오는 함수
 // 8. writinglist 글 상세 내용 불러오는 함수
 // 9. writingDelete 글 삭제 시키는 함수
+// 10. categoryList 카테고리 목록 불어오는 함수
+// 11. writingFix 관리자 글 수정 함수
 
 
 // 1. 토근 가져오는 함수
@@ -221,7 +223,7 @@ function writinglist() {
 
     $.ajax({
         type: 'get'
-        , url: 'https://honeytip.p-e.kr/posts/0/4'
+        , url: 'https://honeytip.p-e.kr/posts/4'
         , xhrFields: {
             withCredentials: false
         }
@@ -292,6 +294,67 @@ function writingDelete() {
             let parseData = JSON.parse(data);
             let datakey = parseData.key;
             console.log("성공여부" + datakey);
+
+        }
+        //에러 종류 조건문으로 걸러내기
+        , error: function (jqXHR, exception) {
+
+            if (jqXHR.status === 0) {
+                alert('Not connect.\n Verify Network.');
+            } else if (jqXHR.status === 400) {
+                alert('Server understood the request, but request content was invalid. [400]');
+            } else if (jqXHR.status === 401) {
+                alert('Unauthorized access. [401]');
+            } else if (jqXHR.status === 403) {
+                alert('Forbidden resource can not be accessed. [403]');
+            } else if (jqXHR.status === 404) {
+                alert('Requested page not found. [404]');
+            } else if (jqXHR.status === 500) {
+                alert('Internal server error. [500]');
+            } else if (jqXHR.status === 503) {
+                alert('Service unavailable. [503]');
+            } else if (exception === 'parsererror') {
+                alert('Requested JSON parse failed. [Failed]');
+            } else if (exception === 'timeout') {
+                alert('Time out error. [Timeout]');
+            } else if (exception === 'abort') {
+                alert('Ajax request aborted. [Aborted]');
+            } else {
+                alert('Uncaught Error.n');
+            }
+            console.log("상태: " + status);
+            console.log("실패");
+        }
+    });
+}
+
+// 10. categoryList 카테고리 목록 불어오는 함수
+function categoryList() {
+
+    $.ajax({
+        type: 'get'
+        , url: 'https://honeytip.p-e.kr/posts/0/1'
+        , xhrFields: {
+            withCredentials: false
+        }
+        , success: function (data) {
+
+            //json 파싱하기
+            let parseData = JSON.parse(data);
+            let keyCheck = parseData.key;
+
+            let postInfo = parseData.postInfo;
+
+            let title = postInfo.title;
+            let titleImage = postInfo.image;
+            let subTitle = postInfo.subtitle;
+            let date = postInfo.date;
+
+            console.log("key" + keyCheck);
+            console.log("제목" + title);
+            console.log("날짜" + date);
+            console.log("타이틀 이미지" + titleImage);
+            console.log("서브 제목" + subTitle);
 
         }
         //에러 종류 조건문으로 걸러내기
