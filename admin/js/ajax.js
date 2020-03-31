@@ -42,7 +42,7 @@ function adminLogin(token) {
     let adminId = $('#email').val();
     let adminPw = $('#password').val();
 
-    setCookie("adminId",adminId,5);
+    setCookie("adminId", adminId, 5);
     //데이터 전송 예제
     let login_data = {
         '_token': token, //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
@@ -130,7 +130,6 @@ function imageUpload() {
             cache: false,
             processData: false,
             success: function (data) {
-                alert(data);
                 // let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
                 // 이미지업로드가 성공하면 보내줘야할 데이터들을 담는작업 실행.
 
@@ -140,18 +139,16 @@ function imageUpload() {
 
                 let title = $('#title').val();
                 let category = $('#category').val();
-                // let contents = $('editordata').val();
-                let contents = "sasdfdf";
+                // let contents = $('textarea[name="editordata"]').html($('#summernote').code());
                 let adminId = getCookie("adminId");
                 let subTitle = $('#subTitle').val();
 
-                console.log("제목"+title);
-                console.log("카테고리"+category);
-                console.log("내용"+contents);
-                console.log("관리자아이디"+adminId);
-                console.log("부제목"+subTitle);
+                console.log("제목" + title);
+                console.log("카테고리" + category);
+                console.log("내용" + "내용입니다.");
+                console.log("관리자아이디" + adminId);
+                console.log("부제목" + subTitle);
 
-                alert(data);
 
 
 
@@ -160,7 +157,7 @@ function imageUpload() {
                     'image': data,
                     'title': title,
                     'category': category,
-                    'contents': contents,
+                    'contents': "contents",
                     'adminId': adminId,
                     'subTitle': subTitle
                 };
@@ -170,11 +167,10 @@ function imageUpload() {
                     postsData, // 서버가 필요한 정보를 같이 보냄.
                     function (data, status) {
                         let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
-                        let keycheck = successCheck.key;
-                        alert(keycheck);
-                        if(keycheck === true){
+                        let keyCheck = successCheck.key;
+                        if (keyCheck === true) {
                             alert("성공!");
-                        }else{
+                        } else {
                             alert("실패!");
                         }
                         console.log("이미지 요청 상태 : " + status);
@@ -209,5 +205,6 @@ function getCookie(cName) {
     }
     return unescape(cValue);
 }
+
 
 
