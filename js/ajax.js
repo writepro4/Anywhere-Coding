@@ -6,6 +6,7 @@
 // 3. getCookie 쿠키 가져오기 함수
 // 4. writinglist 글 상세 내용 불러오는 함수
 // 5. categoryList 카테고리 목록 불어오는 함수
+// 6. categoryCheck카테고리 선택시 해당 카테고리로 이동하는 함수
 
 
 // 1. 토근 가져오는 함수
@@ -124,11 +125,16 @@ function writinglist() {
 
 
 // 5. categoryList 카테고리 목록 불어오는 함수
-function categoryList() {
+function categoryList(category) {
+
+    //어떤 카테고리인지 변수에 저장.
+    let categoryData = category.id;
+
+    console.log(categoryData);
 
     $.ajax({
         type: 'get'
-        , url: 'https://honeytip.p-e.kr/posts/0/1'
+        , url: 'https://honeytip.p-e.kr/posts/1/1'
         , xhrFields: {
             withCredentials: false
         }
@@ -204,5 +210,15 @@ function categoryList() {
     });
 }
 
+
+// 6. 카테고리 선택시 해당 카테고리로 이동하는 함수
+function categoryCheck(category) {
+    let categoryData = category.id;
+    console.log(categoryData);
+    setCookie("category", categoryData, 5);
+    getCookie("category");
+    console.log(getCookie("category"));
+    window.location.replace("./category_page.html");
+}
 
 
