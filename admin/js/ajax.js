@@ -284,9 +284,15 @@ function writinglist() {
 // 9. writingDelete 글 삭제 시키는 함수
 function writingDelete() {
 
+    let form = new FormData();
+    form.append("_method", "DELETE");
+
     $.ajax({
-        type: 'delete'
-        , url: 'https://honeytip.p-e.kr/posts/15'
+        type: 'post'
+        , data: form
+        ,processData: false
+        ,contentType: false
+        , url: 'https://honeytip.p-e.kr/posts/7'
         , xhrFields: {
             withCredentials: false
         }
