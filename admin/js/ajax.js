@@ -4,7 +4,9 @@
 // 1. getToken 토근 가져오는 함수
 // 2. adminLogin 관리자로그인 데이터 전송 함수
 // 3. login 관리자로그인 요청 함수 (1,2번 함수를 같이 실행한다.)
-// 4. imageUpload 이미지 업로드 함수
+// 4. imageUpload 글 등록 함수
+//ㄴ> 이미지 업로드가 먼저 실행되고 서버로부터 이미지 url 주소를 반환받으면,
+//ㄴ> 그 다음에 썸머노트에 작성한 내용을 가져오는 아래의 postForm함수를 실행시키고, 정보를 종합해 서버에 보내줌.
 // 5. setCookie 쿠키 생성 함수
 // 6. getCookie 쿠키 가져오기 함수
 // 7. postForm 썸머노트 내용 가져오는 함수
@@ -117,8 +119,11 @@ function login() {
     })
 }
 
-// 4. 이미지 업로드 함수
+// 4. 글 등록 함수
 function imageUpload() {
+    //누르자마자 썸머노트 내용 저장
+    let summer = postForm();
+
     let imageForm = document.getElementById('image-form');
     let formData = new FormData(imageForm);
 
@@ -135,34 +140,31 @@ function imageUpload() {
             cache: false,
             processData: false,
             success: function (data) {
-                // let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
-                // 이미지업로드가 성공하면 보내줘야할 데이터들을 담는작업 실행.
 
-                // 클라이언트 : 글 제목  title , 카테고리  category ,  글 내용  contents ,
-                //     관리자 아이디  adminId , 대표이미지 image , 부 제목 subTitle
-                // 백엔드 :  true/false
+
+                //썸머노트 내용 주석
+                console.log("내용" + summer);
+
 
                 let title = $('#title').val();
                 let category = $('#category').val();
-                //함수를 이용해 contents변수안에 내용을 담는다.
-                // let contents = postForm();
                 let adminId = getCookie("adminId");
                 let subTitle = $('#subTitle').val();
 
 
                 console.log("제목" + title);
                 console.log("카테고리" + category);
-                console.log("내용" + "내용입니다.");
                 console.log("관리자아이디" + adminId);
                 console.log("부제목" + subTitle);
+                console.log("썸머노트 내용" + summer);
 
 
                 //JSON 더미데이터로 필요한 정보 넣어줌
                 let postsData = {
-                    'image': data,
+                    'image': "data",
                     'title': title,
                     'category': category,
-                    'contents': "contents",
+                    'contents': summer,
                     'adminId': adminId,
                     'subTitle': subTitle
                 };
@@ -175,7 +177,7 @@ function imageUpload() {
                         let keyCheck = successCheck.key;
                         if (keyCheck === true) {
                             alert("성공!");
-                            window.location.replace("./preview_contents.html");
+                            // window.location.replace("./preview_contents.html");
                         } else {
                             alert("실패!");
                         }
@@ -215,7 +217,9 @@ function getCookie(cName) {
 
 // 7. 썸머노트 내용 가져오는 함수
 function postForm() {
-    $('textarea[name="content"]').val($('#summernote').summernote('code'));
+    let bar = $('textarea[name="content"]').val($('#summernote').summernote('code'));
+    console.log(bar.val());
+    return bar.val();
 }
 
 
