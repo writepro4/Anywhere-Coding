@@ -14,6 +14,7 @@
 // 9. writingDelete 글 삭제 시키는 함수
 // 10. categoryList 카테고리 목록 불어오는 함수
 // 11. writingFix 관리자 글 수정 함수
+// 12. preview 관리자 글 등록시 미리보기 기능 함수
 
 
 // 1. 토근 가져오는 함수
@@ -481,5 +482,10 @@ function writingFix() {
             console.log("실패");
         }
     });
+}
+
+// 12. preview 관리자 글 등록시 미리보기 기능 함수
+function preview() {
+
 }
 
