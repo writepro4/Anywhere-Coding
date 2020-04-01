@@ -486,7 +486,7 @@ function writingFix() {
 
 // 12. preview 관리자 글 등록시 미리보기 기능 함수
 function preview() {
-    //테스트
+    //테스트 깃허브
 
 }
 
