@@ -224,7 +224,7 @@ function writinglist() {
 
     $.ajax({
         type: 'get'
-        , url: 'https://honeytip.p-e.kr/posts/4'
+        , url: 'https://honeytip.p-e.kr/posts/8'
         , xhrFields: {
             withCredentials: false
         }
@@ -290,8 +290,8 @@ function writingDelete() {
     $.ajax({
         type: 'post'
         , data: form
-        ,processData: false
-        ,contentType: false
+        , processData: false
+        , contentType: false
         , url: 'https://honeytip.p-e.kr/posts/7'
         , xhrFields: {
             withCredentials: false
@@ -348,20 +348,40 @@ function categoryList() {
 
             //json 파싱하기
             let parseData = JSON.parse(data);
+            console.log("데이터 파싱전: " + data);
             let keyCheck = parseData.key;
+            console.log("데이터 성공여부 : " + keyCheck);
 
-            let postInfo = parseData.postInfo;
+            let postInfoData = parseData.contents;
 
-            let title = postInfo.title;
-            let titleImage = postInfo.image;
-            let subTitle = postInfo.subtitle;
-            let date = postInfo.date;
+            let postingListData = postInfoData.length;
 
-            console.log("key" + keyCheck);
-            console.log("제목" + title);
-            console.log("날짜" + date);
-            console.log("타이틀 이미지" + titleImage);
-            console.log("서브 제목" + subTitle);
+            console.log("받아온 데이터 확인: " + postingListData);
+
+            for (let i = 0; i < postingListData; i++) {
+
+
+                let title = postInfoData[i].title;
+                let titleImage = postInfoData[i].image;
+                let subTitle = postInfoData[i].sub_title;
+                let indexPosts = postInfoData[i].index_posts;
+                let adminId = postInfoData[i].admin_id;
+                let contents = postInfoData[i].contents;
+                let viewCount = postInfoData[i].view_count;
+                let category = postInfoData[i].category;
+                let date = postInfoData[i].date;
+
+                console.log("제목" + title);
+                console.log("날짜" + date);
+                console.log("타이틀 이미지" + titleImage);
+                console.log("글 아이디" + indexPosts);
+                console.log("관리자 아이디" + adminId);
+                console.log("글 내용" + contents);
+                console.log("조회수" + viewCount);
+                console.log("카테고리 종류" + category);
+                console.log("서브 제목" + subTitle);
+
+            }
 
         }
         //에러 종류 조건문으로 걸러내기
@@ -402,20 +422,20 @@ function writingFix() {
 
     let form = new FormData();
     form.append("_method", "PATCH");
-    form.append("title","제목");
-    form.append("category","생산성");
-    form.append("image","야스야스");
-    form.append("contents","내용");
-    form.append("subTitle","부제목");
+    form.append("title", "제목");
+    form.append("category", "생산성");
+    form.append("image", "야스야스");
+    form.append("contents", "내용");
+    form.append("subTitle", "부제목");
 
-    console.log("보내는 데이터: "+form);
+    console.log("보내는 데이터: " + form);
 
 
     $.ajax({
         type: 'post'
-        ,data: form
-        ,processData: false
-        ,contentType: false
+        , data: form
+        , processData: false
+        , contentType: false
         , url: 'https://honeytip.p-e.kr/posts/8'
         , xhrFields: {
             withCredentials: false
