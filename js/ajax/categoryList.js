@@ -22,13 +22,14 @@ $(document).ready(function () {
 
             let postInfoData = parseData.contents;
 
+            // key값도 배열에 포함되기 때문에 -1로 값을 맞춰줌
             let postingListData = postInfoData.length;
 
             console.log("받아온 데이터 확인: " + postingListData);
 
 
             for (let i = 0; i < postingListData; i++) {
-
+                console.log("for문 실행중");
 
                 let title = postInfoData[i].title;
                 let titleImage = postInfoData[i].image;
@@ -40,14 +41,14 @@ $(document).ready(function () {
                 let category = postInfoData[i].category;
                 let date = postInfoData[i].date;
 
-                let html = +'<div class="item">';
+                let html ='<div class="item">';
                 html += '<div class="image">';
-                html += '<img src="/images/plant.jpg" alt="image">';
+                html += '<img src="'+titleImage+'" alt="image">';
                 html += '</div>';
                 html += '<div class="content">';
-                html += '<a class="header">제목</a>';
+                html += '<a class="header">title</a>';
                 html += '<div class="meta">';
-                html += '<span>Description</span>';
+                html += '<span>subTitle</span>';
                 html += '</div>';
                 html += '<div class="description">';
                 html += '<p></p>';
@@ -59,6 +60,17 @@ $(document).ready(function () {
                 html += '</div>';
 
 
+
+
+                let html2 = '<div class="item">';
+                html2 += '<div class="ui tiny image">';
+                html2 += '<img src="/images/plant.jpg">';
+                html2 += '</div>';
+                html2 += '<div class="middle aligned content">';
+                html2 += 'Content A';
+                html2 += '</div>';
+                html2 += '</div>';
+
                 console.log("제목" + title);
                 console.log("날짜" + date);
                 console.log("타이틀 이미지" + titleImage);
@@ -69,7 +81,7 @@ $(document).ready(function () {
                 console.log("카테고리 종류" + category);
                 console.log("서브 제목" + subTitle);
 
-                $('#item').append(html);
+                $('#iterate').append(html);
 
             }
 
