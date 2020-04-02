@@ -41,12 +41,12 @@ $(document).ready(function () {
                 let category = postInfoData[i].category;
                 let date = postInfoData[i].date;
 
-                let html ='<div class="item">';
+                let html = '<div class="item">';
                 html += '<div class="image">';
-                html += '<img src="'+titleImage+'" alt="image">';
+                html += '<img src="' + titleImage + '" alt="image">';
                 html += '</div>';
                 html += '<div class="content">';
-                html += '<a class="header">title</a>';
+                html += '<a class="header">' + postInfoData[i].title + '</a>';
                 html += '<div class="meta">';
                 html += '<span>subTitle</span>';
                 html += '</div>';
@@ -59,17 +59,6 @@ $(document).ready(function () {
                 html += '</div>';
                 html += '</div>';
 
-
-
-
-                let html2 = '<div class="item">';
-                html2 += '<div class="ui tiny image">';
-                html2 += '<img src="/images/plant.jpg">';
-                html2 += '</div>';
-                html2 += '<div class="middle aligned content">';
-                html2 += 'Content A';
-                html2 += '</div>';
-                html2 += '</div>';
 
                 console.log("제목" + title);
                 console.log("날짜" + date);
