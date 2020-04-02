@@ -146,6 +146,9 @@ function imageUpload() {
                 //썸머노트 내용 주석
                 console.log("내용" + summer);
 
+                let image = data;
+                console.log(data);
+
 
                 let title = $('#title').val();
                 let category = $('#category').val();
@@ -162,7 +165,7 @@ function imageUpload() {
 
                 //JSON 더미데이터로 필요한 정보 넣어줌
                 let postsData = {
-                    'image': "data",
+                    'image': image,
                     'title': title,
                     'category': category,
                     'contents': summer,
