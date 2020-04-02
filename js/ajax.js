@@ -128,10 +128,14 @@ function writinglist() {
 // 5. categoryList 카테고리 목록 불어오는 함수
 function categoryList() {
 
+    const categoryNumber = location.href.substr(
+        location.href.lastIndexOf('=') + 1
+    );
+
 
     $.ajax({
         type: 'get'
-        , url: 'https://honeytip.p-e.kr/posts/1/1'
+        , url: 'https://honeytip.p-e.kr/posts/'+categoryNumber+'/1'
         , xhrFields: {
             withCredentials: false
         }
@@ -245,10 +249,11 @@ function nextPageData(category){
 
 // 9. substr 가져오는 함수
 $(document).ready(function () {
-    const val = location.href.substr(
+    const categoryNumber = location.href.substr(
         location.href.lastIndexOf('=') + 1
     );
-    console.log('val : ' + val);
+
+    console.log('val : ' + categoryNumber);
 });
 
 
