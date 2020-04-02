@@ -1,4 +1,3 @@
-
 // 5. categoryList 카테고리 목록 불어오는 함수
 $(document).ready(function () {
 
@@ -9,7 +8,7 @@ $(document).ready(function () {
 
     $.ajax({
         type: 'get'
-        , url: 'https://honeytip.p-e.kr/posts/'+categoryNumber+'/1'
+        , url: 'https://honeytip.p-e.kr/posts/' + categoryNumber + '/1'
         , xhrFields: {
             withCredentials: false
         }
@@ -27,6 +26,7 @@ $(document).ready(function () {
 
             console.log("받아온 데이터 확인: " + postingListData);
 
+
             for (let i = 0; i < postingListData; i++) {
 
 
@@ -40,6 +40,25 @@ $(document).ready(function () {
                 let category = postInfoData[i].category;
                 let date = postInfoData[i].date;
 
+                let html = +'<div class="item">';
+                html += '<div class="image">';
+                html += '<img src="/images/plant.jpg" alt="image">';
+                html += '</div>';
+                html += '<div class="content">';
+                html += '<a class="header">제목</a>';
+                html += '<div class="meta">';
+                html += '<span>Description</span>';
+                html += '</div>';
+                html += '<div class="description">';
+                html += '<p></p>';
+                html += '</div>';
+                html += '<div class="extra">';
+                html += ' Additional Details';
+                html += ' </div>';
+                html += '</div>';
+                html += '</div>';
+
+
                 console.log("제목" + title);
                 console.log("날짜" + date);
                 console.log("타이틀 이미지" + titleImage);
@@ -49,6 +68,8 @@ $(document).ready(function () {
                 console.log("조회수" + viewCount);
                 console.log("카테고리 종류" + category);
                 console.log("서브 제목" + subTitle);
+
+                $('#item').append(html);
 
             }
 
