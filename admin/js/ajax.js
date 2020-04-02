@@ -141,7 +141,7 @@ function imageUpload() {
             cache: false,
             processData: false,
             success: function (data) {
-
+                console.log("이미지 등록 완료!");
 
                 //썸머노트 내용 주석
                 console.log("내용" + summer);
