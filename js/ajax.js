@@ -7,7 +7,7 @@
 // 4. writinglist 글 상세 내용 불러오는 함수
 // 5. categoryList 카테고리 목록 불어오는 함수
 // 6. categoryCheck카테고리 선택시 해당 카테고리로 이동하는 함수
-
+// 7. ajax로 데이터를 가져오고 페이지 갱신없이 주소 변경하는 함수.
 
 // 1. 토근 가져오는 함수
 function getToken(callback) {
@@ -125,12 +125,8 @@ function writinglist() {
 
 
 // 5. categoryList 카테고리 목록 불어오는 함수
-function categoryList(category) {
+function categoryList() {
 
-    //어떤 카테고리인지 변수에 저장.
-    let categoryData = category.id;
-
-    console.log(categoryData);
 
     $.ajax({
         type: 'get'
@@ -221,4 +217,11 @@ function categoryCheck(category) {
     window.location.replace("./category_page.html");
 }
 
+// 7. ajax로 데이터를 가져오고 페이지 갱신없이 주소 변경하는 함수.
+$(document).ready(function () {
+    const state = {'page_id': 1, 'user_id': 5};
+
+    history.pushState(state, "title", "home");
+
+});
 
