@@ -9,6 +9,8 @@
 // 6. categoryCheck카테고리 선택시 해당 카테고리로 이동하는 함수
 // 7. ajax로 데이터를 가져오고 페이지 갱신없이 주소 변경하는 함수.
 // 8. 다음 페이지에 데이터 넘기는 함수.
+// 9. 상세페이지에 데이터 넘기는 함수.
+
 
 // 1. 토근 가져오는 함수
 function getToken(callback) {
@@ -240,11 +242,16 @@ function f() {
 }
 // });
 
-// 8. 다음 페이지에 데이터 넘기는 함수.
+// 8. 카테고리 페이지에 데이터 넘기는 함수.
 function nextPageData(category){
     let categoryData = category.id;
     window.location.href = "./category_page.html?index=" + categoryData;
 
+}
+// 9. 상세페이지에 데이터 넘기는 함수.
+function detailPage(page){
+    let detailPage = page.id;
+    window.location.href = "./details.html?index=" + detailPage;
 }
 
 // 9. substr 가져오는 함수
