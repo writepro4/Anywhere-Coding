@@ -1,9 +1,12 @@
-// 5. categoryList 카테고리 목록 불어오는 함수
+// categoryList 카테고리 목록 불어오는 함수
 $(document).ready(function () {
 
     const categoryNumber = location.href.substr(
         location.href.lastIndexOf('=') + 1
     );
+
+    //페이징 처리를 하기 위한 변수
+    let counting = 1;
 
 
     $.ajax({
@@ -20,58 +23,76 @@ $(document).ready(function () {
             let keyCheck = parseData.key;
             console.log("데이터 성공여부 : " + keyCheck);
 
-            let postInfoData = parseData.contents;
+            if (keyCheck === true) {
 
-            // key값도 배열에 포함되기 때문에 -1로 값을 맞춰줌
-            let postingListData = postInfoData.length;
+                let postInfoData = parseData.contents;
 
-            console.log("받아온 데이터 확인: " + postingListData);
+                // key값도 배열에 포함되기 때문에 -1로 값을 맞춰줌
+                let postingListData = postInfoData.length;
 
-
-            for (let i = 0; i < postingListData; i++) {
-                console.log("for문 실행중");
-
-                let title = postInfoData[i].title;
-                let titleImage = postInfoData[i].image;
-                let subTitle = postInfoData[i].sub_title;
-                let indexPosts = postInfoData[i].index_posts;
-                let adminId = postInfoData[i].admin_id;
-                let contents = postInfoData[i].contents;
-                let viewCount = postInfoData[i].view_count;
-                let category = postInfoData[i].category;
-                let date = postInfoData[i].date;
-
-                let html = '<div class="item">';
-                html += '<div class="image">';
-                html += '<img src="' + titleImage + '" alt="image">';
-                html += '</div>';
-                html += '<div class="content">';
-                html += '<a class="header">' + postInfoData[i].title + '</a>';
-                html += '<div class="meta">';
-                html += '<span>subTitle</span>';
-                html += '</div>';
-                html += '<div class="description">';
-                html += '<p></p>';
-                html += '</div>';
-                html += '<div class="extra">';
-                html += ' Additional Details';
-                html += ' </div>';
-                html += '</div>';
-                html += '</div>';
+                console.log("받아온 데이터 확인: " + postingListData);
 
 
-                console.log("제목" + title);
-                console.log("날짜" + date);
-                console.log("타이틀 이미지" + titleImage);
-                console.log("글 아이디" + indexPosts);
-                console.log("관리자 아이디" + adminId);
-                console.log("글 내용" + contents);
-                console.log("조회수" + viewCount);
-                console.log("카테고리 종류" + category);
-                console.log("서브 제목" + subTitle);
+                for (let i = 0; i < postingListData; i++) {
+                    console.log("for문 실행중");
 
-                $('#iterate').append(html);
+                    let title = postInfoData[i].title;
+                    let titleImage = postInfoData[i].image;
+                    let subTitle = postInfoData[i].sub_title;
+                    let indexPosts = postInfoData[i].index_posts;
+                    let adminId = postInfoData[i].admin_id;
+                    let contents = postInfoData[i].contents;
+                    let viewCount = postInfoData[i].view_count;
+                    let category = postInfoData[i].category;
+                    let date = postInfoData[i].date;
 
+                    let html = '<div class="item">';
+                    html += '<div class="image">';
+                    html += '<img src="' + postInfoData[i].image + '" alt="image">';
+                    html += '</div>';
+                    html += '<div class="content">';
+                    html += '<a class="header">' + postInfoData[i].title + '</a>';
+                    html += '<div class="meta">';
+                    html += '<span>' + postInfoData[i].subTitle + '</span>';
+                    html += '</div>';
+                    html += '<div class="description">';
+                    html += '<p></p>';
+                    html += '</div>';
+                    html += '<div class="extra">';
+                    html += postInfoData[i].date;
+                    html += ' </div>';
+                    html += '</div>';
+                    html += '</div>';
+
+
+                    console.log("제목" + title);
+                    console.log("날짜" + date);
+                    console.log("타이틀 이미지" + titleImage);
+                    console.log("글 아이디" + indexPosts);
+                    console.log("관리자 아이디" + adminId);
+                    console.log("글 내용" + contents);
+                    console.log("조회수" + viewCount);
+                    console.log("카테고리 종류" + category);
+                    console.log("서브 제목" + subTitle);
+
+                    $('#iterate').append(html);
+
+                }
+
+
+                // 받아온 값이 false경우 빈페이지를 띄워줌
+            } else {
+
+                let blankPageData = '<div class="ui placeholder segment">';
+                blankPageData += '<div class="ui icon header">';
+                blankPageData += '<i class="dont icon"></i>';
+                blankPageData += '빈페이지에요 ㅠㅠ ';
+                blankPageData += '</div>';
+                blankPageData += '<div class="ui primary button">버튼</div>';
+                blankPageData += '</div>';
+
+
+                $('#iterate').append(blankPageData);
             }
 
         }
