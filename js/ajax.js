@@ -8,6 +8,7 @@
 // 5. categoryList 카테고리 목록 불어오는 함수
 // 6. categoryCheck카테고리 선택시 해당 카테고리로 이동하는 함수
 // 7. ajax로 데이터를 가져오고 페이지 갱신없이 주소 변경하는 함수.
+// 8. 다음 페이지에 데이터 넘기는 함수.
 
 // 1. 토근 가져오는 함수
 function getToken(callback) {
@@ -211,17 +212,45 @@ function categoryList() {
 function categoryCheck(category) {
     let categoryData = category.id;
     console.log(categoryData);
-    setCookie("category", categoryData, 5);
-    getCookie("category");
+
     console.log(getCookie("category"));
     window.location.replace("./category_page.html");
 }
 
 // 7. ajax로 데이터를 가져오고 페이지 갱신없이 주소 변경하는 함수.
-$(document).ready(function () {
+function f() {
+
+// $(document).ready(function () {
     const state = {'page_id': 1, 'user_id': 5};
 
-    history.pushState(state, "title", "home");
+//브라우저가 지원하는 경우
+    if (typeof (history.pushState) != "undefined") {
+        history.pushState(state, "title", "/");
+    } else {
+        //브라우저가 지원하지 않는 경우 페이지 이동처리
+        location.href = url;
+    }
 
+    console.log(history.state);
+
+}
+// });
+
+// 8. 다음 페이지에 데이터 넘기는 함수.
+function nextPageData(category){
+    let categoryData = category.id;
+    window.location.href = "./category_page.html?index=" + categoryData;
+
+}
+
+// 9. substr 가져오는 함수
+$(document).ready(function () {
+    const val = location.href.substr(
+        location.href.lastIndexOf('=') + 1
+    );
+    console.log('val : ' + val);
 });
+
+
+
 
