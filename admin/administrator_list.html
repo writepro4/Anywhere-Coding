@@ -36,6 +36,9 @@
     <script src="../summernote/summernote-lite.js"></script>
     <script src="../summernote/lang/summernote-ko-KR.js"></script>
 
+    <!--    요청 함수 js파일 불러옴-->
+    <script src="./js/ajax.js"></script>
+
     <link rel="stylesheet" href="../summernote/summernote-lite.css">
 
     <script type="text/javascript">
@@ -102,19 +105,21 @@
 
             <i class="book icon"></i>카테고리를 선택하세요.
             <div class="ui form">
-                <div class="field">
+                <div class="field" >
                     <label>
-                        <select>
-                            <option value="">생산성</option>
+                        <select id="seleteData">
+                            <option value="null">카테고리를 선택해주세요.</option>
+                            <option value="0">생산성</option>
                             <option value="1">노트북</option>
-                            <option value="0">건강</option>
+                            <option value="2">건강</option>
+                            <option value="3">문서화</option>
                         </select>
                     </label>
                 </div>
             </div>
             <br>
             <br>
-            <button class="fluid ui secondary button">
+            <button class="fluid ui secondary button" onclick="getArticleList()">
                 글 불러오기
             </button>
             <!--            <button class="fluid ui button" >Fits container</button>-->
@@ -123,82 +128,7 @@
             <div class="ui vertical stripe segment" style="padding-bottom: 100px; padding-top: 100px;">
                 <div class="ui text container">
 
-                    <div class="ui divided items">
-                        <div class="item">
-                            <div class="image">
-                                <img src="/images/plant.jpg" alt="image">
-                            </div>
-                            <div class="content">
-                                <a class="header">세상 개꿀팁</a>
-                                <div class="meta">
-                                    <span>문서화</span>
-                                </div>
-                                <div class="description">
-                                    <p></p>
-                                </div>
-                                <div class="extra">
-                                    Additional Details
-                                </div>
-                                <div class="extra">
-                                    <div class="ui blue right floated button">
-                                        수정
-                                    </div>
-                                    <div class="ui red right floated button">
-                                        삭제
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="image">
-                                <img src="/images/plant.jpg" alt="image">
-                            </div>
-                            <div class="content">
-                                <a class="header">이런거 다 알랴줘도 되나 모르겠다...</a>
-                                <div class="meta">
-                                    <span>생산성</span>
-                                </div>
-                                <div class="description">
-                                    <p></p>
-                                </div>
-                                <div class="extra">
-                                    Additional Details
-                                </div>
-                                <div class="extra">
-                                    <div class="ui blue right floated button">
-                                        수정
-                                    </div>
-                                    <div class="ui red right floated button">
-                                        삭제
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="image">
-                                <img src="/images/plant.jpg" alt="image">
-                            </div>
-                            <div class="content">
-                                <a class="header">꿀팁 쇼핑</a>
-                                <div class="meta">
-                                    <span>생활</span>
-                                </div>
-                                <div class="description">
-                                    <p></p>
-                                </div>
-                                <div class="extra">
-                                    Additional Details
-                                </div>
-                                <div class="extra">
-                                    <div class="ui blue right floated button">
-                                        수정
-                                    </div>
-                                    <div class="ui red right floated button">
-                                        삭제
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="ui divided items" id="itemList">
 
 
                     </div>
