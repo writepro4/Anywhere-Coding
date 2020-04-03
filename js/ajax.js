@@ -247,6 +247,8 @@ function f() {
 // 8. 카테고리 페이지에 데이터 넘기는 함수.
 function nextPageData(category) {
     let categoryData = category.id;
+    //데이터 넘기는지 확인용도
+    console.log(categoryData);
     window.location.href = "./category_page.html?index=" + categoryData;
 
 }
