@@ -73,6 +73,7 @@ $(document).ready(function () {
                     console.log("서브 제목" + subTitle);
 
                     $('#grid').append(html);
+                    $('#detailGrid').append(html);
 
                 }
 

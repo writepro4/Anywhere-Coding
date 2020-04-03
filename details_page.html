@@ -56,16 +56,17 @@
     <!--    nav 불러오는 js파일-->
     <script src="./js/nav.js"></script>
     <!--    글 내용 서버에 요청하는 함수-->
-    <script src="./js/nav.js"></script>
+    <script src="./js/ajax/text_details.js"></script>
+    <!--    최근 글 목록 불러오는 함수-->
+    <script src="./js/ajax/recent_list.js"></script>
 
 </head>
 <body>
 
 <div vocab="http://schema.org/" typeof="Movie">
 
-    <div class="ui main text container">
-        <br>
-        <h1 class="ui header center aligned" id="titlePage"></h1>
+    <div class="ui main text container" id="titlePage">
+        <!--        <h1 class="ui header center aligned" ></h1>-->
         <br>
     </div>
 
@@ -77,9 +78,11 @@
     <div class="ui text container" id="contentPage">
 
 
-
         <br><br>
 
+
+    </div>
+    <div class="ui text container">
         <div class="ui comments">
             <h3 class="ui dividing header"><span style="vertical-align: inherit;"><span
                     style="vertical-align: inherit;">코멘트</span></span></h3>
@@ -98,7 +101,8 @@
                         얼마나 예술적입니까!
                     </span></span></div>
                     <div class="actions">
-                        <a class="reply"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">댓글</span></span></a>
+                        <a class="reply"><span style="vertical-align: inherit;"><span
+                                style="vertical-align: inherit;">댓글</span></span></a>
                     </div>
                 </div>
             </div>
@@ -118,7 +122,8 @@
                             유용했습니다. </span><span style="vertical-align: inherit;">감사합니다!</span></span></p>
                     </div>
                     <div class="actions">
-                        <a class="reply"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">댓글</span></span></a>
+                        <a class="reply"><span style="vertical-align: inherit;"><span
+                                style="vertical-align: inherit;">댓글</span></span></a>
                     </div>
                 </div>
                 <div class="comments">
@@ -160,7 +165,8 @@
                         야, 이거 대단해. </span><span style="vertical-align: inherit;">정말 고마워
                     </span></span></div>
                     <div class="actions">
-                        <a class="reply"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">댓글</span></span></a>
+                        <a class="reply"><span style="vertical-align: inherit;"><span
+                                style="vertical-align: inherit;">댓글</span></span></a>
                     </div>
                 </div>
             </div>
@@ -176,8 +182,6 @@
                 </span></span></div>
             </form>
         </div>
-
-
     </div>
     <br>
     <br>
@@ -187,121 +191,7 @@
             <div class="ui text container">
                 <div class="ui horizontal section divider" style="font-size: 23px;">글 추천 목록</div>
 
-                <div class="ui three column grid">
-
-                    <div class="column">
-                        <div class="ui card">
-                            <div class="content">
-                                <div class="center aligned">
-                                    플러그인
-                                </div>
-
-                            </div>
-                            <div class="image">
-                                <img src="images/plant.jpg" alt="image">
-                            </div>
-                            <div class="content">
-                                <i class="comment icon"></i>
-                                플러그 설명
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="column">
-                        <div class="ui card">
-                            <div class="content">
-                                <div class="center aligned">
-                                    플러그인
-                                </div>
-
-                            </div>
-                            <div class="image">
-                                <img src="images/plant.jpg" alt="image">
-                            </div>
-                            <div class="content">
-                                <i class="comment icon"></i>
-                                플러그 설명
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="column">
-                        <div class="ui card">
-                            <div class="content">
-                                <div class="center aligned">
-                                    플러그인
-                                </div>
-
-                            </div>
-                            <div class="image">
-                                <img src="images/plant.jpg" alt="image">
-                            </div>
-                            <div class="content">
-                                <i class="comment icon"></i>
-                                플러그 설명
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="column">
-                        <div class="ui card">
-                            <div class="content">
-                                <div class="center aligned">
-                                    플러그인
-                                </div>
-
-                            </div>
-                            <div class="image">
-                                <img src="images/plant.jpg" alt="image">
-                            </div>
-                            <div class="content">
-                                <i class="comment icon"></i>
-                                플러그 설명
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="column">
-                        <div class="ui card">
-                            <div class="content">
-                                <div class="center aligned">
-                                    플러그인
-                                </div>
-
-                            </div>
-                            <div class="image">
-                                <img src="images/plant.jpg" alt="image">
-                            </div>
-                            <div class="content">
-                                <i class="comment icon"></i>
-                                플러그 설명
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="column">
-                        <div class="ui card">
-                            <div class="content">
-                                <div class="center aligned">
-                                    플러그인
-                                </div>
-
-                            </div>
-                            <div class="image">
-                                <img src="images/plant.jpg" alt="image">
-                            </div>
-                            <div class="content">
-                                <i class="comment icon"></i>
-                                플러그 설명
-                            </div>
-
-                        </div>
-                    </div>
+                <div class="ui three column grid" id="detailGrid">
 
 
                 </div>
