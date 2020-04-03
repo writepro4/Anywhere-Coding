@@ -291,7 +291,9 @@ function writinglist() {
 
 
 // 9. writingDelete 글 삭제 시키는 함수
-function writingDelete() {
+function writingDelete(idData) {
+
+    const itemNumber = idData.id;
 
     let form = new FormData();
     form.append("_method", "DELETE");
@@ -301,7 +303,7 @@ function writingDelete() {
         , data: form
         , processData: false
         , contentType: false
-        , url: 'https://honeytip.p-e.kr/posts/7'
+        , url: `https://honeytip.p-e.kr/posts/${itemNumber}`
         , xhrFields: {
             withCredentials: false
         }
@@ -310,6 +312,7 @@ function writingDelete() {
             let parseData = JSON.parse(data);
             let datakey = parseData.key;
             console.log("성공여부" + datakey);
+            alert("삭제 성공!");
 
         }
         //에러 종류 조건문으로 걸러내기
@@ -427,7 +430,9 @@ function categoryList() {
 
 
 // 11. writingFix 관리자 글 수정 함수
-function writingFix() {
+function writingFix(fixItem) {
+
+    const fixItemNumber = fixItem.id;
 
     let form = new FormData();
     form.append("_method", "PATCH");
@@ -445,7 +450,7 @@ function writingFix() {
         , data: form
         , processData: false
         , contentType: false
-        , url: 'https://honeytip.p-e.kr/posts/8'
+        , url: `https://honeytip.p-e.kr/posts/${fixItemNumber}`
         , xhrFields: {
             withCredentials: false
         }
@@ -454,6 +459,7 @@ function writingFix() {
             let parseData = JSON.parse(data);
             let datakey = parseData.key;
             console.log("성공여부" + datakey);
+            alert("수정성공");
 
         }
         //에러 종류 조건문으로 걸러내기
@@ -525,12 +531,12 @@ function getArticleList() {
                 let title = postInfoData[i].title;
                 let titleImage = postInfoData[i].image;
                 let subTitle = postInfoData[i].sub_title;
-                let indexPosts = postInfoData[i].index_posts;
                 let adminId = postInfoData[i].admin_id;
                 let contents = postInfoData[i].contents;
                 let viewCount = postInfoData[i].view_count;
                 let category = postInfoData[i].category;
                 let date = postInfoData[i].date;
+                let indexPosts = postInfoData[i].indexPosts;
 
                 // 백엔드 : contents 내부 값들 글 제목 title,
                 //     대표이미지 image ,
@@ -554,10 +560,10 @@ function getArticleList() {
                 html += `Additional Details`;
                 html += `</div>`;
                 html += `<div class="extra">`;
-                html += `<div class="ui blue right floated button">`;
+                html += `<div class="ui blue right floated button" onclick="writingFix(this)" id=${indexPosts}>`;
                 html += `수정`;
                 html += `</div>`;
-                html += `<div class="ui red right floated button">`;
+                html += `<div class="ui red right floated button" onclick="writingDelete(this)" id=${indexPosts}>`;
                 html += `삭제`;
                 html += `</div>`;
                 html += `</div>`;
@@ -602,5 +608,7 @@ function getArticleList() {
     });
 
 }
+
+
 
 
