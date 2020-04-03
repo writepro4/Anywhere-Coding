@@ -137,7 +137,7 @@ function categoryList() {
 
     $.ajax({
         type: 'get'
-        , url: 'https://honeytip.p-e.kr/posts/'+categoryNumber+'/1'
+        , url: 'https://honeytip.p-e.kr/posts/' + categoryNumber + '/1'
         , xhrFields: {
             withCredentials: false
         }
@@ -220,6 +220,7 @@ function categoryCheck(category) {
     console.log(categoryData);
 
     console.log(getCookie("category"));
+
     window.location.replace("./category_page.html");
 }
 
@@ -240,18 +241,21 @@ function f() {
     console.log(history.state);
 
 }
+
 // });
 
 // 8. 카테고리 페이지에 데이터 넘기는 함수.
-function nextPageData(category){
+function nextPageData(category) {
     let categoryData = category.id;
     window.location.href = "./category_page.html?index=" + categoryData;
 
 }
+
 // 9. 상세페이지에 데이터 넘기는 함수.
-function detailPage(page){
+function detailPage(page) {
     let detailPage = page.id;
-    window.location.href = "./details.html?index=" + detailPage;
+    console.log(detailPage);
+    window.location.href = "./details_page.html?index=" + detailPage;
 }
 
 // 9. substr 가져오는 함수
