@@ -203,7 +203,7 @@ function loadingComments() {
 // (get) https://honeytip.p-e.kr/comments/{글 번호}/{댓글 페이징 번호} // 댓글 페이징번호 1번부터 시작
     $.ajax({
         type: 'get'
-        , url: 'https://honeytip.p-e.kr/comments/0/0'
+        , url: 'https://honeytip.p-e.kr/comments/1/1'
         , xhrFields: {
             withCredentials: false
         }
@@ -211,17 +211,67 @@ function loadingComments() {
             //json 파싱하기
             let parseData = JSON.parse(data);
             let keyCheck = parseData.key;
+
             let contents = parseData.contents;
 
+            let listOfComments = contents.length;
 
             // 댓글 comment ,
             // 유저 이름 userName ,
             // 날짜 date ,
             // 글 번호 indexComments ,
-            // 유저이름 userName
+
+            console.log("키 값 : " + keyCheck);
+            console.log("데이터 전체 : " + data);
+            console.log("글 목록 리스트 데이터  : " + listOfComments[1]);
+            console.log("글 배열 리스트 : " + contents);
+
+            let parse = parseFloat(contents);
+            console.log(parse);
+
+
+            if (keyCheck === true) {
+                for (let i = 0; i < listOfComments; i++) {
+
+                    let comment = contents[i].comment;
+                    let userName = contents[i].userName;
+                    let date = contents[i].date;
+                    let indexComments = contents[i].indexComments;
+
+                    console.log(comment);
+
+
+                    let chat = `<div class="comment">`;
+                    chat += `<a class="avatar">`;
+                    chat += `<img src="images/plant.jpg" alt="image">`;
+                    chat += `</a>`;
+                    chat += `<div class="content">`;
+                    chat += `<a class="author"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">조`;
+                    chat += `헨더슨</span></span></a>`;
+                    chat += `<div class="metadata">`;
+                    chat += `<span class="date"><span style="vertical-align: inherit;"><span`;
+                    chat += `style="vertical-align: inherit;">5 일전</span></span></span>`;
+                    chat += `</div>`;
+                    chat += `<div class="text"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">`;
+                    chat += `${comment} </span><span style="vertical-align: inherit;">정말 고마워`;
+                    chat += `</span></span></div>`;
+                    chat += `<div class="actions">`;
+                    chat += `<a class="reply"><span style="vertical-align: inherit;"><span`;
+                    chat += `style="vertical-align: inherit;">댓글</span></span></a>`;
+                    chat += `</div>`;
+                    chat += `</div>`;
+                    chat += `</div>`;
+
+                    $('#comments').append(chat);
+                }
+            } else {
+                alert("정보가 없어요 !");
+            }
+
 
             // true/false 둘 중 하나를 반환한다.
-            console.log("댓글 삭제 성공여부입니다.: " + keyCheck);
+            console.log("댓글 목록리스트 체크 " + keyCheck);
+            console.log("댓글 목록 리스트 : " + contents);
 
 
         }
