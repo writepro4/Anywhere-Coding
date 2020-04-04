@@ -27,10 +27,11 @@ $(document).ready(function () {
 
                 let postInfoData = parseData.contents;
 
-                // key값도 배열에 포함되기 때문에 -1로 값을 맞춰줌
                 let postingListData = postInfoData.length;
 
-                console.log("받아온 데이터 확인: " + postingListData);
+                console.log("객체 상태 보기 : "+ postInfoData);
+
+                console.log("받아온 데이터 확인: " + postingListData[0].title);
 
 
                 for (let i = 0; i < postingListData; i++) {
