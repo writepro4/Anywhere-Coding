@@ -31,8 +31,6 @@ $(document).ready(function () {
 
                 console.log("객체 상태 보기 : "+ postInfoData);
 
-                console.log("받아온 데이터 확인: " + postingListData[0].title);
-
 
                 for (let i = 0; i < postingListData; i++) {
                     console.log("for문 실행중");
