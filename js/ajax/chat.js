@@ -146,7 +146,7 @@ function deleteComment() {
 
     $.ajax({
         type: 'post'
-        , url: 'https://honeytip.p-e.kr/comments/0'
+        , url: 'https://honeytip.p-e.kr/comments/5'
         , data: form
         , processData: false
         , contentType: false
