@@ -42,7 +42,7 @@ $(document).ready(function () {
                     let category = postInfoData[i].category;
                     let date = postInfoData[i].date;
 
-                    console.log("아이디 값입니다.:" +indexPosts);
+                    console.log("아이디 값입니다.:" + indexPosts);
 
                     let html = `<div class="column" onclick="detailPage(this)" id=${indexPosts}>`;
                     html += `<div class="ui card">`;
@@ -61,6 +61,32 @@ $(document).ready(function () {
                     html += `</div>`;
                     html += `</div>`;
 
+                    let cardView = `<div class="ui card" onclick="detailPage(this)" id=${indexPosts}>`;
+                    cardView += `<div class="image">`;
+                    cardView += `<img src=${titleImage}>`;
+                    cardView += `</div>`;
+                    cardView += `<div class="content">`;
+                    cardView += `<div class="header">${title}</div>`;
+                    cardView += `<div class="description">`;
+                    cardView += `${subTitle}`;
+                    cardView += `</div>`;
+                    cardView += `</div>`;
+                    cardView += `<div class="ui two bottom attached buttons">`;
+                    cardView += `<div class="ui button">`;
+                    cardView += `<i class="add icon"></i>`;
+                    cardView += `Queue`;
+                    cardView += `</div>`;
+                    cardView += `<div class="ui primary button">`;
+                    cardView += `<i class="play icon"></i>`;
+                    cardView += `Watch`;
+                    cardView += `</div>`;
+                    cardView += `</div>`;
+                    cardView += `</div>`;
+                    cardView += `<div class="ui popup">`;
+                    cardView += `<div class="header">User Rating</div>`;
+                    cardView += `<div class="ui star rating" data-rating="3"></div>`;
+                    cardView += `</div>`;
+
 
                     console.log("제목" + title);
                     console.log("날짜" + date);
@@ -72,8 +98,8 @@ $(document).ready(function () {
                     console.log("카테고리 종류" + category);
                     console.log("서브 제목" + subTitle);
 
-                    $('#grid').append(html);
-                    $('#detailGrid').append(html);
+                    $('#grid').append(cardView);
+                    $('#detailGrid').append(cardView);
 
                 }
 
