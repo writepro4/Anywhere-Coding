@@ -1,9 +1,14 @@
 // categoryList 카테고리 목록 불어오는 함수
 $(document).ready(function () {
 
-    const categoryNumber = location.href.substr(
+    let categoryNumber = location.href.substr(
         location.href.lastIndexOf('=') + 1
     );
+
+    //한글은 url에서 가져올시에 깨지기 때문에 한번 변환작업을 시켜준다.
+    if(categoryNumber.toString() === "sasa"){
+        categoryNumber = "생산성";
+    }
 
     //페이징 처리를 하기 위한 변수
     let counting = 1;
