@@ -36,179 +36,111 @@
             crossorigin="anonymous"></script>
     <script src="semantic/semantic.min.js"></script>
 
-
-    <style type="text/css">
-        body {
-            /*background-color: #DADADA;*/
-            background: #7F7FD5; /* fallback for old browsers */
-            background: -webkit-linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5); /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to bottom, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
-        }
-
-        body > .grid {
-            height: 100%;
-        }
-
-        .image {
-            margin-top: -100px;
-        }
-
-        .column {
-            max-width: 450px;
-        }
-    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.7/semantic.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.7/semantic.min.css" rel="stylesheet"/>
 
 
 </head>
 <body>
-
-<!--로그인 코드-->
-<script>
-
-    // 토큰 가져오는 함수
-    function get_csrf(callback) {
-        console.log("실행");
-
-        $.ajax({
-            type: 'get'
-            , url: 'https://honeytip.p-e.kr/csrf_token'
-            , data: ''
-            , xhrFields: {
-                withCredentials: false
-            }
-            , success: function (data) {
-                console.log(data);
-                // 콜백메소드로 토큰 값 반환
-                $("#text").html(data);	// 전송받은 데이터와 전송 성공 여부를 보여줌.
-                callback(data); // 받아온 csrf_token을 반환해주는 부분
-                console.log("받아온 토큰값: " + data);
-            }
-            , error: function (xhr, status, msg) {
-                console.log(xhr);
-                console.log(status);
-                console.log(msg);
-                console.log("토큰 발행 실패");
-            }
-        });
-    }
-
-    // 데이터 전송 함수
-    function test_ajax1(token) {
-        console.log("데이터 전송 함수 실행");
-        console.log("넘겨줄 토큰값: " + token);
-        //데이터 전송 예제
-        let login_data = {
-            '_token': token, //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
-            'id': "tip12",
-            'pw': "honey"
-        };
-        console.log(login_data);
-
-        // let myJSON = JSON.stringify(login_data);
-        // console.log(myJSON);
-        $.ajax({
-            type: 'post'
-            , url: 'https://honeytip.p-e.kr/login'
-            , data: login_data
-            , xhrFields: {
-                withCredentials: false
-            }
-            , success: function (data) {
-                $("#text2").html(data);	// 전송받은 데이터와 전송 성공 여부를 보여줌.
-                //json 해체
-                let parse_data = JSON.parse(data);
-                //위의 코드 없으면 문자형
-                console.log(parse_data);
-                console.log("전송 성공");
-                let check = parse_data.key;
-                console.log(check);
-                if (check === true) {
-                    window.location.replace("./administrator_page.html");
-                } else {
-                    alert("다시 시도해주세요.");
-                }
-            }
-            //에러 종류 조건문으로 걸러내기
-            , error: function (jqXHR, exception) {
-
-                if (jqXHR.status === 0) {
-                    alert('Not connect.\n Verify Network.');
-                } else if (jqXHR.status === 400) {
-                    alert('Server understood the request, but request content was invalid. [400]');
-                } else if (jqXHR.status === 401) {
-                    alert('Unauthorized access. [401]');
-                } else if (jqXHR.status === 403) {
-                    alert('Forbidden resource can not be accessed. [403]');
-                } else if (jqXHR.status === 404) {
-                    alert('Requested page not found. [404]');
-                } else if (jqXHR.status === 500) {
-                    alert('Internal server error. [500]');
-                } else if (jqXHR.status === 503) {
-                    alert('Service unavailable. [503]');
-                } else if (exception === 'parsererror') {
-                    alert('Requested JSON parse failed. [Failed]');
-                } else if (exception === 'timeout') {
-                    alert('Time out error. [Timeout]');
-                } else if (exception === 'abort') {
-                    alert('Ajax request aborted. [Aborted]');
-                } else {
-                    alert('Uncaught Error.n');
-                }
-                console.log("상태: " + status);
-                console.log("실패");
-            }
-        });
-    }
-
-    // (토큰,요청함수 묶은 메소드)
-    function get_token() {
-        get_csrf(function (token) {
-            test_ajax1(token)
-        })
-    }
-
-</script>
+<br>
+<br>
+<br>
+<br>
 
 
-<button onclick=get_token();>버튼</button>
+<!--<div class="ui vertical stripe segment" style="padding-bottom: 100px;">-->
+<!--    <div class="ui vertical stripe segment">-->
 
-<div class="ui middle aligned center aligned grid">
-    <div class="column">
-        <h2 class="ui teal image header">
-            <img src="images/logo.png" class="image" alt="image">
-            <div class="content">
-                안녕하세요, 관리자님.
-            </div>
-        </h2>
-        <form class="ui large form">
-            <div class="ui stacked segment">
-                <div class="field">
-                    <div class="ui left icon input">
-                        <i class="user icon"></i>
-                        <input type="text" name="email" placeholder="E-mail address"
-                               id="email">
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui left icon input">
-                        <i class="lock icon"></i>
-                        <input type="password" name="password" placeholder="Password"
-                               id="password">
-                    </div>
-                </div>
-                <div class="ui fluid large teal submit button" onclick="get_token();">로그인
-<!--                    <button id="MembershipButton" onclick=get_token();>버튼</button>-->
-                </div>
+<!--        <div class="ui card"-->
+<!--             data-html="<div class='header'>-->
+<!--             User Rating-->
+<!--             </div><div class='content'>-->
+<!--             <div class='ui star rating'>-->
+<!--             <i class='active icon'></i>-->
+<!--             <i class='active icon'></i><i class='active icon'></i><i class='active icon'></i><i class='active icon'></i></div></div>">-->
+<!--            <div class="image">-->
+<!--                <img src="images/plant.jpg">-->
+<!--            </div>-->
+<!--            <div class="content">-->
+<!--                <div class="header">My Neighbor Totoro</div>-->
+<!--                <div class="description">-->
+<!--                    Two sisters move to the country with their father in order to be closer to their hospitalized-->
+<!--                    mother,-->
+<!--                    and discover the surrounding trees are inhabited by magical spirits.-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="ui two bottom attached buttons">-->
+<!--                <div class="ui button">-->
+<!--                    <i class="add icon"></i>-->
+<!--                    Queue-->
+<!--                </div>-->
+<!--                <div class="ui primary button">-->
+<!--                    <i class="play icon"></i>-->
+<!--                    Watch-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
-                <div id="text">안녕하세요.</div>
-                <div id="text2">안녕하세요.</div>
-            </div>
-
-
-        </form>
-
+<div class="ui card">
+    <div class="image">
+        <img src="images/plant.jpg">
+    </div>
+    <div class="content">
+        <div class="header">Watchmen</div>
+        <div class="description">
+            In a gritty and alternate 1985 the glory days of costumed vigilantes have been brought to a close by a
+            government crackdown, but after one of the masked veterans is brutally murdered an investigation into the
+            killer is initiated.
+        </div>
+    </div>
+    <div class="ui two bottom attached buttons">
+        <div class="ui button">
+            <i class="add icon"></i>
+            Queue
+        </div>
+        <div class="ui primary button">
+            <i class="play icon"></i>
+            Watch
+        </div>
     </div>
 </div>
+<div class="ui popup">
+    <div class="header">User Rating</div>
+    <div class="ui star rating" data-rating="3"></div>
+</div>
+
+
+<div class="ui teal button" data-title="Using click events"
+     data-content="Clicked popups will close if you click away, but not if you click inside the popup">Click Me
+</div>
+<div class="ui icon input">
+    <label>
+        <input type="text" placeholder="Focus me..." data-content="You can use me to enter data">
+    </label>
+    <i class="search icon"></i>
+</div>
+
+
+<script>
+    $('.button')
+        .popup({
+            on: 'hover'
+        });
+    $('.rating')
+        .popup({
+            on: 'focus'
+        });
+
+    $(".rating").rating({
+        active: 'active',
+        hover: 'hover',
+        loading: 'loading',
+        interactive: 'true'
+    });
+</script>
+
 </body>
 </html>
