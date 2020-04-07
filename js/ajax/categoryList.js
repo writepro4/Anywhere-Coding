@@ -74,9 +74,17 @@ $(document).ready(function () {
                     console.log("카테고리 종류" + category);
                     console.log("서브 제목" + subTitle);
 
+
                     $('#iterate').append(html);
 
+
                 }
+
+                //카테고리 제목란에 추가할 데이터
+                let categoryTitle =  `<br>`;
+                categoryTitle +=  `<h1 class="ui header center aligned">${categoryNumber}</h1>`;
+
+                $('#categoryTitle').append(categoryTitle);
 
 
                 // 받아온 값이 false경우 빈페이지를 띄워줌
@@ -92,6 +100,11 @@ $(document).ready(function () {
 
 
                 $('#iterate').append(blankPageData);
+
+                //카테고리 제목란에 추가할 데이터
+                let categoryTitle =  `<br>`;
+                categoryTitle +=  `<h1 class="ui header center aligned">${categoryNumber}</h1>`;
+                $('#categoryTitle').append(categoryTitle);
             }
 
         }
