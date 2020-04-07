@@ -14,13 +14,17 @@
 // 1. 댓글 작성 함수.
 function writeAComment() {
 
-    const category = 0;
-    const comment = "안녕";
+    const postNum = location.href.substr(
+        location.href.lastIndexOf('=') + 1
+    );
+
+    const comment = $('#replyForm').val();
+    console.log(comment);
     const userName = "가소롭군";
-    const postNum = "0";
+    const categoryNumber = "0";
 
     let commentData = {
-        'category': category, //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
+        'category': categoryNumber, //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
         'comment': comment,
         'userName': userName,
         'postNum': postNum
@@ -197,13 +201,17 @@ function deleteComment() {
 }
 
 // 4. 댓글목록 불러오는 함수
-function loadingComments() {
+// 자동으로 요청
+
+$(document).ready(function () {
+
+// function loadingComments() {
 
 
 // (get) https://honeytip.p-e.kr/comments/{글 번호}/{댓글 페이징 번호} // 댓글 페이징번호 1번부터 시작
     $.ajax({
         type: 'get'
-        , url: 'https://honeytip.p-e.kr/comments/1/1'
+        , url: 'https://honeytip.p-e.kr/comments/0/1'
         , xhrFields: {
             withCredentials: false
         }
@@ -213,6 +221,8 @@ function loadingComments() {
             let keyCheck = parseData.key;
 
             let contents = parseData.contents;
+
+            console.log("받아온 데이터 목록 : " + data);
 
             let listOfComments = contents.length;
 
@@ -258,6 +268,14 @@ function loadingComments() {
                     chat += `<div class="actions">`;
                     chat += `<a class="reply"><span style="vertical-align: inherit;"><span`;
                     chat += `style="vertical-align: inherit;">댓글</span></span></a>`;
+                    chat += `<div class="extra buttons">`;
+                    chat += `<button class="ui primary button">`;
+                    chat += `Save`;
+                    chat += `</button>`;
+                    chat += `<button class="ui button">`;
+                    chat += `Discard`;
+                    chat += `</button>`;
+                    chat += `</div>`;
                     chat += `</div>`;
                     chat += `</div>`;
                     chat += `</div>`;
@@ -306,6 +324,6 @@ function loadingComments() {
         }
     });
 
-}
+});
 
 
