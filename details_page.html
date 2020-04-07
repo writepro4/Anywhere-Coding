@@ -91,61 +91,15 @@
                     style="vertical-align: inherit;">코멘트</span></span></h3>
 
 
-            <!--            대댓글 기능 -->
-            <!--            <div class="comment">-->
-            <!--                <a class="avatar">-->
-            <!--                    <img src="images/plant.jpg" alt="iamge">-->
-            <!--                </a>-->
-            <!--                <div class="content">-->
-            <!--                    <a class="author"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">엘리엇-->
-            <!--                        푸</span></span></a>-->
-            <!--                    <div class="metadata">-->
-            <!--                        <span class="date"><span style="vertical-align: inherit;"><span-->
-            <!--                                style="vertical-align: inherit;">어제 오전 12:30</span></span></span>-->
-            <!--                    </div>-->
-            <!--                    <div class="text">-->
-            <!--                        <p><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">이것은 내 연구에 매우-->
-            <!--                            유용했습니다. </span><span style="vertical-align: inherit;">감사합니다!</span></span></p>-->
-            <!--                    </div>-->
-            <!--                    <div class="actions">-->
-            <!--                        <a class="reply"><span style="vertical-align: inherit;"><span-->
-            <!--                                style="vertical-align: inherit;">댓글</span></span></a>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <div class="comments">-->
-            <!--                    <div class="comment">-->
-            <!--                        <a class="avatar">-->
-            <!--                            <img src="images/plant.jpg" alt="image">-->
-            <!--                        </a>-->
-            <!--                        <div class="content">-->
-            <!--                            <a class="author"><span style="vertical-align: inherit;"><span-->
-            <!--                                    style="vertical-align: inherit;">제니 헤스</span></span></a>-->
-            <!--                            <div class="metadata">-->
-            <!--                                <span class="date"><span style="vertical-align: inherit;"><span-->
-            <!--                                        style="vertical-align: inherit;">방금</span></span></span>-->
-            <!--                            </div>-->
-            <!--                            <div class="text"><span style="vertical-align: inherit;"><span-->
-            <!--                                    style="vertical-align: inherit;">-->
-            <!--                                엘리엇 당신은 항상 옳습니다 :)-->
-            <!--                            </span></span></div>-->
-            <!--                            <div class="actions">-->
-            <!--                                <a class="reply"><span style="vertical-align: inherit;"><span-->
-            <!--                                        style="vertical-align: inherit;">댓글</span></span></a>-->
-            <!--                            </div>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
-
             <form class="ui reply form">
                 <div class="field">
                     <label>
-                        <textarea></textarea>
+                        <textarea id="replyForm"></textarea>
                     </label>
                 </div>
                 <div class="ui blue labeled submit icon button" onclick="writeAComment()">
                     <i class="icon edit"></i><span style="vertical-align: inherit;"><span
-                        style="vertical-align: inherit;"> 답글 추가
+                        style="vertical-align: inherit;"> 댓글 작성
                 </span></span></div>
                 <div class="ui red labeled submit icon button" onclick="editComment()">
                     <i class="icon edit"></i><span style="vertical-align: inherit;"><span
@@ -155,10 +109,7 @@
                     <i class="icon edit"></i><span style="vertical-align: inherit;"><span
                         style="vertical-align: inherit;"> 댓글 삭제
                 </span></span></div>
-                <div class="ui brown labeled submit icon button" onclick="loadingComments()">
-                    <i class="icon edit"></i><span style="vertical-align: inherit;"><span
-                        style="vertical-align: inherit;"> 댓글 불러오기
-                </span></span></div>
+
             </form>
         </div>
     </div>
