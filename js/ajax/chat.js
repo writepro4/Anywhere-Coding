@@ -142,7 +142,9 @@ function editComment() {
 }
 
 // 3. 댓글삭제 함수
-function deleteComment() {
+function deleteComment(deleteId) {
+
+    const deleteIdData = deleteId.id;
 
 
     let form = new FormData();
@@ -150,7 +152,7 @@ function deleteComment() {
 
     $.ajax({
         type: 'post'
-        , url: 'https://honeytip.p-e.kr/comments/5'
+        , url: `https://honeytip.p-e.kr/comments/${deleteIdData}`
         , data: form
         , processData: false
         , contentType: false
@@ -164,6 +166,9 @@ function deleteComment() {
 
             // true/false 둘 중 하나를 반환한다.
             console.log("댓글 삭제 성공여부입니다.: " + keyCheck);
+
+            alert("댓글 삭제 성공! ");
+
 
 
         }
@@ -269,11 +274,11 @@ $(document).ready(function () {
                     chat += `<a class="reply"><span style="vertical-align: inherit;"><span`;
                     chat += `style="vertical-align: inherit;">댓글</span></span></a>`;
                     chat += `<div class="extra buttons">`;
-                    chat += `<button class="ui primary button">`;
-                    chat += `Save`;
+                    chat += `<button class="ui red button" id=${indexComments} onclick="deleteComment(this)">`;
+                    chat += `삭제`;
                     chat += `</button>`;
-                    chat += `<button class="ui button">`;
-                    chat += `Discard`;
+                    chat += `<button class="ui olive button" id=${indexComments}>`;
+                    chat += `수정`;
                     chat += `</button>`;
                     chat += `</div>`;
                     chat += `</div>`;
