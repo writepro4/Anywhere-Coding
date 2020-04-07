@@ -29,7 +29,7 @@ $(document).ready(function () {
 
                 let postingListData = postInfoData.length;
 
-                console.log("객체 상태 보기 : "+ postInfoData);
+                console.log("객체 상태 보기 : " + postInfoData);
 
 
                 for (let i = 0; i < postingListData; i++) {
@@ -62,6 +62,11 @@ $(document).ready(function () {
                     html += ' </div>';
                     html += '</div>';
                     html += '</div>';
+                    html += `<div class="ui right floated primary button">`;
+                    html += `내용 보기`;
+                    html += `<i class="right chevron icon"></i>`;
+                    html += `</div>`;
+                    html += `</div>`;
 
 
                     console.log("제목" + title);
@@ -81,8 +86,10 @@ $(document).ready(function () {
                 }
 
                 //카테고리 제목란에 추가할 데이터
-                let categoryTitle =  `<br>`;
-                categoryTitle +=  `<h1 class="ui header center aligned">${categoryNumber}</h1>`;
+                let categoryTitle = `<br>`;
+                categoryTitle += `<h1 class="ui header center aligned">${categoryNumber}</h1>`;
+
+                console.log("카테고리 넘버 확인 : "+categoryNumber);
 
                 $('#categoryTitle').append(categoryTitle);
 
@@ -102,8 +109,8 @@ $(document).ready(function () {
                 $('#iterate').append(blankPageData);
 
                 //카테고리 제목란에 추가할 데이터
-                let categoryTitle =  `<br>`;
-                categoryTitle +=  `<h1 class="ui header center aligned">${categoryNumber}</h1>`;
+                let categoryTitle = `<br>`;
+                categoryTitle += `<h1 class="ui header center aligned">${categoryNumber}</h1>`;
                 $('#categoryTitle').append(categoryTitle);
             }
 
