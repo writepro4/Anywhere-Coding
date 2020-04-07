@@ -6,8 +6,10 @@ $(document).ready(function () {
     );
 
     //한글은 url에서 가져올시에 깨지기 때문에 한번 변환작업을 시켜준다.
-    if(categoryNumber.toString() === "sasa"){
+    if(categoryNumber.toString() === "productivity"){
         categoryNumber = "생산성";
+    }else{
+        categoryNumber = "아직 미정";
     }
 
     //페이징 처리를 하기 위한 변수
