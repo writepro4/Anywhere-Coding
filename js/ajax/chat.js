@@ -240,11 +240,12 @@ function deleteComment(deleteId) {
 
 }
 
-// 4. 댓글목록 불러오는 함수
-$(document).ready(function () {
+// 4. loadingComments 댓글목록 불러오는 함수
+
+
+function loadingComments() {
 
     const postNum = getArticleNumber();
-
 
 // (get) https://honeytip.p-e.kr/comments/{글 번호}/{댓글 페이징 번호} // 댓글 페이징번호 1번부터 시작
     $.ajax({
@@ -279,6 +280,27 @@ $(document).ready(function () {
 
 
             if (keyCheck === true) {
+                let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
+                chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 12</span></span></h3>`;
+                chatTitle += `<h3 class="ui dividing header reply center aligned"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h3>`;
+                chatTitle += `<br>`;
+
+                $('#replyTitle').append(chatTitle);
+
+                let commentForm = `<form class="ui reply form">`;
+                    commentForm += `<div class="field">`;
+                    commentForm += `<label>`;
+                    commentForm += `<textarea id="replyForm" placeholder="로그인하고 댓글을 작성해보세요!"></textarea>`;
+                    commentForm += `</label>`;
+                    commentForm += `</div>`;
+                    commentForm += `<div class="ui olive labeled submit icon button" onclick="writeAComment()">`;
+                    commentForm += `<i class="icon edit"></i><span style="vertical-align: inherit;"><span`;
+                    commentForm += `style="vertical-align: inherit;"> 댓글 작성`;
+                    commentForm += `</span></span></div>`;
+                    commentForm += `</form>`;
+
+                    $('#formId').append(commentForm);
+
                 for (let i = 0; i < listOfComments; i++) {
 
                     let comment = contents[i].comment;
@@ -307,7 +329,9 @@ $(document).ready(function () {
 
 
                     $('#comments').append(chatData);
+
                 }
+
             } else {
                 alert("정보가 없어요 !");
             }
@@ -350,7 +374,8 @@ $(document).ready(function () {
         }
     });
 
-});
+}
+
 
 // 5. 글번호 가져오는 함수
 function getArticleNumber() {
