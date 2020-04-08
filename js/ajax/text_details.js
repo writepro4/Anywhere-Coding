@@ -10,7 +10,7 @@ $(document).ready(function () {
         location.href.lastIndexOf('_') + 1
     );
 
-    console.log("받아온 postID: "+listNumber);
+    console.log("받아온 postID: " + listNumber);
 
     $.ajax({
         type: 'get'
@@ -40,7 +40,25 @@ $(document).ready(function () {
             console.log("제목 확인: " + title);
 
             const titlePage = `<h1 class="ui header center aligned" >${title}</h1><br>`;
+
+
             let contentPage = contents;
+            // contentPage += `<div class="ui labeled button" tabindex="0">`;
+            // contentPage += `<div class="ui red button">`;
+            // contentPage += `<i class="heart icon"></i> 좋아요`;
+            // contentPage += `</div>`;
+            // contentPage += `<a class="ui basic red left pointing label">`;
+            // contentPage += `1,048`;
+            // contentPage += `</a>`;
+            // contentPage += `</div>`;
+            // contentPage += `<div class="ui labeled button" tabindex="0">`;
+            // contentPage += `<div class="ui blue button">`;
+            // contentPage += `<i class="fork icon"></i> 별로에요 `;
+            // contentPage += `</div>`;
+            // contentPage += `<a class="ui basic left pointing blue label">`;
+            // contentPage += `1,048`;
+            // contentPage += `</a>`;
+            // contentPage += `</div>`;
             contentPage += `<br><br><br><br>`;
 
             console.log("contentPage 데이터 확인 : " + contentPage);
