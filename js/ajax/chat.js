@@ -15,16 +15,23 @@
 function writeAComment() {
 
     const postNum = location.href.substr(
+        location.href.lastIndexOf('_') + 1
+    );
+    const categoryNum = location.href.substr(
         location.href.lastIndexOf('=') + 1
     );
+    //split으로 카테고리와 포스팅된글 ID 분리
+    const categoryNumber = categoryNum.split('_');
+
+    console.log("글번호 : "+ postNum);
+    console.log("카테고리 번호 : "+ categoryNumber[0]);
 
     const comment = $('#replyForm').val();
     console.log(comment);
-    const userName = "가소롭군";
-    const categoryNumber = "0";
+    const userName = "민찬이 달린다.";
 
     let commentData = {
-        'category': categoryNumber, //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
+        'category': categoryNumber[0], //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
         'comment': comment,
         'userName': userName,
         'postNum': postNum
