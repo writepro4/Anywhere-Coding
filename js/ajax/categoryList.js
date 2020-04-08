@@ -6,10 +6,18 @@ $(document).ready(function () {
     );
 
     //한글은 url에서 가져올시에 깨지기 때문에 한번 변환작업을 시켜준다.
-    if(categoryNumber.toString() === "productivity"){
-        categoryNumber = "생산성";
-    }else{
-        categoryNumber = "아직 미정";
+
+
+    if (categoryNumber.toString() === "productivity") {
+        //카테고리 제목란에 추가할 데이터
+        let categoryTitle = `<br>`;
+        categoryTitle += `<h1 class="ui header center aligned">생산성</h1>`;
+
+        console.log("카테고리 넘버 확인 : " + categoryNumber);
+
+        $('#categoryTitle').append(categoryTitle);
+    } else {
+        //
     }
 
     //페이징 처리를 하기 위한 변수
@@ -92,14 +100,6 @@ $(document).ready(function () {
 
                 }
 
-                //카테고리 제목란에 추가할 데이터
-                let categoryTitle = `<br>`;
-                categoryTitle += `<h1 class="ui header center aligned">${categoryNumber}</h1>`;
-
-                console.log("카테고리 넘버 확인 : "+categoryNumber);
-
-                $('#categoryTitle').append(categoryTitle);
-
 
                 // 받아온 값이 false경우 빈페이지를 띄워줌
             } else {
@@ -153,3 +153,4 @@ $(document).ready(function () {
         }
     });
 });
+
