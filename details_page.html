@@ -81,30 +81,36 @@
         <br><br>
 
 
-
-
     </div>
     <div class="ui text container">
         <div class="ui comments">
-            <h3 class="ui dividing header"><span style="vertical-align: inherit;"><span
-                    style="vertical-align: inherit;"><i class="comment icon"></i>댓글 12</span></span></h3>
-            <h3 class="ui dividing header reply center aligned"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h3>
+
+            <button class="ui basic button" onclick="loadingComments()">
+                <i class="icon comment"></i>
+                댓글 보기
+            </button>
+            <br><br><br>
+            <div id="replyTitle"></div>
+            <!--            <h3 class="ui dividing header"><span style="vertical-align: inherit;"><span-->
+            <!--                    style="vertical-align: inherit;"><i class="comment icon"></i>댓글 12</span></span></h3>-->
+            <!--            <h3 class="ui dividing header reply center aligned"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h3>-->
             <div id="comments"></div>
 
 
-            <form class="ui reply form">
-                <div class="field">
-                    <label>
-                        <textarea id="replyForm" placeholder="로그인하고 댓글을 작성해보세요!"></textarea>
-                    </label>
-                </div>
-                <div class="ui olive labeled submit icon button" onclick="writeAComment()">
-                    <i class="icon edit"></i><span style="vertical-align: inherit;"><span
-                        style="vertical-align: inherit;"> 댓글 작성
-                </span></span></div>
+            <div id="formId"></div>
+            <!--            <form class="ui reply form">-->
+            <!--                <div class="field">-->
+            <!--                    <label>-->
+            <!--                        <textarea id="replyForm" placeholder="로그인하고 댓글을 작성해보세요!"></textarea>-->
+            <!--                    </label>-->
+            <!--                </div>-->
+            <!--                <div class="ui olive labeled submit icon button" onclick="writeAComment()">-->
+            <!--                    <i class="icon edit"></i><span style="vertical-align: inherit;"><span-->
+            <!--                        style="vertical-align: inherit;"> 댓글 작성-->
+            <!--                </span></span></div>-->
 
 
-            </form>
+            <!--            </form>-->
         </div>
     </div>
     <br>
