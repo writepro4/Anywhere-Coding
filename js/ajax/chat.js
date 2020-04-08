@@ -137,6 +137,11 @@ function editComment(crystalID) {
             // true/false 둘 중 하나를 반환한다.
             console.log("댓글 수정 성공여부입니다.: " + keyCheck);
 
+            // 수정창 삭제
+            document.getElementById(`crystalWindow`).remove();
+
+            $(`#text${editCommentID}`).text(comment);
+
 
         }
         //에러 종류 조건문으로 걸러내기
@@ -290,7 +295,7 @@ $(document).ready(function () {
                     chatData += `</a>`;
                     chatData += `<div class="content">`;
                     chatData += `<a class="author">${userName}</a>`;
-                    chatData += `<div class="text">`;
+                    chatData += `<div class="text" id="text${indexComments}">`;
                     chatData += `${comment}`;
                     chatData += `</div>`;
                     chatData += `<div class="actions">`;
@@ -372,7 +377,7 @@ function editCommentWindow(crystalID) {
     // 수정할 글 번호
     const editCommentID = crystalID.id;
 
-    let formData = `<form class="ui reply form">`;
+    let formData = `<form class="ui reply form" id="crystalWindow">`;
     formData += `<div class="field">`;
     formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
     formData += `</div>`;
