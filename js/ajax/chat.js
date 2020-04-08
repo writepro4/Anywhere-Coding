@@ -9,29 +9,25 @@
 // 2. editComment 댓글수정 함수
 // 3. deleteComment 댓글삭제 함수
 // 4. loadingComments 댓글목록 불러오는 함수
+// 5. 글번호 가져오는 함수
+// 6. 카테고리 가져오는 함수
 
 
 // 1. 댓글 작성 함수.
 function writeAComment() {
 
-    const postNum = location.href.substr(
-        location.href.lastIndexOf('_') + 1
-    );
-    const categoryNum = location.href.substr(
-        location.href.lastIndexOf('=') + 1
-    );
-    //split으로 카테고리와 포스팅된글 ID 분리
-    const categoryNumber = categoryNum.split('_');
+    const postNum = getArticleNumber();
+    const categoryUrl = categoryImport();
 
-    console.log("글번호 : "+ postNum);
-    console.log("카테고리 번호 : "+ categoryNumber[0]);
+    console.log("글번호: " + postNum);
+    console.log("카테고리 번호 : " + categoryUrl);
 
     const comment = $('#replyForm').val();
     console.log(comment);
     const userName = "민찬이 달린다.";
 
     let commentData = {
-        'category': categoryNumber[0], //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
+        'category': categoryUrl, //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
         'comment': comment,
         'userName': userName,
         'postNum': postNum
@@ -177,7 +173,6 @@ function deleteComment(deleteId) {
             alert("댓글 삭제 성공! ");
 
 
-
         }
         //에러 종류 조건문으로 걸러내기
         , error: function (jqXHR, exception) {
@@ -213,17 +208,15 @@ function deleteComment(deleteId) {
 }
 
 // 4. 댓글목록 불러오는 함수
-// 자동으로 요청
-
 $(document).ready(function () {
 
-// function loadingComments() {
+    const postNum = getArticleNumber();
 
 
 // (get) https://honeytip.p-e.kr/comments/{글 번호}/{댓글 페이징 번호} // 댓글 페이징번호 1번부터 시작
     $.ajax({
         type: 'get'
-        , url: 'https://honeytip.p-e.kr/comments/0/1'
+        , url: `https://honeytip.p-e.kr/comments/${postNum}/1`
         , xhrFields: {
             withCredentials: false
         }
@@ -337,5 +330,26 @@ $(document).ready(function () {
     });
 
 });
+
+// 5. 글번호 가져오는 함수
+function getArticleNumber() {
+    const postNumber = location.href.substr(
+        location.href.lastIndexOf('_') + 1
+    );
+
+    return postNumber;
+}
+
+// 6. 카테고리 가져오는 함수
+function categoryImport() {
+    const categoryNum = location.href.substr(
+        location.href.lastIndexOf('=') + 1
+    );
+
+    const categoryNumber = categoryNum.split('_');
+    return categoryNumber[0];
+}
+
+
 
 
