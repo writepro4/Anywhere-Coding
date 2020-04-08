@@ -7,8 +7,10 @@ $(document).ready(function () {
     // 백엔드 : postInfo 배열 // 내부값들 글 제목 title , 글 내용 contents , 날짜 date , 조회수 viewCounts
 
     const listNumber = location.href.substr(
-        location.href.lastIndexOf('=') + 1
+        location.href.lastIndexOf('_') + 1
     );
+
+    console.log("받아온 postID: "+listNumber);
 
     $.ajax({
         type: 'get'
