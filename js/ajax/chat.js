@@ -11,6 +11,7 @@
 // 4. loadingComments 댓글목록 불러오는 함수
 // 5. 글번호 가져오는 함수
 // 6. 카테고리 가져오는 함수
+// 7. 댓글수정 창 호출하는 함수
 
 
 // 1. 댓글 작성 함수.
@@ -47,7 +48,7 @@ function writeAComment() {
             let keyCheck = parseData.key;
             const commentID = parseData.commentIndex;
 
-            console.log("반환 데이터 확인 : " +data);
+            console.log("반환 데이터 확인 : " + data);
             // true/false 둘 중 하나를 반환한다.
             console.log("댓글 작성 성공여부입니다.: " + keyCheck);
 
@@ -68,10 +69,6 @@ function writeAComment() {
             chatData += `</div>`;
 
             $('#comments').append(chatData);
-
-
-
-
 
 
         }
@@ -365,6 +362,25 @@ function categoryImport() {
     return categoryNumber[0];
 }
 
+// 7. 댓글수정 창 호출하는 함수
+function editCommentWindow(crystalID) {
+
+    // 수정할 글 번호
+    const editCommentID = crystalID.id;
+
+    let formData = `<form class="ui reply form">`;
+    formData += `<div class="field">`;
+    formData += `<textarea></textarea>`;
+    formData += `</div>`;
+    formData += `<div class="ui blue labeled submit icon button">`;
+    formData += `<i class="icon edit"></i> Add Reply`;
+    formData += `</div>`;
+    formData += `</form>`;
+
+    $(`#${editCommentID}`).append(formData);
+
+
+}
 
 
 
