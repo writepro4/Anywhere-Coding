@@ -45,9 +45,33 @@ function writeAComment() {
             //json 파싱하기
             let parseData = JSON.parse(data);
             let keyCheck = parseData.key;
+            const commentID = parseData.commentIndex;
 
+            console.log("반환 데이터 확인 : " +data);
             // true/false 둘 중 하나를 반환한다.
             console.log("댓글 작성 성공여부입니다.: " + keyCheck);
+
+            let chatData = `<div class="comment" id=${commentID}>`;
+            chatData += `<a class="avatar">`;
+            chatData += `<img src="images/plant.jpg" alt="image">`;
+            chatData += `</a>`;
+            chatData += `<div class="content">`;
+            chatData += `<a class="author">${userName}</a>`;
+            chatData += `<div class="text">`;
+            chatData += `${comment}`;
+            chatData += `</div>`;
+            chatData += `<div class="actions">`;
+            chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${commentID}>삭제</a>`;
+            chatData += `<a class="save" href="javascript:void(0);" onclick="editComment(this)" id=${commentID}>수정</a>`;
+            chatData += `</div>`;
+            chatData += `</div>`;
+            chatData += `</div>`;
+
+            $('#comments').append(chatData);
+
+
+
+
 
 
         }
@@ -86,7 +110,10 @@ function writeAComment() {
 }
 
 // 2. 댓글수정 함수
-function editComment() {
+function editComment(crystalID) {
+
+    // 수정할 글 번호
+    const editCommentID = crystalID.id;
 
     let form = new FormData();
     form.append("_method", "PATCH");
@@ -94,7 +121,7 @@ function editComment() {
 
     $.ajax({
         type: 'post'
-        , url: 'https://honeytip.p-e.kr/comments/0'
+        , url: `https://honeytip.p-e.kr/comments/${editCommentID}`
         , data: form
         , processData: false
         , contentType: false
@@ -170,7 +197,7 @@ function deleteComment(deleteId) {
             // true/false 둘 중 하나를 반환한다.
             console.log("댓글 삭제 성공여부입니다.: " + keyCheck);
 
-            alert("댓글 삭제 성공! ");
+            document.getElementById(deleteIdData).remove();
 
 
         }
@@ -256,36 +283,24 @@ $(document).ready(function () {
                     console.log(comment);
 
 
-                    let chat = `<div class="comment">`;
-                    chat += `<a class="avatar">`;
-                    chat += `<img src="images/plant.jpg" alt="image">`;
-                    chat += `</a>`;
-                    chat += `<div class="content">`;
-                    chat += `<a class="author"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">조`;
-                    chat += `헨더슨</span></span></a>`;
-                    chat += `<div class="metadata">`;
-                    chat += `<span class="date"><span style="vertical-align: inherit;"><span`;
-                    chat += `style="vertical-align: inherit;">5 일전</span></span></span>`;
-                    chat += `</div>`;
-                    chat += `<div class="text"><span style="vertical-align: inherit;"><span style="vertical-align: inherit;">`;
-                    chat += `${comment} </span><span style="vertical-align: inherit;">정말 고마워`;
-                    chat += `</span></span></div>`;
-                    chat += `<div class="actions">`;
-                    chat += `<a class="reply"><span style="vertical-align: inherit;"><span`;
-                    chat += `style="vertical-align: inherit;">댓글</span></span></a>`;
-                    chat += `<div class="extra buttons">`;
-                    chat += `<button class="ui red button" id=${indexComments} onclick="deleteComment(this)">`;
-                    chat += `삭제`;
-                    chat += `</button>`;
-                    chat += `<button class="ui olive button" id=${indexComments}>`;
-                    chat += `수정`;
-                    chat += `</button>`;
-                    chat += `</div>`;
-                    chat += `</div>`;
-                    chat += `</div>`;
-                    chat += `</div>`;
+                    let chatData = `<div class="comment" id=${indexComments}>`;
+                    chatData += `<a class="avatar">`;
+                    chatData += `<img src="images/plant.jpg" alt="image">`;
+                    chatData += `</a>`;
+                    chatData += `<div class="content">`;
+                    chatData += `<a class="author">${userName}</a>`;
+                    chatData += `<div class="text">`;
+                    chatData += `${comment}`;
+                    chatData += `</div>`;
+                    chatData += `<div class="actions">`;
+                    chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
+                    chatData += `<a class="save" href="javascript:void(0);" onclick="editComment(this)" id=${indexComments}>수정</a>`;
+                    chatData += `</div>`;
+                    chatData += `</div>`;
+                    chatData += `</div>`;
 
-                    $('#comments').append(chat);
+
+                    $('#comments').append(chatData);
                 }
             } else {
                 alert("정보가 없어요 !");
