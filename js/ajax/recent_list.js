@@ -42,6 +42,10 @@ $(document).ready(function () {
                     let category = postInfoData[i].category;
                     let date = postInfoData[i].date;
 
+                    let categoryPostsID = category+"_"+indexPosts;
+
+                    console.log(categoryPostsID);
+
                     console.log("아이디 값입니다.:" + indexPosts);
 
                     let html = `<div class="column" onclick="detailPage(this)" id=${indexPosts}>`;
@@ -61,7 +65,7 @@ $(document).ready(function () {
                     html += `</div>`;
                     html += `</div>`;
 
-                    let cardView = `<div class="ui card" onclick="detailPage(this)" id=${indexPosts}>`;
+                    let cardView = `<div class="ui card" onclick="detailPage(this)" id=${categoryPostsID}>`;
                     cardView += `<div class="image">`;
                     cardView += `<img src=${titleImage}>`;
                     cardView += `</div>`;
