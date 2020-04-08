@@ -80,7 +80,7 @@ $(document).ready(function () {
                     // cardView += `<i class="add icon"></i>`;
                     // cardView += `Queue`;
                     // cardView += `</div>`;
-                    cardView += `<div class="ui olive button">`;
+                    cardView += `<div class="ui white button">`;
                     cardView += `<i class="play icon"></i>`;
                     cardView += `글 보기 `;
                     cardView += `</div>`;

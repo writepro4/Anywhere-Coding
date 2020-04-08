@@ -111,10 +111,14 @@ function editComment(crystalID) {
 
     // 수정할 글 번호
     const editCommentID = crystalID.id;
+    console.log(editCommentID);
+
+    const comment = $(`#formreply`).val();
+    console.log("입력된 데이터 값 : " + comment);
 
     let form = new FormData();
     form.append("_method", "PATCH");
-    form.append("comment", "안녕하세요.");
+    form.append("comment", comment);
 
     $.ajax({
         type: 'post'
@@ -291,7 +295,7 @@ $(document).ready(function () {
                     chatData += `</div>`;
                     chatData += `<div class="actions">`;
                     chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
-                    chatData += `<a class="save" href="javascript:void(0);" onclick="editComment(this)" id=${indexComments}>수정</a>`;
+                    chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
                     chatData += `</div>`;
                     chatData += `</div>`;
                     chatData += `</div>`;
@@ -370,10 +374,10 @@ function editCommentWindow(crystalID) {
 
     let formData = `<form class="ui reply form">`;
     formData += `<div class="field">`;
-    formData += `<textarea></textarea>`;
+    formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
     formData += `</div>`;
-    formData += `<div class="ui blue labeled submit icon button">`;
-    formData += `<i class="icon edit"></i> Add Reply`;
+    formData += `<div class="ui blue labeled submit icon button" onclick="editComment(this)" id=${editCommentID}>`;
+    formData += `<i class="icon edit"></i> 수정하기`;
     formData += `</div>`;
     formData += `</form>`;
 
