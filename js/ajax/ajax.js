@@ -249,7 +249,7 @@ function nextPageData(category) {
     let categoryData = category.id;
     //데이터 넘기는지 확인용도
     console.log(categoryData);
-    window.location.href = "./category_page.html?index=" + categoryData;
+    window.location.href = `./category_page.html?index=${categoryData}`;
 
 }
 
@@ -257,7 +257,8 @@ function nextPageData(category) {
 function detailPage(page) {
     let detailPage = page.id;
     console.log(detailPage);
-    window.location.href = "./details_page.html?index=" + detailPage;
+    // 카테고리 id 상세페이지 id 2개가 필요함
+    window.location.href = `./details_page.html?index=${detailPage}`;
 }
 
 // 9. substr 가져오는 함수
