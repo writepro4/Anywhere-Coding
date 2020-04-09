@@ -1,14 +1,11 @@
-// text_details.js 상세페이지 내용 불러오는 함수
+// 1. text_details.js 상세페이지 내용 불러오는 함수
+// 2. getUrlData url데이터를 가져오는 함수
+
+
 $(document).ready(function () {
 
-    // 글 상세 내용 페이지
-    // (get) https://honeytip.p-e.kr/posts/{index} <- / {index} = 글 번호
-    //     클라이언트 : x
-    // 백엔드 : postInfo 배열 // 내부값들 글 제목 title , 글 내용 contents , 날짜 date , 조회수 viewCounts
 
-    const listNumber = location.href.substr(
-        location.href.lastIndexOf('_') + 1
-    );
+    const listNumber = getUrlData();
 
     console.log("받아온 postID: " + listNumber);
 
@@ -43,22 +40,6 @@ $(document).ready(function () {
 
 
             let contentPage = contents;
-            // contentPage += `<div class="ui labeled button" tabindex="0">`;
-            // contentPage += `<div class="ui red button">`;
-            // contentPage += `<i class="heart icon"></i> 좋아요`;
-            // contentPage += `</div>`;
-            // contentPage += `<a class="ui basic red left pointing label">`;
-            // contentPage += `1,048`;
-            // contentPage += `</a>`;
-            // contentPage += `</div>`;
-            // contentPage += `<div class="ui labeled button" tabindex="0">`;
-            // contentPage += `<div class="ui blue button">`;
-            // contentPage += `<i class="fork icon"></i> 별로에요 `;
-            // contentPage += `</div>`;
-            // contentPage += `<a class="ui basic left pointing blue label">`;
-            // contentPage += `1,048`;
-            // contentPage += `</a>`;
-            // contentPage += `</div>`;
             contentPage += `<br><br><br><br>`;
 
             console.log("contentPage 데이터 확인 : " + contentPage);
@@ -99,3 +80,13 @@ $(document).ready(function () {
         }
     });
 });
+
+
+//url 데이터를 가져오는 함수.
+function getUrlData() {
+
+    return location.href.substr(
+        location.href.lastIndexOf('=') + 1
+    );
+
+}
