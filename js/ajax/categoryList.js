@@ -1,5 +1,7 @@
-// categoryList 카테고리 목록 불어오는 함수
-$(document).ready(function () {
+// 1. categoryListRequest 카테고리 목록 불어오는 함수
+// 2. 인피니티 스크롤 함수 .
+
+function categoryListRequest() {
 
     let categoryNumber = location.href.substr(
         location.href.lastIndexOf('=') + 1
@@ -42,7 +44,7 @@ $(document).ready(function () {
 
                 let postInfoData = parseData.contents;
 
-                console.log("받아온 데이터 목록 : "+ postInfoData);
+                console.log("받아온 데이터 목록 : " + postInfoData);
 
                 let postingListData = postInfoData.length;
 
@@ -155,5 +157,41 @@ $(document).ready(function () {
             console.log("실패");
         }
     });
+}
+
+
+// 무한 스크롤 스크립트
+// $(document).ready(function () {
+//     categoryListRequest();
+//
+//     $(window).scroll(function () {
+//
+//         console.log("스크롤값" + window.scrollY);
+//         console.log("도큐먼트값" + $(`body`).height());
+//
+//         function getCurrentScrollPercentage() {
+//             return (window.scrollY / $("body").height()) * 100;
+//         }
+//
+//         let currentScrollPercentage = getCurrentScrollPercentage();
+//
+//         if (currentScrollPercentage > 57) {
+//
+//             curPage++; // 현재 페이지에서 +1 처리.
+//
+//             testAjax(); //ajax 호출
+//         }
+//     });
+// });
+
+
+$(document).ready(function () {
+    categoryListRequest();
+    window.onscroll = function (ev) {
+        console.log("마우스 위치 :" + window.innerHeight + window.scrollY / 1000);
+        console.log("문서 전체 높이 : " + document.body.offsetHeight);
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        }
+    };
 });
 
