@@ -45,23 +45,6 @@
     <!--    커피 후원 버튼 css-->
     <link rel="stylesheet" type="text/css" href="./css/coffee.css">
 
-    <!--    시멘틱 ui-->
-    <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
-    <script
-            src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous"></script>
-    <script src="semantic/semantic.min.js"></script>
-
-    <!--    nav 불러오는 js파일-->
-    <script src="js/nav.js"></script>
-    <!--    ajax.js 불러오기-->
-    <script src="js/ajax/ajax.js"></script>
-    <!--    최근 글 목록리스트 6개 불러오는 함수 -->
-    <script src="js/ajax/recent_list.js"></script>
-    <!--    별 표시 js파일 -->
-    <script src="js/rating.js"></script>
-
 
 </head>
 <body>
@@ -69,7 +52,7 @@
 <div vocab="http://schema.org/" typeof="Movie">
 
     <!--    헤더부분 jquery로 불러옴-->
-    <header id="header" style="position: sticky; top: 0; z-index: 2; background: rgba(255, 255, 255, 0.9);" ></header>
+    <header id="header" style="position: sticky; top: 0; z-index: 2; background: rgba(255, 255, 255, 0.9);"></header>
     <br>
     <br>
     <!-- Page Contents -->
@@ -159,7 +142,8 @@
                             <p style="text-align: center;">Life</p>
                         </div>
                     </a>
-                    <a class="orange card" onclick="nextPageData(this)" id="readability" data-tooltip="더욱 이해하기 쉽게 도와드려요!"
+                    <a class="orange card" onclick="nextPageData(this)" id="readability"
+                       data-tooltip="더욱 이해하기 쉽게 도와드려요!"
                        data-inverted="">
                         <div class="image">
                             <img src="https://img.icons8.com/bubbles/200/000000/bookmark.png" alt="image"/>
@@ -258,6 +242,24 @@
 <script src="js/transition.js"></script>
 <script src="js/dropdown.js"></script>
 <script src="js/visibility.js"></script>
+
+<!--    시멘틱 ui-->
+<link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+<script src="semantic/semantic.min.js"></script>
+
+
+<!--    nav 불러오는 js파일-->
+<script src="js/nav.js"></script>
+<!--    ajax.js 불러오기-->
+<script src="js/ajax/ajax.js"></script>
+<!--    최근 글 목록리스트 6개 불러오는 함수 -->
+<script src="js/ajax/recent_list.js"></script>
+<!--    별 표시 js파일 -->
+<script src="js/rating.js"></script>
 
 
 </body>
