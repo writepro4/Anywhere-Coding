@@ -42,6 +42,8 @@ $(document).ready(function () {
 
                 let postInfoData = parseData.contents;
 
+                console.log("받아온 데이터 목록 : "+ postInfoData);
+
                 let postingListData = postInfoData.length;
 
                 console.log("객체 상태 보기 : " + postInfoData);
@@ -50,52 +52,53 @@ $(document).ready(function () {
                 for (let i = 0; i < postingListData; i++) {
                     console.log("for문 실행중");
 
+                    // contents 내부 값들 글 제목 title,
+                    //     대표이미지 image ,
+                    //     부 제목(설명) subTitle ,
+                    //     날짜 date ,
+                    //     글 번호 indexPosts
+
                     let title = postInfoData[i].title;
                     let titleImage = postInfoData[i].image;
-                    let subTitle = postInfoData[i].sub_title;
-                    let indexPosts = postInfoData[i].index_posts;
-                    let adminId = postInfoData[i].admin_id;
-                    let contents = postInfoData[i].contents;
-                    let viewCount = postInfoData[i].view_count;
-                    let category = postInfoData[i].category;
+                    let subTitle = postInfoData[i].subTitle;
+                    let indexPosts = postInfoData[i].indexPosts;
                     let date = postInfoData[i].date;
 
-                    let html = '<div class="item">';
-                    html += '<div class="image">';
-                    html += '<img src="' + postInfoData[i].image + '" alt="image">';
-                    html += '</div>';
-                    html += '<div class="content">';
-                    html += '<a class="header">' + postInfoData[i].title + '</a>';
-                    html += '<div class="meta">';
-                    html += '<span>' + postInfoData[i].subTitle + '</span>';
-                    html += '</div>';
-                    html += '<div class="description">';
-                    html += '<p></p>';
-                    html += '</div>';
-                    html += '<div class="extra">';
-                    html += postInfoData[i].date;
-                    html += ' </div>';
-                    html += '</div>';
-                    html += '</div>';
-                    html += `<div class="ui right floated primary button">`;
-                    html += `내용 보기`;
-                    html += `<i class="right chevron icon"></i>`;
-                    html += `</div>`;
-                    html += `</div>`;
+
+                    let categoryitem = `<div class="item" onclick="detailPage(this)" id="${indexPosts}">`;
+                    categoryitem += `<div class="image">`;
+                    categoryitem += `<img src=${titleImage} alt="image">`;
+                    categoryitem += `</div>`;
+                    categoryitem += `<div class="content">`;
+                    categoryitem += `<a class="header">${title}</a>`;
+                    categoryitem += `<div class="meta">`;
+                    categoryitem += `<span class="cinema">${subTitle}</span>`;
+                    categoryitem += `</div>`;
+                    categoryitem += `<div class="meta">`;
+                    categoryitem += `<span class="cinema">${date}</span>`;
+                    categoryitem += `</div>`;
+                    categoryitem += `<div class="description">`;
+                    categoryitem += `<p></p>`;
+                    categoryitem += `</div>`;
+                    categoryitem += `<div class="extra">`;
+                    categoryitem += `<div class="ui right floated primary button">`;
+                    categoryitem += `꿀팁 얻기`;
+                    categoryitem += `<i class="right chevron icon"></i>`;
+                    categoryitem += `</div>`;
+                    categoryitem += `<div class="ui label">생산성</div>`;
+                    categoryitem += `</div>`;
+                    categoryitem += `</div>`;
+                    categoryitem += `</div>`;
 
 
                     console.log("제목" + title);
                     console.log("날짜" + date);
                     console.log("타이틀 이미지" + titleImage);
                     console.log("글 아이디" + indexPosts);
-                    console.log("관리자 아이디" + adminId);
-                    console.log("글 내용" + contents);
-                    console.log("조회수" + viewCount);
-                    console.log("카테고리 종류" + category);
                     console.log("서브 제목" + subTitle);
 
 
-                    $('#iterate').append(html);
+                    $('#iterate').append(categoryitem);
 
 
                 }
