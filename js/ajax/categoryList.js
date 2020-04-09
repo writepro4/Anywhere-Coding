@@ -160,38 +160,25 @@ function categoryListRequest() {
 }
 
 
-// 무한 스크롤 스크립트
-// $(document).ready(function () {
-//     categoryListRequest();
-//
-//     $(window).scroll(function () {
-//
-//         console.log("스크롤값" + window.scrollY);
-//         console.log("도큐먼트값" + $(`body`).height());
-//
-//         function getCurrentScrollPercentage() {
-//             return (window.scrollY / $("body").height()) * 100;
-//         }
-//
-//         let currentScrollPercentage = getCurrentScrollPercentage();
-//
-//         if (currentScrollPercentage > 57) {
-//
-//             curPage++; // 현재 페이지에서 +1 처리.
-//
-//             testAjax(); //ajax 호출
-//         }
-//     });
-// });
-
-
+// 2. 인피니티 스크롤 함수 .
 $(document).ready(function () {
+    let page = 1;
     categoryListRequest();
-    window.onscroll = function (ev) {
-        console.log("마우스 위치 :" + window.innerHeight + window.scrollY / 1000);
-        console.log("문서 전체 높이 : " + document.body.offsetHeight);
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    $(window).scroll(function () {
+        console.log("마우스 높이 : " + Math.ceil($(window).scrollTop()));
+        console.log("문서 높이 : " + parseInt($(document).height() - $(window).height()));
+        if (Math.ceil($(window).scrollTop()) === $(document).height() - $(window).height()) {
+            categoryListRequest();
+            console.log("실행됨: " + ++page);
         }
-    };
+    });
 });
+new Promise(function(resolve, reject) {
+
+});
+
+    // 비동기 작업 완료 시 reslove 호출 // 비동기 작업 실패 시 reject 호출 });
+
+
+
 
