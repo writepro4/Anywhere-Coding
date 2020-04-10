@@ -66,8 +66,11 @@ function categoryListRequest() {
                     let indexPosts = postInfoData[i].indexPosts;
                     let date = postInfoData[i].date;
 
+                    //카테고리와 상세페이지번호 합친 변수.
+                    let categoryPostsID = categoryNumber + "_" + indexPosts;
 
-                    let categoryitem = `<div class="item" onclick="detailPage(this)" id="${indexPosts}">`;
+
+                    let categoryitem = `<div class="item" onclick="detailPage(this)" id="${categoryPostsID}">`;
                     categoryitem += `<div class="image">`;
                     categoryitem += `<img src=${titleImage} alt="image">`;
                     categoryitem += `</div>`;
