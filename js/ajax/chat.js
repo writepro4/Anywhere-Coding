@@ -25,7 +25,7 @@ function writeAComment() {
 
     const comment = $('#replyForm').val();
     console.log(comment);
-    const userName = "민찬이 달린다.";
+    const userName = "민차뉘";
 
     let commentData = {
         'category': categoryUrl, //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
@@ -240,12 +240,18 @@ function deleteComment(deleteId) {
 
 }
 
+// 댓글창이 열려 있는지 확인하는 변수
+let commentWindowCheck = false;
+
 // 4. loadingComments 댓글목록 불러오는 함수
-
-
 function loadingComments() {
 
+
     const postNum = getArticleNumber();
+
+    console.log("댓글번호 보기 : " + postNum);
+
+    $('#viewComments').text("댓글 접기");
 
 // (get) https://honeytip.p-e.kr/comments/{글 번호}/{댓글 페이징 번호} // 댓글 페이징번호 1번부터 시작
     $.ajax({
@@ -259,47 +265,43 @@ function loadingComments() {
             let parseData = JSON.parse(data);
             let keyCheck = parseData.key;
 
-            let contents = parseData.contents;
 
-            console.log("받아온 데이터 목록 : " + data);
+            // 받아온 값이 true일 경우엔 댓글목록을 같이 생성
+            if (keyCheck === true && commentWindowCheck === false) {
+                console.log("댓글목록 출력: ");
+                commentWindowCheck = true;
 
-            let listOfComments = contents.length;
+                let contents = parseData.contents;
 
-            // 댓글 comment ,
-            // 유저 이름 userName ,
-            // 날짜 date ,
-            // 글 번호 indexComments ,
+                console.log("받아온 데이터 목록 : " + data);
 
-            console.log("키 값 : " + keyCheck);
-            console.log("데이터 전체 : " + data);
-            console.log("글 목록 리스트 데이터  : " + listOfComments[1]);
-            console.log("글 배열 리스트 : " + contents);
-
-            let parse = parseFloat(contents);
-            console.log(parse);
+                let listOfComments = contents.length;
 
 
-            if (keyCheck === true) {
+                let parse = parseFloat(contents);
+                console.log(parse);
+
+
                 let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
-                chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 12</span></span></h3>`;
+                chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 </span></span></h3>`;
                 chatTitle += `<h3 class="ui dividing header reply center aligned"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h3>`;
                 chatTitle += `<br>`;
 
                 $('#replyTitle').append(chatTitle);
 
                 let commentForm = `<form class="ui reply form">`;
-                    commentForm += `<div class="field">`;
-                    commentForm += `<label>`;
-                    commentForm += `<textarea id="replyForm" placeholder="로그인하고 댓글을 작성해보세요!"></textarea>`;
-                    commentForm += `</label>`;
-                    commentForm += `</div>`;
-                    commentForm += `<div class="ui olive labeled submit icon button" onclick="writeAComment()">`;
-                    commentForm += `<i class="icon edit"></i><span style="vertical-align: inherit;"><span`;
-                    commentForm += `style="vertical-align: inherit;"> 댓글 작성`;
-                    commentForm += `</span></span></div>`;
-                    commentForm += `</form>`;
+                commentForm += `<div class="field">`;
+                commentForm += `<label>`;
+                commentForm += `<textarea id="replyForm" placeholder="로그인하고 댓글을 작성해보세요!"></textarea>`;
+                commentForm += `</label>`;
+                commentForm += `</div>`;
+                commentForm += `<div class="ui olive labeled submit icon button" onclick="writeAComment()">`;
+                commentForm += `<i class="icon edit"></i><span style="vertical-align: inherit;"><span`;
+                commentForm += `style="vertical-align: inherit;"> 댓글 작성`;
+                commentForm += `</span></span></div>`;
+                commentForm += `</form>`;
 
-                    $('#formId').append(commentForm);
+                $('#formId').append(commentForm);
 
                 for (let i = 0; i < listOfComments; i++) {
 
@@ -332,14 +334,53 @@ function loadingComments() {
 
                 }
 
-            } else {
-                alert("정보가 없어요 !");
-            }
+                // 받아온 값이 false일 경우엔 댓글목록 없이 댓글 입력창만 출력
+            } else if (keyCheck === false && commentWindowCheck === false) {
+                console.log("댓글 목록 없음.");
+                commentWindowCheck = true;
 
+                let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
+                chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 12</span></span></h3>`;
+                chatTitle += `<h3 class="ui dividing header reply center aligned"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h3>`;
+                chatTitle += `<br>`;
+
+                $('#replyTitle').append(chatTitle);
+
+                let commentForm = `<form class="ui reply form">`;
+                commentForm += `<div class="field">`;
+                commentForm += `<label>`;
+                commentForm += `<textarea id="replyForm" placeholder="로그인하고 댓글을 작성해보세요!"></textarea>`;
+                commentForm += `</label>`;
+                commentForm += `</div>`;
+                commentForm += `<div class="ui olive labeled submit icon button" onclick="writeAComment()">`;
+                commentForm += `<i class="icon edit"></i><span style="vertical-align: inherit;"><span`;
+                commentForm += `style="vertical-align: inherit;"> 댓글 작성`;
+                commentForm += `</span></span></div>`;
+                commentForm += `</form>`;
+
+                $('#formId').append(commentForm);
+                //댓글 버튼 확인하고 댓글창 닫음.
+            } else if (commentWindowCheck === true) {
+                commentWindowCheck = false;
+
+                $('#viewComments').text("댓글 보기");
+                //댓글 창 삭제.
+                $('#commentWindow').remove();
+
+                //삭제한 후에 다시 div목록들을 담아줌.
+                let commentWindow = `<div id="commentWindow">`;
+                    commentWindow += `<div id="replyTitle"></div>`;
+                    commentWindow += `<div id="comments"></div>`;
+                    commentWindow += `<div id="formId"></div>`;
+                    commentWindow += `</div>`;
+
+                $('#commentCreationWindow').append(commentWindow);
+
+
+            }
 
             // true/false 둘 중 하나를 반환한다.
             console.log("댓글 목록리스트 체크 " + keyCheck);
-            console.log("댓글 목록 리스트 : " + contents);
 
 
         }
