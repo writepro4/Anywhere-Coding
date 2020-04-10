@@ -1,30 +1,19 @@
 // 1. categoryListRequest 카테고리 목록 불어오는 함수
 // 2. 인피니티 스크롤 함수 .
+// 3. categoryURL 카테고리 번호 가져오는 함수
+// 4.  categoryConversion 어떤 카테고리인지 한글로 변환해주는 함수.
 
+// 1. categoryListRequest 카테고리 목록 불어오는 함수
 function categoryListRequest() {
 
-    let categoryNumber = location.href.substr(
-        location.href.lastIndexOf('=') + 1
-    );
+    let categoryNumber = categoryURL();
 
     //한글은 url에서 가져올시에 깨지기 때문에 한번 변환작업을 시켜준다.
 
-
-    if (categoryNumber.toString() === "productivity") {
-        //카테고리 제목란에 추가할 데이터
-        let categoryTitle = `<br>`;
-        categoryTitle += `<h1 class="ui header center aligned">생산성</h1>`;
-
-        console.log("카테고리 넘버 확인 : " + categoryNumber);
-
-        $('#categoryTitle').append(categoryTitle);
-    } else {
-        //
-    }
+    categoryConversion(categoryNumber);
 
     //페이징 처리를 하기 위한 변수
     let counting = 1;
-
 
     $.ajax({
         type: 'get'
@@ -54,11 +43,6 @@ function categoryListRequest() {
                 for (let i = 0; i < postingListData; i++) {
                     console.log("for문 실행중");
 
-                    // contents 내부 값들 글 제목 title,
-                    //     대표이미지 image ,
-                    //     부 제목(설명) subTitle ,
-                    //     날짜 date ,
-                    //     글 번호 indexPosts
 
                     let title = postInfoData[i].title;
                     let titleImage = postInfoData[i].image;
@@ -107,7 +91,6 @@ function categoryListRequest() {
 
 
                 }
-
 
                 // 받아온 값이 false경우 빈페이지를 띄워줌
             } else {
@@ -171,16 +154,39 @@ $(document).ready(function () {
         console.log("마우스 높이 : " + Math.ceil($(window).scrollTop()));
         console.log("문서 높이 : " + parseInt($(document).height() - $(window).height()));
         if (Math.ceil($(window).scrollTop()) === $(document).height() - $(window).height()) {
-            categoryListRequest();
+            // categoryListRequest();
             console.log("실행됨: " + ++page);
         }
     });
 });
-new Promise(function(resolve, reject) {
 
-});
 
-    // 비동기 작업 완료 시 reslove 호출 // 비동기 작업 실패 시 reject 호출 });
+// 3. categoryURL 카테고리 번호 가져오는 함수
+function categoryURL() {
+
+    return location.href.substr(
+        location.href.lastIndexOf('=') + 1
+    );
+
+}
+
+// 4.  categoryConversion 어떤 카테고리인지 한글로 변환해주는 함수.
+function categoryConversion(categoryData) {
+
+    if (categoryData.toString() === "productivity") {
+        //카테고리 제목란에 추가할 데이터
+        let categoryTitle = `<br>`;
+        categoryTitle += `<h1 class="ui header center aligned">생산성</h1>`;
+
+        console.log("카테고리 넘버 확인 : " + categoryData);
+
+        $('#categoryTitle').append(categoryTitle);
+    } else {
+        //
+    }
+
+}
+
 
 
 
