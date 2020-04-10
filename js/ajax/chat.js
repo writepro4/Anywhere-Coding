@@ -1,9 +1,3 @@
-// 댓글 수정하기위해 작성했던 댓글 내용가져오기 (edit)
-// (get) https://honeytip.p-e.kr/comments/{댓글 번호}/edit
-//     클라이언트 : x
-// 백엔드 : 댓글 comment
-
-
 // <--- 함수 리스트 --->
 // 1. writeAComment 댓글작성 함수
 // 2. editComment 댓글수정 함수
@@ -369,10 +363,10 @@ function loadingComments() {
 
                 //삭제한 후에 다시 div목록들을 담아줌.
                 let commentWindow = `<div id="commentWindow">`;
-                    commentWindow += `<div id="replyTitle"></div>`;
-                    commentWindow += `<div id="comments"></div>`;
-                    commentWindow += `<div id="formId"></div>`;
-                    commentWindow += `</div>`;
+                commentWindow += `<div id="replyTitle"></div>`;
+                commentWindow += `<div id="comments"></div>`;
+                commentWindow += `<div id="formId"></div>`;
+                commentWindow += `</div>`;
 
                 $('#commentCreationWindow').append(commentWindow);
 
