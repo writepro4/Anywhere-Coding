@@ -3,8 +3,6 @@
 
 
 $(document).ready(function () {
-
-
     const listNumber = getUrlData();
 
     console.log("받아온 postID: " + listNumber);
@@ -86,7 +84,7 @@ $(document).ready(function () {
 function getUrlData() {
 
     return location.href.substr(
-        location.href.lastIndexOf('=') + 1
+        location.href.lastIndexOf('_') + 1
     );
 
 }
