@@ -80,7 +80,7 @@ $(document).ready(function () {
                     cardView += `댓글2`;
                     cardView += `</div>`;
                     cardView += `<div class="ui button">`;
-                    cardView += `<i class="play icon"></i>`;
+                    cardView += `<i class="gift icon"></i>`;
                     cardView += `글 보기 `;
                     cardView += `</div>`;
                     cardView += `</div>`;
@@ -90,16 +90,6 @@ $(document).ready(function () {
                     cardView += `<div class="ui star rating" data-rating="3"></div>`;
                     cardView += `</div>`;
 
-
-                    // console.log("제목" + title);
-                    // console.log("날짜" + date);
-                    // console.log("타이틀 이미지" + titleImage);
-                    // console.log("글 아이디" + indexPosts);
-                    // console.log("관리자 아이디" + adminId);
-                    // console.log("글 내용" + contents);
-                    // console.log("조회수" + viewCount);
-                    // console.log("카테고리 종류" + category);
-                    // console.log("서브 제목" + subTitle);
 
                     $('#grid').append(cardView);
                     $('#detailGrid').append(cardView);
