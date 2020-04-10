@@ -11,21 +11,16 @@ $(document).ready(function () {
         , success: function (data) {
 
             let parseData = JSON.parse(data);
-            // console.log("데이터 파싱전: " + data);
             let keyCheck = parseData.key;
 
-            // console.log("데이터 성공여부 : " + keyCheck);
 
             // 요청값이 true일 경우에 실행
             if (keyCheck === true) {
 
                 let postInfoData = parseData.postInfo;
-                // console.log("파싱된 데이터 : " + postInfoData);
 
                 // key값도 배열에 포함되기 때문에 -1로 값을 맞춰줌
                 let postingListData = postInfoData.length;
-
-                // console.log("받아온 데이터 확인: " + postingListData);
 
 
                 for (let i = 0; i < postingListData; i++) {
@@ -43,28 +38,8 @@ $(document).ready(function () {
 
                     let categoryPostsID = category + "_" + indexPosts;
 
-                    // console.log(categoryPostsID);
-                    //
-                    // console.log("아이디 값입니다.:" + indexPosts);
 
-                    let html = `<div class="column" onclick="detailPage(this)" id=${indexPosts}>`;
-                    html += `<div class="ui card">`;
-                    html += `<div class="content">`;
-                    html += `<div class="center aligned">`;
-                    html += `${title}`;
-                    html += `</div>`;
-                    html += `</div>`;
-                    html += `<a class="image">`;
-                    html += `<img src=${titleImage} alt="image">`;
-                    html += `</a>`;
-                    html += `<div class="content">`;
-                    html += `<i class="comment icon"></i>`;
-                    html += `${subTitle}`;
-                    html += `</div>`;
-                    html += `</div>`;
-                    html += `</div>`;
-
-                    let cardView = `<div class="ui card" onclick="detailPage(this)" id=${categoryPostsID}>`;
+                    let cardView = `<a class="ui card" onclick="detailPage(this)" id=${categoryPostsID}>`;
                     cardView += `<div class="image">`;
                     cardView += `<img src=${titleImage}>`;
                     cardView += `</div>`;
@@ -88,7 +63,7 @@ $(document).ready(function () {
                     cardView += `<div class="ui popup">`;
                     cardView += `<div class="header">User Rating</div>`;
                     cardView += `<div class="ui star rating" data-rating="3"></div>`;
-                    cardView += `</div>`;
+                    cardView += `</a>`;
 
 
                     $('#grid').append(cardView);
