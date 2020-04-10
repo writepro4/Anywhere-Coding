@@ -3,6 +3,7 @@
 // 3. categoryURL 카테고리 번호 가져오는 함수
 // 4.  categoryConversion 어떤 카테고리인지 한글로 변환해주는 함수.
 
+
 // 1. categoryListRequest 카테고리 목록 불어오는 함수
 function categoryListRequest() {
 
@@ -70,7 +71,7 @@ function categoryListRequest() {
                     categoryitem += `<p></p>`;
                     categoryitem += `</div>`;
                     categoryitem += `<div class="extra">`;
-                    categoryitem += `<div class="ui right floated primary button">`;
+                    categoryitem += `<div class="ui right floated primary button"><i class="gift icon"></i>`;
                     categoryitem += `꿀팁 얻기`;
                     categoryitem += `<i class="right chevron icon"></i>`;
                     categoryitem += `</div>`;
@@ -98,9 +99,12 @@ function categoryListRequest() {
                 let blankPageData = '<div class="ui placeholder segment">';
                 blankPageData += '<div class="ui icon header">';
                 blankPageData += '<i class="dont icon"></i>';
-                blankPageData += '빈페이지에요 ㅠㅠ ';
+                blankPageData += '<br>';
+                blankPageData += '아직 정보가 없습니다. ';
+                blankPageData += '<br><br>';
+                blankPageData += '<p>업데이트 예정. </p>';
                 blankPageData += '</div>';
-                blankPageData += '<div class="ui primary button">버튼</div>';
+                blankPageData += '<a href="./index.html"><div class="ui primary button">메인으로</div></a>';
                 blankPageData += '</div>';
 
 
@@ -149,11 +153,13 @@ function categoryListRequest() {
 // 2. 인피니티 스크롤 함수 .
 $(document).ready(function () {
     let page = 1;
+    // ajax로 불러올 데이터 함수 먼저 실행
     categoryListRequest();
     $(window).scroll(function () {
         console.log("마우스 높이 : " + Math.ceil($(window).scrollTop()));
         console.log("문서 높이 : " + parseInt($(document).height() - $(window).height()));
         if (Math.ceil($(window).scrollTop()) === $(document).height() - $(window).height()) {
+            // 스크롤 위치가 문서 하단에 위치할경우 원하는 함수 호출
             // categoryListRequest();
             console.log("실행됨: " + ++page);
         }
@@ -188,6 +194,27 @@ function categoryConversion(categoryData) {
 }
 
 
+// 5. 비동기 작업 구현하기 promise
 
+//먼저 실행할 함수.
+function getData(callback) {
+    // new Promise() 추가
+    return new Promise(function (resolve, reject) {
+        $.get('url 주소/products/1', function (response) {
+            // 데이터를 받으면 resolve() 호출
+            resolve(response);
+        });
+    });
+}
+
+getData().then(function (tableData) {
+    // resolve()의 결과 값이 여기로 전달됨
+    // $.get()의 reponse 값이 tableData에 전달됨
+    console.log(tableData);
+
+    // getData()의 실행이 끝나면 호출되는 then()
+}).then(function () {
+
+});
 
 
