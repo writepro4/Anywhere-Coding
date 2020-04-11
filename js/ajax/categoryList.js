@@ -2,22 +2,23 @@
 // 2. 인피니티 스크롤 함수 .
 // 3. categoryURL 카테고리 번호 가져오는 함수
 // 4.  categoryConversion 어떤 카테고리인지 한글로 변환하고 제목에 추가하는 함수.
+// 5. 인피니티 스크롤 페이징 로딩 처리 함수.
 
 
 // 1. categoryListRequest 카테고리 목록 불어오는 함수
+
+
 function categoryListRequest(pageing) {
 
+    // url에서 데이터 가져오기
     let categoryNumber = categoryURL();
 
     // 페이징할 번호 변수
     let pageNumber = pageing;
 
     //한글은 url에서 가져올시에 깨지기 때문에 한번 변환작업을 시켜준다.
-
     categoryConversion(categoryNumber);
 
-    //페이징 처리를 하기 위한 변수
-    let counting = 1;
 
     $.ajax({
         type: 'get'
@@ -31,9 +32,9 @@ function categoryListRequest(pageing) {
             let parseData = JSON.parse(data);
             console.log("데이터 파싱전: " + data);
             let keyCheck = parseData.key;
-            console.log("데이터 성공여부 : " + keyCheck);
 
             if (keyCheck === true) {
+
 
                 let postInfoData = parseData.contents;
 
@@ -84,17 +85,11 @@ function categoryListRequest(pageing) {
                     categoryitem += `</div>`;
 
 
-                    console.log("제목" + title);
-                    console.log("날짜" + date);
-                    console.log("타이틀 이미지" + titleImage);
-                    console.log("글 아이디" + indexPosts);
-                    console.log("서브 제목" + subTitle);
-
-
                     $('#iterate').append(categoryitem);
 
 
                 }
+
 
                 // 받아온 값이 false경우 빈페이지를 띄워줌
             } else if (pageNumber > 1) {
@@ -205,6 +200,13 @@ function categoryConversion(categoryData) {
 
 }
 
+
+// 5. 인피니티 스크롤 페이징 로딩 처리 함수
+function loader() {
+    let loader = `<div class="ui active centered inline loader" id="loader"></div>`;
+    $('#iterate').append(loader);
+
+}
 
 // 비동기 작업 구현하기 promise
 //
