@@ -1,13 +1,16 @@
 // 1. categoryListRequest 카테고리 목록 불어오는 함수
 // 2. 인피니티 스크롤 함수 .
 // 3. categoryURL 카테고리 번호 가져오는 함수
-// 4.  categoryConversion 어떤 카테고리인지 한글로 변환해주는 함수.
+// 4.  categoryConversion 어떤 카테고리인지 한글로 변환하고 제목에 추가하는 함수.
 
 
 // 1. categoryListRequest 카테고리 목록 불어오는 함수
-function categoryListRequest() {
+function categoryListRequest(pageing) {
 
     let categoryNumber = categoryURL();
+
+    // 페이징할 번호 변수
+    let pageNumber = pageing;
 
     //한글은 url에서 가져올시에 깨지기 때문에 한번 변환작업을 시켜준다.
 
@@ -18,7 +21,7 @@ function categoryListRequest() {
 
     $.ajax({
         type: 'get'
-        , url: 'https://honeytip.p-e.kr/posts/' + categoryNumber + '/1'
+        , url: 'https://honeytip.p-e.kr/posts/' + categoryNumber + `/${pageNumber}`
         , xhrFields: {
             withCredentials: false
         }
@@ -94,6 +97,9 @@ function categoryListRequest() {
                 }
 
                 // 받아온 값이 false경우 빈페이지를 띄워줌
+            } else if (pageNumber > 1) {
+                console.log("마지막 문단 입니다.");
+
             } else {
 
                 let blankPageData = '<div class="ui placeholder segment">';
@@ -110,10 +116,7 @@ function categoryListRequest() {
 
                 $('#iterate').append(blankPageData);
 
-                //카테고리 제목란에 추가할 데이터
-                let categoryTitle = `<br>`;
-                categoryTitle += `<h1 class="ui header center aligned">${categoryNumber}</h1>`;
-                $('#categoryTitle').append(categoryTitle);
+
             }
 
         }
@@ -151,17 +154,18 @@ function categoryListRequest() {
 
 
 // 2. 인피니티 스크롤 함수 .
+let page = 1;
 $(document).ready(function () {
-    let page = 1;
     // ajax로 불러올 데이터 함수 먼저 실행
-    categoryListRequest();
+    categoryListRequest(page);
     $(window).scroll(function () {
         console.log("마우스 높이 : " + Math.ceil($(window).scrollTop()));
         console.log("문서 높이 : " + parseInt($(document).height() - $(window).height()));
         if (Math.ceil($(window).scrollTop()) === $(document).height() - $(window).height()) {
             // 스크롤 위치가 문서 하단에 위치할경우 원하는 함수 호출
-            // categoryListRequest();
-            console.log("실행됨: " + ++page);
+            page++;
+            console.log("호출한 번호 : " + page);
+            categoryListRequest(page);
         }
     });
 });
@@ -176,10 +180,14 @@ function categoryURL() {
 
 }
 
-// 4.  categoryConversion 어떤 카테고리인지 한글로 변환해주는 함수.
-function categoryConversion(categoryData) {
+// 4.  categoryConversion 어떤 카테고리인지 한글로 변환하고 제목에 추가하는 함수.
+// 제목을 한번만 붙이기 위한 변수
+let titleCheck = false;
 
-    if (categoryData.toString() === "productivity") {
+function categoryConversion(categoryData) {
+    // 제목을 한번만 붙이기 위한 변수
+    if (categoryData.toString() === "productivity" && titleCheck === false) {
+        titleCheck = true;
         //카테고리 제목란에 추가할 데이터
         let categoryTitle = `<br>`;
         categoryTitle += `<h1 class="ui header center aligned">생산성</h1>`;
@@ -187,34 +195,34 @@ function categoryConversion(categoryData) {
         console.log("카테고리 넘버 확인 : " + categoryData);
 
         $('#categoryTitle').append(categoryTitle);
-    } else {
-        //
+    } else if (titleCheck === false) {
+        titleCheck = true;
+        let categoryTitle = `<br>`;
+        categoryTitle += `<h1 class="ui header center aligned">독해력</h1>`;
+
+        $('#categoryTitle').append(categoryTitle);
     }
 
 }
 
 
-// 5. 비동기 작업 구현하기 promise
-
-//먼저 실행할 함수.
-function getData(callback) {
-    // new Promise() 추가
-    return new Promise(function (resolve, reject) {
-        $.get('url 주소/products/1', function (response) {
-            // 데이터를 받으면 resolve() 호출
-            resolve(response);
-        });
-    });
-}
-
-getData().then(function (tableData) {
-    // resolve()의 결과 값이 여기로 전달됨
-    // $.get()의 reponse 값이 tableData에 전달됨
-    console.log(tableData);
-
-    // getData()의 실행이 끝나면 호출되는 then()
-}).then(function () {
-
-});
+// 비동기 작업 구현하기 promise
+//
+// function async1 () {
+//     console.log("처음으로 실행합니다.");
+//     return Promise.resolve();
+// }
+// function async2 () {
+//     console.log("두번째 실행");
+//     return Promise.resolve();
+// }
+// function async3 () {
+//     console.log("세번째 실행 ");
+//     return Promise.resolve();
+// }
+//
+// async1()
+//     .then(async2)
+//     .then(async3);
 
 
