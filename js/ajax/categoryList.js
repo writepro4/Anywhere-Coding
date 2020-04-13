@@ -4,10 +4,10 @@
 // 4.  categoryConversion 어떤 카테고리인지 한글로 변환하고 제목에 추가하는 함수.
 // 5. 인피니티 스크롤 페이징 로딩 처리 함수.
 
+//TODO 인피니티 스크롤 로딩바 구현해야됨.
+
 
 // 1. categoryListRequest 카테고리 목록 불어오는 함수
-
-
 function categoryListRequest(pageing) {
 
     // url에서 데이터 가져오기
@@ -175,10 +175,11 @@ function categoryURL() {
 
 }
 
-// 4.  categoryConversion 어떤 카테고리인지 한글로 변환하고 제목에 추가하는 함수.
+
 // 제목을 한번만 붙이기 위한 변수
 let titleCheck = false;
 
+// 4.  categoryConversion 어떤 카테고리인지 한글로 변환하고 제목에 추가하는 함수.
 function categoryConversion(categoryData) {
     // 제목을 한번만 붙이기 위한 변수
     if (categoryData.toString() === "productivity" && titleCheck === false) {
@@ -208,23 +209,6 @@ function loader() {
 
 }
 
-// 비동기 작업 구현하기 promise
-//
-// function async1 () {
-//     console.log("처음으로 실행합니다.");
-//     return Promise.resolve();
-// }
-// function async2 () {
-//     console.log("두번째 실행");
-//     return Promise.resolve();
-// }
-// function async3 () {
-//     console.log("세번째 실행 ");
-//     return Promise.resolve();
-// }
-//
-// async1()
-//     .then(async2)
-//     .then(async3);
+
 
 
