@@ -2,14 +2,12 @@
 
 // <--- 함수 리스트 --->
 // 1. getToken 토근 가져오는 함수
-// 2. setCookie 쿠키 생성 함수
-// 3. getCookie 쿠키 가져오기 함수
-// 4. writinglist 글 상세 내용 불러오는 함수
-// 5. categoryList 카테고리 목록 불어오는 함수
-// 6. categoryCheck카테고리 선택시 해당 카테고리로 이동하는 함수
-// 7. ajax로 데이터를 가져오고 페이지 갱신없이 주소 변경하는 함수.
-// 8. 다음 페이지에 데이터 넘기는 함수.
-// 9. 상세페이지에 데이터 넘기는 함수.
+// 2. writinglist 글 상세 내용 불러오는 함수
+// 3. categoryList 카테고리 목록 불어오는 함수
+// 4. categoryCheck카테고리 선택시 해당 카테고리로 이동하는 함수
+// 5. ajax로 데이터를 가져오고 페이지 갱신없이 주소 변경하는 함수.
+// 6. 다음 페이지에 데이터 넘기는 함수.
+// 7. 상세페이지에 데이터 넘기는 함수.
 
 
 // 1. 토근 가져오는 함수
@@ -40,32 +38,7 @@ function getToken(callback) {
 }
 
 
-// 2. 쿠키 생성 함수
-function setCookie(cName, cValue, cDay) {
-    let expire = new Date();
-    expire.setDate(expire.getDate() + cDay);
-    let cookies = cName + '=' + escape(cValue) + '; path=/ '; // 한글 깨짐을 막기위해 escape(cValue)를 합니다.
-    if (typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
-    document.cookie = cookies;
-}
-
-// 3. 쿠키 가져오기 함수
-function getCookie(cName) {
-    cName = cName + '=';
-    let cookieData = document.cookie;
-    let start = cookieData.indexOf(cName);
-    let cValue = '';
-    if (start !== -1) {
-        start += cName.length;
-        let end = cookieData.indexOf(';', start);
-        if (end === -1) end = cookieData.length;
-        cValue = cookieData.substring(start, end);
-    }
-    return unescape(cValue);
-}
-
-
-// 4. 글 상세 내용 불러오는 함수
+// 2. 글 상세 내용 불러오는 함수
 function writinglist() {
 
     $.ajax({
@@ -127,7 +100,7 @@ function writinglist() {
 }
 
 
-// 5. categoryList 카테고리 목록 불어오는 함수
+// 3. categoryList 카테고리 목록 불어오는 함수
 function categoryList() {
 
     const categoryNumber = location.href.substr(
@@ -214,7 +187,7 @@ function categoryList() {
 }
 
 
-// 6. 카테고리 선택시 해당 카테고리로 이동하는 함수
+// 4. 카테고리 선택시 해당 카테고리로 이동하는 함수
 function categoryCheck(category) {
     let categoryData = category.id;
     console.log(categoryData);
@@ -224,27 +197,8 @@ function categoryCheck(category) {
     window.location.replace("./category_page.html");
 }
 
-// 7. ajax로 데이터를 가져오고 페이지 갱신없이 주소 변경하는 함수.
-function f() {
 
-// $(document).ready(function () {
-    const state = {'page_id': 1, 'user_id': 5};
-
-//브라우저가 지원하는 경우
-    if (typeof (history.pushState) != "undefined") {
-        history.pushState(state, "title", "/");
-    } else {
-        //브라우저가 지원하지 않는 경우 페이지 이동처리
-        location.href = url;
-    }
-
-    console.log(history.state);
-
-}
-
-// });
-
-// 8. 카테고리 페이지에 데이터 넘기는 함수.
+// 5. 카테고리 페이지에 데이터 넘기는 함수.
 function nextPageData(category) {
     let categoryData = category.id;
     //데이터 넘기는지 확인용도
@@ -253,7 +207,7 @@ function nextPageData(category) {
 
 }
 
-// 9. 상세페이지에 데이터 넘기는 함수.
+// 6. 상세페이지에 데이터 넘기는 함수.
 function detailPage(page) {
     let detailPage = page.id;
     console.log(detailPage);
@@ -261,7 +215,7 @@ function detailPage(page) {
     window.location.href = `./details_page.html?index=${detailPage}`;
 }
 
-// 9. substr 가져오는 함수
+// 7. url데이터  가져오는 함수
 $(document).ready(function () {
     const categoryNumber = location.href.substr(
         location.href.lastIndexOf('=') + 1
