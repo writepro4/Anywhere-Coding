@@ -12,6 +12,8 @@
 // 11. deleteAdminComments 관리자 댓글 삭제 함수.
 
 //TODO 대댓글, 댓글 추가,불러오기, 수정,삭제에서 uid 전달 해야됨 -> 로그인 기능 구현되면
+//TODO 페이징 구현 해야됨.
+//TODO 관리자 댓글 처리 해야됨.
 
 
 // 1. 댓글 작성 함수.
@@ -692,20 +694,14 @@ function editComments(largeCommentNumber) {
 // 11. deleteAdminComments 관리자 댓글 삭제 함수.
 function deleteAdminComments(adminCommentNumber) {
 
-    // 대댓글 삭제
-// (DELETE [reply]) https://honeytip.p-e.kr/reply/{대댓글 번호}
-//     클라이언트 : x
-// 백엔드 : true/false (edited) (edited)
-
-    const deleteIdData = deleteId.id;
-
+    const deleteID = adminCommentNumber.id;
 
     let form = new FormData();
     form.append("_method", "DELETE");
 
     $.ajax({
         type: 'post'
-        , url: `https://honeytip.p-e.kr/comments/${deleteIdData}`
+        , url: `https://honeytip.p-e.kr/reply/${deleteID}`
         , data: form
         , processData: false
         , contentType: false
@@ -717,10 +713,9 @@ function deleteAdminComments(adminCommentNumber) {
             let parseData = JSON.parse(data);
             let keyCheck = parseData.key;
 
-            // true/false 둘 중 하나를 반환한다.
             console.log("댓글 삭제 성공여부입니다.: " + keyCheck);
 
-            document.getElementById(deleteIdData).remove();
+            // document.getElementById(deleteIdData).remove();
 
 
         }
