@@ -452,20 +452,27 @@ function editCommentWindow(crystalID) {
 
 
 // 8. largeComment 대댓글 작성 함수
-function largeComment() {
+function largeComment(commentID) {
+
+    // 대댓글 작성 번호
+    const editCommentID = commentID.id;
+    console.log(editCommentID);
+
+    const comment = $(`#formreply`).val();
+    console.log("입력된 데이터 값 : " + comment);
+
     const postNum = getArticleNumber();
     const categoryUrl = categoryImport();
 
     console.log("글번호: " + postNum);
     console.log("카테고리 번호 : " + categoryUrl);
 
-    const comment = $('#replyForm').val();
     console.log(comment);
-    const userName = "민차뉘";
+    const userName = "안준바미";
 
     let commentData = {
-        'category': categoryUrl, //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
-        'comment': comment,
+        'indexReply' : editCommentID,
+        'reply': comment,
         'userName': userName,
         'postNum': postNum
     };
@@ -488,27 +495,27 @@ function largeComment() {
             // true/false 둘 중 하나를 반환한다.
             console.log("댓글 작성 성공여부입니다.: " + keyCheck);
 
-            let chatData = `<div class="comments">`;
-            chatData += `<div class="comment">`;
-            chatData += `<a class="avatar">`;
-            chatData += `<img src="/images/avatar/small/jenny.jpg">`;
-            chatData += `</a>`;
-            chatData += `<div class="content">`;
-            chatData += `<a class="author">Jenny Hess</a>`;
-            chatData += `<div class="metadata">`;
-            chatData += `<span class="date">Just now</span>`;
-            chatData += `</div>`;
-            chatData += `<div class="text">`;
-            chatData += `Elliot you are always so right :)`;
-            chatData += `</div>`;
-            chatData += `<div class="actions">`;
-            chatData += `<a class="reply">Reply</a>`;
-            chatData += `</div>`;
-            chatData += `</div>`;
-            chatData += `</div>`;
-            chatData += `</div>`;
-
-            $('#comments').append(chatData);
+            // let chatData = `<div class="comments">`;
+            // chatData += `<div class="comment">`;
+            // chatData += `<a class="avatar">`;
+            // chatData += `<img src="/images/avatar/small/jenny.jpg">`;
+            // chatData += `</a>`;
+            // chatData += `<div class="content">`;
+            // chatData += `<a class="author">Jenny Hess</a>`;
+            // chatData += `<div class="metadata">`;
+            // chatData += `<span class="date">Just now</span>`;
+            // chatData += `</div>`;
+            // chatData += `<div class="text">`;
+            // chatData += `Elliot you are always so right :)`;
+            // chatData += `</div>`;
+            // chatData += `<div class="actions">`;
+            // chatData += `<a class="reply">Reply</a>`;
+            // chatData += `</div>`;
+            // chatData += `</div>`;
+            // chatData += `</div>`;
+            // chatData += `</div>`;
+            //
+            // $('#comments').append(chatData);
 
 
         }
@@ -557,7 +564,7 @@ function aLargeCommentWindow(crystalID) {
     formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
     formData += `</div>`;
     formData += `<div class="ui red labeled submit icon button" onclick="largeComment(this)" id=${editCommentID}>`;
-    formData += `<i class="icon edit"></i> 대댓글 작성`;
+    formData += `<i class="icon edit"></i> 대댓글`;
     formData += `</div>`;
     formData += `</form>`;
 
