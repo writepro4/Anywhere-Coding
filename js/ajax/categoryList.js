@@ -5,8 +5,9 @@
 // 5. 인피니티 스크롤 페이징 로딩 처리 함수.
 // 6. deleteLoader 로딩바 삭제하는 함수.
 
-//TODO 인피니티 스크롤 로딩바 구현해야됨.
 
+// 인피니티 스크롤 마지막문단 체크 변수
+let lastParagraph = false;
 
 // 1. categoryListRequest 카테고리 목록 불어오는 함수
 function categoryListRequest(pageing) {
@@ -31,7 +32,7 @@ function categoryListRequest(pageing) {
 
             //json 파싱하기
             let parseData = JSON.parse(data);
-            console.log("데이터 파싱전: " + data);
+            // console.log("데이터 파싱전: " + data);
             let keyCheck = parseData.key;
 
             if (keyCheck === true) {
@@ -39,11 +40,11 @@ function categoryListRequest(pageing) {
 
                 let postInfoData = parseData.contents;
 
-                console.log("받아온 데이터 목록 : " + postInfoData);
+                // console.log("받아온 데이터 목록 : " + postInfoData);
 
                 let postingListData = postInfoData.length;
 
-                console.log("객체 상태 보기 : " + postInfoData);
+                // console.log("객체 상태 보기 : " + postInfoData);
 
 
                 for (let i = 0; i < postingListData; i++) {
@@ -87,15 +88,20 @@ function categoryListRequest(pageing) {
 
 
                     $('#iterate').append(categoryitem);
-
-
                 }
+
+                deleteLoader();
 
 
                 // 받아온 값이 false경우 빈페이지를 띄워줌
             } else if (pageNumber > 1) {
+                deleteLoader();
+                //마지막문단인걸 체크하기 위해 lastParagraph를 true로 변경한다.
+                lastParagraph = true;
                 console.log("마지막 문단 입니다.");
 
+            } else if (keyCheck === false) {
+                deleteLoader();
             } else {
 
                 let blankPageData = '<div class="ui placeholder segment">';
@@ -155,9 +161,9 @@ $(document).ready(function () {
     // ajax로 불러올 데이터 함수 먼저 실행
     categoryListRequest(page);
     $(window).scroll(function () {
-        console.log("마우스 높이 : " + Math.ceil($(window).scrollTop()));
-        console.log("문서 높이 : " + parseInt($(document).height() - $(window).height()));
-        if (Math.ceil($(window).scrollTop()) === $(document).height() - $(window).height()) {
+        // console.log("마우스 높이 : " + Math.ceil($(window).scrollTop()));
+        // console.log("문서 높이 : " + parseInt($(document).height() - $(window).height()));
+        if (Math.ceil($(window).scrollTop()) === $(document).height() - $(window).height() && lastParagraph === false) {
             // 스크롤 위치가 문서 하단에 위치할경우 원하는 함수 호출
             page++;
             console.log("호출한 번호 : " + page);
@@ -221,13 +227,13 @@ function loader() {
 
 // 6. deleteLoader 로딩바 삭제하는 함수.
 function deleteLoader() {
-    if (loaderCheck === true) {
-        loaderCheck = false;
-        console.log("로더 삭제");
-        $('#iterate').remove();
-    } else {
-        console.log("로더 삭제됨..");
-    }
+    // if (loaderCheck === true) {
+    loaderCheck = false;
+    console.log("로더 삭제");
+    $('#loader').remove();
+    // } else {
+    //     console.log("로더 삭제됨..");
+    // }
 
 }
 
