@@ -5,17 +5,16 @@
 // 2. adminLogin 관리자로그인 데이터 전송 함수
 // 3. login 관리자로그인 요청 함수 (1,2번 함수를 같이 실행한다.)
 // 4. imageUpload 글 등록 함수
-//ㄴ> 이미지 업로드가 먼저 실행되고 서버로부터 이미지 url 주소를 반환받으면,
-//ㄴ> 그 다음에 썸머노트에 작성한 내용을 가져오는 아래의 postForm함수를 실행시키고, 정보를 종합해 서버에 보내줌.
 // 5. setCookie 쿠키 생성 함수
 // 6. getCookie 쿠키 가져오기 함수
 // 7. postForm 썸머노트 내용 가져오는 함수
 // 8. writinglist 글 상세 내용 불러오는 함수
 // 9. writingDelete 글 삭제 시키는 함수
-// 10. categoryList 카테고리 목록 불어오는 함수
-// 11. writingFix 관리자 글 수정 함수
-// 12. preview 관리자 글 등록시 미리보기 기능 함수
-// 13. getArticleList 카테고리 목록 리스트 가져오는 함수
+// 10. writingFix 관리자 글 수정 함수
+// 11. preview 관리자 글 등록시 미리보기 기능 함수
+// 12. getArticleList 카테고리 목록 리스트 가져오는 함수
+
+//TODO 관리자 카테고리 불러오기, 관리자 글 작성 미리보기, 관리자 글 수정하기 작업해야됨
 
 
 // 1. 토근 가져오는 함수
@@ -122,6 +121,9 @@ function login() {
 }
 
 // 4. 글 등록 함수
+
+//이미지 업로드가 먼저 실행되고 서버로부터 이미지 url 주소를 반환받으면,
+//그 다음에 썸머노트에 작성한 내용을 가져오는 아래의 postForm함수를 실행시키고, 정보를 종합해 서버에 보내줌.
 function imageUpload() {
     //누르자마자 썸머노트 내용 저장
     let summer = postForm();
@@ -347,89 +349,8 @@ function writingDelete(idData) {
     });
 }
 
-// 10. categoryList 카테고리 목록 불어오는 함수
-function categoryList() {
 
-    $.ajax({
-        type: 'get'
-        , url: 'https://honeytip.p-e.kr/posts/0/1'
-        , xhrFields: {
-            withCredentials: false
-        }
-        , success: function (data) {
-
-            //json 파싱하기
-            let parseData = JSON.parse(data);
-            console.log("데이터 파싱전: " + data);
-            let keyCheck = parseData.key;
-            console.log("데이터 성공여부 : " + keyCheck);
-
-            let postInfoData = parseData.contents;
-
-            let postingListData = postInfoData.length;
-
-            console.log("받아온 데이터 확인: " + postingListData);
-
-            for (let i = 0; i < postingListData; i++) {
-
-
-                let title = postInfoData[i].title;
-                let titleImage = postInfoData[i].image;
-                let subTitle = postInfoData[i].sub_title;
-                let indexPosts = postInfoData[i].index_posts;
-                let adminId = postInfoData[i].admin_id;
-                let contents = postInfoData[i].contents;
-                let viewCount = postInfoData[i].view_count;
-                let category = postInfoData[i].category;
-                let date = postInfoData[i].date;
-
-                console.log("제목" + title);
-                console.log("날짜" + date);
-                console.log("타이틀 이미지" + titleImage);
-                console.log("글 아이디" + indexPosts);
-                console.log("관리자 아이디" + adminId);
-                console.log("글 내용" + contents);
-                console.log("조회수" + viewCount);
-                console.log("카테고리 종류" + category);
-                console.log("서브 제목" + subTitle);
-
-            }
-
-        }
-        //에러 종류 조건문으로 걸러내기
-        , error: function (jqXHR, exception) {
-
-            if (jqXHR.status === 0) {
-                alert('Not connect.\n Verify Network.');
-            } else if (jqXHR.status === 400) {
-                alert('Server understood the request, but request content was invalid. [400]');
-            } else if (jqXHR.status === 401) {
-                alert('Unauthorized access. [401]');
-            } else if (jqXHR.status === 403) {
-                alert('Forbidden resource can not be accessed. [403]');
-            } else if (jqXHR.status === 404) {
-                alert('Requested page not found. [404]');
-            } else if (jqXHR.status === 500) {
-                alert('Internal server error. [500]');
-            } else if (jqXHR.status === 503) {
-                alert('Service unavailable. [503]');
-            } else if (exception === 'parsererror') {
-                alert('Requested JSON parse failed. [Failed]');
-            } else if (exception === 'timeout') {
-                alert('Time out error. [Timeout]');
-            } else if (exception === 'abort') {
-                alert('Ajax request aborted. [Aborted]');
-            } else {
-                alert('Uncaught Error.n');
-            }
-            console.log("상태: " + status);
-            console.log("실패");
-        }
-    });
-}
-
-
-// 11. writingFix 관리자 글 수정 함수
+// 10. writingFix 관리자 글 수정 함수
 function writingFix(fixItem) {
 
     const fixItemNumber = fixItem.id;
@@ -494,13 +415,13 @@ function writingFix(fixItem) {
     });
 }
 
-// 12. preview 관리자 글 등록시 미리보기 기능 함수
+// 11. preview 관리자 글 등록시 미리보기 기능 함수
 function preview() {
     //테스트 깃허브
 
 }
 
-// 13. 카테고리 목록 리스트 가져오는 함수
+// 12. 카테고리 목록 리스트 가져오는 함수
 function getArticleList() {
 
     const categoryData = $('#seleteData').val();
