@@ -470,11 +470,12 @@ function largeComment(commentID) {
     console.log(comment);
     const userName = "안준바미";
 
+
     let commentData = {
-        'indexReply' : editCommentID,
+        'indexComment' : editCommentID,
+        'postNum': postNum,
         'reply': comment,
-        'userName': userName,
-        'postNum': postNum
+        'userName': userName
     };
 
 
