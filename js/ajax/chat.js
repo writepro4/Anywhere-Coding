@@ -3,12 +3,13 @@
 // 2. editComment 댓글수정 함수
 // 3. deleteComment 댓글삭제 함수
 // 4. loadingComments 댓글목록 불러오는 함수
-// 5. 글번호 가져오는 함수
-// 6. 카테고리 가져오는 함수
-// 7. 댓글수정 창 호출하는 함수
-// 8. largeComment 대댓글 작성 함수
-// 9. aLargeCommentWindow 대댓글 창 호출 함수.
-// 10. editComments 대댓글 수정 함수.
+// 5. getArticleNumber 글번호 가져오는 함수
+// 6. categoryImport 카테고리 가져오는 함수
+// 7. editCommentWindow 댓글수정 창 호출하는 함수
+// 8. largeComment 관리자 댓글 작성 함수
+// 9. aLargeCommentWindow 관리자 댓글 창 호출 함수.
+// 10. editComments 관리자 댓글 수정 함수.
+// 11. deleteAdminComments 관리자 댓글 삭제 함수.
 
 //TODO 대댓글, 댓글 추가,불러오기, 수정,삭제에서 uid 전달 해야됨 -> 로그인 기능 구현되면
 
@@ -242,6 +243,9 @@ function deleteComment(deleteId) {
 // 댓글창이 열려 있는지 확인하는 변수
 let commentWindowCheck = false;
 
+
+//TODO 대댓글까지 같이 출력해줘야 함
+
 // 4. loadingComments 댓글목록 불러오는 함수
 function loadingComments() {
 
@@ -263,6 +267,28 @@ function loadingComments() {
             //json 파싱하기
             let parseData = JSON.parse(data);
             let keyCheck = parseData.key;
+
+            // let adminComments = `<div class="comments">`;
+            // adminComments += `<div class="comment">`;
+            // adminComments += `<a class="avatar">`;
+            // adminComments += `<img src="/images/plant.jpg">`;
+            // adminComments += `</a>`;
+            // adminComments += `<div class="content">`;
+            // adminComments += `<a class="author">${userName}</a>`;
+            // adminComments += `<div class="metadata">`;
+            // // adminComments += `<span class="date">Just now</span>`;
+            // adminComments += `</div>`;
+            // adminComments += `<div class="text">`;
+            // adminComments += `${comment}`;
+            // adminComments += `</div>`;
+            // adminComments += `<div class="actions">`;
+            // adminComments += `<a class="reply">Reply</a>`;
+            // adminComments += `</div>`;
+            // adminComments += `</div>`;
+            // adminComments += `</div>`;
+            // adminComments += `</div>`;
+            //
+            // $('#addAdminComments').append(adminComments);
 
 
             // 받아온 값이 true일 경우엔 댓글목록을 같이 생성
@@ -454,7 +480,7 @@ function editCommentWindow(crystalID) {
 }
 
 
-// 8. largeComment 대댓글 작성 함수
+// 8. largeComment 관리자 댓글 작성 함수
 function largeComment(commentID) {
 
     // 대댓글 작성 번호
@@ -564,7 +590,7 @@ function largeComment(commentID) {
 
 }
 
-// 9. aLargeCommentWindow 대댓글 창 호출 함수.
+// 9. aLargeCommentWindow 관리자 댓글 창 호출 함수.
 function aLargeCommentWindow(crystalID) {
 
     // 수정할 글 번호
@@ -585,7 +611,7 @@ function aLargeCommentWindow(crystalID) {
 }
 
 
-// 10. editComments 대댓글 수정 함수
+// 10. editComments 관리자 댓글 수정 함수
 function editComments(largeCommentNumber) {
 
     // 대댓글 수정(일부 수정)
@@ -663,14 +689,75 @@ function editComments(largeCommentNumber) {
 
 }
 
-// 대댓글 수정하기위해 작성했던 대댓글 내용가져오기 (edit)
-// (get) https://honeytip.p-e.kr/reply/{대댓글 번호}/edit
-//     클라이언트 : x
-// 백엔드 : 대댓글 reply
-// 대댓글 삭제
+// 11. deleteAdminComments 관리자 댓글 삭제 함수.
+function deleteAdminComments(adminCommentNumber) {
+
+    // 대댓글 삭제
 // (DELETE [reply]) https://honeytip.p-e.kr/reply/{대댓글 번호}
 //     클라이언트 : x
 // 백엔드 : true/false (edited) (edited)
+
+    const deleteIdData = deleteId.id;
+
+
+    let form = new FormData();
+    form.append("_method", "DELETE");
+
+    $.ajax({
+        type: 'post'
+        , url: `https://honeytip.p-e.kr/comments/${deleteIdData}`
+        , data: form
+        , processData: false
+        , contentType: false
+        , xhrFields: {
+            withCredentials: false
+        }
+        , success: function (data) {
+            //json 파싱하기
+            let parseData = JSON.parse(data);
+            let keyCheck = parseData.key;
+
+            // true/false 둘 중 하나를 반환한다.
+            console.log("댓글 삭제 성공여부입니다.: " + keyCheck);
+
+            document.getElementById(deleteIdData).remove();
+
+
+        }
+        //에러 종류 조건문으로 걸러내기
+        , error: function (jqXHR, exception) {
+
+            if (jqXHR.status === 0) {
+                alert('Not connect.\n Verify Network.');
+            } else if (jqXHR.status === 400) {
+                alert('Server understood the request, but request content was invalid. [400]');
+            } else if (jqXHR.status === 401) {
+                alert('Unauthorized access. [401]');
+            } else if (jqXHR.status === 403) {
+                alert('Forbidden resource can not be accessed. [403]');
+            } else if (jqXHR.status === 404) {
+                alert('Requested page not found. [404]');
+            } else if (jqXHR.status === 500) {
+                alert('Internal server error. [500]');
+            } else if (jqXHR.status === 503) {
+                alert('Service unavailable. [503]');
+            } else if (exception === 'parsererror') {
+                alert('Requested JSON parse failed. [Failed]');
+            } else if (exception === 'timeout') {
+                alert('Time out error. [Timeout]');
+            } else if (exception === 'abort') {
+                alert('Ajax request aborted. [Aborted]');
+            } else {
+                alert('Uncaught Error.n');
+            }
+            console.log("상태: " + status);
+            console.log("실패");
+        }
+    });
+
+
+}
+
 
 
 
