@@ -10,6 +10,8 @@
 // 9. aLargeCommentWindow 대댓글 창 호출 함수.
 // 10. editComments 대댓글 수정 함수.
 
+//TODO 대댓글, 댓글 추가,불러오기, 수정,삭제에서 uid 전달 해야됨 -> 로그인 기능 구현되면
+
 
 // 1. 댓글 작성 함수.
 function writeAComment() {
@@ -310,7 +312,7 @@ function loadingComments() {
                     chatData += `<a class="avatar">`;
                     chatData += `<img src="images/plant.jpg" alt="image">`;
                     chatData += `</a>`;
-                    chatData += `<div class="content">`;
+                    chatData += `<div class="content" id="addAdminComments">`;
                     chatData += `<a class="author">${userName}</a>`;
                     chatData += `<div class="text" id="text${indexComments}">`;
                     chatData += `${comment}`;
@@ -469,12 +471,12 @@ function largeComment(commentID) {
     console.log("카테고리 번호 : " + categoryUrl);
 
     console.log(comment);
-    const userName = "안준바미";
+    const userName = "관리자 입니다.";
 
-    console.log("indexComment: "+editCommentID);
-    console.log("postNum: "+postNum);
-    console.log("reply: "+comment);
-    console.log("userName: "+userName);
+    console.log("indexComment: " + editCommentID);
+    console.log("postNum: " + postNum);
+    console.log("reply: " + comment);
+    console.log("userName: " + userName);
 
     // 댓글 인덱스 indexComment, 댓글 reply, 유저 이름 userName  , 글 번호 postNum
 
@@ -504,27 +506,27 @@ function largeComment(commentID) {
             // true/false 둘 중 하나를 반환한다.
             console.log("댓글 작성 성공여부입니다.: " + keyCheck);
 
-            // let chatData = `<div class="comments">`;
-            // chatData += `<div class="comment">`;
-            // chatData += `<a class="avatar">`;
-            // chatData += `<img src="/images/avatar/small/jenny.jpg">`;
-            // chatData += `</a>`;
-            // chatData += `<div class="content">`;
-            // chatData += `<a class="author">Jenny Hess</a>`;
-            // chatData += `<div class="metadata">`;
-            // chatData += `<span class="date">Just now</span>`;
-            // chatData += `</div>`;
-            // chatData += `<div class="text">`;
-            // chatData += `Elliot you are always so right :)`;
-            // chatData += `</div>`;
-            // chatData += `<div class="actions">`;
-            // chatData += `<a class="reply">Reply</a>`;
-            // chatData += `</div>`;
-            // chatData += `</div>`;
-            // chatData += `</div>`;
-            // chatData += `</div>`;
-            //
-            // $('#comments').append(chatData);
+            let adminComments = `<div class="comments">`;
+            adminComments += `<div class="comment">`;
+            adminComments += `<a class="avatar">`;
+            adminComments += `<img src="/images/plant.jpg">`;
+            adminComments += `</a>`;
+            adminComments += `<div class="content">`;
+            adminComments += `<a class="author">${userName}</a>`;
+            adminComments += `<div class="metadata">`;
+            // adminComments += `<span class="date">Just now</span>`;
+            adminComments += `</div>`;
+            adminComments += `<div class="text">`;
+            adminComments += `${comment}`;
+            adminComments += `</div>`;
+            adminComments += `<div class="actions">`;
+            adminComments += `<a class="reply">Reply</a>`;
+            adminComments += `</div>`;
+            adminComments += `</div>`;
+            adminComments += `</div>`;
+            adminComments += `</div>`;
+
+            $('#addAdminComments').append(adminComments);
 
 
         }
