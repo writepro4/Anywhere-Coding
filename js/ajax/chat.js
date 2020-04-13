@@ -8,6 +8,7 @@
 // 7. 댓글수정 창 호출하는 함수
 // 8. largeComment 대댓글 작성 함수
 // 9. aLargeCommentWindow 대댓글 창 호출 함수.
+// 10. editComments 대댓글 수정 함수.
 
 
 // 1. 댓글 작성 함수.
@@ -317,7 +318,7 @@ function loadingComments() {
                     chatData += `<div class="actions">`;
                     chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
                     chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
-                    chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>대댓글</a>`;
+                    chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>관리자 댓글</a>`;
                     chatData += `</div>`;
                     chatData += `</div>`;
                     chatData += `</div>`;
@@ -470,9 +471,16 @@ function largeComment(commentID) {
     console.log(comment);
     const userName = "안준바미";
 
+    console.log("indexComment: "+editCommentID);
+    console.log("postNum: "+postNum);
+    console.log("reply: "+comment);
+    console.log("userName: "+userName);
+
+    // 댓글 인덱스 indexComment, 댓글 reply, 유저 이름 userName  , 글 번호 postNum
+
 
     let commentData = {
-        'indexComment' : editCommentID,
+        'indexComment': editCommentID,
         'postNum': postNum,
         'reply': comment,
         'userName': userName
@@ -481,7 +489,7 @@ function largeComment(commentID) {
 
     $.ajax({
         type: 'post'
-        , url: 'https://honeytip.p-e.kr/comments'
+        , url: 'https://honeytip.p-e.kr/reply'
         , data: commentData
         , xhrFields: {
             withCredentials: false
@@ -565,7 +573,7 @@ function aLargeCommentWindow(crystalID) {
     formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
     formData += `</div>`;
     formData += `<div class="ui red labeled submit icon button" onclick="largeComment(this)" id=${editCommentID}>`;
-    formData += `<i class="icon edit"></i> 대댓글`;
+    formData += `<i class="icon edit"></i> 관리자 댓글`;
     formData += `</div>`;
     formData += `</form>`;
 
@@ -573,6 +581,94 @@ function aLargeCommentWindow(crystalID) {
 
 
 }
+
+
+// 10. editComments 대댓글 수정 함수
+function editComments(largeCommentNumber) {
+
+    // 대댓글 수정(일부 수정)
+// (PUT [reply]) https://honeytip.p-e.kr/reply/{대댓글 번호}
+//     클라이언트 : 대댓글 내용 reply
+// 백엔드 : true (트루 폴스 확인 불가능 추후 더 알아보고 수정하겠음)
+
+    // 입력 폼 변경해야함.
+
+    // 수정할 글 번호
+    const editCommentID = largeCommentNumber.id;
+    console.log(editCommentID);
+
+    const comment = $(`#formreply`).val();
+    console.log("입력된 데이터 값 : " + comment);
+
+    let form = new FormData();
+    form.append("_method", "PATCH");
+    form.append("reply", comment);
+
+    $.ajax({
+        type: 'post'
+        , url: `https://honeytip.p-e.kr/reply/${editCommentID}`
+        , data: form
+        , processData: false
+        , contentType: false
+        , xhrFields: {
+            withCredentials: false
+        }
+        , success: function (data) {
+            //json 파싱하기
+            let parseData = JSON.parse(data);
+            let keyCheck = parseData.key;
+
+            // true/false 둘 중 하나를 반환한다.
+            console.log("댓글 수정 성공여부입니다.: " + keyCheck);
+
+            // 수정창 삭제
+            document.getElementById(`crystalWindow`).remove();
+
+            $(`#text${editCommentID}`).text(comment);
+
+
+        }
+        //에러 종류 조건문으로 걸러내기
+        , error: function (jqXHR, exception) {
+
+            if (jqXHR.status === 0) {
+                alert('Not connect.\n Verify Network.');
+            } else if (jqXHR.status === 400) {
+                alert('Server understood the request, but request content was invalid. [400]');
+            } else if (jqXHR.status === 401) {
+                alert('Unauthorized access. [401]');
+            } else if (jqXHR.status === 403) {
+                alert('Forbidden resource can not be accessed. [403]');
+            } else if (jqXHR.status === 404) {
+                alert('Requested page not found. [404]');
+            } else if (jqXHR.status === 500) {
+                alert('Internal server error. [500]');
+            } else if (jqXHR.status === 503) {
+                alert('Service unavailable. [503]');
+            } else if (exception === 'parsererror') {
+                alert('Requested JSON parse failed. [Failed]');
+            } else if (exception === 'timeout') {
+                alert('Time out error. [Timeout]');
+            } else if (exception === 'abort') {
+                alert('Ajax request aborted. [Aborted]');
+            } else {
+                alert('Uncaught Error.n');
+            }
+            console.log("상태: " + status);
+            console.log("실패");
+        }
+    });
+
+}
+
+// 대댓글 수정하기위해 작성했던 대댓글 내용가져오기 (edit)
+// (get) https://honeytip.p-e.kr/reply/{대댓글 번호}/edit
+//     클라이언트 : x
+// 백엔드 : 대댓글 reply
+// 대댓글 삭제
+// (DELETE [reply]) https://honeytip.p-e.kr/reply/{대댓글 번호}
+//     클라이언트 : x
+// 백엔드 : true/false (edited) (edited)
 
 
 
