@@ -1,8 +1,9 @@
 // 1. categoryListRequest 카테고리 목록 불어오는 함수
 // 2. 인피니티 스크롤 함수 .
 // 3. categoryURL 카테고리 번호 가져오는 함수
-// 4.  categoryConversion 어떤 카테고리인지 한글로 변환하고 제목에 추가하는 함수.
+// 4. categoryConversion 어떤 카테고리인지 한글로 변환하고 제목에 추가하는 함수.
 // 5. 인피니티 스크롤 페이징 로딩 처리 함수.
+// 6. deleteLoader 로딩바 삭제하는 함수.
 
 //TODO 인피니티 스크롤 로딩바 구현해야됨.
 
@@ -160,6 +161,7 @@ $(document).ready(function () {
             // 스크롤 위치가 문서 하단에 위치할경우 원하는 함수 호출
             page++;
             console.log("호출한 번호 : " + page);
+            loader();
             categoryListRequest(page);
         }
     });
@@ -195,17 +197,37 @@ function categoryConversion(categoryData) {
         titleCheck = true;
         let categoryTitle = `<br>`;
         categoryTitle += `<h1 class="ui header center aligned">독해력</h1>`;
-
         $('#categoryTitle').append(categoryTitle);
     }
 
 }
 
 
-// 5. 인피니티 스크롤 페이징 로딩 처리 함수
+// 로딩바 돌아가는지 확인용 변수.
+let loaderCheck = false;
+
+// 5. loader 인피니티 스크롤 페이징 로딩 처리 함수
 function loader() {
-    let loader = `<div class="ui active centered inline loader" id="loader"></div>`;
-    $('#iterate').append(loader);
+    if (loaderCheck === false) {
+        loaderCheck = true;
+        console.log("로더 돌아가는중....");
+        let loader = `<div class="ui active centered inline loader" id="loader"></div>`;
+        $('#iterate').append(loader);
+    } else {
+        console.log("이미 실행중...");
+    }
+
+}
+
+// 6. deleteLoader 로딩바 삭제하는 함수.
+function deleteLoader() {
+    if (loaderCheck === true) {
+        loaderCheck = false;
+        console.log("로더 삭제");
+        $('#iterate').remove();
+    } else {
+        console.log("로더 삭제됨..");
+    }
 
 }
 
