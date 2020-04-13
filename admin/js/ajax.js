@@ -5,14 +5,12 @@
 // 2. adminLogin 관리자로그인 데이터 전송 함수
 // 3. login 관리자로그인 요청 함수 (1,2번 함수를 같이 실행한다.)
 // 4. imageUpload 글 등록 함수
-// 5. setCookie 쿠키 생성 함수
-// 6. getCookie 쿠키 가져오기 함수
-// 7. postForm 썸머노트 내용 가져오는 함수
-// 8. writinglist 글 상세 내용 불러오는 함수
-// 9. writingDelete 글 삭제 시키는 함수
-// 10. writingFix 관리자 글 수정 함수
-// 11. preview 관리자 글 등록시 미리보기 기능 함수
-// 12. getArticleList 카테고리 목록 리스트 가져오는 함수
+// 5. postForm 썸머노트 내용 가져오는 함수
+// 6. writinglist 글 상세 내용 불러오는 함수
+// 7. writingDelete 글 삭제 시키는 함수
+// 8. writingFix 관리자 글 수정 함수
+// 9. preview 관리자 글 등록시 미리보기 기능 함수
+// 10. getArticleList 카테고리 목록 리스트 가져오는 함수
 
 //TODO 관리자 카테고리 불러오기, 관리자 글 작성 미리보기, 관리자 글 수정하기 작업해야됨
 
@@ -197,32 +195,7 @@ function imageUpload() {
     }
 }
 
-// 5. 쿠키 생성 함수
-function setCookie(cName, cValue, cDay) {
-    let expire = new Date();
-    expire.setDate(expire.getDate() + cDay);
-    let cookies = cName + '=' + escape(cValue) + '; path=/ '; // 한글 깨짐을 막기위해 escape(cValue)를 합니다.
-    if (typeof cDay != 'undefined') cookies += ';expires=' + expire.toGMTString() + ';';
-    document.cookie = cookies;
-}
-
-// 6. 쿠키 가져오기 함수
-function getCookie(cName) {
-    cName = cName + '=';
-    let cookieData = document.cookie;
-    let start = cookieData.indexOf(cName);
-    let cValue = '';
-    if (start !== -1) {
-        start += cName.length;
-        let end = cookieData.indexOf(';', start);
-        if (end === -1) end = cookieData.length;
-        cValue = cookieData.substring(start, end);
-    }
-    return unescape(cValue);
-}
-
-
-// 7. 썸머노트 내용 가져오는 함수
+// 5. 썸머노트 내용 가져오는 함수
 function postForm() {
     let bar = $('textarea[name="content"]').val($('#summernote').summernote('code'));
     console.log(bar.val());
@@ -230,7 +203,7 @@ function postForm() {
 }
 
 
-// 8. 글 상세 내용 불러오는 함수
+// 6. 글 상세 내용 불러오는 함수
 function writinglist() {
 
     $.ajax({
@@ -292,7 +265,7 @@ function writinglist() {
 }
 
 
-// 9. writingDelete 글 삭제 시키는 함수
+// 7. writingDelete 글 삭제 시키는 함수
 function writingDelete(idData) {
 
     const itemNumber = idData.id;
@@ -350,7 +323,7 @@ function writingDelete(idData) {
 }
 
 
-// 10. writingFix 관리자 글 수정 함수
+// 8. writingFix 관리자 글 수정 함수
 function writingFix(fixItem) {
 
     const fixItemNumber = fixItem.id;
@@ -415,13 +388,13 @@ function writingFix(fixItem) {
     });
 }
 
-// 11. preview 관리자 글 등록시 미리보기 기능 함수
+// 9. preview 관리자 글 등록시 미리보기 기능 함수
 function preview() {
     //테스트 깃허브
 
 }
 
-// 12. 카테고리 목록 리스트 가져오는 함수
+// 10. 카테고리 목록 리스트 가져오는 함수
 function getArticleList() {
 
     const categoryData = $('#seleteData').val();
