@@ -7,6 +7,7 @@
 // 6. 카테고리 가져오는 함수
 // 7. 댓글수정 창 호출하는 함수
 // 8. largeComment 대댓글 작성 함수
+// 9. aLargeCommentWindow 대댓글 창 호출 함수.
 
 
 // 1. 댓글 작성 함수.
@@ -316,6 +317,7 @@ function loadingComments() {
                     chatData += `<div class="actions">`;
                     chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
                     chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
+                    chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>대댓글</a>`;
                     chatData += `</div>`;
                     chatData += `</div>`;
                     chatData += `</div>`;
@@ -540,6 +542,26 @@ function largeComment() {
             console.log("실패");
         }
     });
+
+
+}
+
+// 9. aLargeCommentWindow 대댓글 창 호출 함수.
+function aLargeCommentWindow(crystalID) {
+
+    // 수정할 글 번호
+    const editCommentID = crystalID.id;
+
+    let formData = `<form class="ui reply form" id="crystalWindow">`;
+    formData += `<div class="field">`;
+    formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
+    formData += `</div>`;
+    formData += `<div class="ui red labeled submit icon button" onclick="largeComment(this)" id=${editCommentID}>`;
+    formData += `<i class="icon edit"></i> 대댓글 작성`;
+    formData += `</div>`;
+    formData += `</form>`;
+
+    $(`#${editCommentID}`).append(formData);
 
 
 }
