@@ -14,6 +14,7 @@
 //TODO 대댓글, 댓글 추가,불러오기, 수정,삭제에서 uid 전달 해야됨 -> 로그인 기능 구현되면
 //TODO 페이징 구현 해야됨.
 //TODO 관리자 댓글 처리 해야됨.
+//TODO 댓글 작성시에 Enter키 적용되게 수정해야됨.
 
 
 // 1. 댓글 작성 함수.
@@ -251,10 +252,7 @@ let commentWindowCheck = false;
 // 4. loadingComments 댓글목록 불러오는 함수
 function loadingComments() {
 
-
     const postNum = getArticleNumber();
-
-    console.log("댓글번호 보기 : " + postNum);
 
     $('#viewComments').text("댓글 접기");
 
@@ -501,13 +499,6 @@ function largeComment(commentID) {
     console.log(comment);
     const userName = "관리자 입니다.";
 
-    console.log("indexComment: " + editCommentID);
-    console.log("postNum: " + postNum);
-    console.log("reply: " + comment);
-    console.log("userName: " + userName);
-
-    // 댓글 인덱스 indexComment, 댓글 reply, 유저 이름 userName  , 글 번호 postNum
-
 
     let commentData = {
         'indexComment': editCommentID,
@@ -611,7 +602,6 @@ function aLargeCommentWindow(crystalID) {
 
 
 }
-
 
 // 10. editComments 관리자 댓글 수정 함수
 function editComments(largeCommentNumber) {
