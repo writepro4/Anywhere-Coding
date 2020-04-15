@@ -11,9 +11,9 @@
 // 10. editComments 관리자 댓글 수정 함수.
 // 11. deleteAdminComments 관리자 댓글 삭제 함수.
 // 12. enterEvent 엔터키 이벤트 감지하는 함수.
+// 13. pagingTreatment 페이징 처리 함수.
 
 //TODO 대댓글, 댓글 추가,불러오기, 수정,삭제에서 uid 전달 해야됨 -> 로그인 기능 구현되면
-//TODO 페이징 구현 해야됨.
 //TODO 댓글 작성시에 Enter키 적용되게 수정해야됨.
 //TODO 댓글 삭제 했을때 대댓글 어떻게 처리되는지 예외처리 해야됨.
 
@@ -281,7 +281,7 @@ function loadingComments() {
 
                     let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
                     chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 </span></span></h3>`;
-                    chatTitle += `<h3 class="ui dividing header reply center aligned"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h3>`;
+                    chatTitle += `<h1 class="ui dividing header reply center aligned" onclick="pagingTreatment()"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h1>`;
                     chatTitle += `<br>`;
 
                     $('#replyTitle').append(chatTitle);
@@ -499,7 +499,6 @@ function editCommentWindow(crystalID) {
 
 
 }
-
 
 // 8. largeComment 관리자 댓글 작성 함수
 function largeComment(commentID) {
@@ -765,6 +764,180 @@ function enterEvent() {
     if (window.event.keyCode === 13) {
         console.log("엔터 이벤트 실행합니다.");
     }
+}
+
+// 페이징 적용하기 위한 변수
+let paging = 2;
+
+// 13. pagingTreatment 페이징 처리 함수
+function pagingTreatment() {
+    console.log("페이징 실행");
+    const postNum = getArticleNumber();
+
+    $.ajax({
+            type: 'get'
+            , url: `https://honeytip.p-e.kr/comments/${postNum}/${paging}`
+            , xhrFields: {
+                withCredentials: false
+            }
+            , success: function (data) {
+
+                let parseData = JSON.parse(data);
+                let keyCheck = parseData.key;
+
+                if (keyCheck === true) {
+
+                    //댓글 창 삭제.
+                    $('#commentWindow').remove();
+
+                    //삭제한 후에 다시 div목록들을 담아줌.
+                    let commentWindow = `<div id="commentWindow">`;
+                    commentWindow += `<div id="replyTitle"></div>`;
+                    commentWindow += `<div id="comments"></div>`;
+                    commentWindow += `<div id="formId"></div>`;
+                    commentWindow += `</div>`;
+
+                    $('#commentCreationWindow').append(commentWindow);
+
+                    let contents = parseData.contents;
+
+
+                    let listOfComments = contents.length;
+
+
+                    let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
+                    chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 </span></span></h3>`;
+                    chatTitle += `<h1 class="ui dividing header reply center aligned" onclick="loadingComments()"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h1>`;
+                    chatTitle += `<br>`;
+
+                    $('#replyTitle').append(chatTitle);
+
+                    let commentForm = `<form class="ui reply form">`;
+                    commentForm += `<div class="field">`;
+                    commentForm += `<label>`;
+                    commentForm += `<textarea id="replyForm" placeholder="로그인하고 댓글을 작성해보세요!"></textarea>`;
+                    commentForm += `</label>`;
+                    commentForm += `</div>`;
+                    commentForm += `<div class="ui olive labeled submit icon button" onclick="writeAComment()">`;
+                    commentForm += `<i class="icon edit"></i><span style="vertical-align: inherit;"><span`;
+                    commentForm += `style="vertical-align: inherit;"> 댓글 작성`;
+                    commentForm += `</span></span></div>`;
+                    commentForm += `</form>`;
+
+                    $('#formId').append(commentForm);
+
+                    for (let i = 0; i < listOfComments; i++) {
+
+                        let comment = contents[i].comment;
+                        let userName = contents[i].userName;
+                        let date = contents[i].date;
+                        // 댓글마다 각각 그 숫자가 증가한다 -> 다 다른값
+                        let indexComments = contents[i].indexComments;
+                        //얼마나 깊은지 나타내는 class
+                        let classNum = contents[i].class;
+                        //몇번째 대댓글인지 나타내는 order
+                        let orderNum = contents[i].order;
+                        let categoryNum = contents[i].category;
+                        let postNum = contents[i].postNum;
+                        //어떤 그룹번호에 속해 있는지 나타내는 groupNum
+                        //그룹 번호는 그 댓글 번호와 같다 .
+                        let groupNum = contents[i].groupNum;
+
+
+                        // 클래스 번호가 1일 경우엔 대댓글 처리를 해준다.
+                        if (classNum === 1) {
+
+                            let adminComments = `<div class="comments">`;
+                            adminComments += `<div class="comment">`;
+                            adminComments += `<a class="avatar">`;
+                            adminComments += `<img src="/images/plant.jpg">`;
+                            adminComments += `</a>`;
+                            adminComments += `<div class="content">`;
+                            adminComments += `<a class="author">${userName}</a>`;
+                            adminComments += `<div class="metadata">`;
+                            adminComments += `<span class="date">${date}</span>`;
+                            adminComments += `</div>`;
+                            adminComments += `<div class="text">`;
+                            adminComments += `${comment}`;
+                            adminComments += `</div>`;
+                            // adminComments += `<div class="actions">`;
+                            // adminComments += `<a class="reply">Reply</a>`;
+                            // adminComments += `</div>`;
+                            adminComments += `</div>`;
+                            adminComments += `</div>`;
+                            adminComments += `</div>`;
+
+                            $(`#addAdminComments${groupNum}`).append(adminComments);
+                            console.log("실행합니다. index값 확인 : " + indexComments);
+
+
+                        } else {
+
+                            let chatData = `<div class="comment" id=${indexComments}>`;
+                            chatData += `<a class="avatar">`;
+                            chatData += `<img src="images/plant.jpg" alt="image">`;
+                            chatData += `</a>`;
+                            chatData += `<div class="content" id="addAdminComments${indexComments}">`;
+                            chatData += `<a class="author">${userName}</a>`;
+                            chatData += `<div class="metadata">`;
+                            chatData += `<span class="date">${date}</span>`;
+                            chatData += `</div>`;
+                            chatData += `<div class="text" id="text${indexComments}">`;
+                            chatData += `${comment}`;
+                            chatData += `</div>`;
+                            chatData += `<div class="actions">`;
+                            chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
+                            chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
+                            chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>댓글 달기</a>`;
+                            chatData += `</div>`;
+                            chatData += `</div>`;
+                            chatData += `</div>`;
+
+
+                            $('#comments').append(chatData);
+
+
+                        }
+
+                    }
+
+                }
+
+
+            }
+            //에러 종류 조건문으로 걸러내기
+            ,
+            error: function (jqXHR, exception) {
+
+                if (jqXHR.status === 0) {
+                    alert('Not connect.\n Verify Network.');
+                } else if (jqXHR.status === 400) {
+                    alert('Server understood the request, but request content was invalid. [400]');
+                } else if (jqXHR.status === 401) {
+                    alert('Unauthorized access. [401]');
+                } else if (jqXHR.status === 403) {
+                    alert('Forbidden resource can not be accessed. [403]');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found. [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal server error. [500]');
+                } else if (jqXHR.status === 503) {
+                    alert('Service unavailable. [503]');
+                } else if (exception === 'parsererror') {
+                    alert('Requested JSON parse failed. [Failed]');
+                } else if (exception === 'timeout') {
+                    alert('Time out error. [Timeout]');
+                } else if (exception === 'abort') {
+                    alert('Ajax request aborted. [Aborted]');
+                } else {
+                    alert('Uncaught Error.n');
+                }
+                console.log("상태: " + status);
+                console.log("실패");
+            }
+        }
+    )
+    ;
 }
 
 
