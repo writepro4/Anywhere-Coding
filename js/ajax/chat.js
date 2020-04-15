@@ -15,6 +15,7 @@
 //TODO 대댓글, 댓글 추가,불러오기, 수정,삭제에서 uid 전달 해야됨 -> 로그인 기능 구현되면
 //TODO 페이징 구현 해야됨.
 //TODO 댓글 작성시에 Enter키 적용되게 수정해야됨.
+//TODO 댓글 삭제 했을때 대댓글 어떻게 처리되는지 예외처리 해야됨.
 
 
 // 1. 댓글 작성 함수.
@@ -316,13 +317,6 @@ function loadingComments() {
                         //그룹 번호는 그 댓글 번호와 같다 .
                         let groupNum = contents[i].groupNum;
 
-                        console.log("댓글 아이디 : " + indexComments);
-                        console.log("클래스 넘버 번호: " + classNum);
-                        console.log("오더 번호 : " + orderNum);
-                        // console.log("날짜 : " + date);
-                        // console.log("카테고리 번호 : " + categoryNum);
-                        // console.log("포스팅 번호 : " + postNum);
-                        console.log("그룹 번호 : " + groupNum);
 
                         // 클래스 번호가 1일 경우엔 대댓글 처리를 해준다.
                         if (classNum === 1) {
@@ -335,21 +329,20 @@ function loadingComments() {
                             adminComments += `<div class="content">`;
                             adminComments += `<a class="author">${userName}</a>`;
                             adminComments += `<div class="metadata">`;
-                            adminComments += `<span class="date">Just now</span>`;
+                            adminComments += `<span class="date">${date}</span>`;
                             adminComments += `</div>`;
                             adminComments += `<div class="text">`;
                             adminComments += `${comment}`;
                             adminComments += `</div>`;
-                            adminComments += `<div class="actions">`;
-                            adminComments += `<a class="reply">Reply</a>`;
-                            adminComments += `</div>`;
+                            // adminComments += `<div class="actions">`;
+                            // adminComments += `<a class="reply">Reply</a>`;
+                            // adminComments += `</div>`;
                             adminComments += `</div>`;
                             adminComments += `</div>`;
                             adminComments += `</div>`;
 
                             $(`#addAdminComments${groupNum}`).append(adminComments);
                             console.log("실행합니다. index값 확인 : " + indexComments);
-
 
 
                         } else {
@@ -360,13 +353,16 @@ function loadingComments() {
                             chatData += `</a>`;
                             chatData += `<div class="content" id="addAdminComments${indexComments}">`;
                             chatData += `<a class="author">${userName}</a>`;
+                            chatData += `<div class="metadata">`;
+                            chatData += `<span class="date">${date}</span>`;
+                            chatData += `</div>`;
                             chatData += `<div class="text" id="text${indexComments}">`;
                             chatData += `${comment}`;
                             chatData += `</div>`;
                             chatData += `<div class="actions">`;
                             chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
                             chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
-                            chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>관리자 댓글</a>`;
+                            chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>댓글 달기</a>`;
                             chatData += `</div>`;
                             chatData += `</div>`;
                             chatData += `</div>`;
@@ -504,21 +500,17 @@ function editCommentWindow(crystalID) {
 
 }
 
+
 // 8. largeComment 관리자 댓글 작성 함수
 function largeComment(commentID) {
 
     // 대댓글 작성 번호
     const editCommentID = commentID.id;
-    console.log("대댓글 작업할려는 댓글 번호 : " + editCommentID);
 
     const comment = $(`#formreply`).val();
-    console.log("입력된 데이터 값 : " + comment);
 
     const postNum = getArticleNumber();
     const categoryUrl = categoryImport();
-
-    console.log("글번호: " + postNum);
-    console.log("카테고리 번호 : " + categoryUrl);
 
     console.log(comment);
     const userName = "관리자 입니다.";
@@ -558,19 +550,19 @@ function largeComment(commentID) {
             adminComments += `<div class="content">`;
             adminComments += `<a class="author">${userName}</a>`;
             adminComments += `<div class="metadata">`;
-            adminComments += `<span class="date">Just now</span>`;
+            adminComments += `<span class="date">방금</span>`;
             adminComments += `</div>`;
             adminComments += `<div class="text">`;
             adminComments += `${comment}`;
             adminComments += `</div>`;
-            adminComments += `<div class="actions">`;
-            adminComments += `<a class="reply">Reply</a>`;
-            adminComments += `</div>`;
+            // adminComments += `<div class="actions">`;
+            // adminComments += `<a class="reply">Reply</a>`;
+            // adminComments += `</div>`;
             adminComments += `</div>`;
             adminComments += `</div>`;
             adminComments += `</div>`;
 
-            $('#addAdminComments').append(adminComments);
+            $(`#addAdminComments${editCommentID}`).append(adminComments);
 
 
         }
