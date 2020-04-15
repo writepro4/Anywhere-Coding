@@ -10,6 +10,7 @@
 // 9. aLargeCommentWindow 관리자 댓글 창 호출 함수.
 // 10. editComments 관리자 댓글 수정 함수.
 // 11. deleteAdminComments 관리자 댓글 삭제 함수.
+// 12. enterEvent 엔터키 이벤트 감지하는 함수.
 
 //TODO 대댓글, 댓글 추가,불러오기, 수정,삭제에서 uid 전달 해야됨 -> 로그인 기능 구현되면
 //TODO 페이징 구현 해야됨.
@@ -485,7 +486,7 @@ function largeComment(commentID) {
 
     // 대댓글 작성 번호
     const editCommentID = commentID.id;
-    console.log(editCommentID);
+    console.log("대댓글 작업할려는 댓글 번호 : "+editCommentID);
 
     const comment = $(`#formreply`).val();
     console.log("입력된 데이터 값 : " + comment);
@@ -501,10 +502,11 @@ function largeComment(commentID) {
 
 
     let commentData = {
-        'indexComment': editCommentID,
+        'indexComments': editCommentID,
         'postNum': postNum,
-        'reply': comment,
-        'userName': userName
+        'comment': comment,
+        'userName': userName,
+        'category' : categoryUrl
     };
 
 
@@ -593,7 +595,7 @@ function aLargeCommentWindow(crystalID) {
     formData += `<div class="field">`;
     formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
     formData += `</div>`;
-    formData += `<div class="ui red labeled submit icon button" onclick="largeComment(this)" id=${editCommentID}>`;
+    formData += `<div class="ui red labeled submit icon button" onclick="largeComment(this)" id=${editCommentID} ">`;
     formData += `<i class="icon edit"></i> 관리자 댓글`;
     formData += `</div>`;
     formData += `</form>`;
@@ -742,6 +744,15 @@ function deleteAdminComments(adminCommentNumber) {
 
 
 }
+
+// 12. enterEvent 엔터키 이벤트 감지하는 함수.
+function enterEvent(){
+        if (window.event.keyCode === 13) {
+            console.log("엔터 이벤트 실행합니다.");
+        }
+}
+
+
 
 
 
