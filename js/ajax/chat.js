@@ -14,7 +14,6 @@
 
 //TODO 대댓글, 댓글 추가,불러오기, 수정,삭제에서 uid 전달 해야됨 -> 로그인 기능 구현되면
 //TODO 페이징 구현 해야됨.
-//TODO 관리자 댓글 처리 해야됨.
 //TODO 댓글 작성시에 Enter키 적용되게 수정해야됨.
 
 
@@ -247,9 +246,6 @@ function deleteComment(deleteId) {
 // 댓글창이 열려 있는지 확인하는 변수
 let commentWindowCheck = false;
 
-
-//TODO 대댓글까지 같이 출력해줘야 함
-
 // 4. 댓글목록 불러오는 함수
 function loadingComments() {
 
@@ -269,28 +265,6 @@ function loadingComments() {
                 let parseData = JSON.parse(data);
                 let keyCheck = parseData.key;
 
-                // let adminComments = `<div class="comments">`;
-                // adminComments += `<div class="comment">`;
-                // adminComments += `<a class="avatar">`;
-                // adminComments += `<img src="/images/plant.jpg">`;
-                // adminComments += `</a>`;
-                // adminComments += `<div class="content">`;
-                // adminComments += `<a class="author">${userName}</a>`;
-                // adminComments += `<div class="metadata">`;
-                // // adminComments += `<span class="date">Just now</span>`;
-                // adminComments += `</div>`;
-                // adminComments += `<div class="text">`;
-                // adminComments += `${comment}`;
-                // adminComments += `</div>`;
-                // adminComments += `<div class="actions">`;
-                // adminComments += `<a class="reply">Reply</a>`;
-                // adminComments += `</div>`;
-                // adminComments += `</div>`;
-                // adminComments += `</div>`;
-                // adminComments += `</div>`;
-                //
-                // $('#addAdminComments').append(adminComments);
-
 
                 // 받아온 값이 true일 경우엔 댓글목록을 같이 생성
                 if (keyCheck === true && commentWindowCheck === false) {
@@ -299,7 +273,7 @@ function loadingComments() {
 
                     let contents = parseData.contents;
 
-                    console.log("받아온 데이터 목록 : " + data);
+                    // console.log("받아온 데이터 목록 : " + data);
 
                     let listOfComments = contents.length;
 
@@ -330,6 +304,7 @@ function loadingComments() {
                         let comment = contents[i].comment;
                         let userName = contents[i].userName;
                         let date = contents[i].date;
+                        // 댓글마다 각각 그 숫자가 증가한다 -> 다 다른값
                         let indexComments = contents[i].indexComments;
                         //얼마나 깊은지 나타내는 class
                         let classNum = contents[i].class;
@@ -338,36 +313,69 @@ function loadingComments() {
                         let categoryNum = contents[i].category;
                         let postNum = contents[i].postNum;
                         //어떤 그룹번호에 속해 있는지 나타내는 groupNum
+                        //그룹 번호는 그 댓글 번호와 같다 .
                         let groupNum = contents[i].groupNum;
 
-
+                        console.log("댓글 아이디 : " + indexComments);
                         console.log("클래스 넘버 번호: " + classNum);
                         console.log("오더 번호 : " + orderNum);
-                        console.log("날짜 : " + date);
-                        console.log("카테고리 번호 : " + categoryNum);
-                        console.log("포스팅 번호 : " + postNum);
+                        // console.log("날짜 : " + date);
+                        // console.log("카테고리 번호 : " + categoryNum);
+                        // console.log("포스팅 번호 : " + postNum);
                         console.log("그룹 번호 : " + groupNum);
 
+                        // 클래스 번호가 1일 경우엔 대댓글 처리를 해준다.
+                        if (classNum === 1) {
 
-                        let chatData = `<div class="comment" id=${indexComments}>`;
-                        chatData += `<a class="avatar">`;
-                        chatData += `<img src="images/plant.jpg" alt="image">`;
-                        chatData += `</a>`;
-                        chatData += `<div class="content" id="addAdminComments${indexComments}">`;
-                        chatData += `<a class="author">${userName}</a>`;
-                        chatData += `<div class="text" id="text${indexComments}">`;
-                        chatData += `${comment}`;
-                        chatData += `</div>`;
-                        chatData += `<div class="actions">`;
-                        chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
-                        chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
-                        chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>관리자 댓글</a>`;
-                        chatData += `</div>`;
-                        chatData += `</div>`;
-                        chatData += `</div>`;
+                            let adminComments = `<div class="comments">`;
+                            adminComments += `<div class="comment">`;
+                            adminComments += `<a class="avatar">`;
+                            adminComments += `<img src="/images/plant.jpg">`;
+                            adminComments += `</a>`;
+                            adminComments += `<div class="content">`;
+                            adminComments += `<a class="author">${userName}</a>`;
+                            adminComments += `<div class="metadata">`;
+                            adminComments += `<span class="date">Just now</span>`;
+                            adminComments += `</div>`;
+                            adminComments += `<div class="text">`;
+                            adminComments += `${comment}`;
+                            adminComments += `</div>`;
+                            adminComments += `<div class="actions">`;
+                            adminComments += `<a class="reply">Reply</a>`;
+                            adminComments += `</div>`;
+                            adminComments += `</div>`;
+                            adminComments += `</div>`;
+                            adminComments += `</div>`;
+
+                            $(`#addAdminComments${groupNum}`).append(adminComments);
+                            console.log("실행합니다. index값 확인 : " + indexComments);
 
 
-                        $('#comments').append(chatData);
+
+                        } else {
+
+                            let chatData = `<div class="comment" id=${indexComments}>`;
+                            chatData += `<a class="avatar">`;
+                            chatData += `<img src="images/plant.jpg" alt="image">`;
+                            chatData += `</a>`;
+                            chatData += `<div class="content" id="addAdminComments${indexComments}">`;
+                            chatData += `<a class="author">${userName}</a>`;
+                            chatData += `<div class="text" id="text${indexComments}">`;
+                            chatData += `${comment}`;
+                            chatData += `</div>`;
+                            chatData += `<div class="actions">`;
+                            chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
+                            chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
+                            chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>관리자 댓글</a>`;
+                            chatData += `</div>`;
+                            chatData += `</div>`;
+                            chatData += `</div>`;
+
+
+                            $('#comments').append(chatData);
+
+
+                        }
 
                     }
 
@@ -457,7 +465,6 @@ function loadingComments() {
 
 }
 
-
 // 5. 글번호 가져오는 함수
 function getArticleNumber() {
     const postNumber = location.href.substr(
@@ -496,7 +503,6 @@ function editCommentWindow(crystalID) {
 
 
 }
-
 
 // 8. largeComment 관리자 댓글 작성 함수
 function largeComment(commentID) {
