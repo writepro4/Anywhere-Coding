@@ -1,7 +1,8 @@
-// 1. text_details.js 상세페이지 내용 불러오는 함수
+// 1. 상세페이지 내용 불러오는 함수
 // 2. getUrlData url데이터를 가져오는 함수
 
 
+// 1. 상세페이지 내용 불러오는 함수
 $(document).ready(function () {
     const listNumber = getUrlData();
 
