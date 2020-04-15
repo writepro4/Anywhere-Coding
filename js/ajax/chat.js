@@ -250,7 +250,7 @@ let commentWindowCheck = false;
 
 //TODO 대댓글까지 같이 출력해줘야 함
 
-// 4. loadingComments 댓글목록 불러오는 함수
+// 4. 댓글목록 불러오는 함수
 function loadingComments() {
 
     const postNum = getArticleNumber();
@@ -259,184 +259,201 @@ function loadingComments() {
 
 // (get) https://honeytip.p-e.kr/comments/{글 번호}/{댓글 페이징 번호} // 댓글 페이징번호 1번부터 시작
     $.ajax({
-        type: 'get'
-        , url: `https://honeytip.p-e.kr/comments/${postNum}/1`
-        , xhrFields: {
-            withCredentials: false
-        }
-        , success: function (data) {
-            //json 파싱하기
-            let parseData = JSON.parse(data);
-            let keyCheck = parseData.key;
+            type: 'get'
+            , url: `https://honeytip.p-e.kr/comments/${postNum}/1`
+            , xhrFields: {
+                withCredentials: false
+            }
+            , success: function (data) {
+                //json 파싱하기
+                let parseData = JSON.parse(data);
+                let keyCheck = parseData.key;
 
-            // let adminComments = `<div class="comments">`;
-            // adminComments += `<div class="comment">`;
-            // adminComments += `<a class="avatar">`;
-            // adminComments += `<img src="/images/plant.jpg">`;
-            // adminComments += `</a>`;
-            // adminComments += `<div class="content">`;
-            // adminComments += `<a class="author">${userName}</a>`;
-            // adminComments += `<div class="metadata">`;
-            // // adminComments += `<span class="date">Just now</span>`;
-            // adminComments += `</div>`;
-            // adminComments += `<div class="text">`;
-            // adminComments += `${comment}`;
-            // adminComments += `</div>`;
-            // adminComments += `<div class="actions">`;
-            // adminComments += `<a class="reply">Reply</a>`;
-            // adminComments += `</div>`;
-            // adminComments += `</div>`;
-            // adminComments += `</div>`;
-            // adminComments += `</div>`;
-            //
-            // $('#addAdminComments').append(adminComments);
-
-
-            // 받아온 값이 true일 경우엔 댓글목록을 같이 생성
-            if (keyCheck === true && commentWindowCheck === false) {
-                console.log("댓글목록 출력: ");
-                commentWindowCheck = true;
-
-                let contents = parseData.contents;
-
-                console.log("받아온 데이터 목록 : " + data);
-
-                let listOfComments = contents.length;
+                // let adminComments = `<div class="comments">`;
+                // adminComments += `<div class="comment">`;
+                // adminComments += `<a class="avatar">`;
+                // adminComments += `<img src="/images/plant.jpg">`;
+                // adminComments += `</a>`;
+                // adminComments += `<div class="content">`;
+                // adminComments += `<a class="author">${userName}</a>`;
+                // adminComments += `<div class="metadata">`;
+                // // adminComments += `<span class="date">Just now</span>`;
+                // adminComments += `</div>`;
+                // adminComments += `<div class="text">`;
+                // adminComments += `${comment}`;
+                // adminComments += `</div>`;
+                // adminComments += `<div class="actions">`;
+                // adminComments += `<a class="reply">Reply</a>`;
+                // adminComments += `</div>`;
+                // adminComments += `</div>`;
+                // adminComments += `</div>`;
+                // adminComments += `</div>`;
+                //
+                // $('#addAdminComments').append(adminComments);
 
 
-                let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
-                chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 </span></span></h3>`;
-                chatTitle += `<h3 class="ui dividing header reply center aligned"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h3>`;
-                chatTitle += `<br>`;
+                // 받아온 값이 true일 경우엔 댓글목록을 같이 생성
+                if (keyCheck === true && commentWindowCheck === false) {
+                    console.log("댓글목록 출력: ");
+                    commentWindowCheck = true;
 
-                $('#replyTitle').append(chatTitle);
+                    let contents = parseData.contents;
 
-                let commentForm = `<form class="ui reply form">`;
-                commentForm += `<div class="field">`;
-                commentForm += `<label>`;
-                commentForm += `<textarea id="replyForm" placeholder="로그인하고 댓글을 작성해보세요!"></textarea>`;
-                commentForm += `</label>`;
-                commentForm += `</div>`;
-                commentForm += `<div class="ui olive labeled submit icon button" onclick="writeAComment()">`;
-                commentForm += `<i class="icon edit"></i><span style="vertical-align: inherit;"><span`;
-                commentForm += `style="vertical-align: inherit;"> 댓글 작성`;
-                commentForm += `</span></span></div>`;
-                commentForm += `</form>`;
+                    console.log("받아온 데이터 목록 : " + data);
 
-                $('#formId').append(commentForm);
-
-                for (let i = 0; i < listOfComments; i++) {
-
-                    let comment = contents[i].comment;
-                    let userName = contents[i].userName;
-                    let date = contents[i].date;
-                    let indexComments = contents[i].indexComments;
-
-                    console.log(comment);
+                    let listOfComments = contents.length;
 
 
-                    let chatData = `<div class="comment" id=${indexComments}>`;
-                    chatData += `<a class="avatar">`;
-                    chatData += `<img src="images/plant.jpg" alt="image">`;
-                    chatData += `</a>`;
-                    chatData += `<div class="content" id="addAdminComments">`;
-                    chatData += `<a class="author">${userName}</a>`;
-                    chatData += `<div class="text" id="text${indexComments}">`;
-                    chatData += `${comment}`;
-                    chatData += `</div>`;
-                    chatData += `<div class="actions">`;
-                    chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
-                    chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
-                    chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>관리자 댓글</a>`;
-                    chatData += `</div>`;
-                    chatData += `</div>`;
-                    chatData += `</div>`;
+                    let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
+                    chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 </span></span></h3>`;
+                    chatTitle += `<h3 class="ui dividing header reply center aligned"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h3>`;
+                    chatTitle += `<br>`;
+
+                    $('#replyTitle').append(chatTitle);
+
+                    let commentForm = `<form class="ui reply form">`;
+                    commentForm += `<div class="field">`;
+                    commentForm += `<label>`;
+                    commentForm += `<textarea id="replyForm" placeholder="로그인하고 댓글을 작성해보세요!"></textarea>`;
+                    commentForm += `</label>`;
+                    commentForm += `</div>`;
+                    commentForm += `<div class="ui olive labeled submit icon button" onclick="writeAComment()">`;
+                    commentForm += `<i class="icon edit"></i><span style="vertical-align: inherit;"><span`;
+                    commentForm += `style="vertical-align: inherit;"> 댓글 작성`;
+                    commentForm += `</span></span></div>`;
+                    commentForm += `</form>`;
+
+                    $('#formId').append(commentForm);
+
+                    for (let i = 0; i < listOfComments; i++) {
+
+                        let comment = contents[i].comment;
+                        let userName = contents[i].userName;
+                        let date = contents[i].date;
+                        let indexComments = contents[i].indexComments;
+                        //얼마나 깊은지 나타내는 class
+                        let classNum = contents[i].class;
+                        //몇번째 대댓글인지 나타내는 order
+                        let orderNum = contents[i].order;
+                        let categoryNum = contents[i].category;
+                        let postNum = contents[i].postNum;
+                        //어떤 그룹번호에 속해 있는지 나타내는 groupNum
+                        let groupNum = contents[i].groupNum;
 
 
-                    $('#comments').append(chatData);
+                        console.log("클래스 넘버 번호: " + classNum);
+                        console.log("오더 번호 : " + orderNum);
+                        console.log("날짜 : " + date);
+                        console.log("카테고리 번호 : " + categoryNum);
+                        console.log("포스팅 번호 : " + postNum);
+                        console.log("그룹 번호 : " + groupNum);
+
+
+                        let chatData = `<div class="comment" id=${indexComments}>`;
+                        chatData += `<a class="avatar">`;
+                        chatData += `<img src="images/plant.jpg" alt="image">`;
+                        chatData += `</a>`;
+                        chatData += `<div class="content" id="addAdminComments${indexComments}">`;
+                        chatData += `<a class="author">${userName}</a>`;
+                        chatData += `<div class="text" id="text${indexComments}">`;
+                        chatData += `${comment}`;
+                        chatData += `</div>`;
+                        chatData += `<div class="actions">`;
+                        chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
+                        chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
+                        chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>관리자 댓글</a>`;
+                        chatData += `</div>`;
+                        chatData += `</div>`;
+                        chatData += `</div>`;
+
+
+                        $('#comments').append(chatData);
+
+                    }
+
+                    // 받아온 값이 false일 경우엔 댓글목록 없이 댓글 입력창만 출력
+                } else if (keyCheck === false && commentWindowCheck === false) {
+                    console.log("댓글 목록 없음.");
+                    commentWindowCheck = true;
+
+                    let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
+                    chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 12</span></span></h3>`;
+                    chatTitle += `<h3 class="ui dividing header reply center aligned"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h3>`;
+                    chatTitle += `<br>`;
+
+                    $('#replyTitle').append(chatTitle);
+
+                    let commentForm = `<form class="ui reply form">`;
+                    commentForm += `<div class="field">`;
+                    commentForm += `<label>`;
+                    commentForm += `<textarea id="replyForm" placeholder="로그인하고 댓글을 작성해보세요!"></textarea>`;
+                    commentForm += `</label>`;
+                    commentForm += `</div>`;
+                    commentForm += `<div class="ui olive labeled submit icon button" onclick="writeAComment()">`;
+                    commentForm += `<i class="icon edit"></i><span style="vertical-align: inherit;"><span`;
+                    commentForm += `style="vertical-align: inherit;"> 댓글 작성`;
+                    commentForm += `</span></span></div>`;
+                    commentForm += `</form>`;
+
+                    $('#formId').append(commentForm);
+                    //댓글 버튼 확인하고 댓글창 닫음.
+                } else if (commentWindowCheck === true) {
+                    commentWindowCheck = false;
+
+                    $('#viewComments').text("댓글 보기");
+                    //댓글 창 삭제.
+                    $('#commentWindow').remove();
+
+                    //삭제한 후에 다시 div목록들을 담아줌.
+                    let commentWindow = `<div id="commentWindow">`;
+                    commentWindow += `<div id="replyTitle"></div>`;
+                    commentWindow += `<div id="comments"></div>`;
+                    commentWindow += `<div id="formId"></div>`;
+                    commentWindow += `</div>`;
+
+                    $('#commentCreationWindow').append(commentWindow);
+
 
                 }
 
-                // 받아온 값이 false일 경우엔 댓글목록 없이 댓글 입력창만 출력
-            } else if (keyCheck === false && commentWindowCheck === false) {
-                console.log("댓글 목록 없음.");
-                commentWindowCheck = true;
-
-                let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
-                chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 12</span></span></h3>`;
-                chatTitle += `<h3 class="ui dividing header reply center aligned"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h3>`;
-                chatTitle += `<br>`;
-
-                $('#replyTitle').append(chatTitle);
-
-                let commentForm = `<form class="ui reply form">`;
-                commentForm += `<div class="field">`;
-                commentForm += `<label>`;
-                commentForm += `<textarea id="replyForm" placeholder="로그인하고 댓글을 작성해보세요!"></textarea>`;
-                commentForm += `</label>`;
-                commentForm += `</div>`;
-                commentForm += `<div class="ui olive labeled submit icon button" onclick="writeAComment()">`;
-                commentForm += `<i class="icon edit"></i><span style="vertical-align: inherit;"><span`;
-                commentForm += `style="vertical-align: inherit;"> 댓글 작성`;
-                commentForm += `</span></span></div>`;
-                commentForm += `</form>`;
-
-                $('#formId').append(commentForm);
-                //댓글 버튼 확인하고 댓글창 닫음.
-            } else if (commentWindowCheck === true) {
-                commentWindowCheck = false;
-
-                $('#viewComments').text("댓글 보기");
-                //댓글 창 삭제.
-                $('#commentWindow').remove();
-
-                //삭제한 후에 다시 div목록들을 담아줌.
-                let commentWindow = `<div id="commentWindow">`;
-                commentWindow += `<div id="replyTitle"></div>`;
-                commentWindow += `<div id="comments"></div>`;
-                commentWindow += `<div id="formId"></div>`;
-                commentWindow += `</div>`;
-
-                $('#commentCreationWindow').append(commentWindow);
+                // true/false 둘 중 하나를 반환한다.
+                console.log("댓글 목록리스트 체크 " + keyCheck);
 
 
             }
+            //에러 종류 조건문으로 걸러내기
+            ,
+            error: function (jqXHR, exception) {
 
-            // true/false 둘 중 하나를 반환한다.
-            console.log("댓글 목록리스트 체크 " + keyCheck);
-
-
-        }
-        //에러 종류 조건문으로 걸러내기
-        , error: function (jqXHR, exception) {
-
-            if (jqXHR.status === 0) {
-                alert('Not connect.\n Verify Network.');
-            } else if (jqXHR.status === 400) {
-                alert('Server understood the request, but request content was invalid. [400]');
-            } else if (jqXHR.status === 401) {
-                alert('Unauthorized access. [401]');
-            } else if (jqXHR.status === 403) {
-                alert('Forbidden resource can not be accessed. [403]');
-            } else if (jqXHR.status === 404) {
-                alert('Requested page not found. [404]');
-            } else if (jqXHR.status === 500) {
-                alert('Internal server error. [500]');
-            } else if (jqXHR.status === 503) {
-                alert('Service unavailable. [503]');
-            } else if (exception === 'parsererror') {
-                alert('Requested JSON parse failed. [Failed]');
-            } else if (exception === 'timeout') {
-                alert('Time out error. [Timeout]');
-            } else if (exception === 'abort') {
-                alert('Ajax request aborted. [Aborted]');
-            } else {
-                alert('Uncaught Error.n');
+                if (jqXHR.status === 0) {
+                    alert('Not connect.\n Verify Network.');
+                } else if (jqXHR.status === 400) {
+                    alert('Server understood the request, but request content was invalid. [400]');
+                } else if (jqXHR.status === 401) {
+                    alert('Unauthorized access. [401]');
+                } else if (jqXHR.status === 403) {
+                    alert('Forbidden resource can not be accessed. [403]');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found. [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal server error. [500]');
+                } else if (jqXHR.status === 503) {
+                    alert('Service unavailable. [503]');
+                } else if (exception === 'parsererror') {
+                    alert('Requested JSON parse failed. [Failed]');
+                } else if (exception === 'timeout') {
+                    alert('Time out error. [Timeout]');
+                } else if (exception === 'abort') {
+                    alert('Ajax request aborted. [Aborted]');
+                } else {
+                    alert('Uncaught Error.n');
+                }
+                console.log("상태: " + status);
+                console.log("실패");
             }
-            console.log("상태: " + status);
-            console.log("실패");
         }
-    });
+    )
+    ;
 
 }
 
@@ -486,7 +503,7 @@ function largeComment(commentID) {
 
     // 대댓글 작성 번호
     const editCommentID = commentID.id;
-    console.log("대댓글 작업할려는 댓글 번호 : "+editCommentID);
+    console.log("대댓글 작업할려는 댓글 번호 : " + editCommentID);
 
     const comment = $(`#formreply`).val();
     console.log("입력된 데이터 값 : " + comment);
@@ -506,7 +523,7 @@ function largeComment(commentID) {
         'postNum': postNum,
         'comment': comment,
         'userName': userName,
-        'category' : categoryUrl
+        'category': categoryUrl
     };
 
 
@@ -535,7 +552,7 @@ function largeComment(commentID) {
             adminComments += `<div class="content">`;
             adminComments += `<a class="author">${userName}</a>`;
             adminComments += `<div class="metadata">`;
-            // adminComments += `<span class="date">Just now</span>`;
+            adminComments += `<span class="date">Just now</span>`;
             adminComments += `</div>`;
             adminComments += `<div class="text">`;
             adminComments += `${comment}`;
@@ -746,10 +763,10 @@ function deleteAdminComments(adminCommentNumber) {
 }
 
 // 12. enterEvent 엔터키 이벤트 감지하는 함수.
-function enterEvent(){
-        if (window.event.keyCode === 13) {
-            console.log("엔터 이벤트 실행합니다.");
-        }
+function enterEvent() {
+    if (window.event.keyCode === 13) {
+        console.log("엔터 이벤트 실행합니다.");
+    }
 }
 
 
