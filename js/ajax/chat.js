@@ -14,8 +14,8 @@
 // 13. pagingTreatment 페이징 처리 함수.
 
 //TODO 대댓글, 댓글 추가,불러오기, 수정,삭제에서 uid 전달 해야됨 -> 로그인 기능 구현되면
-//TODO 댓글 작성시에 Enter키 적용되게 수정해야됨.
 //TODO 댓글 삭제 했을때 대댓글 어떻게 처리되는지 예외처리 해야됨.
+//TODO 대댓글 수정, 삭제 해야됨.
 
 
 // 1. 댓글 작성 함수.
@@ -762,7 +762,7 @@ function deleteAdminComments(adminCommentNumber) {
 // 12. enterEvent 엔터키 이벤트 감지하는 함수.
 function enterEvent() {
     if (window.event.keyCode === 13) {
-        console.log("엔터 이벤트 실행합니다.");
+        writeAComment();
     }
 }
 
@@ -939,6 +939,11 @@ function pagingTreatment() {
     )
     ;
 }
+
+
+
+
+
 
 
 
