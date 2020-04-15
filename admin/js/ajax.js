@@ -48,7 +48,6 @@ function adminLogin(token) {
     let adminId = $('#email').val();
     let adminPw = $('#password').val();
 
-    setCookie("adminId", adminId, 5);
     //데이터 전송 예제
     let login_data = {
         '_token': token, //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
