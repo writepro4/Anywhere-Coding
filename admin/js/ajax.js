@@ -153,7 +153,7 @@ function imageUpload() {
 
                 let title = $('#title').val();
                 let category = $('#category').val();
-                let adminId = getCookie("adminId");
+                let adminId = "관리자입니다.";
                 let subTitle = $('#subTitle').val();
 
 
