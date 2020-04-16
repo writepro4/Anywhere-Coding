@@ -61,17 +61,21 @@ function categoryListRequest(pageing) {
                     let categoryPostsID = categoryNumber + "_" + indexPosts;
 
 
-                    //TODO 카테고리 item 뷰 라운드효과 넣어야함
+                    let categoryitem = `<div class="item" onclick="detailPage(this)" id="${categoryPostsID}" style="
+border-radius: 25px;
+background: white;
+border: 1px solid #EEEEEE;
+padding: 20px;
+">`;
 
-                    let categoryitem = `<div class="item" onclick="detailPage(this)" id="${categoryPostsID}">`;
                     categoryitem += `<div class="image">`;
                     categoryitem += `<img src=${titleImage} alt="image">`;
                     categoryitem += `</div>`;
                     categoryitem += `<div class="content">`;
                     categoryitem += `<a class="header">${title}</a>`;
-                    // categoryitem += `<div class="meta">`;
-                    // categoryitem += `<span class="cinema">${subTitle}</span>`;
-                    // categoryitem += `</div>`;
+                    categoryitem += `<div class="meta">`;
+                    categoryitem += `<span class="cinema">${subTitle}</span>`;
+                    categoryitem += `</div>`;
                     categoryitem += `<div class="meta">`;
                     categoryitem += `<span class="cinema">${date}</span>`;
                     categoryitem += `</div>`;
@@ -79,11 +83,11 @@ function categoryListRequest(pageing) {
                     categoryitem += `<p></p>`;
                     categoryitem += `</div>`;
                     categoryitem += `<div class="extra">`;
-                    // categoryitem += `<div class="ui right floated primary button"><i class="gift icon"></i>`;
-                    // categoryitem += `꿀팁 얻기`;
-                    // categoryitem += `<i class="right chevron icon"></i>`;
-                    // categoryitem += `</div>`;
-                    // categoryitem += `<div class="ui label">생산성</div>`;
+                    categoryitem += `<div class="ui right floated primary button"><i class="gift icon"></i>`;
+                    categoryitem += `꿀팁 얻기`;
+                    categoryitem += `<i class="right chevron icon"></i>`;
+                    categoryitem += `</div>`;
+                    categoryitem += `<div class="ui label">생산성</div>`;
                     categoryitem += `</div>`;
                     categoryitem += `</div>`;
                     categoryitem += `</div>`;
