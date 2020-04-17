@@ -51,7 +51,7 @@
 
         $(document).ready(function () {
 
-            // $("#header").load("header.html");
+            $("#header").load("header.html");
             $("#footer").load("footer.html");
 
             //~이렇게 한줄만 해주면 알아서 contents에 testContents.html파일을 넣어 준다.
@@ -83,19 +83,7 @@
 <body>
 
 
-<div class="ui bodiless main menu">
-
-    <div class="header item">
-        <img class="logo" src="../images/CodingTip-logo.png" alt="코딩">
-        CodingTip
-    </div>
-    <a href="administrator_page.html" class="item">글 작성</a>
-    <a href="administrator_list.html" class="item">글 목록 리스트</a>
-    <a href="#" class="ui right floated dropdown item">
-        <i class="universal access icon"></i>관리자님 환영합니다.
-    </a>
-
-</div>
+<header id="header"></header>
 
 <div class="ui middle aligned stackable grid container">
 
