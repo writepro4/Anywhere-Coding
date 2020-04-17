@@ -41,7 +41,7 @@ $(document).ready(function () {
 
                     let cardView = `<a class="ui card" onclick="detailPage(this)" id=${categoryPostsID}>`;
                     cardView += `<div class="image">`;
-                    cardView += `<img src=${titleImage}>`;
+                    cardView += `<img src=${titleImage} style="height: 120px;">`;
                     cardView += `</div>`;
                     cardView += `<div class="content">`;
                     cardView += `<div class="header">${title}</div>`;
