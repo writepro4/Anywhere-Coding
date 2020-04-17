@@ -35,7 +35,7 @@ $(document).ready(function () {
             let date = postInfoData.date;
             console.log("제목 확인: " + title);
 
-            const titlePage = `<h1 class="ui header center aligned" >${title}</h1><br>`;
+            const titlePage = `<h1 class="ui header center aligned" >${title}</h1>`;
 
 
             let contentPage = contents;
