@@ -7,6 +7,8 @@
 //6. sessionStorageSet 세션스토리지에 정보 저장하는 함수.
 //7. sessionStorageGet 세션스토리지에 값 가져오는 함수.
 
+//TODO 로그인 유지 시켜야함 -> 로컬스토리지로 변경해야됨.
+
 //1. 로컬스토리지에 저장하는 함수.
 function localStorageSet(name, localValue) {
     window.localStorage.setItem(name, localValue); //값을 설정합니다.
@@ -29,8 +31,8 @@ $(document).ready(function () {
     let confirmId = idUrl();
     console.log("가져온 URL값 : " + confirmId);
     //세션스토리지 전체 삭제
-    localStorage.clear();
-    sessionStorage.clear();
+    // localStorage.clear();
+    // sessionStorage.clear();
 
     if (confirmId === `https://honeytip.kro.kr/` && sessionStorageGet('cf') === null) {
         console.log("로그인 안된상태.");
@@ -80,7 +82,21 @@ function loginRequest() {
             sessionStorageSet(`avatar`, avatar);
             sessionStorageSet(`badge`, badge);
 
+            //로그인 유무를 판단하기 위해 login이라는 값도 저장시켜준다.
             sessionStorageSet(`login`, "로그인");
+
+            // let oldUrl = 'https://honeytip.kro.kr'; // 기본 URL
+            // let changeUrl = 'https://honeytip.kro.kr/index.html'; // 기본 URL로 사이트 접속 시 변경하고 싶은 URL
+            // let urlString = `https://honeytip.kro.kr`;
+            //
+            // history.pushState(state, title, url);
+            // if (urlString.match(oldUrl)){
+            //     window.location.replace(urlString.replace(oldUrl, changeUrl));
+            // } else {
+            //     // 주소창에 입력한 주소가 oldURL과 다를 경우 아무런 행위도 하지않는다.
+            // }
+            // if (oldUrl ==)
+
 
 
 
