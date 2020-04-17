@@ -4,6 +4,8 @@
 //3. localStorageGet 로컬스토리지 값 가져오는 함수.
 //4. 로그인 처리 함수(조건문으로 로그인 상태를 확인함).
 //5. loginRequest 로그인 요청 함수.
+//6. sessionStorageSet 세션스토리지에 정보 저장하는 함수.
+//7. sessionStorageGet 세션스토리지에 값 가져오는 함수.
 
 //1. 로컬스토리지에 저장하는 함수.
 function localStorageSet(name, localValue) {
@@ -113,3 +115,12 @@ function loginRequest() {
 
 }
 
+//6. sessionStorageSet 세션스토리지에 정보 저장하는 함수.
+function sessionStorageSet(key,value) {
+    window.sessionStorage.setItem(key,value);
+}
+
+//7. sessionStorageGet 세션스토리지에 값 가져오는 함수.
+function sessionStorageGet(key) {
+    window.sessionStorage.getItem(key);
+}
