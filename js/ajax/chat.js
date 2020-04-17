@@ -322,6 +322,7 @@ function loadingComments() {
                         if (classNum === 1) {
 
                             let adminComments = `<div class="comments">`;
+                            adminComments += `<div class="ui segment">`;
                             adminComments += `<div class="comment">`;
                             adminComments += `<a class="avatar">`;
                             adminComments += `<img src="/images/plant.jpg">`;
@@ -340,6 +341,7 @@ function loadingComments() {
                             adminComments += `</div>`;
                             adminComments += `</div>`;
                             adminComments += `</div>`;
+                            adminComments += `</div>`;
 
                             $(`#addAdminComments${groupNum}`).append(adminComments);
                             console.log("실행합니다. index값 확인 : " + indexComments);
@@ -348,6 +350,7 @@ function loadingComments() {
                         } else {
 
                             let chatData = `<div class="comment" id=${indexComments}>`;
+                            chatData += `<div class="ui segment">`;
                             chatData += `<a class="avatar">`;
                             chatData += `<img src="images/plant.jpg" alt="image">`;
                             chatData += `</a>`;
@@ -363,6 +366,7 @@ function loadingComments() {
                             chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
                             chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
                             chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>댓글 달기</a>`;
+                            chatData += `</div>`;
                             chatData += `</div>`;
                             chatData += `</div>`;
                             chatData += `</div>`;
