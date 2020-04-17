@@ -68,9 +68,7 @@ border: 1px solid #EEEEEE;
 padding: 20px;
 ">`;
 
-                    categoryitem += `<div class="image">`;
-                    categoryitem += `<img src=${titleImage} alt="image">`;
-                    categoryitem += `</div>`;
+                    categoryitem += `<img src=${titleImage} alt="image" style="height: 120px; width: 120px;" class="ui medium circular image">`;
                     categoryitem += `<div class="content">`;
                     categoryitem += `<a class="header">${title}</a>`;
                     categoryitem += `<div class="meta">`;
