@@ -28,21 +28,22 @@ function localStorageGet() {
 $(document).ready(function () {
     let confirmId = idUrl();
     console.log("가져온 URL값 : " + confirmId);
-    //로컬스토리지 전체 삭제
+    //세션스토리지 전체 삭제
     localStorage.clear();
+    sessionStorage.clear();
 
-    if (confirmId === `https://honeytip.kro.kr/` && localStorageGet('cf') === null) {
+    if (confirmId === `https://honeytip.kro.kr/` && sessionStorageGet('cf') === null) {
         console.log("로그인 안된상태.");
-    } else if (confirmId === `https://honeytip.kro.kr/index.html` && localStorageGet(`cf`) === null) {
+    } else if (confirmId === `https://honeytip.kro.kr/index.html` && sessionStorageGet(`cf`) === null) {
         console.log("로그인 안된상태");
-    } else if (confirmId === `https://honeytip.kro.kr/` && localStorageGet('cf') !== null) {
+    } else if (confirmId === `https://honeytip.kro.kr/` && sessionStorageGet('cf') !== null) {
         console.log("로그인 로컬에 저장된 상태");
         loginRequest();
-    } else if (confirmId === `https://honeytip.kro.kr/index.html` && localStorageGet(`cf`) !== null) {
+    } else if (confirmId === `https://honeytip.kro.kr/index.html` && sessionStorageGet(`cf`) !== null) {
         console.log("로그인 로컬에 저장된 상태");
         loginRequest();
     } else {
-        localStorageSet('cf', confirmId);
+        sessionStorageSet('cf', confirmId);
         loginRequest();
     }
 
@@ -52,7 +53,7 @@ $(document).ready(function () {
 function loginRequest() {
 
     // 로그인 ID 변수
-    let loginData = localStorageGet('cf');
+    let loginData = sessionStorageGet('cf');
     console.log("로그인 데이터 확인 : " + loginData);
 
     $.ajax({
@@ -75,9 +76,13 @@ function loginRequest() {
             console.log("유저 아바타 : " + avatar);
             console.log("유저 뱃지 : " + badge);
 
-            localStorageSet(`name`, name);
-            localStorageSet(`avatar`, avatar);
-            localStorageSet(`badge`, badge);
+            sessionStorageSet(`name`, name);
+            sessionStorageSet(`avatar`, avatar);
+            sessionStorageSet(`badge`, badge);
+
+            sessionStorageSet(`login`, "로그인");
+
+
 
 
         }
@@ -122,5 +127,5 @@ function sessionStorageSet(key,value) {
 
 //7. sessionStorageGet 세션스토리지에 값 가져오는 함수.
 function sessionStorageGet(key) {
-    window.sessionStorage.getItem(key);
+    return window.sessionStorage.getItem(key);
 }
