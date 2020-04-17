@@ -385,7 +385,7 @@ function loadingComments() {
                     commentWindowCheck = true;
 
                     let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
-                    chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 12</span></span></h3>`;
+                    chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글</span></span></h3>`;
                     chatTitle += `<h3 class="ui dividing header reply center aligned"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h3>`;
                     chatTitle += `<br>`;
 
