@@ -443,7 +443,7 @@ function loadingComments() {
 
                     $('#replyTitle').append(chatTitle);
 
-                    let commentForm = `<form class="ui reply form">`;
+                    let commentForm = `<br><br><form class="ui reply form">`;
                     commentForm += `<div class="field">`;
                     commentForm += `<label>`;
                     commentForm += `<textarea id="replyForm" placeholder="로그인하고 댓글을 작성해보세요!"></textarea>`;
