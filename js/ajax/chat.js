@@ -409,7 +409,7 @@ function loadingComments() {
                             chatData += `</a>`;
                             chatData += `<div class="content" id="addAdminComments${indexComments}">`;
                             chatData += `<a class="author">${userName}</a>`;
-                            chatData += `<div class="text" >`;
+                            chatData += `<div class="text" id="text${indexComments}">`;
                             chatData += `${comment}`;
                             chatData += `</div>`;
                             chatData += `<div class="actions">`;
