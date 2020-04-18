@@ -62,18 +62,38 @@ function writeAComment() {
             // true/false 둘 중 하나를 반환한다.
             console.log("댓글 작성 성공여부입니다.: " + keyCheck);
 
-            let chatData = `<div class="comment" id=${commentID}>`;
+            // let chatData = `<div class="comment" id=${commentID}>`;
+            // chatData += `<a class="avatar">`;
+            // chatData += `<img src="images/plant.jpg" alt="image">`;
+            // chatData += `</a>`;
+            // chatData += `<div class="content">`;
+            // chatData += `<a class="author">${userName}</a>`;
+            // chatData += `<div class="text">`;
+            // chatData += `${comment}`;
+            // chatData += `</div>`;
+            // chatData += `<div class="actions">`;
+            // chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${commentID}>삭제</a>`;
+            // chatData += `<a class="save" href="javascript:void(0);" onclick="editComment(this)" id=${commentID}>수정</a>`;
+            // chatData += `</div>`;
+            // chatData += `</div>`;
+            // chatData += `</div>`;
+
+            let chatData = `<div class="ui comments" id=${commentID}>`;
+            chatData += `<div class="ui segment">`;
+            chatData += `<div class="comment">`;
             chatData += `<a class="avatar">`;
-            chatData += `<img src="images/plant.jpg" alt="image">`;
+            chatData += `<img src="/images/plant.jpg">`;
             chatData += `</a>`;
             chatData += `<div class="content">`;
             chatData += `<a class="author">${userName}</a>`;
-            chatData += `<div class="text">`;
+            chatData += `<div class="text" >`;
             chatData += `${comment}`;
             chatData += `</div>`;
             chatData += `<div class="actions">`;
-            chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${commentID}>삭제</a>`;
-            chatData += `<a class="save" href="javascript:void(0);" onclick="editComment(this)" id=${commentID}>수정</a>`;
+            chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${114}>삭제</a>`;
+            chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${114}>수정</a>`;
+            chatData += `</div>`;
+            chatData += `</div>`;
             chatData += `</div>`;
             chatData += `</div>`;
             chatData += `</div>`;
