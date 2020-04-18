@@ -30,13 +30,18 @@ function writeAComment() {
 
     const comment = $('#replyForm').val();
     console.log(comment);
-    const userName = sessionStorageGet(`cf`);
+    const userName = sessionStorageGet(`name`);
+    const id = sessionStorageGet('cf');
+
+    console.log("uid 확인 :" + id);
+    console.log("이름 확인 : " + userName);
 
     let commentData = {
-        'category': categoryUrl, //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
+        'category': categoryUrl,
         'comment': comment,
         'userName': userName,
-        'postNum': postNum
+        'postNum': postNum,
+        'uid': id
     };
 
 
@@ -350,23 +355,48 @@ function loadingComments() {
 
                         } else {
 
-                            let chatData = `<div class="comment" id=${indexComments}>`;
+                            //기존 채팅 스타일
+                            // let chatData = `<div class="comments" id=${indexComments}>`;
+                            // chatData += `<div class="comment">`;
+                            // chatData += `<div class="ui segment">`;
+                            // chatData += `<a class="avatar">`;
+                            // chatData += `<img src="images/plant.jpg" alt="image">`;
+                            // chatData += `</a>`;
+                            // chatData += `<div class="content" id="addAdminComments${indexComments}">`;
+                            // chatData += `<a class="author">${userName}</a>`;
+                            // chatData += `<div class="metadata">`;
+                            // chatData += `<span class="date">${date}</span>`;
+                            // chatData += `</div>`;
+                            // chatData += `<div class="text" id="text${indexComments}">`;
+                            // chatData += `${comment}`;
+                            // chatData += `</div>`;
+                            // chatData += `<div class="actions">`;
+                            // chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
+                            // chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
+                            // chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>댓글 달기</a>`;
+                            // chatData += `</div>`;
+                            // chatData += `</div>`;
+                            // chatData += `</div>`;
+                            // chatData += `</div>`;
+                            // chatData += `</div>`;
+
+
+                            let chatData = `<div class="ui comments" id=${indexComments}>`;
                             chatData += `<div class="ui segment">`;
+                            chatData += `<div class="comment">`;
                             chatData += `<a class="avatar">`;
-                            chatData += `<img src="images/plant.jpg" alt="image">`;
+                            chatData += `<img src="/images/plant.jpg">`;
                             chatData += `</a>`;
                             chatData += `<div class="content" id="addAdminComments${indexComments}">`;
                             chatData += `<a class="author">${userName}</a>`;
-                            chatData += `<div class="metadata">`;
-                            chatData += `<span class="date">${date}</span>`;
-                            chatData += `</div>`;
-                            chatData += `<div class="text" id="text${indexComments}">`;
+                            chatData += `<div class="text" >`;
                             chatData += `${comment}`;
                             chatData += `</div>`;
                             chatData += `<div class="actions">`;
                             chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
                             chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
                             chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>댓글 달기</a>`;
+                            chatData += `</div>`;
                             chatData += `</div>`;
                             chatData += `</div>`;
                             chatData += `</div>`;
