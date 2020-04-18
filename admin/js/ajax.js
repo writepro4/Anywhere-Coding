@@ -287,7 +287,7 @@ function writingDelete(idData) {
             let parseData = JSON.parse(data);
             let datakey = parseData.key;
             console.log("성공여부" + datakey);
-            alert("삭제 성공!");
+            $(`#item${itemNumber}`).remove();
 
         }
         //에러 종류 조건문으로 걸러내기
@@ -440,7 +440,7 @@ function getArticleList() {
                 //     날짜 date ,
                 //     글 번호 indexPosts
 
-                let html = `<div class="item">`;
+                let html = `<div class="item" id=item${indexPosts}>`;
                 html += `<div class="image">`;
                 html += `<img src=${titleImage} alt="image" style="height: 130px;">`;
                 html += `</div>`;
