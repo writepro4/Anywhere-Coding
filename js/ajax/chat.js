@@ -15,7 +15,6 @@
 // 14. sessionStorageGet 세션스토리지에 값 가져오는 함수.
 
 //TODO 대댓글, 댓글 추가,불러오기, 수정,삭제에서 uid 전달 해야됨 -> 로그인 기능 구현되면
-//TODO 댓글 삭제 했을때 대댓글 어떻게 처리되는지 예외처리 해야됨.
 //TODO 대댓글 수정, 삭제 해야됨.
 
 
@@ -572,7 +571,7 @@ function largeComment(commentID) {
     const uid = sessionStorageGet('cf');
 
     console.log(comment);
-    const userName = "관리자 입니다.";
+    const userName = sessionStorageGet(`name`);
 
 
     let commentData = {
