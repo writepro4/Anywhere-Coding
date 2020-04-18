@@ -34,16 +34,21 @@ $(document).ready(function () {
 
     if (confirmId === `https://honeytip.kro.kr/` && sessionStorageGet('cf') === null) {
         console.log("로그인 안된상태.");
+        $("#header").load("header.html");
     } else if (confirmId === `https://honeytip.kro.kr/index.html` && sessionStorageGet(`cf`) === null) {
         console.log("로그인 안된상태");
+        $("#header").load("header.html");
     } else if (confirmId === `https://honeytip.kro.kr/` && sessionStorageGet('cf') !== null) {
         console.log("로그인 로컬에 저장된 상태");
+        $("#header").load("headerLogin.html");
         loginRequest();
     } else if (confirmId === `https://honeytip.kro.kr/index.html` && sessionStorageGet(`cf`) !== null) {
         console.log("로그인 로컬에 저장된 상태");
+        $("#header").load("headerLogin.html");
         loginRequest();
     } else {
         sessionStorageSet('cf', confirmId);
+        $("#header").load("headerLogin.html");
         loginRequest();
     }
 
