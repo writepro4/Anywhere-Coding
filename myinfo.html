@@ -58,33 +58,12 @@
         <div class="ui vertical stripe segment" style="padding-bottom: 100px;">
             <h2 class="ui center aligned icon header">
                 <i class="circular users icon"></i>
-                내 정보 입니다.
+                내 정보
             </h2>
             <div class="ui middle aligned stackable grid container">
+                <!--                유저 프로필카드 보여주는 곳-->
+                <div id="cardProfile"></div>
 
-
-                <div class="ui card">
-                    <div class="image">
-                        <img src="https://img.icons8.com/bubbles/500/000000/user-female.png"/>
-                    </div>
-                    <div class="content">
-                        <a class="header">관리자</a>
-                        <div class="meta">
-                            <span class="date">첫 등록일 2020.11.05</span>
-                        </div>
-                        <div class="description">
-                            간단한 회원 정보입니다.
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        <a>
-                            <i class="user icon"></i>
-                            22 Friends
-                        </a>
-                    </div>
-                </div>
-
-                <!--                <div class="ui vertical stripe segment" style="padding-bottom: 100px; padding-top: 100px;">-->
                 <div class="ui text container">
 
                     <div class="ui horizontal section divider" style="font-size: 23px;">얻은 뱃지</div>
@@ -144,7 +123,6 @@
                             </div>
                         </div>
                     </div>
-                    <!--                    </div>-->
                 </div>
 
 
@@ -171,6 +149,8 @@
 
     <!--    nav 불러오는 js파일-->
     <script src="./js/nav.js"></script>
+    <!--    내 정보 불러오는 js파일-->
+    <script src="./js/ajax/myinfo.js"></script>
 
 </div>
 </body>
