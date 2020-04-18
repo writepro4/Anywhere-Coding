@@ -363,9 +363,10 @@ function loadingComments() {
                             adminComments += `<div class="text">`;
                             adminComments += `${comment}`;
                             adminComments += `</div>`;
-                            // adminComments += `<div class="actions">`;
-                            // adminComments += `<a class="reply">Reply</a>`;
-                            // adminComments += `</div>`;
+                            adminComments += `<div class="actions">`;
+                            adminComments += `<a class="reply">삭제</a>`;
+                            adminComments += `<a class="reply">수정</a>`;
+                            adminComments += `</div>`;
                             adminComments += `</div>`;
                             adminComments += `</div>`;
                             adminComments += `</div>`;
@@ -568,6 +569,8 @@ function largeComment(commentID) {
     const postNum = getArticleNumber();
     const categoryUrl = categoryImport();
 
+    const uid = sessionStorageGet('cf');
+
     console.log(comment);
     const userName = "관리자 입니다.";
 
@@ -577,7 +580,8 @@ function largeComment(commentID) {
         'postNum': postNum,
         'comment': comment,
         'userName': userName,
-        'category': categoryUrl
+        'category': categoryUrl,
+        'uid': uid
     };
 
 
@@ -599,6 +603,7 @@ function largeComment(commentID) {
             console.log("댓글 작성 성공여부입니다.: " + keyCheck);
 
             let adminComments = `<div class="comments">`;
+            adminComments += `<div class="ui segment">`;
             adminComments += `<div class="comment">`;
             adminComments += `<a class="avatar">`;
             adminComments += `<img src="/images/plant.jpg">`;
@@ -611,9 +616,11 @@ function largeComment(commentID) {
             adminComments += `<div class="text">`;
             adminComments += `${comment}`;
             adminComments += `</div>`;
-            // adminComments += `<div class="actions">`;
-            // adminComments += `<a class="reply">Reply</a>`;
-            // adminComments += `</div>`;
+            adminComments += `<div class="actions">`;
+            adminComments += `<a class="reply">삭제</a>`;
+            adminComments += `<a class="reply">수정</a>`;
+            adminComments += `</div>`;
+            adminComments += `</div>`;
             adminComments += `</div>`;
             adminComments += `</div>`;
             adminComments += `</div>`;
