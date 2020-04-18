@@ -348,7 +348,7 @@ function loadingComments() {
                         // 클래스 번호가 1일 경우엔 대댓글 처리를 해준다.
                         if (classNum === 1) {
 
-                            let adminComments = `<div class="comments">`;
+                            let adminComments = `<div class="comments" id=${indexComments}>`;
                             adminComments += `<div class="ui segment">`;
                             adminComments += `<div class="comment">`;
                             adminComments += `<a class="avatar">`;
@@ -363,8 +363,8 @@ function loadingComments() {
                             adminComments += `${comment}`;
                             adminComments += `</div>`;
                             adminComments += `<div class="actions">`;
-                            adminComments += `<a class="reply">삭제</a>`;
-                            adminComments += `<a class="reply">수정</a>`;
+                            adminComments += `<a class="reply" onclick="deleteAdminComments(this)" id=${indexComments}>삭제</a>`;
+                            adminComments += `<a class="reply" onclick="editComments(this)" id=${indexComments}>수정</a>`;
                             adminComments += `</div>`;
                             adminComments += `</div>`;
                             adminComments += `</div>`;
@@ -785,7 +785,7 @@ function deleteAdminComments(adminCommentNumber) {
 
             console.log("댓글 삭제 성공여부입니다.: " + keyCheck);
 
-            // document.getElementById(deleteIdData).remove();
+            document.getElementById(deleteID).remove();
 
 
         }
