@@ -7,8 +7,6 @@
 //6. sessionStorageSet 세션스토리지에 정보 저장하는 함수.
 //7. sessionStorageGet 세션스토리지에 값 가져오는 함수.
 
-//TODO 로그인 유지 시켜야함 -> 로컬스토리지로 변경해야됨.
-
 //1. 로컬스토리지에 저장하는 함수.
 function localStorageSet(name, localValue) {
     window.localStorage.setItem(name, localValue); //값을 설정합니다.
