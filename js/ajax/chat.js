@@ -15,6 +15,8 @@
 // 14. sessionStorageGet 세션스토리지에 값 가져오는 함수.
 
 
+//TODO 수정창 열었는지 닫았는지 확인하는 변수 생성해야됨
+
 // 1. 댓글 작성 함수.
 function writeAComment() {
 
