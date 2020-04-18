@@ -625,6 +625,7 @@ function largeComment(commentID) {
             adminComments += `</div>`;
 
             $(`#addAdminComments${editCommentID}`).append(adminComments);
+            $(`#crystalWindow`).remove();
 
 
         }
