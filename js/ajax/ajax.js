@@ -2,6 +2,7 @@
 // 1. getToken 토근 가져오는 함수
 // 2. nextPageData 카테고리 페이지에 데이터 넘기는 함수.
 // 3. detailPage 상세페이지에 데이터 넘기는 함수.
+// 4. logOut 로그아웃 함수.
 
 
 // 1. 토근 가져오는 함수
@@ -48,6 +49,11 @@ function detailPage(page) {
     window.location.href = `./details_page.html?index=${detailPage}`;
 }
 
+// 4. logOut 로그아웃 함수.
+// ㄴ> 세션스토리지를 전부 삭제한다.
+function logOut() {
+    sessionStorage.clear();
+}
 
 
 
