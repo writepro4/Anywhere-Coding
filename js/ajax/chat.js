@@ -30,7 +30,7 @@ function writeAComment() {
 
     const comment = $('#replyForm').val();
     console.log(comment);
-    const userName = "민차뉘";
+    const userName = sessionStorageGet(`cf`);
 
     let commentData = {
         'category': categoryUrl, //이부분에서 '_token'이라는 key로 csrf_token값을 전달해 주어야 한다
