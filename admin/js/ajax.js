@@ -399,9 +399,11 @@ function getArticleList() {
 
     const categoryData = $('#seleteData').val();
 
+    // https://honeytip.p-e.kr/posts/productivity/all
+
     $.ajax({
         type: 'get'
-        , url: `https://honeytip.p-e.kr/posts/${categoryData}/1`
+        , url: `https://honeytip.p-e.kr/posts/${categoryData}/all`
         , xhrFields: {
             withCredentials: false
         }
@@ -440,18 +442,18 @@ function getArticleList() {
 
                 let html = `<div class="item">`;
                 html += `<div class="image">`;
-                html += `<img src=${titleImage} alt="image">`;
+                html += `<img src=${titleImage} alt="image" style="height: 130px;">`;
                 html += `</div>`;
                 html += `<div class="content">`;
                 html += `<a class="header">${title}</a>`;
                 html += `<div class="meta">`;
-                html += `<span>${subTitle}</span>`;
+                html += `<span>${date}</span>`;
                 html += `</div>`;
                 html += `<div class="description">`;
                 html += `<p></p>`;
                 html += `</div>`;
                 html += `<div class="extra">`;
-                html += `Additional Details`;
+                html += `${category}`;
                 html += `</div>`;
                 html += `<div class="extra">`;
                 html += `<div class="ui blue right floated button" onclick="writingFix(this)" id=${indexPosts}>`;
