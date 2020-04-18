@@ -6,16 +6,13 @@
 // 5. getArticleNumber 글번호 가져오는 함수
 // 6. categoryImport 카테고리 가져오는 함수
 // 7. editCommentWindow 댓글수정 창 호출하는 함수
-// 8. largeComment 관리자 댓글 작성 함수
-// 9. aLargeCommentWindow 관리자 댓글 창 호출 함수.
-// 10. editComments 관리자 댓글 수정 함수.
-// 11. deleteAdminComments 관리자 댓글 삭제 함수.
+// 8. largeComment 대댓글 작성 함수
+// 9. aLargeCommentWindow 대댓글 창 호출 함수.
+// 10. editComments 대댓글 수정 함수.
+// 11. deleteAdminComments 대댓글 삭제 함수.
 // 12. enterEvent 엔터키 이벤트 감지하는 함수.
 // 13. pagingTreatment 페이징 처리 함수.
 // 14. sessionStorageGet 세션스토리지에 값 가져오는 함수.
-
-//TODO 대댓글, 댓글 추가,불러오기, 수정,삭제에서 uid 전달 해야됨 -> 로그인 기능 구현되면
-//TODO 대댓글 수정, 삭제 해야됨.
 
 
 // 1. 댓글 작성 함수.
@@ -359,12 +356,12 @@ function loadingComments() {
                             adminComments += `<div class="metadata">`;
                             adminComments += `<span class="date">${date}</span>`;
                             adminComments += `</div>`;
-                            adminComments += `<div class="text">`;
+                            adminComments += `<div class="text" id="text${indexComments}">`;
                             adminComments += `${comment}`;
                             adminComments += `</div>`;
                             adminComments += `<div class="actions">`;
                             adminComments += `<a class="reply" onclick="deleteAdminComments(this)" id=${indexComments}>삭제</a>`;
-                            adminComments += `<a class="reply" onclick="editComments(this)" id=${indexComments}>수정</a>`;
+                            adminComments += `<a class="reply" onclick="editCommentsWindow(this)" id=${indexComments}>수정</a>`;
                             adminComments += `</div>`;
                             adminComments += `</div>`;
                             adminComments += `</div>`;
@@ -557,7 +554,7 @@ function editCommentWindow(crystalID) {
 
 }
 
-// 8. largeComment 관리자 댓글 작성 함수
+// 8. largeComment 대댓글 댓글 작성 함수
 function largeComment(commentID) {
 
     // 대댓글 작성 번호
@@ -663,7 +660,7 @@ function largeComment(commentID) {
 
 }
 
-// 9. aLargeCommentWindow 관리자 댓글 창 호출 함수.
+// 9. aLargeCommentWindow 대댓글 댓글 창 호출 함수.
 function aLargeCommentWindow(crystalID) {
 
     // 수정할 글 번호
@@ -674,7 +671,7 @@ function aLargeCommentWindow(crystalID) {
     formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
     formData += `</div>`;
     formData += `<div class="ui red labeled submit icon button" onclick="largeComment(this)" id=${editCommentID} ">`;
-    formData += `<i class="icon edit"></i> 관리자 댓글`;
+    formData += `<i class="icon edit"></i> 대댓글 댓글`;
     formData += `</div>`;
     formData += `</form>`;
 
@@ -683,26 +680,19 @@ function aLargeCommentWindow(crystalID) {
 
 }
 
-// 10. editComments 관리자 댓글 수정 함수
+// 10. editComments 대댓글 댓글 수정 함수
 function editComments(largeCommentNumber) {
-
-    // 대댓글 수정(일부 수정)
-// (PUT [reply]) https://honeytip.p-e.kr/reply/{대댓글 번호}
-//     클라이언트 : 대댓글 내용 reply
-// 백엔드 : true (트루 폴스 확인 불가능 추후 더 알아보고 수정하겠음)
-
-    // 입력 폼 변경해야함.
 
     // 수정할 글 번호
     const editCommentID = largeCommentNumber.id;
-    console.log(editCommentID);
+    console.log("대댓글번호 : " + editCommentID);
 
     const comment = $(`#formreply`).val();
     console.log("입력된 데이터 값 : " + comment);
 
     let form = new FormData();
-    form.append("_method", "PATCH");
-    form.append("reply", comment);
+    form.append("_method", "PUT");
+    form.append("comment", comment);
 
     $.ajax({
         type: 'post'
@@ -761,7 +751,7 @@ function editComments(largeCommentNumber) {
 
 }
 
-// 11. deleteAdminComments 관리자 댓글 삭제 함수.
+// 11. deleteAdminComments 대댓글 댓글 삭제 함수.
 function deleteAdminComments(adminCommentNumber) {
 
     const deleteID = adminCommentNumber.id;
@@ -1009,6 +999,25 @@ function sessionStorageGet(key) {
     return window.sessionStorage.getItem(key);
 }
 
+// 15. 대댓글수정 창 호출하는 함수
+function editCommentsWindow(crystalID) {
+
+    // 수정할 글 번호
+    const editCommentID = crystalID.id;
+
+    let formData = `<form class="ui reply form" id="crystalWindow">`;
+    formData += `<div class="field">`;
+    formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
+    formData += `</div>`;
+    formData += `<div class="ui blue labeled submit icon button" onclick="editComments(this)" id=${editCommentID}>`;
+    formData += `<i class="icon edit"></i> 수정하기`;
+    formData += `</div>`;
+    formData += `</form>`;
+
+    $(`#${editCommentID}`).append(formData);
+
+
+}
 
 
 
