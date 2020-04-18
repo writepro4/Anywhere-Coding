@@ -305,6 +305,7 @@ function loadingComments() {
                     let listOfComments = contents.length;
 
 
+                    //상단 댓글 텍스트 불러오는 곳
                     let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
                     chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 </span></span></h3>`;
                     chatTitle += `<h1 class="ui dividing header reply center aligned" onclick="pagingTreatment()"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h1>`;
@@ -312,7 +313,8 @@ function loadingComments() {
 
                     $('#replyTitle').append(chatTitle);
 
-                    let commentForm = `<form class="ui reply form">`;
+                    //댓글 창 보여지는 곳
+                    let commentForm = `<br><br><form class="ui reply form">`;
                     commentForm += `<div class="field">`;
                     commentForm += `<label>`;
                     commentForm += `<textarea id="replyForm" placeholder="로그인하고 댓글을 작성해보세요!"></textarea>`;
