@@ -93,17 +93,12 @@ function loginRequest() {
             //로그인 유무를 판단하기 위해 login이라는 값도 저장시켜준다.
             sessionStorageSet(`login`, "로그인");
 
-            // let oldUrl = 'https://honeytip.kro.kr'; // 기본 URL
-            // let changeUrl = 'https://honeytip.kro.kr/index.html'; // 기본 URL로 사이트 접속 시 변경하고 싶은 URL
-            // let urlString = `https://honeytip.kro.kr`;
-            //
-            // history.pushState(state, title, url);
-            // if (urlString.match(oldUrl)){
-            //     window.location.replace(urlString.replace(oldUrl, changeUrl));
-            // } else {
-            //     // 주소창에 입력한 주소가 oldURL과 다를 경우 아무런 행위도 하지않는다.
-            // }
-            // if (oldUrl ==)
+            let state = { 'page_id': 1, 'user_id': 5 };
+            let title = 'Hello World';
+            let url = 'https://honeytip.kro.kr/';
+
+            history.pushState(state, title, url);
+
 
 
 
