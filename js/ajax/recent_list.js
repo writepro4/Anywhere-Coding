@@ -52,7 +52,7 @@ $(document).ready(function () {
                     cardView += `<div class="ui two bottom attached buttons">`;
                     cardView += `<div class="ui olive button">`;
                     cardView += `<i class="comments icon"></i>`;
-                    cardView += `댓글2`;
+                    cardView += `댓글`;
                     cardView += `</div>`;
                     cardView += `<div class="ui button">`;
                     cardView += `<i class="gift icon"></i>`;
