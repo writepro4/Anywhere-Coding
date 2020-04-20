@@ -49,20 +49,24 @@ $(document).ready(function () {
                     cardView += `${subTitle}`;
                     cardView += `</div>`;
                     cardView += `</div>`;
-                    cardView += `<div class="ui two bottom attached buttons">`;
-                    cardView += `<div class="ui olive button">`;
-                    cardView += `<i class="comments icon"></i>`;
-                    cardView += `댓글`;
+                    // cardView += `<div class="ui two bottom attached buttons">`;
+                    // cardView += `<div class="ui olive button">`;
+                    // cardView += `<i class="comments icon"></i>`;
+                    // cardView += `댓글`;
+                    // cardView += `</div>`;
+                    // cardView += `<div class="ui button">`;
+                    // cardView += `<i class="gift icon"></i>`;
+                    // cardView += `글 보기 `;
+                    // cardView += `</div>`;
+                    // cardView += `</div>`;
+                    // cardView += `</div>`;
+                    // cardView += `<div class="ui popup">`;
+                    // cardView += `<div class="header">User Rating</div>`;
+                    // cardView += `<div class="ui star rating" data-rating="3"></div>`;
+                    cardView += `<div class="extra content">`;
+                    cardView += `<i class="check icon"></i>`;
+                    cardView += `새로운 글`;
                     cardView += `</div>`;
-                    cardView += `<div class="ui button">`;
-                    cardView += `<i class="gift icon"></i>`;
-                    cardView += `글 보기 `;
-                    cardView += `</div>`;
-                    cardView += `</div>`;
-                    cardView += `</div>`;
-                    cardView += `<div class="ui popup">`;
-                    cardView += `<div class="header">User Rating</div>`;
-                    cardView += `<div class="ui star rating" data-rating="3"></div>`;
                     cardView += `</a>`;
 
 
