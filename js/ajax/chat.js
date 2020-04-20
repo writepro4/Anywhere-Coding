@@ -13,15 +13,19 @@
 // 12. enterEvent 엔터키 이벤트 감지하는 함수.
 // 13. pagingTreatment 페이징 처리 함수.
 // 14. sessionStorageGet 세션스토리지에 값 가져오는 함수.
+// 15. editCommentsWindow 대댓글수정 창 호출하는 함수
+// 16. checkIn 로그인 체크 함수
 
 
 //TODO 수정창 열었는지 닫았는지 확인하는 변수 생성해야됨
 //TODO 작성한 사람만 수정할 수 있게 수정해야됨
 //TODO 댓글 몇개 작성했는지 알아볼수 있게 수정해야됨
-//TODO 로그인해야만 댓글 작성할 수 있게 -> 안했으면 로그인창으로 자동으로 이동하게끔
 
 // 1. 댓글 작성 함수.
 function writeAComment() {
+
+    //로그인 했는지 체크하는 함수.
+    checkIn();
 
     const postNum = getArticleNumber();
     const categoryUrl = categoryImport();
@@ -1022,6 +1026,16 @@ function editCommentsWindow(crystalID) {
     $(`#${editCommentID}`).append(formData);
 
 
+}
+
+// 16. checkIn 로그인 체크 함수
+function checkIn() {
+    const checkIn = sessionStorageGet('name');
+    if(checkIn !== null){
+        return true;
+    }else{
+        window.location.href = `./socialLogin.html`;
+    }
 }
 
 
