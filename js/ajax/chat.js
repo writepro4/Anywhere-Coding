@@ -17,7 +17,6 @@
 // 16. checkIn 로그인 체크 함수
 
 
-//TODO 수정창 열었는지 닫았는지 확인하는 변수 생성해야됨
 //TODO 작성한 사람만 수정할 수 있게 수정해야됨
 //TODO 댓글 몇개 작성했는지 알아볼수 있게 수정해야됨
 //TODO 관리자는 모든 댓글 관리(수정,삭제) 가능하게끔 수정해야됨.
@@ -291,7 +290,7 @@ function loadingComments() {
 
                     let contents = parseData.contents;
 
-                    // console.log("받아온 데이터 목록 : " + data);
+                    console.log("받아온 데이터 목록 : " + data);
 
                     let listOfComments = contents.length;
 
@@ -335,67 +334,141 @@ function loadingComments() {
                         //어떤 그룹번호에 속해 있는지 나타내는 groupNum
                         //그룹 번호는 그 댓글 번호와 같다 .
                         let groupNum = contents[i].groupNum;
+                        let uid = contents[i].uid;
+                        console.log("uid 값 : " + uid);
+
+                        //자신이 작성한 댓글인지 확인하는 변수.
+                        const uidCheck = sessionStorageGet('cf');
+
+                        //자신이 작성한 댓글이라면 수정,삭제 메뉴 뜸.
+                        if (uidCheck === uid) {
+
+                            // 클래스 번호가 1일 경우엔 대댓글 처리를 해준다.
+                            if (classNum === 1) {
+
+                                let adminComments = `<div class="comments" id=${indexComments}>`;
+                                adminComments += `<div class="ui segment">`;
+                                adminComments += `<div class="comment">`;
+                                adminComments += `<a class="avatar">`;
+                                adminComments += `<img src="/images/avatar.png">`;
+                                adminComments += `</a>`;
+                                adminComments += `<div class="content">`;
+                                adminComments += `<a class="author">${userName}</a>`;
+                                adminComments += `<div class="metadata">`;
+                                // adminComments += `<span class="date">${date}</span>`;
+                                adminComments += `</div>`;
+                                adminComments += `<div class="text" id="text${indexComments}">`;
+                                adminComments += `${comment}`;
+                                adminComments += `</div>`;
+                                adminComments += `<div class="actions">`;
+                                adminComments += `<a class="reply" onclick="deleteAdminComments(this)" id=${indexComments}>삭제</a>`;
+                                adminComments += `<a class="reply" onclick="editCommentsWindow(this)" id=${indexComments}>수정</a>`;
+                                adminComments += `</div>`;
+                                adminComments += `</div>`;
+                                adminComments += `</div>`;
+                                adminComments += `</div>`;
+                                adminComments += `</div>`;
+
+                                $(`#addAdminComments${groupNum}`).append(adminComments);
+                                console.log("실행합니다. index값 확인 : " + indexComments);
 
 
-                        // 클래스 번호가 1일 경우엔 대댓글 처리를 해준다.
-                        if (classNum === 1) {
-
-                            let adminComments = `<div class="comments" id=${indexComments}>`;
-                            adminComments += `<div class="ui segment">`;
-                            adminComments += `<div class="comment">`;
-                            adminComments += `<a class="avatar">`;
-                            adminComments += `<img src="/images/plant.jpg">`;
-                            adminComments += `</a>`;
-                            adminComments += `<div class="content">`;
-                            adminComments += `<a class="author">${userName}</a>`;
-                            adminComments += `<div class="metadata">`;
-                            // adminComments += `<span class="date">${date}</span>`;
-                            adminComments += `</div>`;
-                            adminComments += `<div class="text" id="text${indexComments}">`;
-                            adminComments += `${comment}`;
-                            adminComments += `</div>`;
-                            adminComments += `<div class="actions">`;
-                            adminComments += `<a class="reply" onclick="deleteAdminComments(this)" id=${indexComments}>삭제</a>`;
-                            adminComments += `<a class="reply" onclick="editCommentsWindow(this)" id=${indexComments}>수정</a>`;
-                            adminComments += `</div>`;
-                            adminComments += `</div>`;
-                            adminComments += `</div>`;
-                            adminComments += `</div>`;
-                            adminComments += `</div>`;
-
-                            $(`#addAdminComments${groupNum}`).append(adminComments);
-                            console.log("실행합니다. index값 확인 : " + indexComments);
+                            } else {
 
 
+                                let chatData = `<div class="ui comments" id=${indexComments}>`;
+                                chatData += `<div class="ui segment">`;
+                                chatData += `<div class="comment">`;
+                                chatData += `<a class="avatar">`;
+                                chatData += `<img src="/images/avatar.png">`;
+                                chatData += `</a>`;
+                                chatData += `<div class="content" id="addAdminComments${indexComments}">`;
+                                chatData += `<a class="author">${userName}</a>`;
+                                chatData += `<div class="text" id="text${indexComments}">`;
+                                chatData += `${comment}`;
+                                chatData += `</div>`;
+                                chatData += `<div class="actions">`;
+                                chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
+                                chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
+                                chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>댓글 달기</a>`;
+                                chatData += `</div>`;
+                                chatData += `</div>`;
+                                chatData += `</div>`;
+                                chatData += `</div>`;
+                                chatData += `</div>`;
+
+
+                                $('#comments').append(chatData);
+
+
+                            }
+
+                            //자신이 작성한 댓글이 아니라면 수정,삭제 메뉴를 포함시키지 않는다.
                         } else {
 
+                            // 클래스 번호가 1일 경우엔 대댓글 처리를 해준다.
+                            if (classNum === 1) {
 
-                            let chatData = `<div class="ui comments" id=${indexComments}>`;
-                            chatData += `<div class="ui segment">`;
-                            chatData += `<div class="comment">`;
-                            chatData += `<a class="avatar">`;
-                            chatData += `<img src="/images/avatar.png">`;
-                            chatData += `</a>`;
-                            chatData += `<div class="content" id="addAdminComments${indexComments}">`;
-                            chatData += `<a class="author">${userName}</a>`;
-                            chatData += `<div class="text" id="text${indexComments}">`;
-                            chatData += `${comment}`;
-                            chatData += `</div>`;
-                            chatData += `<div class="actions">`;
-                            chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
-                            chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
-                            chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>댓글 달기</a>`;
-                            chatData += `</div>`;
-                            chatData += `</div>`;
-                            chatData += `</div>`;
-                            chatData += `</div>`;
-                            chatData += `</div>`;
+                                let adminComments = `<div class="comments" id=${indexComments}>`;
+                                adminComments += `<div class="ui segment">`;
+                                adminComments += `<div class="comment">`;
+                                adminComments += `<a class="avatar">`;
+                                adminComments += `<img src="/images/avatar.png">`;
+                                adminComments += `</a>`;
+                                adminComments += `<div class="content">`;
+                                adminComments += `<a class="author">${userName}</a>`;
+                                adminComments += `<div class="metadata">`;
+                                // adminComments += `<span class="date">${date}</span>`;
+                                adminComments += `</div>`;
+                                adminComments += `<div class="text" id="text${indexComments}">`;
+                                adminComments += `${comment}`;
+                                adminComments += `</div>`;
+                                // adminComments += `<div class="actions">`;
+                                // adminComments += `<a class="reply" onclick="deleteAdminComments(this)" id=${indexComments}>삭제</a>`;
+                                // adminComments += `<a class="reply" onclick="editCommentsWindow(this)" id=${indexComments}>수정</a>`;
+                                // adminComments += `</div>`;
+                                adminComments += `</div>`;
+                                adminComments += `</div>`;
+                                adminComments += `</div>`;
+                                adminComments += `</div>`;
+
+                                $(`#addAdminComments${groupNum}`).append(adminComments);
+                                console.log("실행합니다. index값 확인 : " + indexComments);
 
 
-                            $('#comments').append(chatData);
+                            } else {
+
+
+                                let chatData = `<div class="ui comments" id=${indexComments}>`;
+                                chatData += `<div class="ui segment">`;
+                                chatData += `<div class="comment">`;
+                                chatData += `<a class="avatar">`;
+                                chatData += `<img src="/images/avatar.png">`;
+                                chatData += `</a>`;
+                                chatData += `<div class="content" id="addAdminComments${indexComments}">`;
+                                chatData += `<a class="author">${userName}</a>`;
+                                chatData += `<div class="text" id="text${indexComments}">`;
+                                chatData += `${comment}`;
+                                chatData += `</div>`;
+                                chatData += `<div class="actions">`;
+                                // chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
+                                // chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
+                                chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>댓글 달기</a>`;
+                                chatData += `</div>`;
+                                chatData += `</div>`;
+                                chatData += `</div>`;
+                                chatData += `</div>`;
+                                chatData += `</div>`;
+
+
+                                $('#comments').append(chatData);
+
+
+                            }
 
 
                         }
+
 
                     }
 
@@ -510,7 +583,7 @@ let crystalWindowCheck = false;
 // 7. 댓글수정 창 호출하는 함수
 function editCommentWindow(crystalID) {
 
-    if(crystalWindowCheck === false){
+    if (crystalWindowCheck === false) {
         crystalWindowCheck = true;
 
         // 수정할 글 번호
@@ -527,11 +600,10 @@ function editCommentWindow(crystalID) {
 
         $(`#${editCommentID}`).append(formData);
 
-    }else{
+    } else {
         crystalWindowCheck = false;
         $(`#crystalWindow`).remove();
     }
-
 
 
 }
@@ -647,7 +719,7 @@ let largeCommentWindowCheck = false;
 // 9. aLargeCommentWindow 대댓글 댓글 창 호출 함수.
 function aLargeCommentWindow(crystalID) {
 
-    if(largeCommentWindowCheck === false){
+    if (largeCommentWindowCheck === false) {
 
         largeCommentWindowCheck = true;
         // 수정할 글 번호
@@ -665,7 +737,7 @@ function aLargeCommentWindow(crystalID) {
         $(`#${editCommentID}`).append(formData);
 
 
-    }else{
+    } else {
         largeCommentWindowCheck = false;
         $(`#crystalWindow`).remove();
 
@@ -996,7 +1068,7 @@ function sessionStorageGet(key) {
 // 15. 대댓글수정 창 호출하는 함수
 function editCommentsWindow(crystalID) {
 
-    if(largeCommentWindowCheck === false){
+    if (largeCommentWindowCheck === false) {
 
         largeCommentWindowCheck = true;
         // 수정할 글 번호
@@ -1013,11 +1085,10 @@ function editCommentsWindow(crystalID) {
 
         $(`#${editCommentID}`).append(formData);
 
-    }else{
+    } else {
         largeCommentWindowCheck = false;
         $(`#crystalWindow`).remove();
     }
-
 
 
 }
