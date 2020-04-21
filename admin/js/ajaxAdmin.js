@@ -127,7 +127,6 @@ function login() {
 }
 
 // 4. 글 등록 함수
-
 //이미지 업로드가 먼저 실행되고 서버로부터 이미지 url 주소를 반환받으면,
 //그 다음에 썸머노트에 작성한 내용을 가져오는 아래의 postForm함수를 실행시키고, 정보를 종합해 서버에 보내줌.
 function imageUpload() {
@@ -461,7 +460,7 @@ function getArticleList() {
                 html += `${category}`;
                 html += `</div>`;
                 html += `<div class="extra">`;
-                html += `<div class="ui blue right floated button" onclick="writingFix(this)" id=${indexPosts}>`;
+                html += `<div class="ui blue right floated button" onclick="nextPageData(this)" id=${indexPosts}>`;
                 html += `수정`;
                 html += `</div>`;
                 html += `<div class="ui red right floated button" onclick="writingDelete(this)" id=${indexPosts}>`;
@@ -512,8 +511,6 @@ function getArticleList() {
 
 // 11. contentImport 관리자 글 수정시에 내용 불러오는 함수.
 function contentImport(checkPage) {
-
-    const pageNumber = checkPage.id;
 
     // 관리자 글 수정페이지 접근시  작성했던 글데이터 가져오기 (edited)
     // 3:29
@@ -587,7 +584,7 @@ function nextPageData(category) {
     let categoryData = category.id;
     //데이터 넘기는지 확인용도
     console.log(categoryData);
-    window.location.href = `./administrator_fixPage.html?index=${categoryData}`;
+    window.location.href = `./administrator_fixpage.html?index=${categoryData}`;
 
 }
 
