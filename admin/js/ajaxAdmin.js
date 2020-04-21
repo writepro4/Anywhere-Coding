@@ -13,6 +13,8 @@
 // 10. getArticleList 카테고리 목록 리스트 가져오는 함수
 // 11. contentImport 관리자 글 수정시에 내용 불러오는 함수.
 // 12. nextPageData 수정 페이지에 url 데이터 전달하는 함수.
+// 13. 수정된 썸머노트 내용 가져오는 함수
+// 14. buttonEvent 버튼 이벤트(수정,삭제) 함수.
 
 
 //TODO 관리자 카테고리 불러오기, 관리자 글 작성 미리보기, 관리자 글 수정하기 작업해야됨
@@ -273,58 +275,64 @@ function writinglist() {
 // 7. writingDelete 글 삭제 시키는 함수
 function writingDelete(idData) {
 
-    const itemNumber = idData.id;
+    if(buttonEvent() === true){
 
-    let form = new FormData();
-    form.append("_method", "DELETE");
+        const itemNumber = idData.id;
 
-    $.ajax({
-        type: 'post'
-        , data: form
-        , processData: false
-        , contentType: false
-        , url: `https://honeytip.p-e.kr/posts/${itemNumber}`
-        , xhrFields: {
-            withCredentials: false
-        }
-        , success: function (data) {
-            //json 파싱하기
-            let parseData = JSON.parse(data);
-            let datakey = parseData.key;
-            console.log("성공여부" + datakey);
-            $(`#item${itemNumber}`).remove();
+        let form = new FormData();
+        form.append("_method", "DELETE");
 
-        }
-        //에러 종류 조건문으로 걸러내기
-        , error: function (jqXHR, exception) {
-
-            if (jqXHR.status === 0) {
-                alert('Not connect.\n Verify Network.');
-            } else if (jqXHR.status === 400) {
-                alert('Server understood the request, but request content was invalid. [400]');
-            } else if (jqXHR.status === 401) {
-                alert('Unauthorized access. [401]');
-            } else if (jqXHR.status === 403) {
-                alert('Forbidden resource can not be accessed. [403]');
-            } else if (jqXHR.status === 404) {
-                alert('Requested page not found. [404]');
-            } else if (jqXHR.status === 500) {
-                alert('Internal server error. [500]');
-            } else if (jqXHR.status === 503) {
-                alert('Service unavailable. [503]');
-            } else if (exception === 'parsererror') {
-                alert('Requested JSON parse failed. [Failed]');
-            } else if (exception === 'timeout') {
-                alert('Time out error. [Timeout]');
-            } else if (exception === 'abort') {
-                alert('Ajax request aborted. [Aborted]');
-            } else {
-                alert('Uncaught Error.n');
+        $.ajax({
+            type: 'post'
+            , data: form
+            , processData: false
+            , contentType: false
+            , url: `https://honeytip.p-e.kr/posts/${itemNumber}`
+            , xhrFields: {
+                withCredentials: false
             }
-            console.log("상태: " + status);
-            console.log("실패");
-        }
-    });
+            , success: function (data) {
+                //json 파싱하기
+                let parseData = JSON.parse(data);
+                let datakey = parseData.key;
+                console.log("성공여부" + datakey);
+                $(`#item${itemNumber}`).remove();
+
+            }
+            //에러 종류 조건문으로 걸러내기
+            , error: function (jqXHR, exception) {
+
+                if (jqXHR.status === 0) {
+                    alert('Not connect.\n Verify Network.');
+                } else if (jqXHR.status === 400) {
+                    alert('Server understood the request, but request content was invalid. [400]');
+                } else if (jqXHR.status === 401) {
+                    alert('Unauthorized access. [401]');
+                } else if (jqXHR.status === 403) {
+                    alert('Forbidden resource can not be accessed. [403]');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found. [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal server error. [500]');
+                } else if (jqXHR.status === 503) {
+                    alert('Service unavailable. [503]');
+                } else if (exception === 'parsererror') {
+                    alert('Requested JSON parse failed. [Failed]');
+                } else if (exception === 'timeout') {
+                    alert('Time out error. [Timeout]');
+                } else if (exception === 'abort') {
+                    alert('Ajax request aborted. [Aborted]');
+                } else {
+                    alert('Uncaught Error.n');
+                }
+                console.log("상태: " + status);
+                console.log("실패");
+            }
+        });
+
+    }else{
+
+    }
 }
 
 // 8. writingFix 관리자 글 수정 함수
@@ -639,10 +647,15 @@ function contentImport(checkPage) {
 
 // 12. nextPageData 수정 페이지에 url 데이터 전달하는 함수.
 function nextPageData(category) {
-    let categoryData = category.id;
-    //데이터 넘기는지 확인용도
-    console.log(categoryData);
-    window.location.href = `./administrator_fixpage.html?index=${categoryData}`;
+    if(buttonEvent() === true){
+
+        let categoryData = category.id;
+        //데이터 넘기는지 확인용도
+        console.log(categoryData);
+        window.location.href = `./administrator_fixpage.html?index=${categoryData}`;
+    }else{
+
+    }
 
 }
 
@@ -651,5 +664,10 @@ function fixPostForm() {
     let bar = $('textarea[name="content"]').val($('#summernote').summernote('code'));
     console.log(bar.val());
     return bar.val();
+}
+
+// 14. buttonEvent 버튼 이벤트(수정,삭제) 함수.
+function buttonEvent() {
+    return confirm("정말 실행하시겠습니까??") === true;
 }
 
