@@ -68,21 +68,6 @@ function writeAComment() {
             // true/false 둘 중 하나를 반환한다.
             console.log("댓글 작성 성공여부입니다.: " + keyCheck);
 
-            // let chatData = `<div class="comment" id=${commentID}>`;
-            // chatData += `<a class="avatar">`;
-            // chatData += `<img src="images/plant.jpg" alt="image">`;
-            // chatData += `</a>`;
-            // chatData += `<div class="content">`;
-            // chatData += `<a class="author">${userName}</a>`;
-            // chatData += `<div class="text">`;
-            // chatData += `${comment}`;
-            // chatData += `</div>`;
-            // chatData += `<div class="actions">`;
-            // chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${commentID}>삭제</a>`;
-            // chatData += `<a class="save" href="javascript:void(0);" onclick="editComment(this)" id=${commentID}>수정</a>`;
-            // chatData += `</div>`;
-            // chatData += `</div>`;
-            // chatData += `</div>`;
 
             let chatData = `<div class="ui comments" id=${commentID}>`;
             chatData += `<div class="ui segment">`;
@@ -95,10 +80,10 @@ function writeAComment() {
             chatData += `<div class="text" >`;
             chatData += `${comment}`;
             chatData += `</div>`;
-            // chatData += `<div class="actions">`;
-            // chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${114}>삭제</a>`;
-            // chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${114}>수정</a>`;
-            // chatData += `</div>`;
+            chatData += `<div class="actions">`;
+            chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${114}>삭제</a>`;
+            chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${114}>수정</a>`;
+            chatData += `</div>`;
             chatData += `</div>`;
             chatData += `</div>`;
             chatData += `</div>`;
@@ -369,10 +354,10 @@ function loadingComments() {
                             adminComments += `<div class="text" id="text${indexComments}">`;
                             adminComments += `${comment}`;
                             adminComments += `</div>`;
-                            // adminComments += `<div class="actions">`;
-                            // adminComments += `<a class="reply" onclick="deleteAdminComments(this)" id=${indexComments}>삭제</a>`;
-                            // adminComments += `<a class="reply" onclick="editCommentsWindow(this)" id=${indexComments}>수정</a>`;
-                            // adminComments += `</div>`;
+                            adminComments += `<div class="actions">`;
+                            adminComments += `<a class="reply" onclick="deleteAdminComments(this)" id=${indexComments}>삭제</a>`;
+                            adminComments += `<a class="reply" onclick="editCommentsWindow(this)" id=${indexComments}>수정</a>`;
+                            adminComments += `</div>`;
                             adminComments += `</div>`;
                             adminComments += `</div>`;
                             adminComments += `</div>`;
@@ -383,31 +368,6 @@ function loadingComments() {
 
 
                         } else {
-
-                            //기존 채팅 스타일
-                            // let chatData = `<div class="comments" id=${indexComments}>`;
-                            // chatData += `<div class="comment">`;
-                            // chatData += `<div class="ui segment">`;
-                            // chatData += `<a class="avatar">`;
-                            // chatData += `<img src="images/plant.jpg" alt="image">`;
-                            // chatData += `</a>`;
-                            // chatData += `<div class="content" id="addAdminComments${indexComments}">`;
-                            // chatData += `<a class="author">${userName}</a>`;
-                            // chatData += `<div class="metadata">`;
-                            // chatData += `<span class="date">${date}</span>`;
-                            // chatData += `</div>`;
-                            // chatData += `<div class="text" id="text${indexComments}">`;
-                            // chatData += `${comment}`;
-                            // chatData += `</div>`;
-                            // chatData += `<div class="actions">`;
-                            // chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
-                            // chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
-                            // chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>댓글 달기</a>`;
-                            // chatData += `</div>`;
-                            // chatData += `</div>`;
-                            // chatData += `</div>`;
-                            // chatData += `</div>`;
-                            // chatData += `</div>`;
 
 
                             let chatData = `<div class="ui comments" id=${indexComments}>`;
@@ -421,11 +381,11 @@ function loadingComments() {
                             chatData += `<div class="text" id="text${indexComments}">`;
                             chatData += `${comment}`;
                             chatData += `</div>`;
-                            // chatData += `<div class="actions">`;
-                            // chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
-                            // chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
-                            // chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>댓글 달기</a>`;
-                            // chatData += `</div>`;
+                            chatData += `<div class="actions">`;
+                            chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${indexComments}>삭제</a>`;
+                            chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${indexComments}>수정</a>`;
+                            chatData += `<a class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)" id=${indexComments}>댓글 달기</a>`;
+                            chatData += `</div>`;
                             chatData += `</div>`;
                             chatData += `</div>`;
                             chatData += `</div>`;
@@ -544,22 +504,34 @@ function categoryImport() {
     return categoryNumber[0];
 }
 
+//수정창이 열려 있는지 확인하는 변수
+let crystalWindowCheck = false;
+
 // 7. 댓글수정 창 호출하는 함수
 function editCommentWindow(crystalID) {
 
-    // 수정할 글 번호
-    const editCommentID = crystalID.id;
+    if(crystalWindowCheck === false){
+        crystalWindowCheck = true;
 
-    let formData = `<form class="ui reply form" id="crystalWindow">`;
-    formData += `<div class="field">`;
-    formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
-    formData += `</div>`;
-    formData += `<div class="ui blue labeled submit icon button" onclick="editComment(this)" id=${editCommentID}>`;
-    formData += `<i class="icon edit"></i> 수정하기`;
-    formData += `</div>`;
-    formData += `</form>`;
+        // 수정할 글 번호
+        const editCommentID = crystalID.id;
 
-    $(`#${editCommentID}`).append(formData);
+        let formData = `<form class="ui reply form" id="crystalWindow">`;
+        formData += `<div class="field">`;
+        formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
+        formData += `</div>`;
+        formData += `<div class="ui blue labeled submit icon button" onclick="editComment(this)" id=${editCommentID}>`;
+        formData += `<i class="icon edit"></i> 수정하기`;
+        formData += `</div>`;
+        formData += `</form>`;
+
+        $(`#${editCommentID}`).append(formData);
+
+    }else{
+        crystalWindowCheck = false;
+        $(`#crystalWindow`).remove();
+    }
+
 
 
 }
@@ -1032,9 +1004,9 @@ function editCommentsWindow(crystalID) {
 // 16. checkIn 로그인 체크 함수
 function checkIn() {
     const checkIn = sessionStorageGet('name');
-    if(checkIn !== null){
+    if (checkIn !== null) {
         return true;
-    }else{
+    } else {
         window.location.href = `./socialLogin.html`;
     }
 }
