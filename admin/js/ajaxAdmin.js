@@ -328,68 +328,126 @@ function writingDelete(idData) {
 }
 
 // 8. writingFix 관리자 글 수정 함수
-function writingFix(fixItem) {
+function writingFix() {
 
-    const fixItemNumber = fixItem.id;
+    const fixItemNumber = getUrlData();
 
-    let form = new FormData();
-    form.append("_method", "PATCH");
-    form.append("title", "제목");
-    form.append("category", "생산성");
-    form.append("image", "야스야스");
-    form.append("contents", "내용");
-    form.append("subTitle", "부제목");
+    //누르자마자 썸머노트 내용 저장
+    const summer = fixPostForm();
 
-    console.log("보내는 데이터: " + form);
+    let imageForm = document.getElementById('image-form');
+    let formData = new FormData(imageForm);
+
+    let file = $('input[type="file"]').val().trim();
+
+    if (!file) {
+        console.log("이미지를 선택해주세요.");
+    } else {
+        $.ajax({
+            url: "https://honeytip.p-e.kr/posts/image",
+            type: "post",
+            data: formData,
+            contentType: false,
+            cache: false,
+            processData: false,
+            success: function (data) {
+                console.log("이미지 등록 완료!");
+
+                //썸머노트 내용 주석
+                console.log("내용" + summer);
+
+                let image = data;
+                console.log(data);
 
 
-    $.ajax({
-        type: 'post'
-        , data: form
-        , processData: false
-        , contentType: false
-        , url: `https://honeytip.p-e.kr/posts/${fixItemNumber}`
-        , xhrFields: {
-            withCredentials: false
-        }
-        , success: function (data) {
-            //json 파싱하기
-            let parseData = JSON.parse(data);
-            let datakey = parseData.key;
-            console.log("성공여부" + datakey);
-            alert("수정성공");
+                let title = $('#title').val();
+                let category = $('#category').val();
+                let adminId = "관리자입니다.";
+                let subTitle = $('#subTitle').val();
 
-        }
-        //에러 종류 조건문으로 걸러내기
-        , error: function (jqXHR, exception) {
 
-            if (jqXHR.status === 0) {
-                alert('Not connect.\n Verify Network.');
-            } else if (jqXHR.status === 400) {
-                alert('Server understood the request, but request content was invalid. [400]');
-            } else if (jqXHR.status === 401) {
-                alert('Unauthorized access. [401]');
-            } else if (jqXHR.status === 403) {
-                alert('Forbidden resource can not be accessed. [403]');
-            } else if (jqXHR.status === 404) {
-                alert('Requested page not found. [404]');
-            } else if (jqXHR.status === 500) {
-                alert('Internal server error. [500]');
-            } else if (jqXHR.status === 503) {
-                alert('Service unavailable. [503]');
-            } else if (exception === 'parsererror') {
-                alert('Requested JSON parse failed. [Failed]');
-            } else if (exception === 'timeout') {
-                alert('Time out error. [Timeout]');
-            } else if (exception === 'abort') {
-                alert('Ajax request aborted. [Aborted]');
-            } else {
-                alert('Uncaught Error.n');
+                console.log("제목" + title);
+                console.log("카테고리" + category);
+                console.log("관리자아이디" + adminId);
+                console.log("부제목" + subTitle);
+                console.log("썸머노트 내용" + summer);
+
+
+                //JSON 더미데이터로 필요한 정보 넣어줌
+                let postsData = {
+                    'image': image,
+                    'title': title,
+                    'category': category,
+                    'contents': summer,
+                    'adminId': adminId,
+                    'subTitle': subTitle
+                };
+
+                let form = new FormData();
+                form.append("_method", "PATCH");
+                form.append("title", title);
+                form.append("category", category);
+                form.append("image", image);
+                form.append("contents", summer);
+                form.append("subTitle", subTitle);
+
+                console.log("보내는 데이터: " + form);
+
+                // 이미지와 함께 수정된 데이터 보내줌
+                $.ajax({
+                    type: 'post'
+                    , url: `https://honeytip.p-e.kr/posts/${fixItemNumber}`
+                    , data: form
+                    , processData: false
+                    , contentType: false
+                    , xhrFields: {
+                        withCredentials: false
+                    }
+                    , success: function (data) {
+                        //json 파싱하기
+                        let parseData = JSON.parse(data);
+                        let keyCheck = parseData.key;
+
+                        console.log("수정완료 : ");
+
+
+
+                    }
+                    //에러 종류 조건문으로 걸러내기
+                    , error: function (jqXHR, exception) {
+
+                        if (jqXHR.status === 0) {
+                            alert('Not connect.\n Verify Network.');
+                        } else if (jqXHR.status === 400) {
+                            alert('Server understood the request, but request content was invalid. [400]');
+                        } else if (jqXHR.status === 401) {
+                            alert('Unauthorized access. [401]');
+                        } else if (jqXHR.status === 403) {
+                            alert('Forbidden resource can not be accessed. [403]');
+                        } else if (jqXHR.status === 404) {
+                            alert('Requested page not found. [404]');
+                        } else if (jqXHR.status === 500) {
+                            alert('Internal server error. [500]');
+                        } else if (jqXHR.status === 503) {
+                            alert('Service unavailable. [503]');
+                        } else if (exception === 'parsererror') {
+                            alert('Requested JSON parse failed. [Failed]');
+                        } else if (exception === 'timeout') {
+                            alert('Time out error. [Timeout]');
+                        } else if (exception === 'abort') {
+                            alert('Ajax request aborted. [Aborted]');
+                        } else {
+                            alert('Uncaught Error.n');
+                        }
+                        console.log("상태: " + status);
+                        console.log("실패");
+                    }
+                });
             }
-            console.log("상태: " + status);
-            console.log("실패");
-        }
-    });
+        });
+    }
+
+
 }
 
 // 9. preview 관리자 글 등록시 미리보기 기능 함수
@@ -588,4 +646,10 @@ function nextPageData(category) {
 
 }
 
+// 13. 수정된 썸머노트 내용 가져오는 함수
+function fixPostForm() {
+    let bar = $('textarea[name="content"]').val($('#summernote').summernote('code'));
+    console.log(bar.val());
+    return bar.val();
+}
 
