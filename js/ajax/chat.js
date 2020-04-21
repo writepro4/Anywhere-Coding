@@ -642,22 +642,34 @@ function largeComment(commentID) {
 
 }
 
+let largeCommentWindowCheck = false;
+
 // 9. aLargeCommentWindow 대댓글 댓글 창 호출 함수.
 function aLargeCommentWindow(crystalID) {
 
-    // 수정할 글 번호
-    const editCommentID = crystalID.id;
+    if(largeCommentWindowCheck === false){
 
-    let formData = `<form class="ui reply form" id="crystalWindow">`;
-    formData += `<div class="field">`;
-    formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
-    formData += `</div>`;
-    formData += `<div class="ui red labeled submit icon button" onclick="largeComment(this)" id=${editCommentID} ">`;
-    formData += `<i class="icon edit"></i> 대댓글 댓글`;
-    formData += `</div>`;
-    formData += `</form>`;
+        largeCommentWindowCheck = true;
+        // 수정할 글 번호
+        const editCommentID = crystalID.id;
 
-    $(`#${editCommentID}`).append(formData);
+        let formData = `<form class="ui reply form" id="crystalWindow">`;
+        formData += `<div class="field">`;
+        formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
+        formData += `</div>`;
+        formData += `<div class="ui red labeled submit icon button" onclick="largeComment(this)" id=${editCommentID} ">`;
+        formData += `<i class="icon edit"></i> 대댓글 댓글`;
+        formData += `</div>`;
+        formData += `</form>`;
+
+        $(`#${editCommentID}`).append(formData);
+
+
+    }else{
+        largeCommentWindowCheck = false;
+        $(`#crystalWindow`).remove();
+
+    }
 
 
 }
@@ -984,19 +996,28 @@ function sessionStorageGet(key) {
 // 15. 대댓글수정 창 호출하는 함수
 function editCommentsWindow(crystalID) {
 
-    // 수정할 글 번호
-    const editCommentID = crystalID.id;
+    if(largeCommentWindowCheck === false){
 
-    let formData = `<form class="ui reply form" id="crystalWindow">`;
-    formData += `<div class="field">`;
-    formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
-    formData += `</div>`;
-    formData += `<div class="ui blue labeled submit icon button" onclick="editComments(this)" id=${editCommentID}>`;
-    formData += `<i class="icon edit"></i> 수정하기`;
-    formData += `</div>`;
-    formData += `</form>`;
+        largeCommentWindowCheck = true;
+        // 수정할 글 번호
+        const editCommentID = crystalID.id;
 
-    $(`#${editCommentID}`).append(formData);
+        let formData = `<form class="ui reply form" id="crystalWindow">`;
+        formData += `<div class="field">`;
+        formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
+        formData += `</div>`;
+        formData += `<div class="ui blue labeled submit icon button" onclick="editComments(this)" id=${editCommentID}>`;
+        formData += `<i class="icon edit"></i> 수정하기`;
+        formData += `</div>`;
+        formData += `</form>`;
+
+        $(`#${editCommentID}`).append(formData);
+
+    }else{
+        largeCommentWindowCheck = false;
+        $(`#crystalWindow`).remove();
+    }
+
 
 
 }
