@@ -39,7 +39,7 @@ $(document).ready(function () {
                     let categoryPostsID = category + "_" + indexPosts;
 
 
-                    let cardView = `<a class="ui card" onclick="detailPage(this)" id=${categoryPostsID} style="font-style:italic">`;
+                    let cardView = `<a class="ui card" onclick="detailPage(this)" id=${categoryPostsID}>`;
                     cardView += `<div class="image">`;
                     cardView += `<img src=${titleImage} style="height: 120px;">`;
                     cardView += `</div>`;
