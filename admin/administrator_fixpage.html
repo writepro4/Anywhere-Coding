@@ -23,35 +23,9 @@
     <link rel="stylesheet" type="text/css" href="../semantic/segment.css">
     <link rel="stylesheet" type="text/css" href="../semantic/dropdown.css">
     <link rel="stylesheet" type="text/css" href="../semantic/icon.css">
-    <!--    시멘틱 ui-->
-    <link rel="stylesheet" type="text/css" href="../semantic/semantic.min.css">
-    <script
-            src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous"></script>
-    <script src="../semantic/semantic.min.js"></script>
 
-    <!--    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
-
-    <script src="../summernote/summernote-lite.js"></script>
-    <script src="../summernote/lang/summernote-ko-KR.js"></script>
 
     <link rel="stylesheet" href="../summernote/summernote-lite.css">
-
-    <script type="text/javascript">
-
-        //페이지가 로드되면 실행한다.
-
-        $(document).ready(function () {
-
-            $("#header").load("header.html");
-            $("#footer").load("footer.html");
-
-            //~이렇게 한줄만 해주면 알아서 contents에 testContents.html파일을 넣어 준다.
-
-        });
-
-    </script>
 
 
     <style type="text/css">
@@ -69,6 +43,7 @@
             margin: 5em 0 0;
             padding: 5em 0;
         }
+
     </style>
 
 </head>
@@ -82,20 +57,26 @@
 
     <!--    <div class="ui vertical stripe segment" style="padding-bottom: 100px;">-->
     <div class="ui middle aligned stackable grid container">
-        <div class="ui text container">
+        <div class="ui container">
 
+            <br>
+            <br>
+            <br>
+            <br>
 
-            <div class="ui horizontal section divider" style="font-size: 23px;">관리자 글 수정하기</div>
+            <div class="ui warning message" style="font-size: 30px; text-align: center">관리자 글 수정하기</div>
             <br>
 
             <i class="book icon"></i>카테고리를 선택하세요.
             <div class="ui form">
                 <div class="field">
                     <label>
-                        <select>
-                            <option value="">생산성</option>
-                            <option value="1">노트북</option>
-                            <option value="0">건강</option>
+                        <select id="category">
+                            <option value="null">값을 선택해주세요.</option>
+                            <option value="productivity">생산성</option>
+                            <option value="laptop">노트북</option>
+                            <option value="health">건강</option>
+                            <option value="documentation">문서화</option>
                         </select>
                     </label>
                 </div>
@@ -107,37 +88,111 @@
             <br>
             <div class="ui fluid icon input">
 
-                <input type="text" placeholder="제목을 입력해주세요..">
+                <input type="text" id="title" placeholder="제목을 입력해주세요..">
+
+            </div>
+            <br>
+            <br>
+            <i class="book icon"></i>부제목을 입력해주세요.
+            <br>
+            <div class="ui fluid icon input">
+
+                <input type="text" id="subTitle" placeholder="부제목을 입력해주세요..">
 
             </div>
             <br>
             <br>
 
-            <i class="pencil alternate icon"></i>글을 수정해주세요.
-            <form method="post">
-                <textare id="summernote" name="editordata"></textare>
+            <br>
+            <i class="book icon"></i>이미지를 선택해주세요.
+            <!-- <input type="file" id="ex_file"> -->
+            <!-- <div class="button" onclick="onclick=document.all.file.click()">사진추가</div> -->
+            <div style="border: 2px solid #eeeeee; height: 350px;">
+                <form id='image-form' enctype='multipart/form-data'>
+
+                    <input type='file' name='fileToUpload' id="questImage" onchange="previewImage(this,'View_area')"
+                           accept="image/gif,image/jpeg,image/png">
+
+                    <div id='View_area'
+                         style='position:relative; width: 200px; height: 200px; color: black; border: 0px solid black; dispaly: inline; '></div>
+                </form>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <i class="pencil alternate icon"></i>글을 작성해주세요.
+
+
+            <!--            썸머노트 에디터 작성 부분-->
+            <form role="form" method="post">
+                <textarea name="content" style="display: none;"></textarea>
+                <div id="summernote"></div>
             </form>
 
-            <!--            등록 버튼-->
-            <br>
-            <div class="ui labeled button" tabindex="0">
-                <div class="ui black button">
-                    <span style="vertical-align: inherit;"><span
-                        style="vertical-align: inherit;"> 수정하기
-                </span></span></div>
 
-            </div>
+            <br>
+
+            <div class="ui black button" onclick="imageUpload()">
+                        <span
+                                style="vertical-align: inherit;"> 수정하기
+                </span></div>
+            <div class="ui black button" onclick="preview()">
+                        <span
+                                style="vertical-align: inherit;"> 미리보기
+                </span></div>
+
 
         </div>
 
 
-        <script src="../js/summernote.js"></script>
-
     </div>
 </div>
-
+<br>
+<br>
+<br>
 
 <footer id="footer"></footer>
+
+<!--    시멘틱 ui-->
+<link rel="stylesheet" type="text/css" href="../semantic/semantic.min.css">
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+<script src="../semantic/semantic.min.js"></script>
+
+<!--    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
+
+<script src="../summernote/summernote-lite.js"></script>
+<script src="../summernote/lang/summernote-ko-KR.js"></script>
+
+<!--    이미지 미리보기 js파일-->
+<script src="js/image_view.js"></script>
+<!--    요청 js-->
+<script src="js/ajaxAdmin.js"></script>
+<!--    쿠기 js-->
+<script src="js/cookie.js"></script>
+<!--        //썸머노트 불러오는 코드-->
+<script src="../js/summernote.js"></script>
+
+<script type="text/javascript">
+
+    //페이지가 로드되면 실행한다.
+
+    $(document).ready(function () {
+
+        $("#header").load("header.html");
+        $("#footer").load("footer.html");
+
+        //~이렇게 한줄만 해주면 알아서 contents에 testContents.html파일을 넣어 준다.
+
+    });
+
+</script>
+
 </body>
 
 </html>
