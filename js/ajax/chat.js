@@ -88,7 +88,7 @@ function writeAComment() {
             chatData += `<div class="ui segment">`;
             chatData += `<div class="comment">`;
             chatData += `<a class="avatar">`;
-            chatData += `<img src="/images/plant.jpg">`;
+            chatData += `<img src="/images/avatar.png">`;
             chatData += `</a>`;
             chatData += `<div class="content">`;
             chatData += `<a class="author">${userName}</a>`;
@@ -414,7 +414,7 @@ function loadingComments() {
                             chatData += `<div class="ui segment">`;
                             chatData += `<div class="comment">`;
                             chatData += `<a class="avatar">`;
-                            chatData += `<img src="/images/plant.jpg">`;
+                            chatData += `<img src="/images/avatar.png">`;
                             chatData += `</a>`;
                             chatData += `<div class="content" id="addAdminComments${indexComments}">`;
                             chatData += `<a class="author">${userName}</a>`;
