@@ -914,7 +914,7 @@ function pagingTreatment() {
                             let adminComments = `<div class="comments">`;
                             adminComments += `<div class="comment">`;
                             adminComments += `<a class="avatar">`;
-                            adminComments += `<img src="/images/plant.jpg">`;
+                            adminComments += `<img src="/images/avatar.png">`;
                             adminComments += `</a>`;
                             adminComments += `<div class="content">`;
                             adminComments += `<a class="author">${userName}</a>`;
