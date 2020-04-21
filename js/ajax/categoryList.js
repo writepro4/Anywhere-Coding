@@ -71,7 +71,7 @@ border: 1px solid #EEEEEE;
 padding: 20px;
 ">`;
 
-                    categoryitem += `<img src=${titleImage} alt="image" style="height: 120px; width: 120px;  " class="ui image">`;
+                    categoryitem += `<img src=${titleImage} alt="image" style="height: 120px; width: 170px;  " class="ui image">`;
                     categoryitem += `<div class="content">`;
                     categoryitem += `<a class="header">${title}</a>`;
                     categoryitem += `<div class="meta">`;
