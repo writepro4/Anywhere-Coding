@@ -11,6 +11,9 @@
 // 8. writingFix 관리자 글 수정 함수
 // 9. preview 관리자 글 등록시 미리보기 기능 함수
 // 10. getArticleList 카테고리 목록 리스트 가져오는 함수
+// 11. contentImport 관리자 글 수정시에 내용 불러오는 함수.
+// 12. nextPageData 수정 페이지에 url 데이터 전달하는 함수.
+
 
 //TODO 관리자 카테고리 불러오기, 관리자 글 작성 미리보기, 관리자 글 수정하기 작업해야됨
 //TODO 글 작성시 미리보기 함수 추가해야됨
@@ -207,7 +210,6 @@ function postForm() {
     return bar.val();
 }
 
-
 // 6. 글 상세 내용 불러오는 함수
 function writinglist() {
 
@@ -269,7 +271,6 @@ function writinglist() {
     });
 }
 
-
 // 7. writingDelete 글 삭제 시키는 함수
 function writingDelete(idData) {
 
@@ -326,7 +327,6 @@ function writingDelete(idData) {
         }
     });
 }
-
 
 // 8. writingFix 관리자 글 수정 함수
 function writingFix(fixItem) {
@@ -510,6 +510,85 @@ function getArticleList() {
 
 }
 
+// 11. contentImport 관리자 글 수정시에 내용 불러오는 함수.
+function contentImport(checkPage) {
 
+    const pageNumber = checkPage.id;
+
+    // 관리자 글 수정페이지 접근시  작성했던 글데이터 가져오기 (edited)
+    // 3:29
+    // (get) https://honeytip.p-e.kr/posts/{index}/edit < - {index} = 글 번호
+    //     클라이언트 : x
+    // 백엔드 :  {key: true/false, postInfo : array} (edited)
+
+    $.ajax({
+        url: `https://honeytip.p-e.kr/posts/${pageNumber}/edit`,
+        type: "get",
+        data: formData,
+        contentType: false,
+        cache: false,
+        processData: false,
+        success: function (data) {
+            console.log("이미지 등록 완료!");
+
+            //썸머노트 내용 주석
+            console.log("내용" + summer);
+
+            let image = data;
+            console.log(data);
+
+
+            let title = $('#title').val();
+            let category = $('#category').val();
+            let adminId = "관리자입니다.";
+            let subTitle = $('#subTitle').val();
+
+
+            console.log("제목" + title);
+            console.log("카테고리" + category);
+            console.log("관리자아이디" + adminId);
+            console.log("부제목" + subTitle);
+            console.log("썸머노트 내용" + summer);
+
+
+            //JSON 더미데이터로 필요한 정보 넣어줌
+            let postsData = {
+                'image': image,
+                'title': title,
+                'category': category,
+                'contents': summer,
+                'adminId': adminId,
+                'subTitle': subTitle
+            };
+
+            //이미지 파일이 업로드되면 다시 필요한 정보들을 보내줌
+            $.post("https://honeytip.p-e.kr/posts",
+                postsData, // 서버가 필요한 정보를 같이 보냄.
+                function (data, status) {
+                    let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
+                    let keyCheck = successCheck.key;
+                    if (keyCheck === true) {
+                        alert("성공!");
+                        // window.location.replace("./preview_contents.html");
+                    } else {
+                        alert("실패!");
+                    }
+                    console.log("이미지 요청 상태 : " + status);
+
+                }
+            );
+        }
+    });
+
+}
+
+// 12. nextPageData 수정 페이지에 url 데이터 전달하는 함수.
+function nextPageData(category) {
+    let categoryData = category.id;
+    //데이터 넘기는지 확인용도
+    console.log(categoryData);
+    window.location.href = `./administrator_fixPage.html?index=${categoryData}`;
+
+}
 
 
