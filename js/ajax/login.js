@@ -64,9 +64,16 @@ $(document).ready(function () {
         loginRequest();
     } else {
         sessionStorageSet('cf', confirmId);
-        $("#header").load("headerLogin.html");
-        $("#footer").load("footer.html");
-        loginRequest();
+        const adminCheck = sessionStorageGet(`cf`);
+        if (adminCheck === "112020533574226006231" || adminCheck === "100755251287940797090") {
+            $("#header").load("headerAdmin.html");
+            $("#footer").load("footer.html");
+            loginRequest();
+        } else {
+            $("#header").load("headerLogin.html");
+            $("#footer").load("footer.html");
+            loginRequest();
+        }
     }
 
 });
