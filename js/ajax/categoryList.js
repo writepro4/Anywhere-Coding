@@ -168,9 +168,9 @@ $(document).ready(function () {
     // ajax로 불러올 데이터 함수 먼저 실행
     categoryListRequest(page);
     $(window).scroll(function () {
-        // console.log("마우스 높이 : " + Math.ceil($(window).scrollTop()));
-        // console.log("문서 높이 : " + parseInt($(document).height() - $(window).height()));
-        if (Math.ceil($(window).scrollTop()) === $(document).height() - $(window).height() && lastParagraph === false) {
+        console.log("마우스 높이 : " + Math.ceil($(window).scrollTop()));
+        console.log("문서 높이 : " + parseInt($(document).height() - $(window).height()));
+        if (Math.ceil($(window).scrollTop()) >= $(document).height() - $(window).height() && lastParagraph === false) {
             // 스크롤 위치가 문서 하단에 위치할경우 원하는 함수 호출
             page++;
             console.log("호출한 번호 : " + page);
