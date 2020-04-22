@@ -2,14 +2,19 @@
 
 $(document).ready(function () {
 
-    let loginCheck = sessionStorageGet('login');
+    const loginCheck = sessionStorageGet('login');
+    const adminCheck = sessionStorageGet(`cf`);
+
+    // 112020533574226006231 민찬이 uid
+    // 100755251287940797090 내 uid
 
     if (loginCheck === "로그인") {
-        console.log("가져온 값 : "+sessionStorageGet(`login`));
-        $("#header").load("headerLogin.html");
+        if (adminCheck === "112020533574226006231" || adminCheck === "100755251287940797090") {
+            $("#header").load("./headerAdmin.html");
+        } else {
+            $("#header").load("headerLogin.html");
+        }
     } else {
-        console.log("가져온 값 : "+sessionStorageGet(`login`));
-        console.log("값 못가져옴");
         $("#header").load("header.html");
 
     }
