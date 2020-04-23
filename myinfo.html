@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="kr">
 <head>
     <!-- Standard Meta -->
     <meta charset="utf-8"/>
@@ -41,9 +41,6 @@
     <link rel="stylesheet" type="text/css" href="semantic/icon.css">
     <link rel="stylesheet" type="text/css" href="semantic/transition.css">
 
-    <!--    TODO 마이정보 ajax요청 작업 해야됨-->
-    <!--    TODO 레이아웃 보기좋게 수정해야됨.-->
-
 
 </head>
 <body>
@@ -53,107 +50,123 @@
 
     <header id="header"></header>
 
-    <!-- Page Contents -->
+
+    <!-- 본문 내용. -->
     <div class="pusher">
 
-        <div class="ui vertical stripe segment" style="padding-bottom: 100px;">
-            <h2 class="ui center aligned icon header">
-                <i class="circular users icon"></i>
-                내 정보
-            </h2>
+
+        <div class="ui vertical stripe segment">
             <div class="ui middle aligned stackable grid container">
-                <!--                유저 프로필카드 보여주는 곳-->
-                <div id="cardProfile"></div>
-
-                <div class="ui text container">
-
-                    <div class="ui horizontal section divider" style="font-size: 23px;">얻은 뱃지</div>
-                    <div class="ui celled center aligned grid">
-                        <div class="row">
-                            <div class="four wide column"><img
-                                    src="https://img.icons8.com/bubbles/100/000000/prize.png"/>
-                                <div class="floating ui black label">New</div>
+                <div class="row">
+                    <div class="four wide column">
+                        <div class="ui card" style="margin-top: 80px;">
+                            <div class="image">
+                                <img src="./images/plant.jpg">
                             </div>
-                            <div class="four wide column"><img
-                                    src="https://img.icons8.com/bubbles/100/000000/prize.png"/>
-                                <div class="floating ui black label">New</div>
+                            <div class="content">
+                                <a class="header">Kristy</a>
+                                <div class="meta">
+                                    <span class="date">Joined in 2013</span>
+                                </div>
+                                <div class="description">
+                                    Kristy is an art director living in New York.
+                                </div>
                             </div>
-                            <div class="four wide column"><img
-                                    src="https://img.icons8.com/bubbles/100/000000/prize.png"/>
-                                <div class="floating ui black label">New</div>
-                            </div>
-                            <div class="four wide column"><img
-                                    src="https://img.icons8.com/bubbles/100/000000/prize.png"/>
-                                <div class="floating ui black label">New</div>
+                            <div class="extra content">
+                                <a>
+                                    <i class="user icon"></i>
+                                    22 Friends
+                                </a>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="four wide column"><img
-                                    src="https://img.icons8.com/bubbles/100/000000/prize.png"/>
-                                <div class="floating ui black label">New</div>
-                            </div>
-                            <div class="four wide column"><img
-                                    src="https://img.icons8.com/bubbles/100/000000/prize.png"/>
-                                <div class="floating ui black label">New</div>
-                            </div>
-                            <div class="four wide column"><img
-                                    src="https://img.icons8.com/bubbles/100/000000/prize.png"/>
-                                <div class="floating ui black label">New</div>
-                            </div>
-                            <div class="four wide column"><img
-                                    src="https://img.icons8.com/bubbles/100/000000/prize.png"/>
-                                <div class="floating ui black label">New</div>
+                    </div>
+                    <div class="twelve wide right floated column">
+                        <div class="ui secondary pointing menu">
+                            <a class="item active">
+                                작성한 댓글 목록
+                            </a>
+                            <a class="item">
+                                좋아요 누른 페이지
+                            </a>
+                            <a class="item">
+                                뱃지목록
+                            </a>
+                            <div class="right menu">
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="four wide column"><img
-                                    src="https://img.icons8.com/bubbles/100/000000/prize.png"/>
-                                <div class="floating ui black label">New</div>
-                            </div>
-                            <div class="four wide column"><img
-                                    src="https://img.icons8.com/bubbles/100/000000/prize.png"/>
-                                <div class="floating ui black label">New</div>
-                            </div>
-                            <div class="four wide column"><img
-                                    src="https://img.icons8.com/bubbles/100/000000/prize.png"/>
-                                <div class="floating ui black label">New</div>
-                            </div>
-                            <div class="four wide column"><img
-                                    src="https://img.icons8.com/bubbles/100/000000/prize.png"/>
-                                <div class="floating ui black label">New</div>
+                        <div class="ui segment">
+                            <div class="ui middle aligned animated list">
+                                <div class="item">
+                                    <img class="ui avatar image" src="./images/plant.jpg">
+                                    <div class="content">
+                                        <div class="header">Helen</div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img class="ui avatar image" src="./images/plant.jpg">
+                                    <div class="content">
+                                        <div class="header">Christian</div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img class="ui avatar image" src="./images/plant.jpg">
+                                    <div class="content">
+                                        <div class="header">Daniel</div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img class="ui avatar image" src="./images/plant.jpg">
+                                    <div class="content">
+                                        <div class="header">Daniel</div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img class="ui avatar image" src="./images/plant.jpg">
+                                    <div class="content">
+                                        <div class="header">Daniel</div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img class="ui avatar image" src="./images/plant.jpg">
+                                    <div class="content">
+                                        <div class="header">Daniel</div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
-
-
+                <div class="row">
+                </div>
             </div>
         </div>
     </div>
-
-
-    <footer id="footer"></footer>
-
-    <!--    JS파일 불러오기-->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/transition.js"></script>
-    <script src="js/dropdown.js"></script>
-    <script src="js/visibility.js"></script>
-
-    <!--    시멘틱 ui-->
-    <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
-    <script
-            src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous"></script>
-    <script src="semantic/semantic.min.js"></script>
-
-    <!--    nav 불러오는 js파일-->
-    <script src="./js/nav.js"></script>
-    <!--    내 정보 불러오는 js파일-->
-    <script src="./js/ajax/myinfo.js"></script>
-
 </div>
+
+
+<footer id="footer"></footer>
+
+<!--    JS파일 불러오기-->
+<script src="js/jquery.min.js"></script>
+<script src="js/transition.js"></script>
+<script src="js/dropdown.js"></script>
+<script src="js/visibility.js"></script>
+
+<!--    시멘틱 ui-->
+<link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+<script src="semantic/semantic.min.js"></script>
+
+<!--    nav 불러오는 js파일-->
+<script src="./js/nav.js"></script>
+<!--    내 정보 불러오는 js파일-->
+<!--    <script src="./js/ajax/myinfo.js"></script>-->
+
+
 </body>
 
 </html>
