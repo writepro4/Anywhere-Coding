@@ -63,9 +63,10 @@ $(document).ready(function () {
                     // cardView += `<div class="ui popup">`;
                     // cardView += `<div class="header">User Rating</div>`;
                     // cardView += `<div class="ui star rating" data-rating="3"></div>`;
-                    cardView += `<div class="extra content">`;
+                    cardView += `<div class="extra two column content">`;
                     cardView += `<i class="check icon"></i>`;
-                    cardView += `새로운 글`;
+                    cardView += `좋아요10 `;
+                    cardView += `댓글10`;
                     cardView += `</div>`;
                     cardView += `</a>`;
 
