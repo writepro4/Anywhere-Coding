@@ -11,37 +11,48 @@ $(document).ready(function () {
         , success: function (data) {
 
             let parseData = JSON.parse(data);
+            // console.log(data);
+            // console.table(data);
+            // const {key = '없음'} = parseData;
+            // const {postInfo} = parseData;
+            // console.table(postInfo);
+
+
             let keyCheck = parseData.key;
 
 
-            // 요청값이 true일 경우에 실행
             if (keyCheck === true) {
 
                 let postInfoData = parseData.postInfo;
 
-                // key값도 배열에 포함되기 때문에 -1로 값을 맞춰줌
                 let postingListData = postInfoData.length;
+                console.table(postInfoData);
+                console.log(postInfoData);
 
 
                 for (let i = 0; i < postingListData; i++) {
-                    console.log("for문 실행중");
 
-                    let title = postInfoData[i].title;
-                    let titleImage = postInfoData[i].image;
-                    let subTitle = postInfoData[i].subTitle;
-                    let indexPosts = postInfoData[i].indexPosts;
-                    let adminId = postInfoData[i].adminId;
-                    let contents = postInfoData[i].contents;
-                    let viewCount = postInfoData[i].viewCount;
-                    let category = postInfoData[i].category;
-                    let date = postInfoData[i].date;
+                    console.log("for문 실행중");
+                    // 받아오는 정보 목록
+                    // index,indexPosts,image,subTitle,title,likeIt,commentsCount
+                    // 요청값이 true일 경우에 실행
+
+                    //제목
+                    let {indexPosts} = postInfoData[i];
+                    let {image} = postInfoData[i];
+                    let {subTitle} = postInfoData[i];
+                    let {index} = postInfoData[i];
+                    let {title} = postInfoData[i];
+                    let {likeIt} = postInfoData[i];
+                    let {commentsCount} = postInfoData[i];
+                    let {category} = postInfoData[i];
 
                     let categoryPostsID = category + "_" + indexPosts;
 
 
                     let cardView = `<a class="ui card" onclick="detailPage(this)" id=${categoryPostsID}>`;
                     cardView += `<div class="image">`;
-                    cardView += `<img src=${titleImage} style="height: 120px;">`;
+                    cardView += `<img src=${image} style="height: 120px;">`;
                     cardView += `</div>`;
                     cardView += `<div class="content">`;
                     cardView += `<div class="header">${title}</div>`;
@@ -49,24 +60,10 @@ $(document).ready(function () {
                     cardView += `${subTitle}`;
                     cardView += `</div>`;
                     cardView += `</div>`;
-                    // cardView += `<div class="ui two bottom attached buttons">`;
-                    // cardView += `<div class="ui olive button">`;
-                    // cardView += `<i class="comments icon"></i>`;
-                    // cardView += `댓글`;
-                    // cardView += `</div>`;
-                    // cardView += `<div class="ui button">`;
-                    // cardView += `<i class="gift icon"></i>`;
-                    // cardView += `글 보기 `;
-                    // cardView += `</div>`;
-                    // cardView += `</div>`;
-                    // cardView += `</div>`;
-                    // cardView += `<div class="ui popup">`;
-                    // cardView += `<div class="header">User Rating</div>`;
-                    // cardView += `<div class="ui star rating" data-rating="3"></div>`;
                     cardView += `<div class="extra two column content">`;
                     cardView += `<i class="check icon"></i>`;
-                    cardView += `좋아요10 `;
-                    cardView += `댓글10`;
+                    cardView += `좋아요${likeIt} &nbsp;&nbsp;&nbsp;&nbsp; `;
+                    cardView += `댓글${commentsCount}`;
                     cardView += `</div>`;
                     cardView += `</a>`;
 
