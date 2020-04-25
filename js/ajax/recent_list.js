@@ -61,8 +61,9 @@ $(document).ready(function () {
                     cardView += `</div>`;
                     cardView += `</div>`;
                     cardView += `<div class="extra two column content">`;
-                    cardView += `<i class="check icon"></i>`;
-                    cardView += `좋아요${likeIt} &nbsp;&nbsp;&nbsp;&nbsp; `;
+                    cardView += `<i class="like icon"></i>`;
+                    cardView += `좋아요${likeIt} &nbsp;&nbsp;&nbsp;`;
+                    cardView += `<i class="comments icon"></i>`;
                     cardView += `댓글${commentsCount}`;
                     cardView += `</div>`;
                     cardView += `</a>`;

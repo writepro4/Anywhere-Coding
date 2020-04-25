@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig host="34.64.198.222" id="acf8d1e9-a6a9-4da1-a858-50e2eed04ccd" keyPath="C:\Users\write\Downloads\gcptrue.ppk" port="22" customName="good" nameFormat="CUSTOM" username="dbswlgur44" />
+      <sshConfig host="34.64.198.222" id="c19e0d5a-bff6-4db6-8b52-e59fc982806c" keyPath="C:\Users\write\Downloads\gcptrue.ppk" port="22" customName="good" nameFormat="CUSTOM" username="dbswlgur44" />
+    </configs>
+  </component>
+</project>
