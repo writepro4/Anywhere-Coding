@@ -6,7 +6,6 @@
 $(document).ready(function () {
     const listNumber = getUrlData();
 
-    console.log("받아온 postID: " + listNumber);
 
     $.ajax({
         type: 'get'
@@ -18,22 +17,17 @@ $(document).ready(function () {
 
             //json 파싱하기
             let parseData = JSON.parse(data);
-            console.log("데이터 파싱전: " + data);
 
             let postInfoData = parseData.postInfo;
-            console.log(postInfoData);
+            console.table(postInfoData);
 
 
-            console.log("받아온 데이터 확인: " + postInfoData);
-
-
-            console.log("for문으로 데이터 처리중");
-
-            let title = postInfoData.title;
-            let contents = postInfoData.contents;
-            let viewCount = postInfoData.viewCount;
-            let date = postInfoData.date;
-            console.log("제목 확인: " + title);
+            const {commentsCount} = postInfoData;
+            const {likeIt} = postInfoData;
+            const {title} = postInfoData;
+            const {contents} = postInfoData;
+            const {viewCount} = postInfoData;
+            const {date} = postInfoData;
 
             const titlePage = `<h1 class="ui header center aligned" >${title}</h1>`;
 
@@ -41,10 +35,11 @@ $(document).ready(function () {
             let contentPage = contents;
             contentPage += `<br><br><br><br>`;
 
-            console.log("contentPage 데이터 확인 : " + contentPage);
 
             $('#titlePage').append(titlePage);
             $('#contentPage').append(contentPage);
+            $(`#viewComments`).append(commentsCount);
+            $(`#likeIt`).append(likeIt);
 
 
         }
