@@ -62,8 +62,10 @@ function categoryListRequest(pageing) {
                     const {image = `찾을수없음`} = rankingContents[i];
                     console.log("순위 인덱스 : " + indexPosts);
 
+                    let categoryPostsID = category + "_" + indexPosts;
 
-                    const rankingList = `<div class="item">
+
+                    const rankingList = `<div class="item" onclick="detailPage(this)" id=${categoryPostsID}>
 <!--                        <img class="ui avatar image" src=${image}>-->
                         <div class="content">
                         <div class="header"><font style="vertical-align: inherit;"><font
