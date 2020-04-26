@@ -67,7 +67,8 @@ function categoryListRequest(pageing) {
 <!--                        <img class="ui avatar image" src=${image}>-->
                         <div class="content">
                         <div class="header"><font style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">${title}</font></font></div>
+                        style="vertical-align: inherit;">${i+1}. ${title}</font></font></div>
+                        style="vertical-align: inherit;">${i+1}. ${title}</font></font></div>
                         <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
                         ${subTitle}
                         </font></font></div>
