@@ -37,17 +37,48 @@ function categoryListRequest(pageing) {
             let parseData = JSON.parse(data);
             // console.log("데이터 파싱전: " + data);
             let keyCheck = parseData.key;
+            // console.table(parseData);
 
             if (keyCheck === true) {
+
+                const {rankingContents} = parseData;
+                const rankingListData = rankingContents.length;
+                console.log("랭킹정보입니다 : " +rankingContents);
+
+                for (let i = 0; i < rankingListData; i++) {
+                    console.log("순위 생성중" + rankingListData);
+                    const {indexPosts}= rankingContents[i];
+                    const {title}= rankingContents[i];
+                    const {likeIt}= rankingContents[i];
+                    const {subTitle}= rankingContents[i];
+                    const {category}= rankingContents[i];
+                    const {date}= rankingContents[i];
+                    const {image = `찾을수없음`}= rankingContents[i];
+                    console.log("순위 인덱스 : "+indexPosts);
+
+
+                    const rankingList = `<div class="item">
+<!--                        <img class="ui avatar image" src=${image}>-->
+                        <div class="content">
+                        <div class="header"><font style="vertical-align: inherit;"><font
+                        style="vertical-align: inherit;">${title}</font></font></div>
+                        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+                        ${subTitle}
+                        </font></font></div>
+                        </div>`;
+
+                    $('#rankingContents').append(rankingList);
+
+                }
+
+                // console.table(rankingContents);
 
 
                 let postInfoData = parseData.contents;
 
-                // console.log("받아온 데이터 목록 : " + postInfoData);
+                console.table(postInfoData);
 
                 let postingListData = postInfoData.length;
-
-                // console.log("객체 상태 보기 : " + postInfoData);
 
 
                 for (let i = 0; i < postingListData; i++) {
@@ -65,11 +96,6 @@ function categoryListRequest(pageing) {
 
 
                     let categoryitem = `<div class="item" onclick="detailPage(this)" id="${categoryPostsID}" style="
-/*border-radius: 25px;*/
-/*background: white;*/
-/*border: 1px solid #EEEEEE;*/
-/*padding: 20px;*/
-pointer-events: revert;
 ">`;
 
                     categoryitem += `<img src=${titleImage} alt="image" style="height: 120px; width: 170px;  " class="ui image">`;
@@ -169,8 +195,8 @@ $(document).ready(function () {
     // ajax로 불러올 데이터 함수 먼저 실행
     categoryListRequest(page);
     $(window).scroll(function () {
-        console.log("마우스 높이 : " + Math.ceil($(window).scrollTop()));
-        console.log("문서 높이 : " + parseInt($(document).height() - $(window).height()));
+        // console.log("마우스 높이 : " + Math.ceil($(window).scrollTop()));
+        // console.log("문서 높이 : " + parseInt($(document).height() - $(window).height()));
         if (Math.ceil($(window).scrollTop()) >= $(document).height() - $(window).height() && lastParagraph === false) {
             // 스크롤 위치가 문서 하단에 위치할경우 원하는 함수 호출
             page++;
