@@ -12,6 +12,9 @@
 // 인피니티 스크롤 마지막문단 체크 변수
 let lastParagraph = false;
 
+// 인기순위 한번만 출력하게 체크하는 변수.
+let rankCheck = true;
+
 // 1. categoryListRequest 카테고리 목록 불어오는 함수
 function categoryListRequest(pageing) {
 
@@ -43,18 +46,21 @@ function categoryListRequest(pageing) {
 
                 const {rankingContents} = parseData;
                 const rankingListData = rankingContents.length;
-                console.log("랭킹정보입니다 : " +rankingContents);
+                console.log("랭킹정보입니다 : " + rankingContents);
 
                 for (let i = 0; i < rankingListData; i++) {
-                    console.log("순위 생성중" + rankingListData);
-                    const {indexPosts}= rankingContents[i];
-                    const {title}= rankingContents[i];
-                    const {likeIt}= rankingContents[i];
-                    const {subTitle}= rankingContents[i];
-                    const {category}= rankingContents[i];
-                    const {date}= rankingContents[i];
-                    const {image = `찾을수없음`}= rankingContents[i];
-                    console.log("순위 인덱스 : "+indexPosts);
+                    console.log("체크변수 값 확인 : " + rankCheck);
+                    if (i >= 6) {
+                        rankCheck = false;
+                    }
+                    const {indexPosts} = rankingContents[i];
+                    const {title} = rankingContents[i];
+                    const {likeIt} = rankingContents[i];
+                    const {subTitle} = rankingContents[i];
+                    const {category} = rankingContents[i];
+                    const {date} = rankingContents[i];
+                    const {image = `찾을수없음`} = rankingContents[i];
+                    console.log("순위 인덱스 : " + indexPosts);
 
 
                     const rankingList = `<div class="item">
@@ -67,7 +73,10 @@ function categoryListRequest(pageing) {
                         </font></font></div>
                         </div>`;
 
-                    $('#rankingContents').append(rankingList);
+                    if (rankCheck === true) {
+
+                        $('#rankingContents').append(rankingList);
+                    }
 
                 }
 
@@ -123,6 +132,7 @@ function categoryListRequest(pageing) {
 
                     $('#iterate').append(categoryitem);
                 }
+
 
                 deleteLoader();
 
