@@ -5,7 +5,6 @@
 // 5. 인피니티 스크롤 페이징 로딩 처리 함수.
 // 6. deleteLoader 로딩바 삭제하는 함수.
 
-//TODO 인피니티 스크롤 한꺼번에 정보 다 가져옴 수정해야함.
 //TODO 작성안한 카테고리 페이지 따로 처리해야됨.
 
 
@@ -69,7 +68,7 @@ function categoryListRequest(pageing) {
 <!--                        <img class="ui avatar image" src=${image}>-->
                         <div class="content">
                         <div class="header"><font style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">${i+1}. ${title}</font></font></div>
+                        style="vertical-align: inherit;">${i + 1}. ${title}</font></font></div>
                         <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
                         ${subTitle}
                         </font></font></div>
