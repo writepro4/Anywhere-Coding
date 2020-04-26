@@ -65,10 +65,11 @@ function categoryListRequest(pageing) {
 
 
                     let categoryitem = `<div class="item" onclick="detailPage(this)" id="${categoryPostsID}" style="
-border-radius: 25px;
-background: white;
-border: 1px solid #EEEEEE;
-padding: 20px;
+/*border-radius: 25px;*/
+/*background: white;*/
+/*border: 1px solid #EEEEEE;*/
+/*padding: 20px;*/
+pointer-events: revert;
 ">`;
 
                     categoryitem += `<img src=${titleImage} alt="image" style="height: 120px; width: 170px;  " class="ui image">`;
