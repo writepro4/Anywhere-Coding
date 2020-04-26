@@ -1,8 +1,128 @@
-<form class="ui reply form">
-    <div class="field">
-        <textarea></textarea>
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <!-- Standard Meta -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <!-- Site Properties -->
+    <title>Fixed Menu Example - Semantic</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./semantic/site.css">
+
+    <link rel="stylesheet" type="text/css" href="./semantic/container.css">
+    <link rel="stylesheet" type="text/css" href="./semantic/grid.css">
+    <link rel="stylesheet" type="text/css" href="./semantic/header.css">
+    <link rel="stylesheet" type="text/css" href="./semantic/image.css">
+    <link rel="stylesheet" type="text/css" href="./semantic/menu.css">
+
+    <link rel="stylesheet" type="text/css" href="./semantic/divider.css">
+    <link rel="stylesheet" type="text/css" href="./semantic/list.css">
+    <link rel="stylesheet" type="text/css" href="./semantic/segment.css">
+    <link rel="stylesheet" type="text/css" href="./semantic/dropdown.css">
+    <link rel="stylesheet" type="text/css" href="./semantic/icon.css">
+
+
+    <style type="text/css">
+        body {
+            background-color: #FFFFFF;
+
+        }
+
+        .ui.menu .item img.logo {
+            margin-right: 1.5em;
+        }
+
+
+        .ui.footer.segment {
+            margin: 5em 0 0;
+            padding: 5em 0;
+        }
+    </style>
+
+</head>
+<body>
+
+
+<header id="header"></header>
+
+<div class="ui middle aligned stackable grid container">
+
+
+    <div class="ui middle aligned stackable grid container">
+        <div class="ui text container">
+
+
+            <div class="ui horizontal section divider" style="font-size: 23px;">댓글 관리</div>
+            <br>
+
+            <div class="ui relaxed list " id="listOfComments">
+                <div class="item ui segment">
+                    <div class="right floated content">
+                        <div class="ui red button">삭제</div>
+                        <div class="ui blue button">수정</div>
+                    </div>
+                    <div class="header">작성자 : 민찬이</div>
+
+                    <div class="content">
+                        내용 : 좋은 내용이네요!
+                    </div>
+                    <br>
+                    <div class="content">
+                        <i class="pencil icon"></i>생산성
+                    </div>
+                </div>
+
+
+            </div>
+
+            <br>
+            <br>
+
+
+        </div>
+
+
     </div>
-    <div class="ui blue labeled submit icon button">
-        <i class="icon edit"></i> Add Reply
-    </div>
-</form>
+</div>
+
+
+<footer id="footer"></footer>
+
+<!--    시멘틱 ui-->
+<link rel="stylesheet" type="text/css" href="./semantic/semantic.min.css">
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+<script src="./semantic/semantic.min.js"></script>
+
+<!--    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
+
+<script src="./summernote/summernote-lite.js"></script>
+<script src="./summernote/lang/summernote-ko-KR.js"></script>
+
+<!--    요청 함수 js파일 불러옴-->
+<script src="js/ajax/ajaxAdmin.js"></script>
+
+<link rel="stylesheet" href="./summernote/summernote-lite.css">
+
+<script type="text/javascript">
+
+    //페이지가 로드되면 실행한다.
+
+    $(document).ready(function () {
+
+        $("#header").load("./headerAdmin.html");
+        $("#footer").load("footer.html");
+
+        //~이렇게 한줄만 해주면 알아서 contents에 testContents.html파일을 넣어 준다.
+
+    });
+
+</script>
+</body>
+
+</html>
