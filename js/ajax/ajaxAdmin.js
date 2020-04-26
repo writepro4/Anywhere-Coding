@@ -275,7 +275,7 @@ function writinglist() {
 // 7. writingDelete 글 삭제 시키는 함수
 function writingDelete(idData) {
 
-    if(buttonEvent() === true){
+    if (buttonEvent() === true) {
 
         const itemNumber = idData.id;
 
@@ -330,7 +330,7 @@ function writingDelete(idData) {
             }
         });
 
-    }else{
+    } else {
 
     }
 }
@@ -417,7 +417,6 @@ function writingFix() {
                         let keyCheck = parseData.key;
 
                         console.log("수정완료 : ");
-
 
 
                     }
@@ -647,15 +646,11 @@ function contentImport(checkPage) {
 
 // 12. nextPageData 수정 페이지에 url 데이터 전달하는 함수.
 function nextPageData(category) {
-    if(buttonEvent() === true){
 
-        let categoryData = category.id;
-        //데이터 넘기는지 확인용도
-        console.log(categoryData);
-        window.location.href = `./administrator_fixpage.html?index=${categoryData}`;
-    }else{
-
-    }
+    let categoryData = category.id;
+    //데이터 넘기는지 확인용도
+    console.log(categoryData);
+    window.location.href = `./administrator_fixpage.html?index=${categoryData}`;
 
 }
 
