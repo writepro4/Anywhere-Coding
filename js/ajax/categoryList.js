@@ -234,6 +234,13 @@ let titleCheck = false;
 
 // 4.  categoryConversion 어떤 카테고리인지 한글로 변환하고 제목에 추가하는 함수.
 function categoryConversion(categoryData) {
+
+// <option value="productivity">생산성</option>
+//         <option value="health">건강</option>
+//         <option value="readability">가독성</option>
+//         <option value="gitHub">깃헙</option>
+//         <option value="site">추천 사이트</option>
+
     // 제목을 한번만 붙이기 위한 변수
     if (categoryData.toString() === "productivity" && titleCheck === false) {
         titleCheck = true;
@@ -244,10 +251,25 @@ function categoryConversion(categoryData) {
         console.log("카테고리 넘버 확인 : " + categoryData);
 
         $('#categoryTitle').append(categoryTitle);
-    } else if (titleCheck === false) {
+    } else if (categoryData.toString() === "health" && titleCheck === false) {
         titleCheck = true;
         let categoryTitle = `<br>`;
-        categoryTitle += `<h1 class="ui header center aligned">독해력</h1>`;
+        categoryTitle += `<h1 class="ui header center aligned">건강</h1>`;
+        $('#categoryTitle').append(categoryTitle);
+    } else if (categoryData.toString() === "readability" && titleCheck === false) {
+        titleCheck = true;
+        let categoryTitle = `<br>`;
+        categoryTitle += `<h1 class="ui header center aligned">가독성</h1>`;
+        $('#categoryTitle').append(categoryTitle);
+    } else if (categoryData.toString() === "gitHub" && titleCheck === false) {
+        titleCheck = true;
+        let categoryTitle = `<br>`;
+        categoryTitle += `<h1 class="ui header center aligned">깃헙</h1>`;
+        $('#categoryTitle').append(categoryTitle);
+    } else if (categoryData.toString() === "site" && titleCheck === false) {
+        titleCheck = true;
+        let categoryTitle = `<br>`;
+        categoryTitle += `<h1 class="ui header center aligned">추천 사이트</h1>`;
         $('#categoryTitle').append(categoryTitle);
     }
 
