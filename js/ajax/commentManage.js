@@ -28,11 +28,16 @@ $(document).ready(function () {
                 const {date} = contents[i];
                 const {indexComments} = contents[i];
                 const {comment} = contents[i];
+                const {postNum} = contents[i];
 
-                const chatData = `<div class="item ui segment">
+                const categoryPost = category + `_` + postNum;
+
+                const chatData = `<div class="item ui segment" id=${indexComments}>
                 <div class="right floated content">
-                <div class="ui red button">삭제</div>
-                <div class="ui blue button">수정</div>
+                <div class="ui red button" onclick="deleteComment(this)" id=${indexComments}>삭제</div>
+                <div class="ui olive button" onclick="detailPage(this)" id=${categoryPost}>페이지로 이동</div>
+                <div class="content">작성날짜 : ${date}</div>
+<!--                <div class="ui blue button" onclick="writingFix()">수정</div>-->
                 </div>
                 <div class="header">작성자 : ${userName}</div>
                 <div class="content">
