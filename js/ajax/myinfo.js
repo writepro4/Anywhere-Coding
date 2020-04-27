@@ -5,9 +5,8 @@
 //1.내 정보 가져오는 함수.
 $(document).ready(function () {
 
-    let name = localStorageGet('name');
-    let avatar = localStorageGet('avatar');
-
+    const name = sessionStorageGet('name');
+    const avatar = sessionStorageGet('avatar');
     const uid = sessionStorageGet('cf');
 
     console.log("uid확인 : " + uid);
@@ -21,8 +20,8 @@ $(document).ready(function () {
             //json 파싱하기
             let parseData = JSON.parse(data);
             let keyCheck = parseData.key;
-            console.log("데이터 확인 : " + data);
             let userInfo = parseData.userInfo;
+            console.table(userInfo);
             let name = userInfo[0].name;
             let image = userInfo[0].avatar;
             let badge = userInfo[0].badge;
