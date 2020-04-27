@@ -3,47 +3,53 @@
 
 //1.내 정보 가져오는 함수.
 $(document).ready(function () {
-
-
     $.ajax({
-        type: 'post'
-        , url: `https://honeytip.p-e.kr/comment`
+        type: 'get'
+        , url: `https://honeytip.p-e.kr/comments`
         , xhrFields: {
             withCredentials: false
         }
         , success: function (data) {
             //json 파싱하기
-            let parseData = JSON.parse(data);
-            let keyCheck = parseData.key;
+            const parseData = JSON.parse(data);
+            const keyCheck = parseData.key;
             console.log("데이터 확인 : " + data);
-            let userInfo = parseData.userInfo;
-            let name = userInfo[0].name;
-            let image = userInfo[0].avatar;
-            let badge = userInfo[0].badge;
 
-            console.log("유저 이름 : " + name);
-            console.log("유저 이미지 : " + image);
-            console.log("유저 뱃지 : " + badge);
+            const {contents} = parseData;
+            // console.table(contents);
+            console.table(contents);
 
-            let cardView = `<div class="ui card">`;
-            cardView += `<div class="image">`;
-            cardView += `<img src=${image}>`;
-            cardView += `</div>`;
-            cardView += `<div class="content">`;
-            cardView += `<a class="header">${name}</a>`;
-            cardView += `<div class="meta">`;
-            cardView += `<span class="date">반갑습니다.</span>`;
-            cardView += `</div>`;
-            cardView += `</div>`;
-            cardView += `<div class="extra content">`;
-            // cardView += `<a>`;
-            // cardView += `<i class="user icon"></i>`;
-            // cardView += `22 Friends`;
-            // cardView += `</a>`;
-            cardView += `</div>`;
-            cardView += `</div>`;
+            let CommentList = contents.length;
 
-            $('#cardProfile').append(cardView);
+            for (let i = 0; i < CommentList; i++) {
+
+                const {userName} = contents[i];
+                const {category} = contents[i];
+                const {date} = contents[i];
+                const {indexComments} = contents[i];
+                const {comment} = contents[i];
+
+                const chatData = `<div class="item ui segment">
+                <div class="right floated content">
+                <div class="ui red button">삭제</div>
+                <div class="ui blue button">수정</div>
+                </div>
+                <div class="header">작성자 : ${userName}</div>
+                <div class="content">
+                내용 : ${comment}
+                </div>
+                <br>
+                <div class="content">
+                <i class="pencil icon"></i>카테고리 : ${category}
+                </div>
+                </div>`;
+
+                //TODO 그 글로 바로 가기 버튼 추가하기
+
+                $(`#listOfComments`).append(chatData);
+
+
+            }
 
 
         }
