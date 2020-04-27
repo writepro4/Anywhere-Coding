@@ -157,7 +157,7 @@ function imageUpload() {
                 console.log("내용" + summer);
 
                 let image = data;
-                console.log(data);
+                console.table(data);
 
 
                 let title = $('#title').val();
@@ -191,7 +191,6 @@ function imageUpload() {
                         let keyCheck = successCheck.key;
                         if (keyCheck === true) {
                             alert("성공!");
-                            // window.location.replace("./preview_contents.html");
                         } else {
                             alert("실패!");
                         }
