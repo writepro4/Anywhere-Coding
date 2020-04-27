@@ -11,11 +11,6 @@ $(document).ready(function () {
         , success: function (data) {
 
             let parseData = JSON.parse(data);
-            // console.log(data);
-            // console.table(data);
-            // const {key = '없음'} = parseData;
-            // const {postInfo} = parseData;
-            // console.table(postInfo);
 
 
             let keyCheck = parseData.key;
@@ -33,9 +28,7 @@ $(document).ready(function () {
                 for (let i = 0; i < postingListData; i++) {
 
                     console.log("for문 실행중");
-                    // 받아오는 정보 목록
-                    // index,indexPosts,image,subTitle,title,likeIt,commentsCount
-                    // 요청값이 true일 경우에 실행
+
 
                     //제목
                     let {indexPosts} = postInfoData[i];
@@ -60,10 +53,10 @@ $(document).ready(function () {
                     cardView += `${subTitle}`;
                     cardView += `</div>`;
                     cardView += `</div>`;
-                    cardView += `<div class="extra two column content">`;
-                    cardView += `<i class="like icon"></i>`;
+                    cardView += `<div class="extra two column content" style="font-weight: 700">`;
+                    cardView += `<i class="like red icon"></i>`;
                     cardView += `좋아요${likeIt} &nbsp;&nbsp;&nbsp;`;
-                    cardView += `<i class="comments icon"></i>`;
+                    cardView += `<i class="comments white icon"></i>`;
                     cardView += `댓글${commentsCount}`;
                     cardView += `</div>`;
                     cardView += `</a>`;
