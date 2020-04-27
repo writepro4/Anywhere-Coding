@@ -126,7 +126,7 @@ function categoryListRequest(pageing) {
                     categoryitem += `꿀팁 얻기`;
                     categoryitem += `<i class="right chevron icon"></i>`;
                     categoryitem += `</div>`;
-                    categoryitem += `<div class="ui label">${categoryName}</div>`;
+                    // categoryitem += `<div class="ui label">${categoryName}</div>`;
                     categoryitem += `<div class="ui label">좋아요:${likeIt}</div>`;
                     categoryitem += `</div>`;
                     categoryitem += `</div>`;
