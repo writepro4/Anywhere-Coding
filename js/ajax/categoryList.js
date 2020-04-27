@@ -17,6 +17,8 @@ let rankCheck = true;
 // 1. categoryListRequest 카테고리 목록 불어오는 함수
 function categoryListRequest(pageing) {
 
+    console.log("첫번째 체크 변수 확인 : "+ rankCheck);
+
     // url에서 데이터 가져오기
     let categoryNumber = categoryURL();
 
@@ -24,7 +26,7 @@ function categoryListRequest(pageing) {
     let pageNumber = pageing;
 
     //한글은 url에서 가져올시에 깨지기 때문에 한번 변환작업을 시켜준다.
-    categoryConversion(categoryNumber);
+    const categoryName = categoryConversion(categoryNumber);
 
 
     $.ajax({
@@ -37,20 +39,19 @@ function categoryListRequest(pageing) {
 
             //json 파싱하기
             let parseData = JSON.parse(data);
-            // console.log("데이터 파싱전: " + data);
             let keyCheck = parseData.key;
-            // console.table(parseData);
 
             if (keyCheck === true) {
 
                 const {rankingContents} = parseData;
                 const rankingListData = rankingContents.length;
-                console.log("랭킹정보입니다 : " + rankingContents);
+                console.log("변수 길이 확인 : " + rankingListData);
 
                 for (let i = 0; i < rankingListData; i++) {
                     console.log("체크변수 값 확인 : " + rankCheck);
-                    if (i >= 6) {
+                    if (i >= 5) {
                         rankCheck = false;
+                        console.log(`체트 변수 값 변경확인 :` +rankCheck);
                     }
                     const {indexPosts} = rankingContents[i];
                     const {title} = rankingContents[i];
@@ -59,14 +60,13 @@ function categoryListRequest(pageing) {
                     const {category} = rankingContents[i];
                     const {date} = rankingContents[i];
                     const {image = `찾을수없음`} = rankingContents[i];
-                    console.log("순위 인덱스 : " + indexPosts);
 
                     let categoryPostsID = category + "_" + indexPosts;
 
 
                     const rankingList = `<div class="item" onclick="detailPage(this)" id=${categoryPostsID}>
 <!--                        <img class="ui avatar image" src=${image}>-->
-                        <div class="content">
+                        <div class="content ui red segment">
                         <div class="header"><font style="vertical-align: inherit;"><font
                         style="vertical-align: inherit;">${i + 1}. ${title}</font></font></div>
                         <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
@@ -86,20 +86,21 @@ function categoryListRequest(pageing) {
 
                 let postInfoData = parseData.contents;
 
-                console.table(postInfoData);
+                // console.table(postInfoData);
 
                 let postingListData = postInfoData.length;
 
 
                 for (let i = 0; i < postingListData; i++) {
-                    console.log("for문 실행중");
 
+                    // console.table(postInfoData[i]);
 
                     let title = postInfoData[i].title;
                     let titleImage = postInfoData[i].image;
                     let subTitle = postInfoData[i].subTitle;
                     let indexPosts = postInfoData[i].indexPosts;
                     let date = postInfoData[i].date;
+                    const {likeIt} = postInfoData[i];
 
                     //카테고리와 상세페이지번호 합친 변수.
                     let categoryPostsID = categoryNumber + "_" + indexPosts;
@@ -125,7 +126,8 @@ function categoryListRequest(pageing) {
                     categoryitem += `꿀팁 얻기`;
                     categoryitem += `<i class="right chevron icon"></i>`;
                     categoryitem += `</div>`;
-                    categoryitem += `<div class="ui label">생산성</div>`;
+                    categoryitem += `<div class="ui label">${categoryName}</div>`;
+                    categoryitem += `<div class="ui label">좋아요:${likeIt}</div>`;
                     categoryitem += `</div>`;
                     categoryitem += `</div>`;
                     categoryitem += `</div>`;
@@ -143,7 +145,6 @@ function categoryListRequest(pageing) {
                 deleteLoader();
                 //마지막문단인걸 체크하기 위해 lastParagraph를 true로 변경한다.
                 lastParagraph = true;
-                console.log("마지막 문단 입니다.");
 
             } else if (keyCheck === false) {
                 deleteLoader();
@@ -194,7 +195,6 @@ function categoryListRequest(pageing) {
                 alert('Uncaught Error.n');
             }
             console.log("상태: " + status);
-            console.log("실패");
         }
     });
 }
@@ -247,30 +247,32 @@ function categoryConversion(categoryData) {
         //카테고리 제목란에 추가할 데이터
         let categoryTitle = `<br>`;
         categoryTitle += `<h1 class="ui header center aligned">생산성</h1>`;
-
-        console.log("카테고리 넘버 확인 : " + categoryData);
-
         $('#categoryTitle').append(categoryTitle);
+        return `생산성`;
     } else if (categoryData.toString() === "health" && titleCheck === false) {
         titleCheck = true;
         let categoryTitle = `<br>`;
         categoryTitle += `<h1 class="ui header center aligned">건강</h1>`;
         $('#categoryTitle').append(categoryTitle);
+        return `건강`;
     } else if (categoryData.toString() === "readability" && titleCheck === false) {
         titleCheck = true;
         let categoryTitle = `<br>`;
         categoryTitle += `<h1 class="ui header center aligned">가독성</h1>`;
         $('#categoryTitle').append(categoryTitle);
+        return `가독성`;
     } else if (categoryData.toString() === "gitHub" && titleCheck === false) {
         titleCheck = true;
         let categoryTitle = `<br>`;
         categoryTitle += `<h1 class="ui header center aligned">깃헙</h1>`;
         $('#categoryTitle').append(categoryTitle);
+        return `깃헙`;
     } else if (categoryData.toString() === "site" && titleCheck === false) {
         titleCheck = true;
         let categoryTitle = `<br>`;
         categoryTitle += `<h1 class="ui header center aligned">추천 사이트</h1>`;
         $('#categoryTitle').append(categoryTitle);
+        return `추천 사이트`;
     }
 
 }
@@ -283,11 +285,11 @@ let loaderCheck = false;
 function loader() {
     if (loaderCheck === false) {
         loaderCheck = true;
-        console.log("로더 돌아가는중....");
+        // console.log("로더 돌아가는중....");
         let loader = `<div class="ui active centered inline loader" id="loader"></div>`;
         $('#iterate').append(loader);
     } else {
-        console.log("이미 실행중...");
+        // console.log("이미 실행중...");
     }
 
 }
@@ -296,7 +298,7 @@ function loader() {
 function deleteLoader() {
     // if (loaderCheck === true) {
     loaderCheck = false;
-    console.log("로더 삭제");
+    // console.log("로더 삭제");
     $('#loader').remove();
     // } else {
     //     console.log("로더 삭제됨..");
