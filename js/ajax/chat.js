@@ -15,10 +15,9 @@
 // 14. sessionStorageGet 세션스토리지에 값 가져오는 함수.
 // 15. editCommentsWindow 대댓글수정 창 호출하는 함수
 // 16. checkIn 로그인 체크 함수
+// 17. buttonEvent 버튼 이벤트(수정,삭제) 함수.
 
 
-//TODO 댓글 몇개 작성했는지 알아볼수 있게 수정해야됨
-//TODO 관리자는 모든 댓글 관리(수정,삭제) 가능하게끔 수정해야됨.
 //TODO 댓글 기본이미지/자신이미지 구분해서 출력해야됨.
 //TODO 글 작성후에 box안에 텍스트 지워야됨.
 
@@ -202,62 +201,67 @@ function editComment(crystalID) {
 function deleteComment(deleteId) {
 
     const deleteIdData = deleteId.id;
+    if (buttonEvent() === true){
 
+        let form = new FormData();
+        form.append("_method", "DELETE");
 
-    let form = new FormData();
-    form.append("_method", "DELETE");
-
-    $.ajax({
-        type: 'post'
-        , url: `https://honeytip.p-e.kr/comments/${deleteIdData}`
-        , data: form
-        , processData: false
-        , contentType: false
-        , xhrFields: {
-            withCredentials: false
-        }
-        , success: function (data) {
-            //json 파싱하기
-            let parseData = JSON.parse(data);
-            let keyCheck = parseData.key;
-
-            // true/false 둘 중 하나를 반환한다.
-            console.log("댓글 삭제 성공여부입니다.: " + keyCheck);
-
-            document.getElementById(deleteIdData).remove();
-
-
-        }
-        //에러 종류 조건문으로 걸러내기
-        , error: function (jqXHR, exception) {
-
-            if (jqXHR.status === 0) {
-                alert('Not connect.\n Verify Network.');
-            } else if (jqXHR.status === 400) {
-                alert('Server understood the request, but request content was invalid. [400]');
-            } else if (jqXHR.status === 401) {
-                alert('Unauthorized access. [401]');
-            } else if (jqXHR.status === 403) {
-                alert('Forbidden resource can not be accessed. [403]');
-            } else if (jqXHR.status === 404) {
-                alert('Requested page not found. [404]');
-            } else if (jqXHR.status === 500) {
-                alert('Internal server error. [500]');
-            } else if (jqXHR.status === 503) {
-                alert('Service unavailable. [503]');
-            } else if (exception === 'parsererror') {
-                alert('Requested JSON parse failed. [Failed]');
-            } else if (exception === 'timeout') {
-                alert('Time out error. [Timeout]');
-            } else if (exception === 'abort') {
-                alert('Ajax request aborted. [Aborted]');
-            } else {
-                alert('Uncaught Error.n');
+        $.ajax({
+            type: 'post'
+            , url: `https://honeytip.p-e.kr/comments/${deleteIdData}`
+            , data: form
+            , processData: false
+            , contentType: false
+            , xhrFields: {
+                withCredentials: false
             }
-            console.log("상태: " + status);
-            console.log("실패");
-        }
-    });
+            , success: function (data) {
+                //json 파싱하기
+                let parseData = JSON.parse(data);
+                let keyCheck = parseData.key;
+
+                // true/false 둘 중 하나를 반환한다.
+                console.log("댓글 삭제 성공여부입니다.: " + keyCheck);
+
+                document.getElementById(deleteIdData).remove();
+
+
+            }
+            //에러 종류 조건문으로 걸러내기
+            , error: function (jqXHR, exception) {
+
+                if (jqXHR.status === 0) {
+                    alert('Not connect.\n Verify Network.');
+                } else if (jqXHR.status === 400) {
+                    alert('Server understood the request, but request content was invalid. [400]');
+                } else if (jqXHR.status === 401) {
+                    alert('Unauthorized access. [401]');
+                } else if (jqXHR.status === 403) {
+                    alert('Forbidden resource can not be accessed. [403]');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found. [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal server error. [500]');
+                } else if (jqXHR.status === 503) {
+                    alert('Service unavailable. [503]');
+                } else if (exception === 'parsererror') {
+                    alert('Requested JSON parse failed. [Failed]');
+                } else if (exception === 'timeout') {
+                    alert('Time out error. [Timeout]');
+                } else if (exception === 'abort') {
+                    alert('Ajax request aborted. [Aborted]');
+                } else {
+                    alert('Uncaught Error.n');
+                }
+                console.log("상태: " + status);
+                console.log("실패");
+            }
+        });
+
+
+    }else{
+        console.log("실행취소");
+    }
 
 }
 
@@ -1102,6 +1106,11 @@ function checkIn() {
     } else {
         window.location.href = `./socialLogin.html`;
     }
+}
+
+// 17. buttonEvent 버튼 이벤트(수정,삭제) 함수.
+function buttonEvent() {
+    return confirm("정말 실행하시겠습니까??") === true;
 }
 
 
