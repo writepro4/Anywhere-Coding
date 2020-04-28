@@ -49,7 +49,6 @@ $(document).ready(function () {
                 </div>
                 </div>`;
 
-                //TODO 그 글로 바로 가기 버튼 추가하기
 
                 $(`#listOfComments`).append(chatData);
 
