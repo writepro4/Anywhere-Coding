@@ -43,7 +43,11 @@ function nextPageData(category) {
 
 // 3. 상세페이지에 데이터 넘기는 함수.
 function detailPage(page) {
+
     let detailPage = page.id;
+    if(detailPage == null){
+        detailPage = page;
+    }
     console.log(detailPage);
     // 카테고리 id 상세페이지 id 2개가 필요함
     window.location.href = `./details_page.html?index=${detailPage}`;
