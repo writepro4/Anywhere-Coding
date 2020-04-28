@@ -18,9 +18,6 @@
 // 17. buttonEvent 버튼 이벤트(수정,삭제) 함수.
 
 
-//TODO 댓글 기본이미지/자신이미지 구분해서 출력해야됨.
-//TODO 글 작성후에 box안에 텍스트 지워야됨.
-
 // 1. 댓글 작성 함수.
 function writeAComment() {
 
@@ -201,7 +198,7 @@ function editComment(crystalID) {
 function deleteComment(deleteId) {
 
     const deleteIdData = deleteId.id;
-    if (buttonEvent() === true){
+    if (buttonEvent() === true) {
 
         let form = new FormData();
         form.append("_method", "DELETE");
@@ -259,7 +256,7 @@ function deleteComment(deleteId) {
         });
 
 
-    }else{
+    } else {
         console.log("실행취소");
     }
 
