@@ -180,8 +180,12 @@ function imageUpload() {
                     function (data, status) {
                         let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
                         let keyCheck = successCheck.key;
+                        const {postNum : number} = successCheck;
+                        const pageNumber = category + `_` + number;
                         if (keyCheck === true) {
-                            alert("성공!");
+                            console.log("포스트 넘버 확인 : "+ pageNumber);
+                            // const idCreate = `<div id="${number}"></div>`;
+                            detailPage(pageNumber);
                         } else {
                             alert("실패!");
                         }
