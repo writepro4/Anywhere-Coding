@@ -3,11 +3,10 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="3375cf8c-b935-41cc-aeb4-493516bacc32" name="good" url="http://34.64.198.222">
-        <fileTransfer host="34.64.198.222" port="22" privateKey="C:\Users\write\Downloads\gcptrue.ppk" rootFolder="/var/www" accessType="SFTP" keyPair="true">
+        <fileTransfer rootFolder="/var/www" accessType="SFTP" host="34.64.198.222" port="22" sshConfigId="cf855a65-0bed-4fbb-bb2f-6489daa4d078" sshConfig="good" keyPair="true">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
-          <option name="port" value="22" />
         </fileTransfer>
       </webServer>
     </option>
