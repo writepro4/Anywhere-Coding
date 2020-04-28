@@ -5,8 +5,6 @@
 // 5. 인피니티 스크롤 페이징 로딩 처리 함수.
 // 6. deleteLoader 로딩바 삭제하는 함수.
 
-//TODO 작성안한 카테고리 페이지 따로 처리해야됨.
-
 
 // 인피니티 스크롤 마지막문단 체크 변수
 let lastParagraph = false;
@@ -17,7 +15,7 @@ let rankCheck = true;
 // 1. categoryListRequest 카테고리 목록 불어오는 함수
 function categoryListRequest(pageing) {
 
-    console.log("첫번째 체크 변수 확인 : "+ rankCheck);
+    console.log("첫번째 체크 변수 확인 : " + rankCheck);
 
     // url에서 데이터 가져오기
     let categoryNumber = categoryURL();
@@ -51,7 +49,7 @@ function categoryListRequest(pageing) {
                     console.log("체크변수 값 확인 : " + rankCheck);
                     if (i >= 5) {
                         rankCheck = false;
-                        console.log(`체트 변수 값 변경확인 :` +rankCheck);
+                        console.log(`체트 변수 값 변경확인 :` + rankCheck);
                     }
                     const {indexPosts} = rankingContents[i];
                     const {title} = rankingContents[i];
