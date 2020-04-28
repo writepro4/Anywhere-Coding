@@ -99,6 +99,7 @@ function categoryListRequest(pageing) {
                     let indexPosts = postInfoData[i].indexPosts;
                     let date = postInfoData[i].date;
                     const {likeIt} = postInfoData[i];
+                    const {commentsCount} = postInfoData[i];
 
                     //카테고리와 상세페이지번호 합친 변수.
                     let categoryPostsID = categoryNumber + "_" + indexPosts;
@@ -124,7 +125,7 @@ function categoryListRequest(pageing) {
                     categoryitem += `꿀팁 얻기`;
                     categoryitem += `<i class="right chevron icon"></i>`;
                     categoryitem += `</div>`;
-                    // categoryitem += `<div class="ui label">${categoryName}</div>`;
+                    categoryitem += `<div class="ui label">댓글수:${commentsCount}</div>`;
                     categoryitem += `<div class="ui label">좋아요:${likeIt}</div>`;
                     categoryitem += `</div>`;
                     categoryitem += `</div>`;
