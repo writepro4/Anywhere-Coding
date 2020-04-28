@@ -352,7 +352,7 @@ function loadingComments() {
                                 adminComments += `<div class="ui segment">`;
                                 adminComments += `<div class="comment">`;
                                 adminComments += `<a class="avatar">`;
-                                adminComments += `<img src="/images/avatar.png">`;
+                                adminComments += `<img src="/images/avatarMan.png">`;
                                 adminComments += `</a>`;
                                 adminComments += `<div class="content">`;
                                 adminComments += `<a class="author">${userName}</a>`;
@@ -658,7 +658,7 @@ function largeComment(commentID) {
             adminComments += `<div class="ui segment">`;
             adminComments += `<div class="comment">`;
             adminComments += `<a class="avatar">`;
-            adminComments += `<img src="/images/plant.jpg">`;
+            adminComments += `<img src="/images/avatarMan.png">`;
             adminComments += `</a>`;
             adminComments += `<div class="content">`;
             adminComments += `<a class="author">${userName}</a>`;
