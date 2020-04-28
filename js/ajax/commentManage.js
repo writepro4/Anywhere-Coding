@@ -5,15 +5,16 @@
 $(document).ready(function () {
     $.ajax({
         type: 'get'
-        , url: `https://honeytip.p-e.kr/comments`
+        // https://honeytip.p-e.kr/comments/{페이징번호}
+        , url: `https://honeytip.p-e.kr/comments/1`
         , xhrFields: {
             withCredentials: false
         }
         , success: function (data) {
             //json 파싱하기
+            console.log("데이터 확인 : "+ data);
             const parseData = JSON.parse(data);
             const keyCheck = parseData.key;
-            console.log("데이터 확인 : " + data);
 
             const {contents} = parseData;
             // console.table(contents);
