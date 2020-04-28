@@ -1,12 +1,12 @@
 // 1. 상세페이지 내용 불러오는 함수
 // 2. getUrlData url데이터를 가져오는 함수
 // 3. likeClick 좋아요클릭 요청 보내는 함수
+// 4. likeCancel 좋아요 취소 함수
 
 
 // 1. 상세페이지 내용 불러오는 함수
 $(document).ready(function () {
     const listNumber = getUrlData();
-
 
     $.ajax({
         type: 'get'
@@ -36,16 +36,12 @@ $(document).ready(function () {
             let contentPage = contents;
             contentPage += `<br><br><br><br>`;
 
-            const button = `<div class="ui red disabled button" id="likeIt" onclick="likeClick()">
-                <i class="heart icon"></i> 좋아요
-                </div>`;
-
 
             $('#titlePage').append(titlePage);
             $('#contentPage').append(contentPage);
             $(`#viewComments`).append(commentsCount);
             $(`#likeIt`).append(likeIt);
-            $(`#likeButton`).append(button);
+
 
             const id = sessionStorageGet('cf');
             if (id !== null) {
@@ -67,12 +63,15 @@ $(document).ready(function () {
                             console.log("확인 ");
                             $(`#likeIt`).remove();
                             const button = `<div class="ui red button" id="likeIt" onclick="likeClick()">
-                                <i class="heart icon"></i> 좋아요
+                                <i class="heart icon"></i> 좋아요 ${likeIt}
                                 </div>`;
                             $(`#likeButton`).append(button);
 
                         } else {
-                            console.log("이미 체크함");
+                            const button = `<div class="ui black button" id="likeIt" onclick="likeCancel()">
+                                            <i class="heart icon"></i> 좋아요 ${likeIt}
+                                                </div>`;
+                            $(`#likeButton`).append(button);
                         }
 
 
@@ -180,8 +179,17 @@ function likeClick() {
 
             //json 파싱하기
             let parseData = JSON.parse(data);
+            console.log(data);
+
+            const {likeIt} = parseData;
 
             console.log(data);
+
+            $(`#likeIt`).remove();
+            const button = `<div class="ui black button" id="likeIt" onclick="likeCancel()">
+                                <i class="heart icon"></i> 좋아요 ${likeIt}
+                                </div>`;
+            $(`#likeButton`).append(button);
 
 
         }
@@ -215,4 +223,75 @@ function likeClick() {
             console.log("실패");
         }
     });
+}
+
+//4.likeCancel 좋아요 취소 함수
+function likeCancel() {
+
+    const uid = sessionStorageGet(`cf`);
+    const pageNumber = getUrlData();
+    const value = `cancel`;
+
+    let likeData = {
+        'postNum': pageNumber,
+        'id': uid,
+        'value': value
+
+    };
+
+
+    $.ajax({
+        type: 'post'
+        , url: `https://honeytip.p-e.kr/like`
+        , data: likeData
+        , xhrFields: {
+            withCredentials: false
+        }
+        , success: function (data) {
+
+            //json 파싱하기
+            let parseData = JSON.parse(data);
+            const {likeIt} = parseData;
+
+            console.log("반환데이터 : "+ data);
+
+            $(`#likeIt`).remove();
+            const button = `<div class="ui red button" id="likeIt" onclick="likeClick()">
+                                <i class="heart icon"></i> 좋아요 ${likeIt}
+                                </div>`;
+            $(`#likeButton`).append(button);
+
+
+        }
+        //에러 종류 조건문으로 걸러내기
+        , error: function (jqXHR, exception) {
+
+            if (jqXHR.status === 0) {
+                alert('Not connect.\n Verify Network.');
+            } else if (jqXHR.status === 400) {
+                alert('Server understood the request, but request content was invalid. [400]');
+            } else if (jqXHR.status === 401) {
+                alert('Unauthorized access. [401]');
+            } else if (jqXHR.status === 403) {
+                alert('Forbidden resource can not be accessed. [403]');
+            } else if (jqXHR.status === 404) {
+                alert('Requested page not found. [404]');
+            } else if (jqXHR.status === 500) {
+                alert('Internal server error. [500]');
+            } else if (jqXHR.status === 503) {
+                alert('Service unavailable. [503]');
+            } else if (exception === 'parsererror') {
+                alert('Requested JSON parse failed. [Failed]');
+            } else if (exception === 'timeout') {
+                alert('Time out error. [Timeout]');
+            } else if (exception === 'abort') {
+                alert('Ajax request aborted. [Aborted]');
+            } else {
+                alert('Uncaught Error.n');
+            }
+            console.log("상태: " + status);
+            console.log("실패");
+        }
+    });
+
 }
