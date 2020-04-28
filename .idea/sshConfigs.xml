@@ -3,7 +3,7 @@
   <component name="SshConfigs">
     <configs>
       <sshConfig host="34.64.198.222" id="acf8d1e9-a6a9-4da1-a858-50e2eed04ccd" keyPath="C:\Users\write\Downloads\gcptrue.ppk" port="22" customName="good" nameFormat="CUSTOM" username="dbswlgur44" />
-      <sshConfig host="34.64.198.222" id="efb81116-98ce-4a77-a1e3-f77d3bc590f3" keyPath="C:\Users\write\Downloads\gcptrue.ppk" port="22" customName="good" nameFormat="CUSTOM" username="dbswlgur44" />
+      <sshConfig host="34.64.198.222" id="cf855a65-0bed-4fbb-bb2f-6489daa4d078" keyPath="C:\Users\write\Downloads\gcptrue.ppk" port="22" customName="good" nameFormat="CUSTOM" username="dbswlgur44" />
     </configs>
   </component>
 </project>
