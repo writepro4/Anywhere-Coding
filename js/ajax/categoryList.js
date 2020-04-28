@@ -69,7 +69,10 @@ function categoryListRequest(pageing) {
                         style="vertical-align: inherit;">${i + 1}. ${title}</font></font></div>
                         <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
                         ${subTitle}
+                        <br>
+                        <i class="heart red icon"></i>${likeIt}
                         </font></font></div>
+                        
                         </div>`;
 
                     if (rankCheck === true) {
