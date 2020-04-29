@@ -70,7 +70,7 @@ $(document).ready(function () {
 
                         } else {
                             const button = `<div class="ui black button" id="likeIt" onclick="likeCancel()">
-                                            <i class="heart icon"></i> 좋아요 ${likeIt}
+                                            <i class="heart icon"></i> 고마워요! ${likeIt}
                                                 </div>`;
                             $(`#likeButton`).append(button);
                         }
@@ -213,6 +213,8 @@ function likeClick() {
     const pageNumber = getUrlData();
     const value = `possible`;
 
+    console.log("uid값 입니다 : " + uid);
+
     let likeData = {
         'postNum': pageNumber,
         'id': uid,
@@ -232,15 +234,16 @@ function likeClick() {
 
             //json 파싱하기
             let parseData = JSON.parse(data);
-            console.log(data);
+            console.log("좋아요 클릭 반환 데이터 : "+ data);
 
             const {key} = parseData;
+            const {likeIt} = parseData;
 
             // console.log(data);
 
             $(`#likeIt`).remove();
             const button = `<div class="ui black button" id="likeIt" onclick="likeCancel()">
-                                <i class="heart icon"></i> 좋아요 ${key}
+                                <i class="heart icon"></i> 고마워요! ${likeIt}
                                 </div>`;
             $(`#likeButton`).append(button);
 
@@ -284,6 +287,7 @@ function likeCancel() {
     const uid = sessionStorageGet(`cf`);
     const pageNumber = getUrlData();
     const value = `cancel`;
+    console.log("uid값 입니다 : " + uid);
 
     let likeData = {
         'postNum': pageNumber,
