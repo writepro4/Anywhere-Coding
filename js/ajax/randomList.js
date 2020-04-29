@@ -2,21 +2,21 @@
 
 $(document).ready(function () {
 
-    // URL : [ GET 요청] https://honeytip.p-e.kr/recommendation/list/{postNum}
-    // <- {} 내부는 유저가 보고 있는
-    // 글 번호입니다. 추천목록에 유저가 보고있는 글이 추천되면
-    // 이상하니까 포함됨 그리고 날짜와 관계없이 랜덤으로 글 추천되도록 했음
+    const postNum = getUrlData();
+    console.log(postNum);
 
 
     $.ajax({
         type: 'get'
-        , url: 'https://honeytip.p-e.kr/posts'
+        , url: `https://honeytip.p-e.kr/posts/recommendation/list/${postNum}`
         , xhrFields: {
             withCredentials: false
         }
         , success: function (data) {
+            console.log(`실행됨`);
 
             let parseData = JSON.parse(data);
+            console.log(data);
 
 
             let keyCheck = parseData.key;
@@ -24,7 +24,7 @@ $(document).ready(function () {
 
             if (keyCheck === true) {
 
-                let postInfoData = parseData.postInfo;
+                let postInfoData = parseData.recommendList;
 
                 let postingListData = postInfoData.length;
                 console.table(postInfoData);
@@ -33,7 +33,7 @@ $(document).ready(function () {
 
                 for (let i = 0; i < postingListData; i++) {
 
-                    console.log("for문 실행중");
+                    // console.log("for문 실행중");
 
 
                     //제목
