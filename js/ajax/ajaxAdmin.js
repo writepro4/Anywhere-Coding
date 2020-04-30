@@ -410,7 +410,10 @@ function writingFix() {
                         let parseData = JSON.parse(data);
                         let keyCheck = parseData.key;
 
+                        const pageNumber = `_`+getUrlData();
+
                         console.log("수정완료 : ");
+                        detailPage(pageNumber);
 
 
                     }
