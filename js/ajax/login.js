@@ -120,7 +120,7 @@ function loginRequest() {
             let title = 'Hello World';
             let url = 'https://honeytip.kro.kr/';
 
-            // history.pushState(state, title, url);
+            history.pushState(state, title, url);
 
 
         }
