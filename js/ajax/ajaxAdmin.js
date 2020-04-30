@@ -180,10 +180,10 @@ function imageUpload() {
                     function (data, status) {
                         let successCheck = JSON.parse(data); // JSON 형식의 문자열을 자바스크립트 객체로 변환함.
                         let keyCheck = successCheck.key;
-                        const {postNum : number} = successCheck;
+                        const {postNum: number} = successCheck;
                         const pageNumber = category + `_` + number;
                         if (keyCheck === true) {
-                            console.log("포스트 넘버 확인 : "+ pageNumber);
+                            console.log("포스트 넘버 확인 : " + pageNumber);
                             // const idCreate = `<div id="${number}"></div>`;
                             detailPage(pageNumber);
                         } else {
@@ -410,7 +410,7 @@ function writingFix() {
                         let parseData = JSON.parse(data);
                         let keyCheck = parseData.key;
 
-                        const pageNumber = `_`+getUrlData();
+                        const pageNumber = `_` + getUrlData();
 
                         console.log("수정완료 : ");
                         detailPage(pageNumber);
@@ -465,12 +465,6 @@ function getArticleList() {
 
     const categoryData = $('#seleteData').val();
 
-    $(`#itemList`).remove();
-
-    const data = `<div class="ui divided items" id="itemList"> </div>`;
-    $(`#itemListParent`).append(data);
-
-    // https://honeytip.p-e.kr/posts/productivity/all
 
     $.ajax({
         type: 'get'
@@ -480,11 +474,18 @@ function getArticleList() {
         }
         , success: function (data) {
 
+            console.log("데이터 출력 ");
+
             //json 파싱하기
             let parseData = JSON.parse(data);
             console.log("데이터 파싱전: " + data);
             let keyCheck = parseData.key;
             console.log("데이터 성공여부 : " + keyCheck);
+
+            $(`#itemList`).remove();
+
+            const listdata = `<div class="ui divided items" id="itemList"> </div>`;
+            $(`#itemListParent`).append(listdata);
 
             let postInfoData = parseData.contents;
 
