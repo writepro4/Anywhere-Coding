@@ -237,11 +237,6 @@ let titleCheck = false;
 // 4.  categoryConversion 어떤 카테고리인지 한글로 변환하고 제목에 추가하는 함수.
 function categoryConversion(categoryData) {
 
-// <option value="productivity">생산성</option>
-//         <option value="health">건강</option>
-//         <option value="readability">가독성</option>
-//         <option value="gitHub">깃헙</option>
-//         <option value="site">추천 사이트</option>
 
     // 제목을 한번만 붙이기 위한 변수
     if (categoryData.toString() === "productivity" && titleCheck === false) {
@@ -262,7 +257,7 @@ function categoryConversion(categoryData) {
         let categoryTitle = `<br>`;
         categoryTitle += `<h1 class="ui header center aligned">가독성</h1>`;
         $('#categoryTitle').append(categoryTitle);
-        return `가독성`;
+        return `개발 문서`;
     } else if (categoryData.toString() === "gitHub" && titleCheck === false) {
         titleCheck = true;
         let categoryTitle = `<br>`;
