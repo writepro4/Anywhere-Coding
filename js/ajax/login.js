@@ -27,7 +27,12 @@ function localStorageGet() {
 //4. 로그인 처리 함수.
 $(document).ready(function () {
     let confirmId = idUrl();
-    console.log("가져온 URL값 : " + confirmId);
+
+
+    let confirmIdReplce = confirmId.replace("#", '');
+    console.log(confirmIdReplce);
+
+
     const adminCheck = sessionStorageGet(`cf`);
 
     //세션스토리지 전체 삭제
@@ -63,7 +68,7 @@ $(document).ready(function () {
         }
         loginRequest();
     } else {
-        sessionStorageSet('cf', confirmId);
+        sessionStorageSet('cf', confirmIdReplce);
         const adminCheck = sessionStorageGet(`cf`);
         if (adminCheck === "112020533574226006231#" || adminCheck === "100755251287940797090") {
             $("#header").load("headerAdmin.html");
@@ -83,7 +88,6 @@ function loginRequest() {
 
     // 로그인 ID 변수
     let loginData = sessionStorageGet('cf');
-    console.log("로그인 데이터 확인 : " + loginData);
 
     $.ajax({
         type: 'get'
@@ -116,7 +120,7 @@ function loginRequest() {
             let title = 'Hello World';
             let url = 'https://honeytip.kro.kr/';
 
-            history.pushState(state, title, url);
+            // history.pushState(state, title, url);
 
 
         }
