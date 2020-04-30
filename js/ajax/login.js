@@ -49,7 +49,7 @@ $(document).ready(function () {
         $("#footer").load("footer.html");
     } else if (confirmId === `https://honeytip.kro.kr/` && sessionStorageGet('cf') !== null) {
         console.log("로그인 로컬에 저장된 상태");
-        if (adminCheck === "112020533574226006231#" || adminCheck === "100755251287940797090") {
+        if (adminCheck === "112020533574226006231" || adminCheck === "100755251287940797090") {
             $("#header").load("./headerAdmin.html");
             $("#footer").load("footer.html");
         } else {
@@ -59,7 +59,7 @@ $(document).ready(function () {
         loginRequest();
     } else if (confirmId === `https://honeytip.kro.kr/index.html` && sessionStorageGet(`cf`) !== null) {
         console.log("로그인 로컬에 저장된 상태");
-        if (adminCheck === "112020533574226006231#" || adminCheck === "100755251287940797090") {
+        if (adminCheck === "112020533574226006231" || adminCheck === "100755251287940797090") {
             $("#header").load("./headerAdmin.html");
             $("#footer").load("footer.html");
         } else {
@@ -70,7 +70,7 @@ $(document).ready(function () {
     } else {
         sessionStorageSet('cf', confirmIdReplce);
         const adminCheck = sessionStorageGet(`cf`);
-        if (adminCheck === "112020533574226006231#" || adminCheck === "100755251287940797090") {
+        if (adminCheck === "112020533574226006231" || adminCheck === "100755251287940797090") {
             $("#header").load("headerAdmin.html");
             $("#footer").load("footer.html");
             loginRequest();
