@@ -73,6 +73,9 @@ function writeAComment() {
             chatData += `</a>`;
             chatData += `<div class="content">`;
             chatData += `<a class="author">${userName}</a>`;
+            chatData += `<div class="metadata">
+                                    <span class="date">방금전</span>
+                                </div>`;
             chatData += `<div class="text" >`;
             chatData += `${comment}`;
             chatData += `</div>`;
@@ -357,7 +360,7 @@ function loadingComments() {
                                 adminComments += `<div class="content">`;
                                 adminComments += `<a class="author">${userName}</a>`;
                                 adminComments += `<div class="metadata">`;
-                                // adminComments += `<span class="date">${date}</span>`;
+                                adminComments += `<span class="date">${date}</span>`;
                                 adminComments += `</div>`;
                                 adminComments += `<div class="text" id="text${indexComments}">`;
                                 adminComments += `${comment}`;
@@ -386,6 +389,9 @@ function loadingComments() {
                                 chatData += `</a>`;
                                 chatData += `<div class="content" id="addAdminComments${indexComments}">`;
                                 chatData += `<a class="author">${userName}</a>`;
+                                chatData += `<div class="metadata">
+                                    <span class="date">${date}</span>
+                                </div>`;
                                 chatData += `<div class="text" id="text${indexComments}">`;
                                 chatData += `${comment}`;
                                 chatData += `</div>`;
@@ -420,7 +426,7 @@ function loadingComments() {
                                 adminComments += `<div class="content">`;
                                 adminComments += `<a class="author">${userName}</a>`;
                                 adminComments += `<div class="metadata">`;
-                                // adminComments += `<span class="date">${date}</span>`;
+                                adminComments += `<span class="date">${date}</span>`;
                                 adminComments += `</div>`;
                                 adminComments += `<div class="text" id="text${indexComments}">`;
                                 adminComments += `${comment}`;
@@ -449,6 +455,9 @@ function loadingComments() {
                                 chatData += `</a>`;
                                 chatData += `<div class="content" id="addAdminComments${indexComments}">`;
                                 chatData += `<a class="author">${userName}</a>`;
+                                chatData += `<div class="metadata">
+                                    <span class="date">${date}</span>
+                                </div>`;
                                 chatData += `<div class="text" id="text${indexComments}">`;
                                 chatData += `${comment}`;
                                 chatData += `</div>`;
@@ -985,7 +994,7 @@ function pagingTreatment() {
                                 adminComments += `<div class="content">`;
                                 adminComments += `<a class="author">${userName}</a>`;
                                 adminComments += `<div class="metadata">`;
-                                // adminComments += `<span class="date">${date}</span>`;
+                                adminComments += `<span class="date">${date}</span>`;
                                 adminComments += `</div>`;
                                 adminComments += `<div class="text" id="text${indexComments}">`;
                                 adminComments += `${comment}`;
@@ -1014,6 +1023,9 @@ function pagingTreatment() {
                                 chatData += `</a>`;
                                 chatData += `<div class="content" id="addAdminComments${indexComments}">`;
                                 chatData += `<a class="author">${userName}</a>`;
+                                chatData += `<div class="metadata">
+                                    <span class="date">${date}</span>
+                                </div>`;
                                 chatData += `<div class="text" id="text${indexComments}">`;
                                 chatData += `${comment}`;
                                 chatData += `</div>`;
@@ -1048,7 +1060,7 @@ function pagingTreatment() {
                                 adminComments += `<div class="content">`;
                                 adminComments += `<a class="author">${userName}</a>`;
                                 adminComments += `<div class="metadata">`;
-                                // adminComments += `<span class="date">${date}</span>`;
+                                adminComments += `<span class="date">${date}</span>`;
                                 adminComments += `</div>`;
                                 adminComments += `<div class="text" id="text${indexComments}">`;
                                 adminComments += `${comment}`;
@@ -1077,6 +1089,9 @@ function pagingTreatment() {
                                 chatData += `</a>`;
                                 chatData += `<div class="content" id="addAdminComments${indexComments}">`;
                                 chatData += `<a class="author">${userName}</a>`;
+                                chatData += `<div class="metadata">
+                                    <span class="date">${date}</span>
+                                </div>`;
                                 chatData += `<div class="text" id="text${indexComments}">`;
                                 chatData += `${comment}`;
                                 chatData += `</div>`;
