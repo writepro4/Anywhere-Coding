@@ -578,9 +578,11 @@ function getArticleList() {
 
             //json 파싱하기
             let parseData = JSON.parse(data);
-            //console.log("데이터 파싱전: " + data);
+            // console.log("데이터 파싱전: " + data);
             let keyCheck = parseData.key;
             //console.log("데이터 성공여부 : " + keyCheck);
+            const {postCount} = parseData;
+            // console.log(postCount);
 
             $(`#itemList`).remove();
 
@@ -588,6 +590,8 @@ function getArticleList() {
             $(`#itemListParent`).append(listdata);
 
             let postInfoData = parseData.contents;
+
+            // console.table(postInfoData);
 
             let postingListData = postInfoData.length;
 
@@ -626,6 +630,9 @@ function getArticleList() {
                 html += `</div>`;
                 html += `<div class="extra">`;
                 html += `${category}`;
+                html += `</div>`;
+                html += `<div class="extra">`;
+                html += `작성한 글 갯수: ${postCount}`;
                 html += `</div>`;
                 html += `<div class="extra">`;
                 html += `<div class="ui blue right floated button" onclick="nextPageData(this)" id=${indexPosts}>`;
