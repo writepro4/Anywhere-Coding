@@ -528,9 +528,6 @@ function loadingComments() {
 
                 }
 
-                // true/false 둘 중 하나를 반환한다.
-                console.log("댓글 목록리스트 체크 " + keyCheck);
-
 
             }
             //에러 종류 조건문으로 걸러내기
@@ -657,13 +654,14 @@ function largeComment(commentID) {
             //json 파싱하기
             let parseData = JSON.parse(data);
             let keyCheck = parseData.key;
-            const commentID = parseData.commentIndex;
+            const commentID = parseData.commentsIndex;
 
             console.log("반환 데이터 확인 : " + data);
             // true/false 둘 중 하나를 반환한다.
             console.log("댓글 작성 성공여부입니다.: " + keyCheck);
+            console.log("아이디 값 확인 : " + commentID);
 
-            let adminComments = `<div class="comments">`;
+            let adminComments = `<div class="comments" id=${commentID}>`;
             adminComments += `<div class="ui segment">`;
             adminComments += `<div class="comment">`;
             adminComments += `<a class="avatar">`;
@@ -678,8 +676,8 @@ function largeComment(commentID) {
             adminComments += `${comment}`;
             adminComments += `</div>`;
             adminComments += `<div class="actions">`;
-            adminComments += `<a class="reply">삭제</a>`;
-            adminComments += `<a class="reply">수정</a>`;
+            adminComments += `<a class="reply" onclick="deleteAdminComments(this)" id=${commentID}>삭제</a>`;
+            adminComments += `<a class="reply" onclick="editCommentsWindow(this)" id=${commentID}>수정</a>`;
             adminComments += `</div>`;
             adminComments += `</div>`;
             adminComments += `</div>`;
