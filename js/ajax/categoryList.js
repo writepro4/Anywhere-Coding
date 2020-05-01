@@ -24,7 +24,7 @@ function categoryListRequest(pageing) {
     let pageNumber = pageing;
 
     //한글은 url에서 가져올시에 깨지기 때문에 한번 변환작업을 시켜준다.
-    const categoryName = categoryConversion(categoryNumber);
+    categoryConversion(categoryNumber);
 
 
     $.ajax({
@@ -268,6 +268,30 @@ function categoryConversion(categoryData) {
         titleCheck = true;
         let categoryTitle = `<br>`;
         categoryTitle += `<h1 class="ui header center aligned">웹 개발</h1>`;
+        $('#categoryTitle').append(categoryTitle);
+        return `추천 사이트`;
+    } else if (categoryData.toString() === "windows" && titleCheck === false) {
+        titleCheck = true;
+        let categoryTitle = `<br>`;
+        categoryTitle += `<h1 class="ui header center aligned">윈도우 편의 기능</h1>`;
+        $('#categoryTitle').append(categoryTitle);
+        return `추천 사이트`;
+    } else if (categoryData.toString() === "day" && titleCheck === false) {
+        titleCheck = true;
+        let categoryTitle = `<br>`;
+        categoryTitle += `<h1 class="ui header center aligned">일정 관리</h1>`;
+        $('#categoryTitle').append(categoryTitle);
+        return `추천 사이트`;
+    } else if (categoryData.toString() === "design" && titleCheck === false) {
+        titleCheck = true;
+        let categoryTitle = `<br>`;
+        categoryTitle += `<h1 class="ui header center aligned">웹 디자인</h1>`;
+        $('#categoryTitle').append(categoryTitle);
+        return `추천 사이트`;
+    } else if (categoryData.toString() === "life" && titleCheck === false) {
+        titleCheck = true;
+        let categoryTitle = `<br>`;
+        categoryTitle += `<h1 class="ui header center aligned">개발자 건강</h1>`;
         $('#categoryTitle').append(categoryTitle);
         return `추천 사이트`;
     }
