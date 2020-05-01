@@ -10,7 +10,7 @@ $(document).ready(function () {
         cache: false,
         processData: false,
         success: function (data) {
-            // console.log(data);
+            // //console.log(data);
             //json 파싱하기
             const parseData = JSON.parse(data);
 
@@ -23,7 +23,7 @@ $(document).ready(function () {
             const image = postInfo.image;
             const subTitle = postInfo.subTitle;
 
-            console.table(postInfo);
+            //console.table(postInfo);
 
             $(`#category`).val(category);
             $(`#title`).val(name);

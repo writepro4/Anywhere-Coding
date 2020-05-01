@@ -29,15 +29,15 @@ $(document).ready(function () {
 
             const {userName, category, date, indexComments, comment, postNum} = contents[0];
 
-            console.log("유저 네임 : " + userName);
-            console.log("카테고리 : " + category);
-            console.log("날짜 : " + date);
-            console.log("글 번호 : " + indexComments);
-            console.log("내용 : " + comment);
-            console.log("번호 : " + postNum);
+            //console.log("유저 네임 : " + userName);
+            //console.log("카테고리 : " + category);
+            //console.log("날짜 : " + date);
+            //console.log("글 번호 : " + indexComments);
+            //console.log("내용 : " + comment);
+            //console.log("번호 : " + postNum);
 
-            console.log("확인된 데이터 : " + data);
-            console.table(contents);
+            //console.log("확인된 데이터 : " + data);
+            //console.table(contents);
 
             for (let i = 0; i < contentsList; i++) {
 
@@ -93,7 +93,7 @@ $(document).ready(function () {
                     let parseData = JSON.parse(data);
                     const {key} = parseData;
                     const {pageCount} = parseData;
-                    console.log("좋아요 데이터 확인 : " + data);
+                    //console.log("좋아요 데이터 확인 : " + data);
                     const {contents} = parseData;
 
                     const contentsList = contents.length;
@@ -157,8 +157,8 @@ $(document).ready(function () {
                     } else {
                         alert('Uncaught Error.n');
                     }
-                    console.log("상태: " + status);
-                    console.log("실패");
+                    //console.log("상태: " + status);
+                    //console.log("실패");
                 }
             });
 
@@ -190,8 +190,8 @@ $(document).ready(function () {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 
@@ -244,8 +244,8 @@ function withdrawal() {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 }

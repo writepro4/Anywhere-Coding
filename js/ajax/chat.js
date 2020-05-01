@@ -27,16 +27,16 @@ function writeAComment() {
     const postNum = getArticleNumber();
     const categoryUrl = categoryImport();
 
-    console.log("글번호: " + postNum);
-    console.log("카테고리 번호 : " + categoryUrl);
+    //console.log("글번호: " + postNum);
+    //console.log("카테고리 번호 : " + categoryUrl);
 
     const comment = $('#replyForm').val();
-    console.log(comment);
+    //console.log(comment);
     const userName = sessionStorageGet(`name`);
     const id = sessionStorageGet('cf');
 
-    console.log("uid 확인 :" + id);
-    console.log("이름 확인 : " + userName);
+    //console.log("uid 확인 :" + id);
+    //console.log("이름 확인 : " + userName);
 
     let commentData = {
         'category': categoryUrl,
@@ -60,9 +60,9 @@ function writeAComment() {
             let keyCheck = parseData.key;
             const commentID = parseData.commentIndex;
 
-            console.log("반환 데이터 확인 : " + data);
+            //console.log("반환 데이터 확인 : " + data);
             // true/false 둘 중 하나를 반환한다.
-            console.log("댓글 작성 성공여부입니다.: " + keyCheck);
+            //console.log("댓글 작성 성공여부입니다.: " + keyCheck);
 
 
             let chatData = `<div class="ui comments" id=${commentID}>`;
@@ -118,8 +118,8 @@ function writeAComment() {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 
@@ -131,10 +131,10 @@ function editComment(crystalID) {
 
     // 수정할 글 번호
     const editCommentID = crystalID.id;
-    console.log(editCommentID);
+    //console.log(editCommentID);
 
     const comment = $(`#formreply`).val();
-    console.log("입력된 데이터 값 : " + comment);
+    //console.log("입력된 데이터 값 : " + comment);
 
     let form = new FormData();
     form.append("_method", "PATCH");
@@ -155,7 +155,7 @@ function editComment(crystalID) {
             let keyCheck = parseData.key;
 
             // true/false 둘 중 하나를 반환한다.
-            console.log("댓글 수정 성공여부입니다.: " + keyCheck);
+            //console.log("댓글 수정 성공여부입니다.: " + keyCheck);
 
             // 수정창 삭제
             document.getElementById(`crystalWindow`).remove();
@@ -190,8 +190,8 @@ function editComment(crystalID) {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 
@@ -221,7 +221,7 @@ function deleteComment(deleteId) {
                 let keyCheck = parseData.key;
 
                 // true/false 둘 중 하나를 반환한다.
-                console.log("댓글 삭제 성공여부입니다.: " + keyCheck);
+                //console.log("댓글 삭제 성공여부입니다.: " + keyCheck);
 
                 document.getElementById(deleteIdData).remove();
 
@@ -253,14 +253,14 @@ function deleteComment(deleteId) {
                 } else {
                     alert('Uncaught Error.n');
                 }
-                console.log("상태: " + status);
-                console.log("실패");
+                //console.log("상태: " + status);
+                //console.log("실패");
             }
         });
 
 
     } else {
-        console.log("실행취소");
+        //console.log("실행취소");
     }
 
 }
@@ -290,12 +290,12 @@ function loadingComments() {
 
                 // 받아온 값이 true일 경우엔 댓글목록을 같이 생성
                 if (keyCheck === true && commentWindowCheck === false) {
-                    // console.log("댓글목록 출력: ");
+                    // //console.log("댓글목록 출력: ");
                     commentWindowCheck = true;
 
                     let contents = parseData.contents;
 
-                    console.log("받아온 데이터 목록 : " + data);
+                    //console.log("받아온 데이터 목록 : " + data);
 
                     let listOfComments = contents.length;
 
@@ -340,7 +340,7 @@ function loadingComments() {
                         //그룹 번호는 그 댓글 번호와 같다 .
                         let groupNum = contents[i].groupNum;
                         let uid = contents[i].uid;
-                        console.log("uid 값 : " + uid);
+                        //console.log("uid 값 : " + uid);
 
                         //자신이 작성한 댓글인지 확인하는 변수.
                         const uidCheck = sessionStorageGet('cf');
@@ -375,7 +375,7 @@ function loadingComments() {
                                 adminComments += `</div>`;
 
                                 $(`#addAdminComments${groupNum}`).append(adminComments);
-                                console.log("실행합니다. index값 확인 : " + indexComments);
+                                //console.log("실행합니다. index값 확인 : " + indexComments);
 
 
                             } else {
@@ -441,7 +441,7 @@ function loadingComments() {
                                 adminComments += `</div>`;
 
                                 $(`#addAdminComments${groupNum}`).append(adminComments);
-                                console.log("실행합니다. index값 확인 : " + indexComments);
+                                //console.log("실행합니다. index값 확인 : " + indexComments);
 
 
                             } else {
@@ -485,7 +485,7 @@ function loadingComments() {
 
                     // 받아온 값이 false일 경우엔 댓글목록 없이 댓글 입력창만 출력
                 } else if (keyCheck === false && commentWindowCheck === false) {
-                    console.log("댓글 목록 없음.");
+                    //console.log("댓글 목록 없음.");
                     commentWindowCheck = true;
 
                     let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
@@ -557,8 +557,8 @@ function loadingComments() {
                 } else {
                     alert('Uncaught Error.n');
                 }
-                console.log("상태: " + status);
-                console.log("실패");
+                //console.log("상태: " + status);
+                //console.log("실패");
             }
         }
     )
@@ -629,7 +629,7 @@ function largeComment(commentID) {
 
     const uid = sessionStorageGet('cf');
 
-    console.log(comment);
+    //console.log(comment);
     const userName = sessionStorageGet(`name`);
 
 
@@ -656,10 +656,10 @@ function largeComment(commentID) {
             let keyCheck = parseData.key;
             const commentID = parseData.commentsIndex;
 
-            console.log("반환 데이터 확인 : " + data);
+            //console.log("반환 데이터 확인 : " + data);
             // true/false 둘 중 하나를 반환한다.
-            console.log("댓글 작성 성공여부입니다.: " + keyCheck);
-            console.log("아이디 값 확인 : " + commentID);
+            //console.log("댓글 작성 성공여부입니다.: " + keyCheck);
+            //console.log("아이디 값 확인 : " + commentID);
 
             let adminComments = `<div class="comments" id=${commentID}>`;
             adminComments += `<div class="ui segment">`;
@@ -715,8 +715,8 @@ function largeComment(commentID) {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 
@@ -760,10 +760,10 @@ function editComments(largeCommentNumber) {
 
     // 수정할 글 번호
     const editCommentID = largeCommentNumber.id;
-    console.log("대댓글번호 : " + editCommentID);
+    //console.log("대댓글번호 : " + editCommentID);
 
     const comment = $(`#formreply`).val();
-    console.log("입력된 데이터 값 : " + comment);
+    //console.log("입력된 데이터 값 : " + comment);
 
     let form = new FormData();
     form.append("_method", "PUT");
@@ -784,7 +784,7 @@ function editComments(largeCommentNumber) {
             let keyCheck = parseData.key;
 
             // true/false 둘 중 하나를 반환한다.
-            console.log("댓글 수정 성공여부입니다.: " + keyCheck);
+            //console.log("댓글 수정 성공여부입니다.: " + keyCheck);
 
             // 수정창 삭제
             document.getElementById(`crystalWindow`).remove();
@@ -819,8 +819,8 @@ function editComments(largeCommentNumber) {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 
@@ -848,7 +848,7 @@ function deleteAdminComments(adminCommentNumber) {
             let parseData = JSON.parse(data);
             let keyCheck = parseData.key;
 
-            console.log("댓글 삭제 성공여부입니다.: " + keyCheck);
+            //console.log("댓글 삭제 성공여부입니다.: " + keyCheck);
 
             document.getElementById(deleteID).remove();
 
@@ -880,8 +880,8 @@ function deleteAdminComments(adminCommentNumber) {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 
@@ -900,7 +900,7 @@ let paging = 2;
 
 // 13. pagingTreatment 페이징 처리 함수
 function pagingTreatment() {
-    console.log("페이징 실행");
+    //console.log("페이징 실행");
     const postNum = getArticleNumber();
 
     $.ajax({
@@ -972,7 +972,7 @@ function pagingTreatment() {
                         //그룹 번호는 그 댓글 번호와 같다 .
                         let groupNum = contents[i].groupNum;
                         let uid = contents[i].uid;
-                        console.log("uid 값 : " + uid);
+                        //console.log("uid 값 : " + uid);
 
                         //자신이 작성한 댓글인지 확인하는 변수.
                         const uidCheck = sessionStorageGet('cf');
@@ -1007,7 +1007,7 @@ function pagingTreatment() {
                                 adminComments += `</div>`;
 
                                 $(`#addAdminComments${groupNum}`).append(adminComments);
-                                console.log("실행합니다. index값 확인 : " + indexComments);
+                                //console.log("실행합니다. index값 확인 : " + indexComments);
 
 
                             } else {
@@ -1073,7 +1073,7 @@ function pagingTreatment() {
                                 adminComments += `</div>`;
 
                                 $(`#addAdminComments${groupNum}`).append(adminComments);
-                                console.log("실행합니다. index값 확인 : " + indexComments);
+                                //console.log("실행합니다. index값 확인 : " + indexComments);
 
 
                             } else {
@@ -1146,8 +1146,8 @@ function pagingTreatment() {
                 } else {
                     alert('Uncaught Error.n');
                 }
-                console.log("상태: " + status);
-                console.log("실패");
+                //console.log("상태: " + status);
+                //console.log("실패");
             }
         }
     )

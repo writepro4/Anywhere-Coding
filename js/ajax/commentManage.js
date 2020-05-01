@@ -13,26 +13,26 @@ $(document).ready(function () {
         }
         , success: function (data) {
             //json 파싱하기
-            console.log("데이터 확인 : " + data);
+            //console.log("데이터 확인 : " + data);
             const parseData = JSON.parse(data);
             const keyCheck = parseData.key;
             const pageCount = parseData.pageCount;
-            console.log(pageCount);
+            //console.log(pageCount);
 
             const {contents} = parseData;
-            console.table(contents);
+            //console.table(contents);
 
             let CommentList = contents.length;
 
 
             for (let i = 0; i < pageCount; i++) {
-                console.log("페이징 버튼 생성중");
+                //console.log("페이징 버튼 생성중");
 
                 const pageingButton = `<a class="item" onclick="pageingComments(this)" id=${i + 1}>
                     ${i + 1}
                     </a>`;
 
-                console.log("데이터 확인 : " + pageingButton);
+                //console.log("데이터 확인 : " + pageingButton);
 
 
                 $(`#pageing`).append(pageingButton);
@@ -100,8 +100,8 @@ $(document).ready(function () {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 
@@ -134,21 +134,21 @@ function pageingComments(pageNumber) {
         }
         , success: function (data) {
             //json 파싱하기
-            console.log("데이터 확인 : " + data);
+            //console.log("데이터 확인 : " + data);
             const parseData = JSON.parse(data);
             const keyCheck = parseData.key;
             const pageCount = parseData.pageCount;
-            console.log(pageCount);
+            //console.log(pageCount);
 
             const {contents} = parseData;
-            // console.table(contents);
-            console.table(contents);
+            // //console.table(contents);
+            //console.table(contents);
 
             let CommentList = contents.length;
 
 
             for (let i = 0; i < pageCount; i++) {
-                console.log("페이징 처리 중 ");
+                //console.log("페이징 처리 중 ");
 
                 const pageing = `<a class="item" onclick="pageingComments(this)" id=${i+1}>
                     ${i + 1}
@@ -222,8 +222,8 @@ function pageingComments(pageNumber) {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 

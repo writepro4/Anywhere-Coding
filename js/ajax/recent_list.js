@@ -21,13 +21,13 @@ $(document).ready(function () {
                 let postInfoData = parseData.postInfo;
 
                 let postingListData = postInfoData.length;
-                console.table(postInfoData);
-                console.log(postInfoData);
+                ////console.table(postInfoData);
+                //console.log(postInfoData);
 
 
                 for (let i = 0; i < postingListData; i++) {
 
-                    console.log("for문 실행중");
+                    //console.log("for문 실행중");
 
 
                     //제목
@@ -111,8 +111,8 @@ $(document).ready(function () {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 });

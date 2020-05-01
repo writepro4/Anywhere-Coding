@@ -149,7 +149,7 @@ function imageUpload() {
                 //console.log("내용" + summer);
 
                 let image = data;
-                console.table(data);
+                //console.table(data);
 
 
                 let title = $('#title').val();

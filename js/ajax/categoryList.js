@@ -15,7 +15,7 @@ let rankCheck = true;
 // 1. categoryListRequest 카테고리 목록 불어오는 함수
 function categoryListRequest(pageing) {
 
-    console.log("첫번째 체크 변수 확인 : " + rankCheck);
+    //console.log("첫번째 체크 변수 확인 : " + rankCheck);
 
     // url에서 데이터 가져오기
     let categoryNumber = categoryURL();
@@ -43,13 +43,13 @@ function categoryListRequest(pageing) {
 
                 const {rankingContents} = parseData;
                 const rankingListData = rankingContents.length;
-                console.log("변수 길이 확인 : " + rankingListData);
+                //console.log("변수 길이 확인 : " + rankingListData);
 
                 for (let i = 0; i < rankingListData; i++) {
-                    console.log("체크변수 값 확인 : " + rankCheck);
+                    //console.log("체크변수 값 확인 : " + rankCheck);
                     if (i >= 5) {
                         rankCheck = false;
-                        console.log(`체트 변수 값 변경확인 :` + rankCheck);
+                        //console.log(`체트 변수 값 변경확인 :` + rankCheck);
                     }
                     const {indexPosts} = rankingContents[i];
                     const {title} = rankingContents[i];
@@ -196,7 +196,7 @@ function categoryListRequest(pageing) {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
+            //console.log("상태: " + status);
         }
     });
 }
@@ -208,12 +208,12 @@ $(document).ready(function () {
     // ajax로 불러올 데이터 함수 먼저 실행
     categoryListRequest(page);
     $(window).scroll(function () {
-        // console.log("마우스 높이 : " + Math.ceil($(window).scrollTop()));
-        // console.log("문서 높이 : " + parseInt($(document).height() - $(window).height()));
+        // //console.log("마우스 높이 : " + Math.ceil($(window).scrollTop()));
+        // //console.log("문서 높이 : " + parseInt($(document).height() - $(window).height()));
         if (Math.ceil($(window).scrollTop()) >= $(document).height() - $(window).height() && lastParagraph === false) {
             // 스크롤 위치가 문서 하단에 위치할경우 원하는 함수 호출
             page++;
-            console.log("호출한 번호 : " + page);
+            //console.log("호출한 번호 : " + page);
             loader();
             categoryListRequest(page);
         }
@@ -282,11 +282,11 @@ let loaderCheck = false;
 function loader() {
     if (loaderCheck === false) {
         loaderCheck = true;
-        // console.log("로더 돌아가는중....");
+        // //console.log("로더 돌아가는중....");
         let loader = `<div class="ui active centered inline loader" id="loader"></div>`;
         $('#iterate').append(loader);
     } else {
-        // console.log("이미 실행중...");
+        // //console.log("이미 실행중...");
     }
 
 }
@@ -295,10 +295,10 @@ function loader() {
 function deleteLoader() {
     // if (loaderCheck === true) {
     loaderCheck = false;
-    // console.log("로더 삭제");
+    // //console.log("로더 삭제");
     $('#loader').remove();
     // } else {
-    //     console.log("로더 삭제됨..");
+    //     //console.log("로더 삭제됨..");
     // }
 
 }

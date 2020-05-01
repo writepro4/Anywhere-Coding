@@ -3,7 +3,7 @@
 $(document).ready(function () {
 
     const postNum = getUrlData();
-    console.log(postNum);
+    //console.log(postNum);
 
 
     $.ajax({
@@ -13,10 +13,10 @@ $(document).ready(function () {
             withCredentials: false
         }
         , success: function (data) {
-            console.log(`실행됨`);
+            //console.log(`실행됨`);
 
             let parseData = JSON.parse(data);
-            console.log(data);
+            //console.log(data);
 
 
             let keyCheck = parseData.key;
@@ -27,13 +27,13 @@ $(document).ready(function () {
                 let postInfoData = parseData.recommendList;
 
                 let postingListData = postInfoData.length;
-                console.table(postInfoData);
-                console.log(postInfoData);
+                //console.table(postInfoData);
+                //console.log(postInfoData);
 
 
                 for (let i = 0; i < postingListData; i++) {
 
-                    // console.log("for문 실행중");
+                    // //console.log("for문 실행중");
 
 
                     //제목
@@ -117,8 +117,8 @@ $(document).ready(function () {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 });

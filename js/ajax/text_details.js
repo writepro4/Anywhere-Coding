@@ -21,7 +21,7 @@ $(document).ready(function () {
             let parseData = JSON.parse(data);
 
             let postInfoData = parseData.postInfo;
-            console.table(postInfoData);
+            //console.table(postInfoData);
 
 
             const {commentsCount} = postInfoData;
@@ -56,12 +56,12 @@ $(document).ready(function () {
                         withCredentials: false
                     }
                     , success: function (data) {
-                        console.log("데이터 확인 : " + data);
+                        //console.log("데이터 확인 : " + data);
                         //json 파싱하기
                         let parseData = JSON.parse(data);
 
                         if (parseData.key === "possible") {
-                            console.log("확인 ");
+                            //console.log("확인 ");
                             $(`#likeIt`).remove();
                             const button = `<div class="ui red button" id="likeIt" onclick="likeClick()">
                                 <i class="heart icon"></i> 좋아요 ${likeIt}
@@ -103,8 +103,8 @@ $(document).ready(function () {
                         } else {
                             alert('Uncaught Error.n');
                         }
-                        console.log("상태: " + status);
-                        console.log("실패");
+                        //console.log("상태: " + status);
+                        //console.log("실패");
                     }
                 });
             } else {
@@ -117,11 +117,11 @@ $(document).ready(function () {
                         withCredentials: false
                     }
                     , success: function (data) {
-                        console.log("데이터 확인 : " + data);
+                        //console.log("데이터 확인 : " + data);
                         //json 파싱하기
                         let parseData = JSON.parse(data);
 
-                        console.log("확인 ");
+                        //console.log("확인 ");
                         $(`#likeIt`).remove();
                         const button = `<div class="ui red button" id="likeIt" onclick="socialLogin()">
                                 <i class="heart icon"></i> 좋아요 ${likeIt}
@@ -156,8 +156,8 @@ $(document).ready(function () {
                         } else {
                             alert('Uncaught Error.n');
                         }
-                        console.log("상태: " + status);
-                        console.log("실패");
+                        //console.log("상태: " + status);
+                        //console.log("실패");
                     }
                 });
 
@@ -191,8 +191,8 @@ $(document).ready(function () {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 });
@@ -213,7 +213,7 @@ function likeClick() {
     const pageNumber = getUrlData();
     const value = `possible`;
 
-    console.log("uid값 입니다 : " + uid);
+    //console.log("uid값 입니다 : " + uid);
 
     let likeData = {
         'postNum': pageNumber,
@@ -234,12 +234,12 @@ function likeClick() {
 
             //json 파싱하기
             let parseData = JSON.parse(data);
-            console.log("좋아요 클릭 반환 데이터 : "+ data);
+            //console.log("좋아요 클릭 반환 데이터 : "+ data);
 
             const {key} = parseData;
             const {likeIt} = parseData;
 
-            // console.log(data);
+            // //console.log(data);
 
             $(`#likeIt`).remove();
             const button = `<div class="ui black button" id="likeIt" onclick="likeCancel()">
@@ -275,8 +275,8 @@ function likeClick() {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 }
@@ -287,7 +287,7 @@ function likeCancel() {
     const uid = sessionStorageGet(`cf`);
     const pageNumber = getUrlData();
     const value = `cancel`;
-    console.log("uid값 입니다 : " + uid);
+    //console.log("uid값 입니다 : " + uid);
 
     let likeData = {
         'postNum': pageNumber,
@@ -310,7 +310,7 @@ function likeCancel() {
             let parseData = JSON.parse(data);
             const {likeIt} = parseData;
 
-            console.log("반환데이터 : " + data);
+            //console.log("반환데이터 : " + data);
 
             $(`#likeIt`).remove();
             const button = `<div class="ui red button" id="likeIt" onclick="likeClick()">
@@ -346,8 +346,8 @@ function likeCancel() {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 

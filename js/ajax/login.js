@@ -30,7 +30,7 @@ $(document).ready(function () {
 
 
     let confirmIdReplce = confirmId.replace("#", '');
-    console.log(confirmIdReplce);
+    //console.log(confirmIdReplce);
 
 
     const adminCheck = sessionStorageGet(`cf`);
@@ -40,15 +40,15 @@ $(document).ready(function () {
     // sessionStorage.clear();
 
     if (confirmId === `https://honeytip.kro.kr/` && sessionStorageGet('cf') === null) {
-        console.log("로그인 안된상태.");
+        //console.log("로그인 안된상태.");
         $("#header").load("header.html");
         $("#footer").load("footer.html");
     } else if (confirmId === `https://honeytip.kro.kr/index.html` && sessionStorageGet(`cf`) === null) {
-        console.log("로그인 안된상태");
+        //console.log("로그인 안된상태");
         $("#header").load("header.html");
         $("#footer").load("footer.html");
     } else if (confirmId === `https://honeytip.kro.kr/` && sessionStorageGet('cf') !== null) {
-        console.log("로그인 로컬에 저장된 상태");
+        //console.log("로그인 로컬에 저장된 상태");
         if (adminCheck === "112020533574226006231" || adminCheck === "100755251287940797090") {
             $("#header").load("./headerAdmin.html");
             $("#footer").load("footer.html");
@@ -58,7 +58,7 @@ $(document).ready(function () {
         }
         loginRequest();
     } else if (confirmId === `https://honeytip.kro.kr/index.html` && sessionStorageGet(`cf`) !== null) {
-        console.log("로그인 로컬에 저장된 상태");
+        //console.log("로그인 로컬에 저장된 상태");
         if (adminCheck === "112020533574226006231" || adminCheck === "100755251287940797090") {
             $("#header").load("./headerAdmin.html");
             $("#footer").load("footer.html");
@@ -105,9 +105,9 @@ function loginRequest() {
             let name = userInfo[0].name;
             let avatar = userInfo[0].avatar;
             let badge = userInfo[0].badge;
-            console.log("유저 이름 : " + name);
-            console.log("유저 아바타 : " + avatar);
-            console.log("유저 뱃지 : " + badge);
+            //console.log("유저 이름 : " + name);
+            //console.log("유저 아바타 : " + avatar);
+            //console.log("유저 뱃지 : " + badge);
 
             sessionStorageSet(`name`, name);
             sessionStorageSet(`avatar`, avatar);
@@ -150,8 +150,8 @@ function loginRequest() {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 
