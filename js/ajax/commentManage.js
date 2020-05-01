@@ -64,9 +64,6 @@ $(document).ready(function () {
                 내용 : ${comment}
                 </div>
                 <br>
-                <div class="content">
-                <i class="pencil icon"></i>카테고리 : ${category}
-                </div>
                 </div>`;
 
 
