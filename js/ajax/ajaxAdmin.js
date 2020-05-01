@@ -19,7 +19,7 @@
 
 // 1. 토근 가져오는 함수
 function getToken(callback) {
-    console.log("실행");
+    //console.log("실행");
 
     $.ajax({
         type: 'get'
@@ -29,17 +29,17 @@ function getToken(callback) {
             withCredentials: false
         }
         , success: function (data) {
-            console.log(data);
+            //console.log(data);
             // 콜백메소드로 토큰 값 반환
             $("#text").html(data);	// 전송받은 데이터와 전송 성공 여부를 보여줌.
             callback(data); // 받아온 csrf_token을 반환해주는 부분
-            console.log("받아온 토큰값: " + data);
+            //console.log("받아온 토큰값: " + data);
         }
         , error: function (xhr, status, msg) {
-            console.log(xhr);
-            console.log(status);
-            console.log(msg);
-            console.log("토큰 발행 실패");
+            //console.log(xhr);
+            //console.log(status);
+            //console.log(msg);
+            //console.log("토큰 발행 실패");
         }
     });
 }
@@ -56,7 +56,7 @@ function adminLogin(token) {
         'id': adminId,
         'pw': adminPw
     };
-    console.log(login_data);
+    //console.log(login_data);
 
     $.ajax({
         type: 'post'
@@ -70,10 +70,10 @@ function adminLogin(token) {
             //json 해체
             let parseData = JSON.parse(data);
             //위의 코드 없으면 문자형
-            console.log(parseData);
-            console.log("전송 성공");
+            //console.log(parseData);
+            //console.log("전송 성공");
             let check = parseData.key;
-            console.log(check);
+            //console.log(check);
             if (check === true) {
                 window.location.replace("./administrator_page.html");
             } else {
@@ -106,8 +106,8 @@ function adminLogin(token) {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 }
@@ -132,7 +132,7 @@ function imageUpload() {
     let file = $('input[type="file"]').val().trim();
 
     if (!file) {
-        console.log("이미지를 선택해주세요.");
+        //console.log("이미지를 선택해주세요.");
         alert("이미지를 선택하세요");
     } else {
         $.ajax({
@@ -143,10 +143,10 @@ function imageUpload() {
             cache: false,
             processData: false,
             success: function (data) {
-                console.log("이미지 등록 완료!");
+                //console.log("이미지 등록 완료!");
 
                 //썸머노트 내용 주석
-                console.log("내용" + summer);
+                //console.log("내용" + summer);
 
                 let image = data;
                 console.table(data);
@@ -158,11 +158,11 @@ function imageUpload() {
                 let subTitle = $('#subTitle').val();
 
 
-                console.log("제목" + title);
-                console.log("카테고리" + category);
-                console.log("관리자아이디" + adminId);
-                console.log("부제목" + subTitle);
-                console.log("썸머노트 내용" + summer);
+                //console.log("제목" + title);
+                //console.log("카테고리" + category);
+                //console.log("관리자아이디" + adminId);
+                //console.log("부제목" + subTitle);
+                //console.log("썸머노트 내용" + summer);
 
 
                 //JSON 더미데이터로 필요한 정보 넣어줌
@@ -184,13 +184,13 @@ function imageUpload() {
                         const {postNum: number} = successCheck;
                         const pageNumber = category + `_` + number;
                         if (keyCheck === true) {
-                            console.log("포스트 넘버 확인 : " + pageNumber);
+                            //console.log("포스트 넘버 확인 : " + pageNumber);
                             // const idCreate = `<div id="${number}"></div>`;
                             detailPage(pageNumber);
                         } else {
                             alert("실패!");
                         }
-                        console.log("이미지 요청 상태 : " + status);
+                        //console.log("이미지 요청 상태 : " + status);
 
                     }
                 );
@@ -202,7 +202,7 @@ function imageUpload() {
 // 5. 썸머노트 내용 가져오는 함수
 function postForm() {
     let bar = $('textarea[name="content"]').val($('#summernote').summernote('code'));
-    console.log(bar.val());
+    //console.log(bar.val());
     return bar.val();
 }
 
@@ -227,11 +227,11 @@ function writinglist() {
             let date = postInfo.date;
             let viewCounts = postInfo.viewCounts;
 
-            console.log("key" + keyCheck);
-            console.log("제목" + title);
-            console.log("내용" + content);
-            console.log("날짜" + date);
-            console.log("본 횃수" + viewCounts);
+            //console.log("key" + keyCheck);
+            //console.log("제목" + title);
+            //console.log("내용" + content);
+            //console.log("날짜" + date);
+            //console.log("본 횃수" + viewCounts);
 
 
         }
@@ -261,8 +261,8 @@ function writinglist() {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 }
@@ -290,7 +290,7 @@ function writingDelete(idData) {
                 //json 파싱하기
                 let parseData = JSON.parse(data);
                 let datakey = parseData.key;
-                console.log("성공여부" + datakey);
+                //console.log("성공여부" + datakey);
                 $(`#item${itemNumber}`).remove();
 
             }
@@ -320,8 +320,8 @@ function writingDelete(idData) {
                 } else {
                     alert('Uncaught Error.n');
                 }
-                console.log("상태: " + status);
-                console.log("실패");
+                //console.log("상태: " + status);
+                //console.log("실패");
             }
         });
 
@@ -340,7 +340,7 @@ function writingFix() {
 
     let imageForm = document.getElementById('image-form');
 
-    console.log("이미지 폼 데이터 : " + imageForm);
+    //console.log("이미지 폼 데이터 : " + imageForm);
 
     let formData = new FormData(imageForm);
 
@@ -349,14 +349,14 @@ function writingFix() {
 
 
     if (!file) {
-        console.log("대표 이미지 변경안함.");
+        //console.log("대표 이미지 변경안함.");
 
 
         //썸머노트 내용 주석
-        console.log("내용" + summer);
+        //console.log("내용" + summer);
 
         const image = $('#imageimage').val();
-        console.log("이미지 데이터: " + image);
+        //console.log("이미지 데이터: " + image);
 
 
         let title = $('#title').val();
@@ -365,11 +365,11 @@ function writingFix() {
         let subTitle = $('#subTitle').val();
 
 
-        console.log("제목" + title);
-        console.log("카테고리" + category);
-        console.log("관리자아이디" + adminId);
-        console.log("부제목" + subTitle);
-        console.log("썸머노트 내용" + summer);
+        //console.log("제목" + title);
+        //console.log("카테고리" + category);
+        //console.log("관리자아이디" + adminId);
+        //console.log("부제목" + subTitle);
+        //console.log("썸머노트 내용" + summer);
 
         let efe = false;
 
@@ -382,7 +382,7 @@ function writingFix() {
         form.append("contents", summer);
         form.append("subTitle", subTitle);
 
-        console.log("보내는 데이터: " + form);
+        //console.log("보내는 데이터: " + form);
 
         // 이미지와 함께 수정된 데이터 보내줌
         $.ajax({
@@ -396,7 +396,7 @@ function writingFix() {
             }
             , success: function (data) {
 
-                console.log(data);
+                //console.log(data);
                 //json 파싱하기
                 let parseData = JSON.parse(data);
 
@@ -405,7 +405,7 @@ function writingFix() {
 
                 const pageNumber = `_` + getUrlData();
 
-                console.log("수정완료 : ");
+                //console.log("수정완료 : ");
                 // detailPage(pageNumber);
 
 
@@ -436,8 +436,8 @@ function writingFix() {
                 } else {
                     alert('Uncaught Error.n');
                 }
-                console.log("상태: " + status);
-                console.log("실패");
+                //console.log("상태: " + status);
+                //console.log("실패");
             }
         });
 
@@ -452,13 +452,13 @@ function writingFix() {
             cache: false,
             processData: false,
             success: function (data) {
-                console.log("이미지 등록 완료!");
+                //console.log("이미지 등록 완료!");
 
                 //썸머노트 내용 주석
-                console.log("내용" + summer);
+                //console.log("내용" + summer);
 
                 let image = data;
-                console.log(data);
+                //console.log(data);
 
 
                 let title = $('#title').val();
@@ -467,11 +467,11 @@ function writingFix() {
                 let subTitle = $('#subTitle').val();
 
 
-                console.log("제목" + title);
-                console.log("카테고리" + category);
-                console.log("관리자아이디" + adminId);
-                console.log("부제목" + subTitle);
-                console.log("썸머노트 내용" + summer);
+                //console.log("제목" + title);
+                //console.log("카테고리" + category);
+                //console.log("관리자아이디" + adminId);
+                //console.log("부제목" + subTitle);
+                //console.log("썸머노트 내용" + summer);
 
 
                 //JSON 더미데이터로 필요한 정보 넣어줌
@@ -492,7 +492,7 @@ function writingFix() {
                 form.append("contents", summer);
                 form.append("subTitle", subTitle);
 
-                console.log("보내는 데이터: " + form);
+                //console.log("보내는 데이터: " + form);
 
                 // 이미지와 함께 수정된 데이터 보내줌
                 $.ajax({
@@ -511,7 +511,7 @@ function writingFix() {
 
                         const pageNumber = `_` + getUrlData();
 
-                        console.log("수정완료 : ");
+                        //console.log("수정완료 : ");
                         detailPage(pageNumber);
 
 
@@ -542,8 +542,8 @@ function writingFix() {
                         } else {
                             alert('Uncaught Error.n');
                         }
-                        console.log("상태: " + status);
-                        console.log("실패");
+                        //console.log("상태: " + status);
+                        //console.log("실패");
                     }
                 });
             }
@@ -574,13 +574,13 @@ function getArticleList() {
         }
         , success: function (data) {
 
-            console.log("데이터 출력 ");
+            //console.log("데이터 출력 ");
 
             //json 파싱하기
             let parseData = JSON.parse(data);
-            console.log("데이터 파싱전: " + data);
+            //console.log("데이터 파싱전: " + data);
             let keyCheck = parseData.key;
-            console.log("데이터 성공여부 : " + keyCheck);
+            //console.log("데이터 성공여부 : " + keyCheck);
 
             $(`#itemList`).remove();
 
@@ -591,7 +591,7 @@ function getArticleList() {
 
             let postingListData = postInfoData.length;
 
-            console.log("받아온 데이터 확인: " + postingListData);
+            //console.log("받아온 데이터 확인: " + postingListData);
 
             for (let i = 0; i < postingListData; i++) {
 
@@ -670,8 +670,8 @@ function getArticleList() {
             } else {
                 alert('Uncaught Error.n');
             }
-            console.log("상태: " + status);
-            console.log("실패");
+            //console.log("상태: " + status);
+            //console.log("실패");
         }
     });
 
@@ -694,13 +694,13 @@ function contentImport(checkPage) {
         cache: false,
         processData: false,
         success: function (data) {
-            console.log("이미지 등록 완료!");
+            //console.log("이미지 등록 완료!");
 
             //썸머노트 내용 주석
-            console.log("내용" + summer);
+            //console.log("내용" + summer);
 
             let image = data;
-            console.log(data);
+            //console.log(data);
 
 
             let title = $('#title').val();
@@ -709,11 +709,11 @@ function contentImport(checkPage) {
             let subTitle = $('#subTitle').val();
 
 
-            console.log("제목" + title);
-            console.log("카테고리" + category);
-            console.log("관리자아이디" + adminId);
-            console.log("부제목" + subTitle);
-            console.log("썸머노트 내용" + summer);
+            //console.log("제목" + title);
+            //console.log("카테고리" + category);
+            //console.log("관리자아이디" + adminId);
+            //console.log("부제목" + subTitle);
+            //console.log("썸머노트 내용" + summer);
 
 
             //JSON 더미데이터로 필요한 정보 넣어줌
@@ -738,7 +738,7 @@ function contentImport(checkPage) {
                     } else {
                         alert("실패!");
                     }
-                    console.log("이미지 요청 상태 : " + status);
+                    //console.log("이미지 요청 상태 : " + status);
 
                 }
             );
@@ -752,7 +752,7 @@ function nextPageData(category) {
 
     let categoryData = category.id;
     //데이터 넘기는지 확인용도
-    console.log(categoryData);
+    //console.log(categoryData);
     window.location.href = `./administrator_fixpage.html?index=${categoryData}`;
 
 }
@@ -760,7 +760,7 @@ function nextPageData(category) {
 // 13. 수정된 썸머노트 내용 가져오는 함수
 function fixPostForm() {
     let bar = $('textarea[name="content"]').val($('#summernote').summernote('code'));
-    console.log(bar.val());
+    //console.log(bar.val());
     return bar.val();
 }
 
