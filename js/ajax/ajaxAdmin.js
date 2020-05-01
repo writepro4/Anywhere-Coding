@@ -406,7 +406,7 @@ function writingFix() {
                 const pageNumber = `_` + getUrlData();
 
                 //console.log("수정완료 : ");
-                // detailPage(pageNumber);
+                detailPage(pageNumber);
 
 
             }
