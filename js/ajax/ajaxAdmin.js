@@ -133,6 +133,7 @@ function imageUpload() {
 
     if (!file) {
         console.log("이미지를 선택해주세요.");
+        alert("이미지를 선택하세요");
     } else {
         $.ajax({
             url: "https://honeytip.p-e.kr/posts/image",
@@ -338,13 +339,105 @@ function writingFix() {
     const summer = fixPostForm();
 
     let imageForm = document.getElementById('image-form');
+
+    console.log("이미지 폼 데이터 : " + imageForm);
+
     let formData = new FormData(imageForm);
 
+    // 이미지 미리보기 변수
     let file = $('input[type="file"]').val().trim();
 
+
     if (!file) {
-        console.log("이미지를 선택해주세요.");
+        console.log("대표 이미지 변경안함.");
+
+
+        //썸머노트 내용 주석
+        console.log("내용" + summer);
+
+        const image = $('#imageimage').val();
+        console.log("이미지 데이터: " + image);
+
+
+        let title = $('#title').val();
+        let category = $('#category').val();
+        let adminId = "관리자입니다.";
+        let subTitle = $('#subTitle').val();
+
+
+        console.log("제목" + title);
+        console.log("카테고리" + category);
+        console.log("관리자아이디" + adminId);
+        console.log("부제목" + subTitle);
+        console.log("썸머노트 내용" + summer);
+
+
+        let form = new FormData();
+        form.append("_method", "PATCH");
+        form.append("title", title);
+        form.append("category", category);
+        form.append("image", false);
+        form.append("contents", summer);
+        form.append("subTitle", subTitle);
+
+        console.log("보내는 데이터: " + form);
+
+        // 이미지와 함께 수정된 데이터 보내줌
+        $.ajax({
+            type: 'post'
+            , url: `https://honeytip.p-e.kr/posts/${fixItemNumber}`
+            , data: form
+            , processData: false
+            , contentType: false
+            , xhrFields: {
+                withCredentials: false
+            }
+            , success: function (data) {
+                //json 파싱하기
+                let parseData = JSON.parse(data);
+                let keyCheck = parseData.key;
+
+                const pageNumber = `_` + getUrlData();
+
+                console.log("수정완료 : ");
+                // detailPage(pageNumber);
+
+
+            }
+            //에러 종류 조건문으로 걸러내기
+            , error: function (jqXHR, exception) {
+
+                if (jqXHR.status === 0) {
+                    alert('Not connect.\n Verify Network.');
+                } else if (jqXHR.status === 400) {
+                    alert('Server understood the request, but request content was invalid. [400]');
+                } else if (jqXHR.status === 401) {
+                    alert('Unauthorized access. [401]');
+                } else if (jqXHR.status === 403) {
+                    alert('Forbidden resource can not be accessed. [403]');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found. [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal server error. [500]');
+                } else if (jqXHR.status === 503) {
+                    alert('Service unavailable. [503]');
+                } else if (exception === 'parsererror') {
+                    alert('Requested JSON parse failed. [Failed]');
+                } else if (exception === 'timeout') {
+                    alert('Time out error. [Timeout]');
+                } else if (exception === 'abort') {
+                    alert('Ajax request aborted. [Aborted]');
+                } else {
+                    alert('Uncaught Error.n');
+                }
+                console.log("상태: " + status);
+                console.log("실패");
+            }
+        });
+
+
     } else {
+
         $.ajax({
             url: "https://honeytip.p-e.kr/posts/image",
             type: "post",
@@ -449,6 +542,7 @@ function writingFix() {
                 });
             }
         });
+
     }
 
 
