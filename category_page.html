@@ -5,7 +5,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158045330-2"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-158045330-2');
@@ -69,9 +73,11 @@
         </div>
         <div class="ui segment text container">
             <div class="ui right rail">
-                <div class="ui segment center aligned">
-                    <div class="header" style="font-weight: bold; font-size:large;" >좋아요 순위.</div>
+                <div class="ui segment olive center aligned">
+                    <div class="header" style="font-weight: bold; font-size: large"><i class="chart line icon"></i>좋아요 순위</div>
 
+                </div>
+                <div class="ui segment">
                     <div class="ui selection relaxed list" id="rankingContents">
                     </div>
                 </div>
