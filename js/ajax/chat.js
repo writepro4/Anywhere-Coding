@@ -302,7 +302,7 @@ function loadingComments() {
 
                     //상단 댓글 텍스트 불러오는 곳
                     let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
-                    chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글${listOfComments} </span></span></h3>`;
+                    chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 </span></span></h3>`;
                     chatTitle += `<h1 class="ui dividing header reply center aligned" onclick="pagingTreatment()"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h1>`;
                     chatTitle += `<br>`;
 
@@ -512,7 +512,7 @@ function loadingComments() {
                 } else if (commentWindowCheck === true) {
                     commentWindowCheck = false;
 
-                    $('#viewComments').text("댓글 보기");
+                    $('#viewComments').text(`댓글 보기`);
                     //댓글 창 삭제.
                     $('#commentWindow').remove();
 
@@ -935,7 +935,7 @@ function pagingTreatment() {
 
 
                     let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
-                    chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글${listOfComments} </span></span></h3>`;
+                    chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 </span></span></h3>`;
                     chatTitle += `<h1 class="ui dividing header reply center aligned" onclick="loadingComments()"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h1>`;
                     chatTitle += `<br>`;
 
