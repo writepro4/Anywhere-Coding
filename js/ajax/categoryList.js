@@ -267,7 +267,7 @@ function categoryConversion(categoryData) {
     } else if (categoryData.toString() === "site" && titleCheck === false) {
         titleCheck = true;
         let categoryTitle = `<br>`;
-        categoryTitle += `<h1 class="ui header center aligned">추천 사이트</h1>`;
+        categoryTitle += `<h1 class="ui header center aligned">웹 개발</h1>`;
         $('#categoryTitle').append(categoryTitle);
         return `추천 사이트`;
     }
