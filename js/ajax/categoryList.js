@@ -64,16 +64,16 @@ function categoryListRequest(pageing) {
 
                     const rankingList = `<div class="item" onclick="detailPage(this)" id=${categoryPostsID}>
 <!--                        <img class="ui avatar image" src=${image}>-->
-                        <div class="content ui olive segment">
+                        <div class="content ui floated ">
                         <div class="header"><font style="vertical-align: inherit;"><font
-                        style="vertical-align: inherit;">${i + 1}위. ${title}</font></font></div>
+                        style="vertical-align: inherit;">${i + 1}  ${title}</font></font></div>
                         <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-                        ${subTitle}
-                        <br>
-                        <i class="heart red icon"></i>${likeIt}
+<!--                        ${subTitle}-->
+<!--                        <br>-->
+<!--                        <i class="heart red icon"></i>${likeIt}-->
                         </font></font></div>
                         
-                        </div>`;
+                        </div><br>`;
 
                     if (rankCheck === true) {
 
