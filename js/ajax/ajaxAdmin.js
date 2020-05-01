@@ -371,12 +371,14 @@ function writingFix() {
         console.log("부제목" + subTitle);
         console.log("썸머노트 내용" + summer);
 
+        let efe = false;
+
 
         let form = new FormData();
         form.append("_method", "PATCH");
         form.append("title", title);
         form.append("category", category);
-        form.append("image", false);
+        form.append("image", efe);
         form.append("contents", summer);
         form.append("subTitle", subTitle);
 
@@ -393,8 +395,12 @@ function writingFix() {
                 withCredentials: false
             }
             , success: function (data) {
+
+                console.log(data);
                 //json 파싱하기
                 let parseData = JSON.parse(data);
+
+
                 let keyCheck = parseData.key;
 
                 const pageNumber = `_` + getUrlData();
