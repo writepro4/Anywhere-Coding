@@ -265,15 +265,10 @@ function deleteComment(deleteId) {
 
 }
 
-// 댓글창이 열려 있는지 확인하는 변수
-let commentWindowCheck = false;
-
 // 4. 댓글목록 불러오는 함수
-function loadingComments() {
+$(document).ready(function () {
 
     const postNum = getArticleNumber();
-
-    $('#viewComments').text("댓글 접기");
 
 // (get) https://honeytip.p-e.kr/comments/{글 번호}/{댓글 페이징 번호} // 댓글 페이징번호 1번부터 시작
     $.ajax({
@@ -289,13 +284,9 @@ function loadingComments() {
 
 
                 // 받아온 값이 true일 경우엔 댓글목록을 같이 생성
-                if (keyCheck === true && commentWindowCheck === false) {
-                    // //console.log("댓글목록 출력: ");
-                    commentWindowCheck = true;
+                if (keyCheck === true) {
 
                     let contents = parseData.contents;
-
-                    //console.log("받아온 데이터 목록 : " + data);
 
                     let listOfComments = contents.length;
 
@@ -484,9 +475,7 @@ function loadingComments() {
                     }
 
                     // 받아온 값이 false일 경우엔 댓글목록 없이 댓글 입력창만 출력
-                } else if (keyCheck === false && commentWindowCheck === false) {
-                    //console.log("댓글 목록 없음.");
-                    commentWindowCheck = true;
+                } else if (keyCheck === false) {
 
                     let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
                     chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글</span></span></h3>`;
@@ -509,23 +498,6 @@ function loadingComments() {
 
                     $('#formId').append(commentForm);
                     //댓글 버튼 확인하고 댓글창 닫음.
-                } else if (commentWindowCheck === true) {
-                    commentWindowCheck = false;
-
-                    $('#viewComments').text(`댓글 보기`);
-                    //댓글 창 삭제.
-                    $('#commentWindow').remove();
-
-                    //삭제한 후에 다시 div목록들을 담아줌.
-                    let commentWindow = `<div id="commentWindow">`;
-                    commentWindow += `<div id="replyTitle"></div>`;
-                    commentWindow += `<div id="comments"></div>`;
-                    commentWindow += `<div id="formId"></div>`;
-                    commentWindow += `</div>`;
-
-                    $('#commentCreationWindow').append(commentWindow);
-
-
                 }
 
 
@@ -564,7 +536,7 @@ function loadingComments() {
     )
     ;
 
-}
+});
 
 // 5. 글번호 가져오는 함수
 function getArticleNumber() {
