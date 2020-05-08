@@ -15,7 +15,6 @@
 // 14. sessionStorageGet 세션스토리지에 값 가져오는 함수.
 // 15. editCommentsWindow 대댓글수정 창 호출하는 함수
 // 16. checkIn 로그인 체크 함수
-// 17. buttonEvent 버튼 이벤트(수정,삭제) 함수.
 
 
 // 1. 댓글 작성 함수.
@@ -60,33 +59,52 @@ function writeAComment() {
             let keyCheck = parseData.key;
             const commentID = parseData.commentIndex;
 
-            //console.log("반환 데이터 확인 : " + data);
-            // true/false 둘 중 하나를 반환한다.
-            //console.log("댓글 작성 성공여부입니다.: " + keyCheck);
+
+            const chatData = `<div class="ui comments" id=${commentID}>
+                <div class="ui segment">
+                <div class="comment"><a class="avatar"><img src="/images/avatar.png"></a>
+                <div class="content" id="addAdminComments${commentID}"><a class="author">${userName}</a>
+                <div class="metadata">
+                <span class="date">방금전</span>
+                </div>
+                <div class="text" id="text${commentID}">${comment}</div>
+                <div class="actions"><a class="reply" href="javascript:void(0);"
+                onclick="deleteComment(this)" id=${commentID}>삭제</a><a class="save"
+                href="javascript:void(0);"
+                onclick="editCommentWindow(this)"
+                id=${commentID}>수정</a><a
+                class="reply" href="javascript:void(0);" onclick="aLargeCommentWindow(this)"
+                id=${commentID}>댓글 달기</a></div>
+                </div>
+                </div>
+                </div>
+                </div>`;
 
 
-            let chatData = `<div class="ui comments" id=${commentID}>`;
-            chatData += `<div class="ui segment">`;
-            chatData += `<div class="comment">`;
-            chatData += `<a class="avatar">`;
-            chatData += `<img src="/images/avatar.png">`;
-            chatData += `</a>`;
-            chatData += `<div class="content">`;
-            chatData += `<a class="author">${userName}</a>`;
-            chatData += `<div class="metadata">
-                                    <span class="date">방금전</span>
-                                </div>`;
-            chatData += `<div class="text" >`;
-            chatData += `${comment}`;
-            chatData += `</div>`;
-            chatData += `<div class="actions">`;
-            chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${114}>삭제</a>`;
-            chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${114}>수정</a>`;
-            chatData += `</div>`;
-            chatData += `</div>`;
-            chatData += `</div>`;
-            chatData += `</div>`;
-            chatData += `</div>`;
+            //TODO 삭제 예정인 더미 데이터
+
+            // let chatData = `<div class="ui comments" id=${commentID}>`;
+            // chatData += `<div class="ui segment">`;
+            // chatData += `<div class="comment">`;
+            // chatData += `<a class="avatar">`;
+            // chatData += `<img src="/images/avatar.png">`;
+            // chatData += `</a>`;
+            // chatData += `<div class="content">`;
+            // chatData += `<a class="author">${userName}</a>`;
+            // chatData += `<div class="metadata">
+            //                         <span class="date">방금전</span>
+            //                     </div>`;
+            // chatData += `<div class="text" >`;
+            // chatData += `${comment}`;
+            // chatData += `</div>`;
+            // chatData += `<div class="actions">`;
+            // chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${114}>삭제</a>`;
+            // chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${114}>수정</a>`;
+            // chatData += `</div>`;
+            // chatData += `</div>`;
+            // chatData += `</div>`;
+            // chatData += `</div>`;
+            // chatData += `</div>`;
 
             $('#comments').append(chatData);
 
@@ -201,72 +219,66 @@ function editComment(crystalID) {
 function deleteComment(deleteId) {
 
     const deleteIdData = deleteId.id;
-    if (buttonEvent() === true) {
 
-        let form = new FormData();
-        form.append("_method", "DELETE");
+    let form = new FormData();
+    form.append("_method", "DELETE");
 
-        $.ajax({
-            type: 'post'
-            , url: `https://honeytip.p-e.kr/comments/${deleteIdData}`
-            , data: form
-            , processData: false
-            , contentType: false
-            , xhrFields: {
-                withCredentials: false
+    $.ajax({
+        type: 'post'
+        , url: `https://honeytip.p-e.kr/comments/${deleteIdData}`
+        , data: form
+        , processData: false
+        , contentType: false
+        , xhrFields: {
+            withCredentials: false
+        }
+        , success: function (data) {
+            //json 파싱하기
+            let parseData = JSON.parse(data);
+            let keyCheck = parseData.key;
+
+
+            document.getElementById(deleteIdData).remove();
+
+
+        }
+        //에러 종류 조건문으로 걸러내기
+        , error: function (jqXHR, exception) {
+
+            if (jqXHR.status === 0) {
+                alert('Not connect.\n Verify Network.');
+            } else if (jqXHR.status === 400) {
+                alert('Server understood the request, but request content was invalid. [400]');
+            } else if (jqXHR.status === 401) {
+                alert('Unauthorized access. [401]');
+            } else if (jqXHR.status === 403) {
+                alert('Forbidden resource can not be accessed. [403]');
+            } else if (jqXHR.status === 404) {
+                alert('Requested page not found. [404]');
+            } else if (jqXHR.status === 500) {
+                alert('Internal server error. [500]');
+            } else if (jqXHR.status === 503) {
+                alert('Service unavailable. [503]');
+            } else if (exception === 'parsererror') {
+                alert('Requested JSON parse failed. [Failed]');
+            } else if (exception === 'timeout') {
+                alert('Time out error. [Timeout]');
+            } else if (exception === 'abort') {
+                alert('Ajax request aborted. [Aborted]');
+            } else {
+                alert('Uncaught Error.n');
             }
-            , success: function (data) {
-                //json 파싱하기
-                let parseData = JSON.parse(data);
-                let keyCheck = parseData.key;
+            //console.log("상태: " + status);
+            //console.log("실패");
+        }
+    });
 
-                // true/false 둘 중 하나를 반환한다.
-                //console.log("댓글 삭제 성공여부입니다.: " + keyCheck);
-
-                document.getElementById(deleteIdData).remove();
-
-
-            }
-            //에러 종류 조건문으로 걸러내기
-            , error: function (jqXHR, exception) {
-
-                if (jqXHR.status === 0) {
-                    alert('Not connect.\n Verify Network.');
-                } else if (jqXHR.status === 400) {
-                    alert('Server understood the request, but request content was invalid. [400]');
-                } else if (jqXHR.status === 401) {
-                    alert('Unauthorized access. [401]');
-                } else if (jqXHR.status === 403) {
-                    alert('Forbidden resource can not be accessed. [403]');
-                } else if (jqXHR.status === 404) {
-                    alert('Requested page not found. [404]');
-                } else if (jqXHR.status === 500) {
-                    alert('Internal server error. [500]');
-                } else if (jqXHR.status === 503) {
-                    alert('Service unavailable. [503]');
-                } else if (exception === 'parsererror') {
-                    alert('Requested JSON parse failed. [Failed]');
-                } else if (exception === 'timeout') {
-                    alert('Time out error. [Timeout]');
-                } else if (exception === 'abort') {
-                    alert('Ajax request aborted. [Aborted]');
-                } else {
-                    alert('Uncaught Error.n');
-                }
-                //console.log("상태: " + status);
-                //console.log("실패");
-            }
-        });
-
-
-    } else {
-        //console.log("실행취소");
-    }
 
 }
 
 // 4. 댓글목록 불러오는 함수
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function () {
+
 
     const postNum = getArticleNumber();
 
@@ -610,9 +622,9 @@ function largeComment(commentID) {
         'postNum': postNum,
         'comment': comment,
         'userName': userName,
-        'category': categoryUrl,
         'uid': uid
     };
+    console.table(editCommentID,postNum,comment,userName,uid)
 
 
     $.ajax({
@@ -1169,10 +1181,7 @@ function checkIn() {
     }
 }
 
-// 17. buttonEvent 버튼 이벤트(수정,삭제) 함수.
-function buttonEvent() {
-    return confirm("정말 실행하시겠습니까??") === true;
-}
+
 
 
 
