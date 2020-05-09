@@ -155,6 +155,9 @@ function editComment(crystalID) {
 
             $(`#text${editCommentID}`).text(comment);
 
+            //댓글 호출 창 변수 false로 값 변경해주기.
+            crystalWindowCheck = false
+
 
         }
         //에러 종류 조건문으로 걸러내기
