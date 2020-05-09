@@ -25,16 +25,11 @@ function writeAComment() {
     const postNum = getArticleNumber();
     const categoryUrl = categoryImport();
 
-    //console.log("글번호: " + postNum);
-    //console.log("카테고리 번호 : " + categoryUrl);
 
     const comment = $('#replyForm').val();
-    //console.log(comment);
     const userName = sessionStorageGet(`name`);
     const id = sessionStorageGet('cf');
 
-    //console.log("uid 확인 :" + id);
-    //console.log("이름 확인 : " + userName);
 
     let commentData = {
         'category': categoryUrl,
@@ -284,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     //상단 댓글 텍스트 불러오는 곳
                     let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
                     chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 </span></span></h3>`;
-                    chatTitle += `<h1 class="ui dividing header reply center aligned" onclick="pagingTreatment()"><span style="font-size: 16px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</span></h1>`;
+                    chatTitle += `<div class="ui header center aligned comment content" onclick="pagingTreatment()"><a class="author" style="font-size: 18px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</a></div>`;
                     chatTitle += `<br>`;
 
                     $('#replyTitle').append(chatTitle);
@@ -857,6 +852,7 @@ let paging = 2;
 function pagingTreatment() {
     //console.log("페이징 실행");
     const postNum = getArticleNumber();
+    console.log("페이징 실행");
 
     $.ajax({
             type: 'get'
@@ -1070,6 +1066,8 @@ function pagingTreatment() {
 
                     }
 
+                }else{
+                    alert("이전 댓글이 없어요.");
                 }
 
 
