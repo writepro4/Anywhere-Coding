@@ -10,7 +10,6 @@
 // 9. aLargeCommentWindow 대댓글 창 호출 함수.
 // 10. editComments 대댓글 수정 함수.
 // 11. deleteAdminComments 대댓글 삭제 함수.
-// 12. enterEvent 엔터키 이벤트 감지하는 함수.
 // 13. pagingTreatment 페이징 처리 함수.
 // 14. sessionStorageGet 세션스토리지에 값 가져오는 함수.
 // 15. editCommentsWindow 대댓글수정 창 호출하는 함수
@@ -81,32 +80,8 @@ function writeAComment() {
                 </div>`;
 
 
-            //TODO 삭제 예정인 더미 데이터
-
-            // let chatData = `<div class="ui comments" id=${commentID}>`;
-            // chatData += `<div class="ui segment">`;
-            // chatData += `<div class="comment">`;
-            // chatData += `<a class="avatar">`;
-            // chatData += `<img src="/images/avatar.png">`;
-            // chatData += `</a>`;
-            // chatData += `<div class="content">`;
-            // chatData += `<a class="author">${userName}</a>`;
-            // chatData += `<div class="metadata">
-            //                         <span class="date">방금전</span>
-            //                     </div>`;
-            // chatData += `<div class="text" >`;
-            // chatData += `${comment}`;
-            // chatData += `</div>`;
-            // chatData += `<div class="actions">`;
-            // chatData += `<a class="reply" href="javascript:void(0);" onclick="deleteComment(this)" id=${114}>삭제</a>`;
-            // chatData += `<a class="save" href="javascript:void(0);" onclick="editCommentWindow(this)" id=${114}>수정</a>`;
-            // chatData += `</div>`;
-            // chatData += `</div>`;
-            // chatData += `</div>`;
-            // chatData += `</div>`;
-            // chatData += `</div>`;
-
             $('#comments').append(chatData);
+            $('#replyForm').val('');
 
 
         }
@@ -576,6 +551,7 @@ let crystalWindowCheck = false;
 function editCommentWindow(crystalID) {
 
     if (crystalWindowCheck === false) {
+        console.log("수정창 true.")
         crystalWindowCheck = true;
 
         // 수정할 글 번호
@@ -593,6 +569,7 @@ function editCommentWindow(crystalID) {
         $(`#${editCommentID}`).append(formData);
 
     } else {
+        console.log("수정창 false")
         crystalWindowCheck = false;
         $(`#crystalWindow`).remove();
     }
@@ -624,7 +601,7 @@ function largeComment(commentID) {
         'userName': userName,
         'uid': uid
     };
-    console.table(editCommentID,postNum,comment,userName,uid)
+    console.table(editCommentID, postNum, comment, userName, uid)
 
 
     $.ajax({
@@ -707,14 +684,12 @@ function largeComment(commentID) {
 
 }
 
-let largeCommentWindowCheck = false;
-
 // 9. aLargeCommentWindow 대댓글 댓글 창 호출 함수.
 function aLargeCommentWindow(crystalID) {
 
-    if (largeCommentWindowCheck === false) {
+    if (crystalWindowCheck === false) {
 
-        largeCommentWindowCheck = true;
+        crystalWindowCheck = true;
         // 수정할 글 번호
         const editCommentID = crystalID.id;
 
@@ -723,7 +698,7 @@ function aLargeCommentWindow(crystalID) {
         formData += `<textarea id="formreply" spellcheck="true"></textarea>`;
         formData += `</div>`;
         formData += `<div class="ui red labeled submit icon button" onclick="largeComment(this)" id=${editCommentID} ">`;
-        formData += `<i class="icon edit"></i> 대댓글 댓글`;
+        formData += `<i class="icon edit"></i> 답글 달기`;
         formData += `</div>`;
         formData += `</form>`;
 
@@ -731,7 +706,7 @@ function aLargeCommentWindow(crystalID) {
 
 
     } else {
-        largeCommentWindowCheck = false;
+        crystalWindowCheck = false;
         $(`#crystalWindow`).remove();
 
     }
@@ -870,13 +845,6 @@ function deleteAdminComments(adminCommentNumber) {
     });
 
 
-}
-
-// 12. enterEvent 엔터키 이벤트 감지하는 함수.
-function enterEvent() {
-    if (window.event.keyCode === 13) {
-        writeAComment();
-    }
 }
 
 // 페이징 적용하기 위한 변수
@@ -1146,9 +1114,9 @@ function sessionStorageGet(key) {
 // 15. 대댓글수정 창 호출하는 함수
 function editCommentsWindow(crystalID) {
 
-    if (largeCommentWindowCheck === false) {
+    if (crystalWindowCheck === false) {
 
-        largeCommentWindowCheck = true;
+        crystalWindowCheck = true;
         // 수정할 글 번호
         const editCommentID = crystalID.id;
 
@@ -1164,7 +1132,7 @@ function editCommentsWindow(crystalID) {
         $(`#${editCommentID}`).append(formData);
 
     } else {
-        largeCommentWindowCheck = false;
+        crystalWindowCheck = false;
         $(`#crystalWindow`).remove();
     }
 
