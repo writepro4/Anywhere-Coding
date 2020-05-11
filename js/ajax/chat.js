@@ -280,7 +280,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     //상단 댓글 텍스트 불러오는 곳
                     let chatTitle = `<h3 class="ui dividing header"><span style="vertical-align: inherit;"><span`;
-                    chatTitle += `style="vertical-align: inherit;"><i class="comment icon"></i>댓글 </span></span></h3>`;
+                    chatTitle += ` style="vertical-align: inherit;"><p id="chatCount"><i class="comment icon"></i>댓글  </p> </span></span></h3>`;
                     chatTitle += `<div class="ui header center aligned comment content" onclick="pagingTreatment()"><a class="author" style="font-size: 18px; color:rgba(0, 0, 0, 0.8); ">이전 댓글보기</a></div>`;
                     chatTitle += `<br>`;
 
@@ -319,7 +319,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         let groupNum = contents[i].groupNum;
                         let uid = contents[i].uid;
                         const avatar = contents[i].avatar;
-                        console.log(avatar)
+                        // console.log(avatar)
                         //자신이 작성한 댓글인지 확인하는 변수.
                         const uidCheck = sessionStorageGet('cf');
 

@@ -6,7 +6,7 @@
 
 
 // 1. 상세페이지 내용 불러오는 함수
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function () {
     const listNumber = getUrlData();
 
     $.ajax({
@@ -60,6 +60,8 @@ $(document).ready(function () {
                         //json 파싱하기
                         let parseData = JSON.parse(data);
 
+
+
                         if (parseData.key === "possible") {
                             //console.log("확인 ");
                             $(`#likeIt`).remove();
@@ -75,7 +77,7 @@ $(document).ready(function () {
                             $(`#likeButton`).append(button);
                         }
 
-
+                        $('#chatCount').append(commentsCount);
                     }
                     //에러 종류 조건문으로 걸러내기
                     , error: function (jqXHR, exception) {
