@@ -30,6 +30,9 @@ function writeAComment() {
     const userName = sessionStorageGet(`name`);
     const id = sessionStorageGet('cf');
 
+    const avatar = sessionStorageGet(`avatar`);
+    console.log(avatar);
+
 
     let commentData = {
         'category': categoryUrl,
@@ -56,7 +59,7 @@ function writeAComment() {
 
             const chatData = `<div class="ui comments" id=${commentID}>
                 <div class="ui segment">
-                <div class="comment"><a class="avatar"><img src="/images/avatar.png"></a>
+                <div class="comment"><a class="avatar"><img src=${avatar}></a>
                 <div class="content" id="addAdminComments${commentID}"><a class="author">${userName}</a>
                 <div class="metadata">
                 <span class="date">방금전</span>
@@ -255,7 +258,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const postNum = getArticleNumber();
 
-// (get) https://honeytip.p-e.kr/comments/{글 번호}/{댓글 페이징 번호} // 댓글 페이징번호 1번부터 시작
     $.ajax({
             type: 'get'
             , url: `https://honeytip.p-e.kr/comments/${postNum}/1`
@@ -316,8 +318,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         //그룹 번호는 그 댓글 번호와 같다 .
                         let groupNum = contents[i].groupNum;
                         let uid = contents[i].uid;
-                        //console.log("uid 값 : " + uid);
-
+                        const avatar = contents[i].avatar;
+                        console.log(avatar)
                         //자신이 작성한 댓글인지 확인하는 변수.
                         const uidCheck = sessionStorageGet('cf');
 
@@ -331,7 +333,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 adminComments += `<div class="ui segment">`;
                                 adminComments += `<div class="comment">`;
                                 adminComments += `<a class="avatar">`;
-                                adminComments += `<img src="/images/avatarMan.png">`;
+                                adminComments += `<img src=${avatar}>`;
                                 adminComments += `</a>`;
                                 adminComments += `<div class="content">`;
                                 adminComments += `<a class="author">${userName}</a>`;
@@ -361,7 +363,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 chatData += `<div class="ui segment">`;
                                 chatData += `<div class="comment">`;
                                 chatData += `<a class="avatar">`;
-                                chatData += `<img src="/images/avatar.png">`;
+                                chatData += `<img src=${avatar}>`;
                                 chatData += `</a>`;
                                 chatData += `<div class="content" id="addAdminComments${indexComments}">`;
                                 chatData += `<a class="author">${userName}</a>`;
@@ -397,7 +399,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 adminComments += `<div class="ui segment">`;
                                 adminComments += `<div class="comment">`;
                                 adminComments += `<a class="avatar">`;
-                                adminComments += `<img src="/images/avatarMan.png">`;
+                                adminComments += `<img src=${avatar}>`;
                                 adminComments += `</a>`;
                                 adminComments += `<div class="content">`;
                                 adminComments += `<a class="author">${userName}</a>`;
@@ -427,7 +429,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 chatData += `<div class="ui segment">`;
                                 chatData += `<div class="comment">`;
                                 chatData += `<a class="avatar">`;
-                                chatData += `<img src="/images/avatar.png">`;
+                                chatData += `<img src=${avatar}>`;
                                 chatData += `</a>`;
                                 chatData += `<div class="content" id="addAdminComments${indexComments}">`;
                                 chatData += `<a class="author">${userName}</a>`;
