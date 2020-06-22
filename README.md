@@ -1,4 +1,3 @@
-# Anywhere-Coding
 ## ✒ 코딩에 관한 팁 블로그 사이트
 <br>
 
@@ -24,10 +23,31 @@
 - [x] 내 정보 페이지/ 좋아요 한 목록 /  댓글 목록
 - [x] 새로운 글 추천 
 
+<br>
+
 
 ### 📝 사용된 기술목록 축약 
 
+<br>
 
+* 제이쿼리
+* 시멘틱 UI
+* 바닐라 JS / ES6 
+* CSS / 부분 적용
+* GCP / 구글 클라우드 플랫폼
+* 우분투
+* 구글 애널리틱스
+* https 보안 프로토콜 / 내 한국 도메인
+* 서버 Apache
+* 썸머노트 
+
+
+
+### 👀 사이트 메인 페이지
+
+<br>
+
+![screencapture-honeytip-kro-kr-2020-06-23-08_29_34 (1)](https://user-images.githubusercontent.com/45548926/85345542-b00cb500-b52d-11ea-972f-61c53a41d3b1.png)
 
 
 
